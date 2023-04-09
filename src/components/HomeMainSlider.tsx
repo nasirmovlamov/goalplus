@@ -116,6 +116,7 @@ export default function HomeMainSlider() {
           </div>
           <div className="-z-20">
             <Image
+              alt="main image"
               src={sliderImage2}
               style={{
                 top: 0,
@@ -153,6 +154,7 @@ export default function HomeMainSlider() {
           </div>
           <div className="-z-20">
             <Image
+              alt="main image"
               src={sliderImage3}
               style={{
                 top: 0,
