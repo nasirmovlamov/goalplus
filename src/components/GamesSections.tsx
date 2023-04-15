@@ -10,19 +10,19 @@ type Props = {};
 const GamesSections = (props: Props) => {
   return (
     <div
-      className="flex w-full justify-center p-9 box-border h-[610px] "
+      className="flex w-full justify-center p-9 box-border "
       style={{
         backgroundImage: `url("https://goalplusaz1.odoo.com/web/image/483-4e11a214/DSC05401.jpg")`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
-      <div className="max-w-[1320px] w-full h-full flex justify-center gap-5">
-        <div className="flex flex-col max-w-[410px] w-full bg-white rounded-md overflow-hidden">
+      <div className="max-w-[1360px] w-full h-full flex flex-wrap justify-center gap-5">
+        <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden">
           <Image
             src={cardImage1}
             alt="card-image"
-            className="w-full h-[273px]"
+            className="w-full h-[273px] object-cover"
           />
           <div className="p-4 text-black flex flex-col gap-2">
             <h2 className="text-4xl">Soccer</h2>
@@ -34,11 +34,11 @@ const GamesSections = (props: Props) => {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col max-w-[410px] w-full bg-white rounded-md overflow-hidden">
+        <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden">
           <Image
             src={cardImage2}
             alt="card-image"
-            className="w-full h-[273px]"
+            className="w-full h-[273px] object-cover"
           />
           <div className="p-4 text-black flex flex-col gap-2">
             <h2 className="text-4xl">Volleyball</h2>
@@ -50,11 +50,11 @@ const GamesSections = (props: Props) => {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col max-w-[410px] w-full bg-white rounded-md overflow-hidden">
+        <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden">
           <Image
             src={cardImage3}
             alt="card-image"
-            className="w-full h-[273px]"
+            className="w-full h-[273px] object-cover"
           />
           <div className="p-4 text-black flex flex-col gap-2">
             <h2 className="text-4xl">Basketball</h2>

@@ -9,6 +9,12 @@ import AllAboutPeople from "@/components/StayInTouch";
 import StayInTouch from "@/components/StayInTouch";
 import GamesSections from "@/components/GamesSections";
 import InfoSection from "@/components/InfoSection";
+import SpendYourSummersection from "@/components/SpendYourSummersection";
+import AllAboutPeopleSection from "@/components/AllAboutPeopleSection";
+import GoalsTimelineSection from "@/components/GoalsTimelineSection";
+import RegisterInfoSection from "@/components/RegisterInfoSection";
+import Partners from "@/components/Partners";
+import Copyright from "@/components/Copyright";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,14 +28,16 @@ export default function Home() {
 
   return (
     <>
-      <TopBanner />
-      <Navbar />
       <HomeMainSlider />
       <BlockEarlyBirds />
+      <RegisterInfoSection />
+      <SpendYourSummersection />
       <GamesSections />
+      <AllAboutPeopleSection />
       <StayInTouch />
+      <GoalsTimelineSection />
       <InfoSection />
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <Partners />
     </>
   );
 }

@@ -4,7 +4,7 @@ type Props = {};
 
 const BlockEarlyBirds = (props: Props) => {
   return (
-    <div className="flex justify-center py-2">
+    <div className="flex justify-center p-5">
       <div className="max-w-[1140px] w-full">
         <p>Early bird registrations ends soon - add to slides </p>
         <p className="py-2">

@@ -84,10 +84,9 @@ export default function HomeMainSlider() {
                 overflow: "hidden",
                 backgroundRepeat: "no-repeat",
                 pointerEvents: "none",
-                height: "100vh",
                 zIndex: -20,
               }}
-              className="w-full h-full absolute top-0 left-0 z-0"
+              className="w-full h-full absolute top-0 left-0 z-0 md:h-[100vh]"
               src="https://www.youtube.com/embed/-BDyUQgRaYE?rel=0&autoplay=1&mute=1&enablejsapi=1&controls=0&loop=1&playlist=-BDyUQgRaYE&fs=0&modestbranding=1"
             ></iframe>
           </div>
@@ -101,9 +100,12 @@ export default function HomeMainSlider() {
               shcedules, activities, standings. What they gain by joining the
               website community
             </p>
-            <button className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl">
-              Join Now. Takes you to the page where you need to first create
-              your account
+            <button className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl">
+              Join Now
+              <span className="hidden md:inlin">
+                Takes you to the page where you need to first create your
+                account
+              </span>
             </button>
           </div>
           <div className="w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 -z-10">
@@ -123,6 +125,7 @@ export default function HomeMainSlider() {
                 left: 0,
                 bottom: 0,
                 right: 0,
+                objectFit: "cover",
                 display: "block",
                 overflow: "hidden",
                 backgroundRepeat: "no-repeat",
@@ -163,6 +166,7 @@ export default function HomeMainSlider() {
                 right: 0,
                 display: "block",
                 overflow: "hidden",
+                objectFit: "cover",
                 backgroundRepeat: "no-repeat",
                 pointerEvents: "none",
                 height: "100vh",

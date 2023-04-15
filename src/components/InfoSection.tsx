@@ -5,7 +5,7 @@ type Props = {};
 const InfoSection = (props: Props) => {
   return (
     <div
-      className="flex w-full justify-center pt-[72px] pb-[20px]  "
+      className="flex w-full justify-center py-[30px] md:py-[50px] pb-[20px]  box-border"
       style={{
         backgroundImage: `url("https://goalplusaz1.odoo.com/web_editor/shape/web_editor/Airy/12_001.svg?c1=%23022974&c3=%23021F57")`,
         backgroundRepeat: "no-repeat",
@@ -15,7 +15,7 @@ const InfoSection = (props: Props) => {
         position: "relative",
       }}
     >
-      <div className="max-w-[1320px] w-full h-full flex justify-center gap-10 lg:gap-[160px] pt-[12px] pb-[20px] text-center">
+      <div className="max-w-[1320px] w-full h-full flex flex-col md:flex-row justify-center gap-10 lg:gap-[160px]  pb-[20px] text-center">
         <div className="flex flex-col">
           <h2 className="text-5xl text-white">40</h2>
           <h3 className="text-white">S&U</h3>
