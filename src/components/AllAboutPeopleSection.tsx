@@ -17,7 +17,7 @@ const AllAboutPeopleSection = (props: Props) => {
       <div className="w-full h-full absolute top-0 left-0 bg-[#00000077]"></div>
       <div className="max-w-[1230px] w-full  flex-col  justify-between z-20   gap-y-2 flex box-border p-5">
         <h2 className="text-[36px] lg:text-[44px] text-white text-center">
-          It's all about people
+          It&apos;s all about people
         </h2>
         <div className="flex gap-5 flex-wrap w-full">
           <img
