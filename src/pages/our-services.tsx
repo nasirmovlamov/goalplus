@@ -130,7 +130,7 @@ export default function OurServices(props: Props) {
                 : " bg-gray-300 text-black border-black ")
             }
           >
-            All
+            All ({allGames.length})
           </button>
           <button
             onClick={() => handleFilter("football")}
@@ -141,7 +141,7 @@ export default function OurServices(props: Props) {
                 : " bg-gray-300 text-black border-black ")
             }
           >
-            Football
+            Football ({games.football.length})
           </button>
           <button
             onClick={() => handleFilter("basketball")}
@@ -152,7 +152,7 @@ export default function OurServices(props: Props) {
                 : " bg-gray-300 text-black border-black ")
             }
           >
-            Basketball
+            Basketball ({games.basketball.length})
           </button>
           <button
             onClick={() => handleFilter("volleyball")}
@@ -163,7 +163,7 @@ export default function OurServices(props: Props) {
                 : " bg-gray-300 text-black border-black ")
             }
           >
-            Volleyball
+            Volleyball ({games.volleyball.length})
           </button>
         </div>
         <div className="w-full flex flex-wrap gap-[50px]">
