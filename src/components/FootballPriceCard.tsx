@@ -7,6 +7,8 @@ import nikeGirlsBall2 from "../media/images/nikegirlsBall2.png";
 import Image from "next/image";
 import Link from "next/link";
 
+
+
 type Props = {
   sport: string;
   league: string;
