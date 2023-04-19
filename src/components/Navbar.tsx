@@ -38,11 +38,14 @@ export const Navbar = () => {
             <li className="p-2">
               <StyledLink href="/">Home</StyledLink>
             </li>
-            <li className="p-2">
+            {/* <li className="p-2">
               <StyledLink href="/login">Login</StyledLink>
-            </li>
+            </li> */}
             <li className="p-2">
               <StyledLink href="/register">Register</StyledLink>
+            </li>
+            <li className="p-2">
+              <StyledLink href="/our-services">Our services</StyledLink>
             </li>
             <li className="p-2">
               <StyledLink href="/contact">Contact Us</StyledLink>
@@ -75,14 +78,14 @@ export const Navbar = () => {
                 <StyledLink href="/">Home</StyledLink>
               </li>
               <li className="p-2">
-                <StyledLink href="/our-services">Sport Leagues</StyledLink>
+                <StyledLink href="/our-services">Our Services</StyledLink>
               </li>
-              <li className="p-2">
+              {/* <li className="p-2">
                 <StyledLink href="/pricing">Community Pass</StyledLink>
               </li>
               <li className="p-2">
                 <StyledLink href="/help">Help</StyledLink>
-              </li>
+              </li> */}
             </ul>
           </div>
 

@@ -6,6 +6,7 @@ import React, { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { convertToBase64 } from "@/utils/fileToBase64";
+import { useRouter } from "next/router";
 
 type Props = {};
 
@@ -140,6 +141,9 @@ const leagues: {
 };
 
 export default function Register(props: Props) {
+  const router = useRouter();
+  const params = router.query;
+  const { sport: sportParam, league: leagueParam } = params;
   const schoolCertificateInputRef = React.useRef<HTMLInputElement>(null);
   const [
     registerApi,
@@ -151,6 +155,12 @@ export default function Register(props: Props) {
       error,
     },
   ] = authApi.useRegisterMutation();
+  const methods = useForm<RegisterDto>({
+    // resolver: yupResolver(registerSchema),
+    defaultValues: {
+      sportType: sportParam ? `${sportParam}` : "",
+    },
+  });
   const [backendErrors, setBackendErrors] = React.useState<any>(null);
   const [teamMembers, setTeamMembers] = React.useState<
     {
@@ -240,9 +250,6 @@ export default function Register(props: Props) {
     ));
   }, [teamMembers]);
 
-  const methods = useForm<RegisterDto>({
-    // resolver: yupResolver(registerSchema),
-  });
   const {
     handleSubmit,
     formState: { errors },
