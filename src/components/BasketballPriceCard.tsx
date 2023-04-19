@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 type Props = {
-  sport: "Basketball" | "Tennis" | "Volleyball" | "Badminton";
+  sport: string;
   league: string;
   address: string;
   minPlayers: number;
@@ -17,7 +17,7 @@ type Props = {
   regularPersonPrice: number;
   earlyBirdTeamPrice: number;
   earlyBirdPersonPrice: number;
-  gender: "male" | "female";
+  gender: string;
 };
 
 export const BasketballPriceCard = ({
