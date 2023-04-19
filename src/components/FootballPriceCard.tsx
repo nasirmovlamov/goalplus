@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import qrCode from "../media/images/qrCode.png";
 import nikeBall from "../media/images/nikeBall.png";
-import nikeGirlsBall2 from "../media/images/nikegirlsBall2.png";
+import nikeGirlsBall2 from "../media/images/nikeGirlsBall2.png";
 import Image from "next/image";
 import Link from "next/link";
 
