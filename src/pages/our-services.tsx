@@ -172,6 +172,8 @@ export default function OurServices(props: Props) {
               switch (game.sport) {
                 case "Football":
                   return <FootballPriceCard key={index} {...game} />;
+                case "Girls Football":
+                  return <FootballPriceCard key={index} {...game} />;
                 case "Basketball":
                   return <BasketballPriceCard key={index} {...game} />;
                 case "Volleyball":
