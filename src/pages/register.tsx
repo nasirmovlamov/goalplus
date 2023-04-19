@@ -290,7 +290,6 @@ export default function Register(props: Props) {
       ""
     );
 
-    data.personalPhoto = base64TrimPhoto;
     await registerApi(data);
   };
 
