@@ -44,7 +44,7 @@ export const BeachVolleyballPriceCard = ({
       >
         <Image src={beachBall} width={100} height={100} alt="ball image" />
       </div>
-      <h2 className="w-full flex justify-center py-1 text-[45px] bg-[#61B2D7] text-white text-center">
+      <h2 className="w-full flex flex-wrap justify-center py-1 text-[45px] bg-[#61B2D7] text-white text-center">
         {sport}
       </h2>
       <div
@@ -55,23 +55,23 @@ export const BeachVolleyballPriceCard = ({
         }}
       >
         <div
-          className="w-full flex justify-between gap-[20px] p-3 px-[30px] border-[3px] border-[#E62A2C] border-t-transparent"
+          className="w-full flex flex-wrap justify-between gap-[20px] p-3 px-[30px] border-[3px] border-[#E62A2C] border-t-transparent"
           style={{
             borderRadius: "0 0 10px 10px",
           }}
         >
-          <div className="flex gap-[30px]">
-            <div className="ball flex w-[230px] h-full mt-20px">
+          <div className="flex flex-wrap gap-[10px] lg:gap-[30px]">
+            <div className="ball flex w-full lg:w-[230px] h-[190px] lg:h-full mt-20px">
               <img
                 src={
-                  "https://hips.hearstapps.com/hmg-prod/images/lusail1-1668702662.png"
+                  "https://upload.wikimedia.org/wikipedia/commons/8/82/2017_European_Beach_Volleyball_Championships.jpg"
                 }
                 alt="place image"
-                className="object-cover w-[230px] h-full rounded-lg"
+                className="object-cover w-full lg:w-[230px] h-[190px] lg:h-full rounded-lg"
               />
             </div>
             <div className="flex flex-col text-[#38383A] ">
-              <h3 className="text-[36px]">League ({league})</h3>
+              <h3 className="text-[24px] lg:text-[36px]">League ({league})</h3>
               <p className="text-base">Address : {address}</p>
               <p className="text-base flex flex-col">
                 <span className="block"> Date 15 June ~ 15 August</span>
@@ -107,7 +107,12 @@ export const BeachVolleyballPriceCard = ({
               </div>
             </div>
           </div>
-          <Image src={qrCode} width={100} alt="qrCode" className="ml-10" />
+          <Image
+            src={qrCode}
+            width={100}
+            alt="qrCode"
+            className="ml-10 hidden lg:block"
+          />
         </div>
       </div>
     </div>

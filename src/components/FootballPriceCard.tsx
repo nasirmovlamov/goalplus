@@ -7,8 +7,6 @@ import nikeGirlsBall2 from "../media/images/nikeGirlsBall2.png";
 import Image from "next/image";
 import Link from "next/link";
 
-
-
 type Props = {
   sport: string;
   league: string;
@@ -35,7 +33,7 @@ export const FootballPriceCard = ({
   gender,
 }: Props) => {
   return (
-    <div className="flex flex-col flex-wrap max-w-[970px] w-full rounded-2xl overflow-hidden relative">
+    <div className="flex flex-col h-auto flex-wrap max-w-[970px] w-full rounded-2xl overflow-hidden relative">
       {/* <div className="z-20 absolute left-0 top-[90px] w-[50px] h-[50px] bg-[#E4E4E2]"></div> */}
       <div
         className="z-20 absolute -left-12 top-[90px] w-[100px] h-[100px]  rounded-full border border-[#DA2627]"
@@ -71,18 +69,18 @@ export const FootballPriceCard = ({
             borderRadius: "0 0 10px 10px",
           }}
         >
-          <div className="flex gap-[30px]">
-            <div className="ball flex w-[230px] h-full mt-20px">
+          <div className="flex flex-wrap gap-[10px] lg:gap-[30px] flex-col lg:flex-row">
+            <div className="ball flex w-full lg:w-[230px] h-[190px] lg:h-full mt-20px">
               <img
                 src={
                   "https://hips.hearstapps.com/hmg-prod/images/lusail1-1668702662.png"
                 }
                 alt="place image"
-                className="object-cover w-[230px] h-full rounded-lg"
+                className="object-cover w-full lg:w-[230px] h-full rounded-lg"
               />
             </div>
-            <div className="flex flex-col text-[#38383A] ">
-              <h3 className="text-[36px]">League ({league})</h3>
+            <div className="flex flex-col text-[#38383A] lg:w-auto w-full">
+              <h3 className="text-[24px] lg:text-[36px]">League ({league})</h3>
               <p className="text-base">Address : {address}</p>
               <p className="text-base flex flex-col">
                 <span className="block"> Date 15 June ~ 15 August</span>
@@ -118,7 +116,12 @@ export const FootballPriceCard = ({
               </div>
             </div>
           </div>
-          <Image src={qrCode} width={100} alt="qrCode" className="ml-10" />
+          <Image
+            src={qrCode}
+            width={100}
+            alt="qrCode"
+            className="ml-10 hidden lg:block"
+          />
         </div>
       </div>
     </div>
