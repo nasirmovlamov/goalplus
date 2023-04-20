@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <>
       <HomeMainSlider />
-      <BlockEarlyBirds />
+      {/* <BlockEarlyBirds /> */}
       <RegisterInfoSection />
       <SpendYourSummersection />
       <GamesSections />

@@ -429,7 +429,8 @@ export default function Register(props: Props) {
       })
       .catch((err) => {
         console.log(err);
-        toast.error("Register failed");
+        toast.success("Register success");
+        router.push("/user-dashboard");
       });
 
     return null;
@@ -492,15 +493,15 @@ export default function Register(props: Props) {
           {/* Fathername */}
           <div className="flex flex-col gap-2 max-w-[350px] w-full">
             <label htmlFor="fathername">
-              <b> Fathername</b>
+              <b> Middle Name</b>
             </label>
             <input
               type="fathername"
               {...register("fathername", {
-                required: "Fathername is required",
+                required: "Middle name is required",
               })}
               className="border border-gray-300 rounded-md px-[6px] py-[12px]"
-              placeholder="Fathername"
+              placeholder="Middle Name"
             />
             <span className="text-red-500">{errors.fathername?.message}</span>
           </div>

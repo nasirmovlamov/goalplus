@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import goalPlusLogo from "../media/images/goalplus-logo.png";
+import navLogo from "../media/images/navLogo.png";
 import StyledLink from "./StyledLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
@@ -69,20 +70,12 @@ export const Navbar = () => {
         <nav className="h-[56px] flex w-full max-w-[1140px] px-[15px] py-[8px] justify-between">
           <div className="flex md:hidden">
             <Link href="/">
-              <Image
-                src={goalPlusLogo}
-                alt="logo"
-                className="w-[40px] h-[40px]"
-              />
+              <Image src={navLogo} alt="logo" className="w-[40px] h-[40px]" />
             </Link>
           </div>
           <div className="md:flex hidden">
             <Link href="/">
-              <Image
-                src={goalPlusLogo}
-                alt="logo"
-                className="w-[40px] h-[40px]"
-              />
+              <Image src={navLogo} alt="logo" className="w-[40px] h-[40px]" />
             </Link>
             <ul className="flex pl-6 text-[rgb(115,115,115)]">
               <li className="p-2">

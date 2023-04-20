@@ -101,20 +101,20 @@ export const FootballPriceCard = ({
               <p className="text-base mt-1">
                 Min {minPlayers} and Max {maxPlayers} players
               </p>
-              <div>
+              {/* <div>
                 <p className="line-through text-xs text-red-500">
                   Regular team price : {regularTeamPrice} azn
                 </p>
                 <p className="line-through text-xs text-red-500">
                   Regular person price : {regularPersonPrice} azn
                 </p>
-              </div>
+              </div> */}
               <div>
-                <p className=" text-xs">
-                  Early bird team price : {earlyBirdTeamPrice} azn
+                <p className=" text-xs line-through text-red-500">
+                  Early bird : 0 azn
                 </p>
-                <p className=" text-xs">
-                  Early bird person price : {earlyBirdPersonPrice} azn
+                <p className=" text-xs ">
+                  Regular price : {regularPersonPrice} azn
                 </p>
               </div>
               <p className="text-base">Duration : 8 weeks</p>

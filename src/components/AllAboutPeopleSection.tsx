@@ -22,7 +22,7 @@ const AllAboutPeopleSection = (props: Props) => {
         <div className="flex gap-5 flex-wrap w-full">
           <img
             src="https://goalplusaz1.odoo.com/web/image/498-4013269f/DSC05401.jpg"
-            className="lg:w-[344px] h-[238px] object-cover rounded-md  shadow-md"
+            className="lg:w-[344px] h-[282px]  object-cover rounded-md  shadow-md"
           />
           <img
             src="https://goalplusaz1.odoo.com/web/image/495-baec686a/004X7870.jpg"
@@ -30,7 +30,7 @@ const AllAboutPeopleSection = (props: Props) => {
           />
           <img
             src="https://goalplusaz1.odoo.com/web/image/479-5af32d73/DSC00014%20%281%29.jpg"
-            className="lg:w-[344px] h-[238px] object-cover  rounded-md shadow-md"
+            className="lg:w-[344px] h-[282px]  object-cover  rounded-md shadow-md"
           />
         </div>
       </div>
