@@ -4,14 +4,23 @@ import goalPlusLogo from "../media/images/goalplus-logo.png";
 import StyledLink from "./StyledLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export const Navbar = () => {
   const [isOpenMobileNavbar, setIsOpenMobileNavbar] = useState(false);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
   const handleOpenMobileNavbar = () => {
     setIsOpenMobileNavbar(!isOpenMobileNavbar);
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  });
 
   return (
     <>
@@ -45,10 +54,12 @@ export const Navbar = () => {
               <StyledLink href="/register">Register</StyledLink>
             </li>
             <li className="p-2">
-              <StyledLink href="/our-services">Our services</StyledLink>
+              <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
             </li>
             <li className="p-2">
-              <StyledLink href="/contact">Contact Us</StyledLink>
+              <a href="https://www.instagram.com/goalplusaz/" target="_blank">
+                Contact Us
+              </a>
             </li>
           </ul>
         </div>
@@ -78,7 +89,7 @@ export const Navbar = () => {
                 <StyledLink href="/">Home</StyledLink>
               </li>
               <li className="p-2">
-                <StyledLink href="/our-services">Our Services</StyledLink>
+                <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
               </li>
               {/* <li className="p-2">
                 <StyledLink href="/pricing">Community Pass</StyledLink>
@@ -90,16 +101,35 @@ export const Navbar = () => {
           </div>
 
           <ul className="md:flex h-[40px] items-center hidden ">
-            <li>
-              <Link href="/login">Sign in</Link>
-            </li>
+            {/* <li>
+              <Link href="/register">Register</Link>
+            </li> */}
+            {isLoggedIn && (
+              <li className="pl-4 pr-3">
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    setIsLoggedIn(false);
+                    router.push("/");
+                  }}
+                >
+                  Logout
+                </button>
+              </li>
+            )}
+            {!isLoggedIn && (
+              <li className="pl-4 pr-3">
+                <Link href="/login">Login</Link>
+              </li>
+            )}
             <li className="pl-4">
-              <Link
-                href="/contactus"
+              <a
+                target="_blank"
+                href="https://www.instagram.com/goalplusaz/"
                 className=" bg-[#032974] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out"
               >
                 Contact us
-              </Link>
+              </a>
             </li>
           </ul>
 

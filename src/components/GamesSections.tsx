@@ -24,10 +24,10 @@ const GamesSections = (props: Props) => {
             alt="card-image"
             className="w-full h-[273px] object-cover"
           />
-          <div className="p-4 text-black flex flex-col gap-2">
-            <h2 className="text-4xl">Soccer</h2>
+          <div className="w-full p-4 text-black flex items-center flex-col gap-2">
+            <h2 className="text-4xl text-center">Soccer</h2>
             <Link
-              href="#"
+              href="/sports-leagues"
               className="bg-[#032974] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max"
             >
               Discover
@@ -40,10 +40,10 @@ const GamesSections = (props: Props) => {
             alt="card-image"
             className="w-full h-[273px] object-cover"
           />
-          <div className="p-4 text-black flex flex-col gap-2">
-            <h2 className="text-4xl">Volleyball</h2>
+          <div className="p-4 text-black flex items-center flex-col gap-2">
+            <h2 className="text-4xl text-center">Volleyball</h2>
             <Link
-              href="#"
+              href="/sports-leagues"
               className="bg-[#032974] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max"
             >
               Discover
@@ -56,11 +56,11 @@ const GamesSections = (props: Props) => {
             alt="card-image"
             className="w-full h-[273px] object-cover"
           />
-          <div className="p-4 text-black flex flex-col gap-2">
-            <h2 className="text-4xl">Basketball</h2>
+          <div className="p-4 text-black items-center flex flex-col gap-2">
+            <h2 className="text-4xl text-center">Basketball</h2>
             <Link
-              href="#"
-              className="bg-[#032974] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max"
+              href="/sports-leagues"
+              className="bg-[#032974]  text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max"
             >
               Discover
             </Link>

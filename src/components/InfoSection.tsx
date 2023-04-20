@@ -1,6 +1,8 @@
 import React from "react";
 
 type Props = {};
+import festival from "../media/images/festival.png";
+import Image from "next/image";
 
 const InfoSection = (props: Props) => {
   return (
@@ -16,21 +18,38 @@ const InfoSection = (props: Props) => {
       }}
     >
       <div className="max-w-[1320px] w-full h-full flex flex-col md:flex-row justify-center gap-10 lg:gap-[160px]  pb-[20px] text-center">
-        <div className="flex flex-col">
-          <h2 className="text-5xl text-white">40</h2>
-          <h3 className="text-white">S&U</h3>
+        {/* <div className="flex flex-col">
+          <h2 className="text-5xl text-white">60</h2>
+          <h3 className="text-white">days</h3>
+        </div> */}
+        <div className="flex flex-col w-[300px]">
+          <Image
+            src={festival}
+            alt="image"
+            width={100}
+            className="w-[300px] h-auto"
+          />
         </div>
+
         <div className="flex flex-col">
-          <h2 className="text-5xl text-white">45</h2>
+          <h2 className="text-5xl text-white">60</h2>
           <h3 className="text-white">days</h3>
         </div>
         <div className="flex flex-col">
-          <h2 className="text-5xl text-white">8</h2>
+          <h2 className="text-5xl text-white">6</h2>
           <h3 className="text-white">Amazing sports</h3>
         </div>
         <div className="flex flex-col">
-          <h2 className="text-5xl text-white">37</h2>
-          <h3 className="text-white">Outstandings</h3>
+          <h2 className="text-5xl text-white">1000</h2>
+          <h3 className="text-white">Athletes</h3>
+        </div>
+        <div className="flex flex-col">
+          <h2 className="text-5xl text-white">10K</h2>
+          <h3 className="text-white">Visitor</h3>
+        </div>
+        <div className="flex flex-col">
+          <h2 className="text-5xl text-white">Endless</h2>
+          <h3 className="text-white">Memories</h3>
         </div>
       </div>
     </div>

@@ -6,6 +6,9 @@ import basketBall from "../media/images/basketballBall.png";
 import nikeGirlsBall2 from "../media/images/nikegirlsBall2.png";
 import Image from "next/image";
 import Link from "next/link";
+import recroBasket from "../media/images/recre basketa.png";
+import u21 from "../media/images/U-21a.png";
+import basket3x3 from "../media/images/3X3BASKETa.png";
 
 type Props = {
   sport: string;
@@ -64,7 +67,11 @@ export const BasketballPriceCard = ({
             <div className="ball flex w-full lg:w-[230px] h-[190px] lg:h-full mt-20px">
               <img
                 src={
-                  "https://gculopes.com/images/2020/6/28/Jacksonville_111218_056.jpg"
+                  league === "Recreational"
+                    ? recroBasket.src
+                    : league === "U21"
+                    ? basket3x3.src
+                    : ""
                 }
                 alt="place image"
                 className="object-cover w-full lg:w-[230px] h-[190px] lg:h-full rounded-lg"
@@ -72,14 +79,15 @@ export const BasketballPriceCard = ({
             </div>
             <div className="flex flex-col text-[#38383A] ">
               <h3 className="text-[24px] lg:text-[36px]">League ({league})</h3>
-              <p className="text-base">Address : {address}</p>
               <p className="text-base flex flex-col">
                 <span className="block"> Date 15 June ~ 15 August</span>
                 <span className="block text-[10px] leading-3">
                   (Day of the week)
                 </span>
               </p>
-              <p className="text-base mt-1">Min 15 and Max 10 players</p>
+              <p className="text-base mt-1">
+                Min {minPlayers} and Max {maxPlayers} players
+              </p>
               <div>
                 <p className="line-through text-xs text-red-500">
                   Regular team price : {regularTeamPrice} azn
@@ -96,6 +104,8 @@ export const BasketballPriceCard = ({
                   Early bird person price : {earlyBirdPersonPrice} azn
                 </p>
               </div>
+              <p className="text-base">Duration : 8 weeks</p>
+              <p className="text-base">{address}</p>
 
               <div className="flex justify-start mt-2">
                 <Link

@@ -15,21 +15,22 @@ const StayInTouch = (props: Props) => {
         position: "relative",
       }}
     >
-      <div className="max-w-[1320px] w-full h-full flex flex-wrap justify-between gap-5">
-        <div className="flex flex-col gap-2 text-white">
+      <div className="max-w-[1200px] w-full h-full flex flex-wrap justify-center gap-5">
+        {/* <div className="flex flex-col gap-2 text-white">
           <h2 className="text-4xl">Stay in touch</h2>
           <h3>connect</h3>
-        </div>
+        </div> */}
 
         <div className="flex flex-wrap gap-5 justify-end">
-          <Link
+          {/* <Link
             href="#"
             className="text-lg bg-[#031F57] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max h-max"
           >
             Apply as a crew member
-          </Link>
+          </Link> */}
           <Link
-            href="#"
+            target="_blank"
+            href="https://t.me/goalpluscommunity"
             className="text-lg bg-[#031F57] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max h-max"
           >
             Join our telegram community

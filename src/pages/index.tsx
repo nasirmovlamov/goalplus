@@ -35,7 +35,7 @@ export default function Home() {
       <GamesSections />
       <AllAboutPeopleSection />
       <StayInTouch />
-      <GoalsTimelineSection />
+      {/* <GoalsTimelineSection /> */}
       <InfoSection />
       <Partners />
     </>

@@ -6,6 +6,7 @@ import sliderImage3 from "../media/images/home-slider-image-3.jpg";
 import sliderImage2 from "../media/images/home-slider-image-2.jpg";
 import Slider from "react-slick";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomeMainSlider() {
   const settings = {
@@ -48,7 +49,7 @@ export default function HomeMainSlider() {
     <div className="bg-[#031F57]">
       <Slider {...settings}>
         <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
-          <div className="flex flex-col z-10 pt-40 justify-center items-center">
+          <div className="flex flex-col z-10 pt-32 justify-center items-center">
             <h1 className="text-xl lg:text-5xl text-center">
               Become a member of our community
             </h1>
@@ -92,21 +93,24 @@ export default function HomeMainSlider() {
           </div>
         </div>
         <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
-          <div className="flex flex-col z-10 pt-40 justify-center items-center">
+          <div className="flex flex-col z-10 pt-32 justify-center items-center">
             <h1 className="text-xl lg:text-5xl text-center">
-              All in one place
+              Score goals on and off the field
             </h1>
             <p className="text-center mt-5">
               shcedules, activities, standings. What they gain by joining the
               website community
             </p>
-            <button className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl">
+            <Link
+              href="/register"
+              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl"
+            >
               Join Now
               <span className="hidden md:inlin">
                 Takes you to the page where you need to first create your
                 account
               </span>
-            </button>
+            </Link>
           </div>
           <div className="w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 -z-10">
             <Image
@@ -138,14 +142,17 @@ export default function HomeMainSlider() {
           </div>
         </div>
         <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
-          <div className="flex flex-col z-10 pt-40 justify-center items-center">
+          <div className="flex flex-col z-10 pt-32 justify-center items-center">
             <h1 className="text-xl lg:text-5xl text-center">
               Capture your memories with
             </h1>
             <p className="text-center mt-5">Goalplus Summer 2023</p>
-            <button className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl">
+            <Link
+              href="/register"
+              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl"
+            >
               Discover Now
-            </button>
+            </Link>
           </div>
           <div className="w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 -z-10">
             <Image

@@ -36,11 +36,9 @@ const RegisterInfoSection = (props: Props) => {
         >
           <FontAwesomeIcon icon={faShieldHalved} size="5x" />
           <h3 className="w-max lg:text-[44px]">Athlete Registration</h3>
-          <p className="w-max">
-            Participate in sports, score goals on the field
-          </p>
+          <p className="w-max">Participate in sports leagues</p>
           <Link
-            href="/contactus"
+            href="/sports-leagues"
             className=" bg-[#ffffff] text-[#032974] rounded-md px-4 py-2 hover:bg-[#98a3b9] transition duration-300 ease-in-out"
           >
             More Details
@@ -50,7 +48,7 @@ const RegisterInfoSection = (props: Props) => {
 
       {/* Block 2 */}
       <div
-        className="w-full lg:w-[50%] flex justify-center items-center h-full relative box-border p-3"
+        className="w-full lg:w-[50%] flex justify-center items-center h-full relative box-border p-5"
         style={{
           backgroundImage: `url("https://goalplusaz1.odoo.com/web/image/510-4e11a214/DSC05401.jpg")`,
           backgroundRepeat: "no-repeat",
@@ -70,15 +68,10 @@ const RegisterInfoSection = (props: Props) => {
         >
           <FontAwesomeIcon icon={faCube} size="5x" />
           <h3 className=" lg:text-[44px] w-max">Community Pass</h3>
-          <p className="w-max">
-            Stay active, connected, score goals off the field
-          </p>
-          <Link
-            href="/contactus"
-            className=" bg-[#ffffff] text-[#032974] rounded-md px-4 py-2 hover:bg-[#98a3b9] transition duration-300 ease-in-out"
-          >
+          <p className="w-max">Coming soon</p>
+          <div className="text-white bg-[#888787]  rounded-md px-4 py-2 hover:bg-[#98a3b9] transition duration-300 ease-in-out">
             More Details
-          </Link>
+          </div>
         </div>
         <Image
           src={registerInfoSvg}

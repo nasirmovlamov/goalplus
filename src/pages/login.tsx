@@ -107,9 +107,9 @@ export default function Login(props: Props) {
             <Link href="/register" className="text-[#032974]">
               Don&apos;t have account
             </Link>
-            <Link href="/reset-password" className="text-[#032974]">
+            {/* <Link href="/reset-password" className="text-[#032974]">
               Reset Password
-            </Link>
+            </Link> */}
           </div>
 
           <div>

@@ -9,7 +9,7 @@ const Partners = (props: Props) => {
         <h3 className="lg:text-[44px]">Our awesome partners and sponsors</h3>
         <h4>We are in good company.</h4>
         <div className="flex gap-4 flex-wrap justify-center">
-          <img
+          {/* <img
             src="https://goalplusaz1.odoo.com/web/image/website.s_reference_demo_image_1"
             height="50px"
             className="h-[100px]"
@@ -38,7 +38,7 @@ const Partners = (props: Props) => {
             height="50px"
             className="h-[100px]"
             alt="partner logo"
-          />
+          /> */}
         </div>
       </div>
     </div>

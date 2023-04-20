@@ -6,6 +6,9 @@ import nikeBall from "../media/images/nikeBall.png";
 import nikeGirlsBall2 from "../media/images/nikeGirlsBall2.png";
 import Image from "next/image";
 import Link from "next/link";
+import u15 from "../media/images/U-15a.png";
+import u18 from "../media/images/U-18a.png";
+import u21 from "../media/images/U-21a.png";
 
 type Props = {
   sport: string;
@@ -73,7 +76,15 @@ export const FootballPriceCard = ({
             <div className="ball flex w-full lg:w-[230px] h-[190px] lg:h-full mt-20px">
               <img
                 src={
-                  "https://hips.hearstapps.com/hmg-prod/images/lusail1-1668702662.png"
+                  league === "U16"
+                    ? u15.src
+                    : league === "U18"
+                    ? u18.src
+                    : league === "U21"
+                    ? u21.src
+                    : league === "U-GIRLS"
+                    ? u21.src
+                    : ""
                 }
                 alt="place image"
                 className="object-cover w-full lg:w-[230px] h-full rounded-lg"
@@ -81,14 +92,15 @@ export const FootballPriceCard = ({
             </div>
             <div className="flex flex-col text-[#38383A] lg:w-auto w-full">
               <h3 className="text-[24px] lg:text-[36px]">League ({league})</h3>
-              <p className="text-base">Address : {address}</p>
               <p className="text-base flex flex-col">
                 <span className="block"> Date 15 June ~ 15 August</span>
                 <span className="block text-[10px] leading-3">
                   (Day of the week)
                 </span>
               </p>
-              <p className="text-base mt-1">Min 15 and Max 10 players</p>
+              <p className="text-base mt-1">
+                Min {minPlayers} and Max {maxPlayers} players
+              </p>
               <div>
                 <p className="line-through text-xs text-red-500">
                   Regular team price : {regularTeamPrice} azn
@@ -105,6 +117,9 @@ export const FootballPriceCard = ({
                   Early bird person price : {earlyBirdPersonPrice} azn
                 </p>
               </div>
+              <p className="text-base">Duration : 8 weeks</p>
+
+              <p className="text-base">{address}</p>
 
               <div className="flex justify-start mt-2">
                 <Link
