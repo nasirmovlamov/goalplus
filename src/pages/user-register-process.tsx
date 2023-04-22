@@ -238,10 +238,15 @@ export default function Register(props: Props) {
     idCardFormData.append("file", data.idCard[0]);
     const personalPhotoFormData = new FormData();
     personalPhotoFormData.append("file", data.personalPhoto[0]);
+
+    const schoolCertificateData = new FormData();
+    schoolCertificateData.append("file", data.schoolCertificate[0]);
+
     putTeamInfo({
       postData: formData.postData,
       idCardFormData: idCardFormData,
       personalPhotoFormData: personalPhotoFormData,
+      schoolCertificateFormData: schoolCertificateData,
     });
     return null;
   };
@@ -250,6 +255,7 @@ export default function Register(props: Props) {
     postData,
     idCardFormData,
     personalPhotoFormData,
+    schoolCertificateFormData,
   }: {
     personalPhotoFormData: any;
     postData: {
@@ -259,6 +265,7 @@ export default function Register(props: Props) {
       };
     };
     idCardFormData: any;
+    schoolCertificateFormData: any;
   }) => {
     try {
       const resp = await putPlayerInfoApi({
@@ -266,15 +273,20 @@ export default function Register(props: Props) {
         body: postData,
       }).unwrap();
 
+      const respPlayersUser = await playersUserInfoApi({
+        userId: localStorage.getItem("userId")!,
+      }).unwrap();
+      console.log(respPlayersUser);
+
       await personalPhotoApi({
         userId: localStorage.getItem("userId")!,
         body: personalPhotoFormData,
       });
 
-      const respPlayersUser = await playersUserInfoApi({
-        userId: localStorage.getItem("userId")!,
-      }).unwrap();
-      console.log(respPlayersUser);
+      await schoolCertificateApi({
+        userId: respPlayersUser.id,
+        body: schoolCertificateFormData,
+      });
 
       await idCardApi({
         playerId: playerId,
@@ -435,7 +447,7 @@ export default function Register(props: Props) {
                   </span>
                 </div>
                 {/* Player position */}
-                {watch("sportType") === "soccer6v6" && (
+                {watch("sportType") === "2" && (
                   <div className="flex flex-col gap-2 max-w-[449px] w-full">
                     <label htmlFor="playerPosition">
                       <b> Player position </b>
@@ -458,75 +470,71 @@ export default function Register(props: Props) {
                     </span>
                   </div>
                 )}
-                {/* Educational institution data (name, surname, email, contact number) */}
-                {watch("sportType") === "soccer6v6" &&
-                  watch("leagueType") !== "GIRLS" && (
-                    <>
-                      <div className="flex flex-col gap-2 w-full">
-                        <label htmlFor="schoolCertificate">
-                          <b>
-                            {" "}
-                            Educational Institution certificate or diploma{" "}
-                          </b>
-                        </label>
-                        {/* trim and dots end */}
-                        {watch("schoolCertificate")?.length > 0 && (
-                          <div className="flex gap-2 items-center">
-                            <div
-                              className="
+
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="schoolCertificate">
+                    <b> Educational Institution certificate or diploma </b>
+                  </label>
+                  {/* trim and dots end */}
+                  {watch("schoolCertificate")?.length > 0 && (
+                    <div className="flex gap-2 items-center">
+                      <div
+                        className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
               "
-                            >
-                              {watch("schoolCertificate")[0].name}
-                            </div>
-                            <button
-                              className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                              onClick={() => {
-                                setValue("schoolCertificate", []);
-                              }}
-                            >
-                              x
-                            </button>
-                          </div>
-                        )}
-                        <button
-                          className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                          type="button"
-                          onClick={() => {
-                            // click sibling of this element
-                            const input = document.querySelector(
-                              'input[name="schoolCertificate"]'
-                            ) as HTMLInputElement;
-                            input.click();
-                          }}
-                        >
-                          {/* trim and dots end */}
-                          <div
-                            className="
+                      >
+                        {watch("schoolCertificate")[0].name}
+                      </div>
+                      <button
+                        className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                        onClick={() => {
+                          setValue("schoolCertificate", []);
+                        }}
+                      >
+                        x
+                      </button>
+                    </div>
+                  )}
+                  <button
+                    className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                    type="button"
+                    onClick={() => {
+                      // click sibling of this element
+                      const input = document.querySelector(
+                        'input[name="schoolCertificate"]'
+                      ) as HTMLInputElement;
+                      input.click();
+                    }}
+                  >
+                    {/* trim and dots end */}
+                    <div
+                      className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
                   w-[100px]
               "
-                          >
-                            Choose file
-                          </div>
-                        </button>
-                        <input
-                          type="file"
-                          {...register("schoolCertificate", {
-                            required: "School certificate is required",
-                          })}
-                          className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                        />
-                        <span className="text-red-500">
-                          {errors?.schoolCertificate?.message}
-                        </span>
-                      </div>
-                      {/* School official Data */}
-                      {/* School official Name */}
+                    >
+                      Choose file
+                    </div>
+                  </button>
+                  <input
+                    type="file"
+                    {...register("schoolCertificate", {
+                      required: "School certificate is required",
+                    })}
+                    className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                  />
+                  <span className="text-red-500">
+                    {errors?.schoolCertificate?.message}
+                  </span>
+                </div>
+
+                {/* {watch("sportType") === "soccer6v6" &&
+                  watch("leagueType") !== "GIRLS" && (
+                    <>
                       <div className="flex flex-col gap-2 max-w-[350px] w-full">
                         <label htmlFor="schoolOfficialName">
                           <b> Educational Institution official&apos;s name</b>
@@ -545,7 +553,6 @@ export default function Register(props: Props) {
                         </span>
                       </div>
 
-                      {/* School official&apos;s surname */}
                       <div className="flex flex-col gap-2 max-w-[350px] w-full">
                         <label htmlFor="schoolOfficialSurname">
                           <b>
@@ -567,7 +574,6 @@ export default function Register(props: Props) {
                         </span>
                       </div>
 
-                      {/* School official&apos;s position */}
                       <div className="flex flex-col gap-2 max-w-[350px] w-full">
                         <label htmlFor="schoolOfficialPosition">
                           <b>
@@ -589,7 +595,6 @@ export default function Register(props: Props) {
                         </span>
                       </div>
 
-                      {/* School official&apos;s email */}
                       <div className="flex flex-col gap-2 max-w-[350px] w-full">
                         <label htmlFor="schoolOfficialEmail">
                           <b> Educational Institution official&apos;s email</b>
@@ -608,7 +613,6 @@ export default function Register(props: Props) {
                         </span>
                       </div>
 
-                      {/* School official&apos;s contact number */}
                       <div className="flex flex-col gap-2 max-w-[350px] w-full">
                         <label htmlFor="schoolOfficialContactNumber">
                           <b>
@@ -631,12 +635,10 @@ export default function Register(props: Props) {
                         </span>
                       </div>
 
-                      {/* School logo */}
                       <div className="flex flex-col gap-2  w-full">
                         <label htmlFor="schoolLogo">
                           <b> Educational Institution&apos;s logo</b>
                         </label>
-                        {/* trim and dots end */}
                         {watch("schoolLogo")?.length > 0 && (
                           <div className="flex gap-2 items-start">
                             <div className="flex flex-col">
@@ -688,7 +690,6 @@ export default function Register(props: Props) {
                             input.click();
                           }}
                         >
-                          {/* trim and dots end */}
                           <div
                             className="
                   overflow-hidden
@@ -713,7 +714,7 @@ export default function Register(props: Props) {
                         </span>
                       </div>
                     </>
-                  )}
+                  )} */}
 
                 {/* ID CARD */}
                 <div className="flex flex-col gap-2 w-full">
@@ -806,6 +807,21 @@ export default function Register(props: Props) {
                     <b> Personal photo</b>
                   </label>
                   {/* trim and dots end */}
+                  {(watch("personalPhoto")?.length < 1 ||
+                    !watch("personalPhoto")) &&
+                    playersUserInfo?.image && (
+                      <div className="flex gap-2 items-start">
+                        <div className="flex flex-col">
+                          <a href={playersUserInfo?.image} target="_blank">
+                            <img
+                              src={playersUserInfo?.image}
+                              className="w-[250px] h-[250px] object-cover"
+                              alt="personal photo"
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    )}
                   {watch("personalPhoto")?.length > 0 && (
                     <div className="flex gap-2 items-start">
                       <div className="flex flex-col">

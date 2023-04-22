@@ -83,6 +83,7 @@ export default function Register(props: Props) {
   });
 
   const [playersUserInfoApi, s] = teamApi.useLazyPlayersUserInfoQuery();
+  const [teamSize, setTeamSize] = useState<any>(1);
 
   const [step, setStep] = useState<any>(2);
   const [
@@ -1597,19 +1598,55 @@ export default function Register(props: Props) {
             {step === 4 && (
               <div className="flex flex-wrap gap-[30px]  w-full">
                 <div className="flex flex-col gap-2 w-full ">
-                  <div className="gap-2">
+                  <div className="gap-2 flex flex-col">
                     <h1 className="text-[36px]">
                       <b>Payment</b>
                     </h1>
+                    <input
+                      type="text"
+                      className="border border-gray-300 rounded-md px-[6px] py-[12px] w-full w-max-[350px] "
+                      value={teamSize}
+                      onChange={(e) => {
+                        const onlyNumber = /^[0-9\b]+$/;
+                        if (
+                          e.target.value === "" ||
+                          onlyNumber.test(e.target.value)
+                        ) {
+                          setTeamSize(e.target.value);
+                        }
+                      }}
+                    />
+                    <span className="text-[12px] text-red-500">
+                      <div>
+                        {teamSize >
+                          leagueInfoData?.leagueDetails?.minNumberOfPlayers &&
+                          `Team size must be greater than ${leagueInfoData?.leagueDetails?.minNumberOfPlayers}`}
+                      </div>
+                      <div>
+                        {teamSize <
+                          leagueInfoData?.leagueDetails?.maxNumberOfPlayers &&
+                          `Team size must be less than ${leagueInfoData?.leagueDetails?.maxNumberOfPlayers}`}
+                      </div>
+                    </span>
                     <p className="text-[12px] text-gray-500">
-                      Your total will be calculated based on the number of team.
+                      Your total will be calculated based on the number of team
+                      you have entered.
+                    </p>
+                    <p className="text-[12px] text-gray-500">
+                      Minimum team players{" "}
+                      {leagueInfoData?.leagueDetails?.minNumberOfPlayers}
+                    </p>
+                    <p className="text-[12px] text-gray-500">
+                      Maximum team players{" "}
+                      {leagueInfoData?.leagueDetails?.maxNumberOfPlayers}
                     </p>
                     {teamData.length <=
                       leagueInfoData?.leagueDetails?.minNumberOfPlayers && (
                       <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
                         Minimum payment:{" "}
-                        {leagueInfoData?.leagueDetails?.priceEarly /
-                          leagueInfoData?.leagueDetails.minNumberOfPlayers}
+                        {teamSize
+                          ? leagueInfoData?.leagueDetails?.priceEarly / teamSize
+                          : leagueInfoData?.leagueDetails?.priceEarly}
                       </p>
                     )}
                     {teamData.length >
