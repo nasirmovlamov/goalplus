@@ -1,12 +1,14 @@
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useMemo } from "react";
 import svgCarusel from "../media/images/svg-carusel.svg";
 import sliderImage3 from "../media/images/home-slider-image-3.jpg";
 import sliderImage2 from "../media/images/home-slider-image-2.jpg";
+import mobileSliderImage from "../media/images/mobileSlider.jpeg";
 import Slider from "react-slick";
 import Image from "next/image";
 import Link from "next/link";
+import { useWindowWidth } from "@react-hook/window-size";
 
 export default function HomeMainSlider() {
   const settings = {
@@ -45,6 +47,9 @@ export default function HomeMainSlider() {
       <div className="text-white"></div>
     ),
   };
+
+  const onlyWidth = useWindowWidth();
+
   return (
     <div className="bg-[#031F57]">
       <Slider {...settings}>

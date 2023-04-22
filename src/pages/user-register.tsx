@@ -342,6 +342,20 @@ export default function Register(props: Props) {
     return null;
   }, [teamInfoError, isTeamInfoError]);
 
+  const idCardErrorData = useMemo(() => {
+    if (idCardError) {
+      return idCardError as any;
+    }
+    return null;
+  }, [idCardError, isIdCardError]);
+
+  const profilePhotoErrorData = useMemo(() => {
+    if (isUserProfileImageError) {
+      return profileImageError as any;
+    }
+    return null;
+  }, [isUserProfileImageError, profileImageError]);
+
   return (
     <div className="flex justify-center pt-[50px] pb-[50px]">
       <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
