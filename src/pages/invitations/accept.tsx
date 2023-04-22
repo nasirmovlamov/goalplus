@@ -222,7 +222,7 @@ export default function AcceptInvitation(props: Props) {
                 })}
               />
             </label>
-            <span>
+            <div className="w-full flex flex-col">
               <span className="text-blue-500">
                 <a
                   href="https://drive.google.com/file/d/1XO5je_Qvxq1EUkFdsqNzPBTKX3VgvDzp/view"
@@ -283,7 +283,7 @@ export default function AcceptInvitation(props: Props) {
                   Basketball U21
                 </a>
               </span>
-            </span>
+            </div>
             <span className="text-red-500">
               {errors.termsAndConditions?.message}
             </span>
