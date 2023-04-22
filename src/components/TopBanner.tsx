@@ -1,5 +1,5 @@
 import Image from "next/image";
-import topBanner from "../media/images/top-banner.png";
+import topBanner from "../media/images/bannera (1).png";
 type Props = {};
 
 const TopBanner = (props: Props) => {

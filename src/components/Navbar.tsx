@@ -4,7 +4,12 @@ import goalPlusLogo from "../media/images/goalplus-logo.png";
 import navLogo from "../media/images/navLogo.png";
 import StyledLink from "./StyledLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCheck, faX } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faCheck,
+  faUser,
+  faX,
+} from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "@/store/store";
@@ -103,6 +108,11 @@ export const Navbar = () => {
           </div>
 
           <ul className="md:flex h-[40px] items-center hidden ">
+            {userJwt && (
+              <li className="pl-4 pr-3">
+                <FontAwesomeIcon icon={faUser} />
+              </li>
+            )}
             {userJwt && (
               <li className="pl-4 pr-3">
                 <button onClick={logoutUser}>Logout</button>
