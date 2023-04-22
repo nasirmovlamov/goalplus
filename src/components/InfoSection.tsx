@@ -20,7 +20,7 @@ const InfoSection = (props: Props) => {
       }}
     >
       <div className="flex justify-center mx-auto flex-col gap-4 items-center">
-        <div className="max-w-[1320px] w-full h-full flex flex-col md:flex-row justify-center gap-10 lg:gap-[160px]  pb-[20px] text-center">
+        <div className="max-w-[1320px] w-full h-full flex flex-wrap flex-col md:flex-row justify-center gap-10 md:gap-[30px] lg:gap-[60px] 2xl:gap-[70px]  pb-[20px] text-center">
           {/* <div className="flex flex-col">
           <h2 className="text-5xl text-white">60</h2>
           <h3 className="text-white">days</h3>
