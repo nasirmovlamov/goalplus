@@ -432,6 +432,15 @@ export default function Register(props: Props) {
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-wrap gap-[30px] max-w-[1100px] w-full"
               >
+                {/* Team name */}
+                <div className="flex gap-2 max-w-[449px] w-full text-[24px]">
+                  <label htmlFor="teamName">
+                    <b> Team name: </b>
+                  </label>
+                  <b>
+                    <i className="text-blue-600">{getTeamInfoData?.name}</i>
+                  </b>
+                </div>
                 {/* Jersey number */}
                 <div className="flex flex-col gap-2 max-w-[449px] w-full">
                   <label htmlFor="jerseyNumber">
@@ -1012,6 +1021,12 @@ export default function Register(props: Props) {
                     ></iframe>
                   </div>
                 </div>
+              </div>
+            )}
+
+            {step === 3 && (
+              <div className="flex flex-wrap gap-[30px]  w-full">
+                You have to fill all necessary information
               </div>
             )}
           </div>

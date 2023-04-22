@@ -787,14 +787,14 @@ export default function Register(props: Props) {
             <div className="flex gap-1 items-center">
               <button
                 onClick={() => {
-                  setStep(3);
+                  setStep(5);
                 }}
-                disabled={true}
                 className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#a0a0a0]"
               >
                 <FontAwesomeIcon icon={faCheck} className="text-white" />
               </button>
               <p className="text-xs">Confirmation</p>
+              <b className="text-xs">(pending)</b>
             </div>
           </div>
           <div className="flex flex-col max-w-[1100px] w-full">
@@ -1668,6 +1668,12 @@ export default function Register(props: Props) {
                     ></iframe>
                   </div>
                 </div>
+              </div>
+            )}
+
+            {step === 5 && (
+              <div className="flex flex-wrap gap-[30px]  w-full">
+                You have to fill all the necessary information to proceed
               </div>
             )}
           </div>

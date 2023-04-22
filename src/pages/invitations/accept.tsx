@@ -57,7 +57,9 @@ export default function AcceptInvitation(props: Props) {
     })
       .unwrap()
       .then(async (res: any) => {
-        toast.success("Register success");
+        toast.success(
+          "You have successfully accepted the invitation. Please login to continue"
+        );
       })
       .catch((err) => {
         console.log(err);
