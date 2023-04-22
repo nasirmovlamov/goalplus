@@ -74,7 +74,7 @@ export type RegisterDto = {
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://159.69.150.229:5000/api",
+    baseUrl: "goalplus.azurewebsites.net/api",
     // global error message toaster
     // ref: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#global-error-handling
     prepareHeaders: (headers, { getState }) => {
