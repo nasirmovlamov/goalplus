@@ -1604,11 +1604,9 @@ export default function Register(props: Props) {
                     <div>
                       <iframe
                         src="https://epoint.az/az/widget?id=1882&type=users"
-                        frameborder="0"
-                        allowtransparency="true"
-                        scrolling="no"
-                        width="350"
-                        height="175"
+                        allowTransparency={true}
+                        width={350}
+                        height={175}
                       ></iframe>
                     </div>
                   </div>

@@ -19,7 +19,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { teamApi } from "@/store/teamApi";
 import register from "./register";
-import { AddTeamMember } from "@/components/AddTeamMember";
 import { playerApi } from "@/store/playerApi";
 import error from "next/error";
 type Props = {};
@@ -980,11 +979,9 @@ export default function Register(props: Props) {
                     <div>
                       <iframe
                         src="https://epoint.az/az/widget?id=1882&type=users"
-                        frameborder="0"
-                        allowtransparency="true"
-                        scrolling="no"
-                        width="350"
-                        height="175"
+                        allowTransparency={true}
+                        width={350}
+                        height={175}
                       ></iframe>
                     </div>
                   </div>

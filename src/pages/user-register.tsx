@@ -1277,31 +1277,6 @@ export default function Register(props: Props) {
           </div> */}
               </form>
             )}
-
-            {step === 3 && (
-              <div className="flex flex-wrap gap-[30px] max-w-[1100px] w-full">
-                <div className="flex flex-col gap-2 w-full">
-                  <div className=" flex gap-2">
-                    <label htmlFor="teamMembers">
-                      <b>Add team members</b>
-                    </label>
-                  </div>
-                  {teamMembersShow}
-                  <AddTeamMember
-                    getData={addTeamMember}
-                    maxCount={
-                      watch("sportType") === "soccer6v6"
-                        ? 11
-                        : watch("sportType") === "basketball3x3"
-                        ? 4
-                        : watch("sportType") === "beachVolleyball4v4"
-                        ? 5
-                        : 0
-                    }
-                  />
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
