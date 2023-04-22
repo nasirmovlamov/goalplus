@@ -105,8 +105,7 @@ export default function HomeMainSlider() {
               Score goals on and off the field
             </h1>
             <p className="text-center mt-5">
-              shcedules, activities, standings. What they gain by joining the
-              website community
+              Info, perks, shcedules, activities, standings, all in one place!
             </p>
             <Link
               href="/register"

@@ -24,11 +24,11 @@ export default function Home() {
       {/* <BlockEarlyBirds /> */}
       <RegisterInfoSection />
       <SpendYourSummersection />
-      <GamesSections />
       <AllAboutPeopleSection />
-      <StayInTouch />
-      {/* <GoalsTimelineSection /> */}
+      <GamesSections />
       <InfoSection />
+      {/* <StayInTouch /> */}
+      {/* <GoalsTimelineSection /> */}
       <Partners />
     </>
   );

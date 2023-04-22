@@ -18,13 +18,19 @@ const GamesSections = (props: Props) => {
       }}
     >
       <div className="max-w-[1360px] w-full h-full flex flex-wrap justify-center gap-5">
-        <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden">
+        {/* <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden relative">
           <Image
             src={cardImage1}
             alt="card-image"
-            className="w-full h-[273px] object-cover"
+            className="w-full h-full object-cover"
           />
-          <div className="w-full p-4 text-black flex items-center flex-col gap-2">
+          <div
+            className="w-full p-4 text-black flex items-center flex-col gap-2 absolute bottom-0"
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(238,238,238,1) 0%, rgba(245,245,245,0) 100%)",
+            }}
+          >
             <h2 className="text-4xl text-center">Soccer</h2>
             <Link
               href="/sports-leagues"
@@ -33,14 +39,42 @@ const GamesSections = (props: Props) => {
               Discover
             </Link>
           </div>
+        </div> */}
+        <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden relative">
+          <Image
+            src={cardImage1}
+            alt="card-image"
+            className="w-full h-full object-cover"
+          />
+          <div
+            className="p-4 text-black flex items-center flex-col gap-2 absolute bottom-0 "
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(238,238,238,1) 0%, rgba(245,245,245,0) 100%)",
+            }}
+          >
+            <h2 className="text-4xl text-center">Football</h2>
+            <Link
+              href="/sports-leagues"
+              className="bg-[#032974] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max"
+            >
+              Discover
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden">
+        <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden relative">
           <Image
             src={cardImage2}
             alt="card-image"
-            className="w-full h-[273px] object-cover"
+            className="w-full h-full object-cover"
           />
-          <div className="p-4 text-black flex items-center flex-col gap-2">
+          <div
+            className="p-4 text-black flex items-center flex-col gap-2 absolute bottom-0 "
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(238,238,238,1) 0%, rgba(245,245,245,0) 100%)",
+            }}
+          >
             <h2 className="text-4xl text-center">Volleyball</h2>
             <Link
               href="/sports-leagues"
@@ -50,7 +84,29 @@ const GamesSections = (props: Props) => {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden">
+        <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden relative">
+          <Image
+            src={cardImage3}
+            alt="card-image"
+            className="w-full h-full object-cover"
+          />
+          <div
+            className="p-4 text-black flex items-center flex-col gap-2 absolute bottom-0 "
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(238,238,238,1) 22%, rgba(245,245,245,0) 100%)",
+            }}
+          >
+            <h2 className="text-4xl text-center">Basketball</h2>
+            <Link
+              href="/sports-leagues"
+              className="bg-[#032974] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max"
+            >
+              Basketball
+            </Link>
+          </div>
+        </div>
+        {/* <div className="flex flex-col max-w-[320px] lg:max-w-[410px] w-full bg-white rounded-md overflow-hidden">
           <Image
             src={cardImage3}
             alt="card-image"
@@ -65,7 +121,7 @@ const GamesSections = (props: Props) => {
               Discover
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

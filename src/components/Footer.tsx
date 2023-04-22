@@ -51,11 +51,8 @@ export const Footer = () => {
           </div>
           <div className="flex gap-3 items-center pl-10">
             <FontAwesomeIcon icon={faEnvelope} />
-            <a
-              href="mailto:goalplusaz@gmail.com
-"
-            >
-              <span className="text-[#54ACED]">goalplusaz@gmail.com</span>
+            <a href="mailto:info@goalplus.az">
+              <span className="text-[#54ACED]">info@goalplus.az</span>
             </a>
           </div>
         </div>
