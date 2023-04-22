@@ -524,9 +524,7 @@ export default function Register(props: Props) {
                   </button>
                   <input
                     type="file"
-                    {...register("schoolCertificate", {
-                      required: "School certificate is required",
-                    })}
+                    {...register("schoolCertificate")}
                     className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
                   />
                   <span className="text-red-500">
@@ -954,6 +952,7 @@ export default function Register(props: Props) {
                     <h1 className="text-[36px]">
                       <b>Payment</b>
                     </h1>
+                    <label>Please enter your team size</label>
                     <input
                       type="text"
                       className="border border-gray-300 rounded-md px-[6px] py-[12px] w-full w-max-[350px] "
@@ -970,12 +969,12 @@ export default function Register(props: Props) {
                     />
                     <span className="text-[12px] text-red-500">
                       <div>
-                        {teamSize >
+                        {teamSize <
                           leagueInfoData?.leagueDetails?.minNumberOfPlayers &&
                           `Team size must be greater than ${leagueInfoData?.leagueDetails?.minNumberOfPlayers}`}
                       </div>
                       <div>
-                        {teamSize <
+                        {teamSize >
                           leagueInfoData?.leagueDetails?.maxNumberOfPlayers &&
                           `Team size must be less than ${leagueInfoData?.leagueDetails?.maxNumberOfPlayers}`}
                       </div>
@@ -993,10 +992,11 @@ export default function Register(props: Props) {
                       {leagueInfoData?.leagueDetails?.maxNumberOfPlayers}
                     </p>
                     <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
-                      Minimum payment:{" "}
+                      Payment based on your team size:{" "}
                       {teamSize
                         ? leagueInfoData?.leagueDetails?.priceEarly / teamSize
                         : leagueInfoData?.leagueDetails?.priceEarly}
+                      AZN
                     </p>
                     <p className="text-[12px] text-gray-500">
                       Go to payment page and proceed payment based on calculated

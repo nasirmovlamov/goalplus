@@ -144,9 +144,7 @@ export default function AcceptInvitation(props: Props) {
             </label>
             <input
               type="fathername"
-              {...register("fathername", {
-                required: "Middle name is required",
-              })}
+              {...register("fathername", {})}
               className="border border-gray-300 rounded-md px-[6px] py-[12px]"
               placeholder="Middle Name"
             />

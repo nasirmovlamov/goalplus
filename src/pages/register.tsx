@@ -340,9 +340,7 @@ export default function Register(props: Props) {
             </label>
             <input
               type="fathername"
-              {...register("fathername", {
-                required: "Middle name is required",
-              })}
+              {...register("fathername")}
               className="border border-gray-300 rounded-md px-[6px] py-[12px]"
               placeholder="Middle Name"
             />
@@ -443,7 +441,7 @@ export default function Register(props: Props) {
             </span>
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/1sC3Mo8OK9k4czZchRA2P_0nNVzMk2k-U/view"
+                href="https://drive.google.com/file/d/1wHnMVgyjid2hQv51aKBO7OceuflfD2zp/view"
                 className="text-blue-500 underline"
               >
                 Soccer U16 terms and conditions
@@ -451,7 +449,7 @@ export default function Register(props: Props) {
             </span>
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/1wHnMVgyjid2hQv51aKBO7OceuflfD2zp/view"
+                href="https://drive.google.com/file/d/1sC3Mo8OK9k4czZchRA2P_0nNVzMk2k-U/view"
                 className="text-blue-500 underline"
               >
                 Soccer U18 terms and conditions

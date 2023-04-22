@@ -20,6 +20,7 @@ import {
 import { AddTeamMember } from "@/components/AddTeamMember";
 import { teamApi } from "@/store/teamApi";
 import register from "./register";
+import { watch } from "fs";
 type Props = {};
 
 export const registerSchema = yup.object().shape({
@@ -285,34 +286,25 @@ export default function Register(props: Props) {
     setTeamMembers((prev) => prev.filter((item) => item.id !== id));
   };
   const teamMembersShow = useMemo(() => {
-    return teamData?.data?.teamMemmbers.map((item: any, index: any) => (
+    return teamData?.map((item: any, index: any) => (
       // show all team members
-      <div key={item.id} className="flex flex-wrap gap-[5px]  w-full">
-        <div className="w-full flex justify-end">
-          <button
-            className="border border-gray-300 rounded-md px-[2px] py-[2px] text-xs text-red-500"
-            onClick={() => deleteTeamMember(item.id)}
-          >
-            x
-          </button>
+      <>
+        <div
+          key={item.id}
+          className="flex flex-wrap gap-[5px]  w-full border-b border-dashed pb-6 pt-2"
+        >
+          <div className="flex flex-col gap-2 w-full">Player {index + 1}</div>
+          {item.isCaptain && (
+            <div className="flex flex-col gap-2 w-full">Player is captain</div>
+          )}
+          <div className="flex flex-col gap-2 w-full">
+            Player name : {item.firstName}
+          </div>
+          <div className="flex flex-col gap-2 w-full">
+            Player surname : {item.lastName}
+          </div>
         </div>
-        <div className="flex flex-col gap-2 w-full">Player {index + 1}</div>
-        <div className="flex flex-col gap-2 w-full">
-          Player name : {item.name}
-        </div>
-
-        <div className="flex flex-col gap-2 w-full">
-          Player surname : {item.surname}
-        </div>
-
-        <div className="flex flex-col gap-2 w-full">
-          Player email : {item.email}
-        </div>
-
-        <div className="flex flex-col gap-2 w-full">
-          Player contact number : {item.contactNumber}
-        </div>
-      </div>
+      </>
     ));
   }, [teamData]);
   const {
@@ -572,7 +564,7 @@ export default function Register(props: Props) {
         playerId: respPlayersUser.id,
         body: idCardFormData,
       });
-      if (postData?.teamDetails?.schoolOfficial) {
+      if (schoolCertificateData) {
         await schoolCertificateApi({
           userId: respPlayersUser.id,
           body: schoolCertificateFormData,
@@ -1022,9 +1014,7 @@ export default function Register(props: Props) {
                         type="file"
                         // only pdf file allowed
                         accept=".pdf"
-                        {...register("schoolCertificate", {
-                          required: "School certificate is required",
-                        })}
+                        {...register("schoolCertificate")}
                         className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
                       />
                       <span className="text-red-500">
@@ -1277,7 +1267,6 @@ export default function Register(props: Props) {
                   <input
                     type="file"
                     //accept only pdf file format
-                    accept=".pdf"
                     {...register("idCard", {
                       required: "ID card is required",
                     })}
@@ -1287,7 +1276,7 @@ export default function Register(props: Props) {
                   <div className="text-[12px] text-gray-500">
                     <p>
                       Please upload both sides of your ID (Şəxsiyyət Vəsiqəsi)
-                      in a single one-page PDF file.
+                      in a single one-page PDF file or any image file format
                     </p>
                   </div>
 
@@ -1590,7 +1579,9 @@ export default function Register(props: Props) {
                       proceed payment
                     </p>
                   </div>
+                  <div>All team members</div>
                   {teamMembersShow}
+
                   <AddTeamMember />
                 </div>
               </div>
@@ -1603,6 +1594,7 @@ export default function Register(props: Props) {
                     <h1 className="text-[36px]">
                       <b>Payment</b>
                     </h1>
+                    <label>Please enter your team size</label>
                     <input
                       type="text"
                       className="border border-gray-300 rounded-md px-[6px] py-[12px] w-full w-max-[350px] "
@@ -1619,12 +1611,12 @@ export default function Register(props: Props) {
                     />
                     <span className="text-[12px] text-red-500">
                       <div>
-                        {teamSize >
+                        {teamSize <
                           leagueInfoData?.leagueDetails?.minNumberOfPlayers &&
                           `Team size must be greater than ${leagueInfoData?.leagueDetails?.minNumberOfPlayers}`}
                       </div>
                       <div>
-                        {teamSize <
+                        {teamSize >
                           leagueInfoData?.leagueDetails?.maxNumberOfPlayers &&
                           `Team size must be less than ${leagueInfoData?.leagueDetails?.maxNumberOfPlayers}`}
                       </div>
@@ -1644,16 +1636,20 @@ export default function Register(props: Props) {
                     {teamData.length <=
                       leagueInfoData?.leagueDetails?.minNumberOfPlayers && (
                       <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
-                        Minimum payment:{" "}
+                        Payment based on your team size:{" "}
                         {teamSize
-                          ? leagueInfoData?.leagueDetails?.priceEarly / teamSize
+                          ? (
+                              leagueInfoData?.leagueDetails?.priceEarly /
+                              teamSize
+                            ).toFixed(0)
                           : leagueInfoData?.leagueDetails?.priceEarly}
+                        AZN
                       </p>
                     )}
                     {teamData.length >
                       leagueInfoData?.leagueDetails?.minNumberOfPlayers && (
                       <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
-                        Minimum payment:{" "}
+                        Payment based on your team size:{" "}
                         {leagueInfoData?.leagueDetails?.priceEarly /
                           teamData.length}
                       </p>
