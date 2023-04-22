@@ -433,7 +433,7 @@ export default function Register(props: Props) {
                 className="flex flex-wrap gap-[30px] max-w-[1100px] w-full"
               >
                 {/* Team name */}
-                <div className="flex gap-2 max-w-[449px] w-full text-[24px]">
+                <div className="flex gap-2  w-full text-[24px]">
                   <label htmlFor="teamName">
                     <b> Team name: </b>
                   </label>
