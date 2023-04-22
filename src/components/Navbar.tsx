@@ -150,11 +150,11 @@ export const Navbar = () => {
                 </span>
               </li>
             )}
-            {!userJwt && (
+            {/* {!userJwt && (
               <li className="p-2">
                 <StyledLink href="/register">Register</StyledLink>
               </li>
-            )}
+            )} */}
 
             <li className="p-2">
               <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
