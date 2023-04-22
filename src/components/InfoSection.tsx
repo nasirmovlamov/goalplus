@@ -45,7 +45,7 @@ const InfoSection = (props: Props) => {
         </div>
         <div className="flex flex-col">
           <h2 className="text-5xl text-white">10K</h2>
-          <h3 className="text-white">Visitor</h3>
+          <h3 className="text-white">Visitors</h3>
         </div>
         <div className="flex flex-col">
           <h2 className="text-5xl text-white">Endless</h2>
