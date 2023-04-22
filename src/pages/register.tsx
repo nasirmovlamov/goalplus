@@ -438,7 +438,7 @@ export default function Register(props: Props) {
             </label>
             <span className="text-blue-500">
               <a
-                href="https://drive.google.com/file/d/1XO5je_Qvxq1EUkFdsqNzPBTKX3VgvDzp/view"
+                href="https://drive.google.com/file/d/1pMxAvPqm59J_-ld1ot7fJrg7lEd_sZDH/view?usp=sharing"
                 className="text-blue-500  underline"
               >
                 Soccer U21 terms and conditions
@@ -446,7 +446,7 @@ export default function Register(props: Props) {
             </span>
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/1wHnMVgyjid2hQv51aKBO7OceuflfD2zp/view"
+                href="https://drive.google.com/file/d/1usSgTWpAIXbljkpUYtSxzwynmswxtOpV/view?usp=share_link"
                 className="text-blue-500 underline"
               >
                 Soccer U16 terms and conditions
@@ -454,7 +454,7 @@ export default function Register(props: Props) {
             </span>
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/1sC3Mo8OK9k4czZchRA2P_0nNVzMk2k-U/view"
+                href="https://drive.google.com/file/d/1RDBjV4KPOxxdzTFdzVmNxKheotMjrevW/view?usp=share_link"
                 className="text-blue-500 underline"
               >
                 Soccer U18 terms and conditions
@@ -463,7 +463,7 @@ export default function Register(props: Props) {
 
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/17z6QTA-9zUsW94MuWMiavqU8yo76Gl1C/view"
+                href="https://drive.google.com/file/d/17z6QTA-9zUsW94MuWMiavqU8yo76Gl1C/view?usp=share_link"
                 className="text-blue-500 underline"
               >
                 Volleyball U21
@@ -472,7 +472,7 @@ export default function Register(props: Props) {
 
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/1zq7j-8ScgioT4M0n_K4Tk91NPbxFyrM1/view"
+                href="https://drive.google.com/file/d/1usSgTWpAIXbljkpUYtSxzwynmswxtOpV/view?usp=share_link"
                 className="text-blue-500 underline"
               >
                 Recreational Beach Volleyball
@@ -481,7 +481,7 @@ export default function Register(props: Props) {
 
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/1JvC5e414mMQsoFIx9fPqhAJ7CT7ccE2V/view"
+                href="https://drive.google.com/file/d/1JvC5e414mMQsoFIx9fPqhAJ7CT7ccE2V/view?usp=share_link"
                 className="text-blue-500 underline"
               >
                 Recreational Basketball
@@ -490,7 +490,7 @@ export default function Register(props: Props) {
 
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/1djNZDkgSted62J3KP2NpTgCV30-VUHZD/view"
+                href="https://drive.google.com/file/d/1djNZDkgSted62J3KP2NpTgCV30-VUHZD/view?usp=share_link"
                 className="text-blue-500 underline"
               >
                 Basketball U21
