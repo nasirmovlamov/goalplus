@@ -62,9 +62,12 @@ export default function HomeMainSlider() {
             </button> */}
             {/* <FontAwesomeIcon icon={faAngleRight} /> */}
 
-            <button className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl">
+            <Link
+              href="/register"
+              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl"
+            >
               Register Now
-            </button>
+            </Link>
           </div>
           <div className="w-full h-full bg-[rgba(0,0,0,0.69)] absolute top-0 left-0 -z-10">
             <Image
