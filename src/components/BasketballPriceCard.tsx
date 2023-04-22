@@ -96,7 +96,7 @@ export const BasketballPriceCard = ({
                   Regular price : {regularTeamPrice} azn
                 </p>
               </div>
-              <p className="text-base">Duration : 8 weeks</p>
+              <p className="text-base">Duration : 7 weeks</p>
               <p className="text-base">{address}</p>
 
               <div className="flex justify-start mt-2">

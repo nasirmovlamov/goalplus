@@ -3,6 +3,7 @@ import React from "react";
 type Props = {
   index: number;
   data: any;
+  image: string;
 };
 
 const TeamMember = (props: Props) => {
@@ -10,7 +11,7 @@ const TeamMember = (props: Props) => {
     <div className="flex flex-col gap-2 ">
       <div>
         <img
-          src={props.image}
+          src={props?.image}
           alt=""
           className="w-[200px] h-[200px] object-cover"
         />

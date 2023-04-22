@@ -49,8 +49,10 @@ export const AddTeamMember = () => {
   };
 
   const teamMemberErrorData = useMemo(() => {
+    console.log(addTeamMemberError);
+    console.log(isAddTeamMemberError);
     if (isAddTeamMemberError) {
-      return addTeamMemberError as any;
+      return (addTeamMemberError as any)!.data;
     }
     return null;
   }, [isAddTeamMemberError, addTeamMemberError]);

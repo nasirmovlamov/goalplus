@@ -21,6 +21,7 @@ type Props = {
   earlyBirdTeamPrice: number;
   earlyBirdPersonPrice: number;
   gender: string;
+  date: string;
 };
 
 export const FootballPriceCard = ({
@@ -33,6 +34,7 @@ export const FootballPriceCard = ({
   regularTeamPrice,
   earlyBirdPersonPrice,
   earlyBirdTeamPrice,
+  date,
   gender,
 }: Props) => {
   return (
@@ -93,7 +95,7 @@ export const FootballPriceCard = ({
             <div className="flex flex-col text-[#38383A] lg:w-auto w-full">
               <h3 className="text-[24px] lg:text-[36px]">League ({league})</h3>
               <p className="text-base flex flex-col">
-                <span className="block"> Date 15 June ~ 15 August</span>
+                <span className="block"> Date {date}</span>
                 <span className="block text-[10px] leading-3">
                   (Day of the week)
                 </span>
@@ -111,10 +113,13 @@ export const FootballPriceCard = ({
               </div> */}
               <div>
                 <p className=" text-xs line-through text-red-500">
-                  Early bird : 0 azn
+                  Regular price : {regularTeamPrice} azn
                 </p>
                 <p className=" text-xs ">
-                  Regular price : {regularTeamPrice} azn
+                  Early bird price per athlete: {earlyBirdPersonPrice} azn
+                </p>
+                <p className=" text-xs ">
+                  Early bird price per team: {earlyBirdTeamPrice} azn
                 </p>
               </div>
               <p className="text-base">Duration : 8 weeks</p>

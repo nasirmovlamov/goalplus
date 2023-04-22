@@ -13,23 +13,23 @@ const games = {
       address: "Aquatic Palace",
       gender: "male",
       minPlayers: 6,
+      date: "June 18 - August 13",
       maxPlayers: 12,
-      earlyBirdTeamPrice: 1000,
-      earlyBirdPersonPrice: 0,
-      regularTeamPrice: 1200,
-      regularPersonPrice: 0,
+      earlyBirdTeamPrice: 1250,
+      earlyBirdPersonPrice: 104,
+      regularTeamPrice: 1350,
     },
     {
       sport: "Football",
       league: "U18",
       address: "Aquatic Palace",
+      date: "June 19 - August 12",
       gender: "male",
       minPlayers: 6,
       maxPlayers: 12,
       earlyBirdTeamPrice: 1000,
-      earlyBirdPersonPrice: 0,
+      earlyBirdPersonPrice: 83,
       regularTeamPrice: 1200,
-      regularPersonPrice: 0,
     },
     {
       sport: "Football",
@@ -38,10 +38,10 @@ const games = {
       gender: "male",
       minPlayers: 6,
       maxPlayers: 12,
-      regularTeamPrice: 500,
-      regularPersonPrice: 0,
-      earlyBirdTeamPrice: 333,
-      earlyBirdPersonPrice: 0,
+      regularTeamPrice: 1000,
+      earlyBirdTeamPrice: 900,
+      earlyBirdPersonPrice: 75,
+      date: "June 21 - August 11",
     },
     {
       sport: "Girls Football",
@@ -52,8 +52,8 @@ const games = {
       maxPlayers: 12,
       earlyBirdTeamPrice: 0,
       earlyBirdPersonPrice: 0,
-      regularTeamPrice: 0,
-      regularPersonPrice: 0,
+      regularTeamPrice: undefined,
+      regularPersonPrice: undefined,
     },
   ],
   basketball: [
@@ -171,28 +171,32 @@ export default function OurServices(props: Props) {
             allGames.map((game, index) => {
               switch (game.sport) {
                 case "Football":
-                  return <FootballPriceCard key={index} {...game} />;
+                  return <FootballPriceCard key={index} {...(game as any)} />;
                 case "Girls Football":
-                  return <FootballPriceCard key={index} {...game} />;
+                  return <FootballPriceCard key={index} {...(game as any)} />;
                 case "Basketball":
-                  return <BasketballPriceCard key={index} {...game} />;
+                  return <BasketballPriceCard key={index} {...(game as any)} />;
                 case "Volleyball":
-                  return <BeachVolleyballPriceCard key={index} {...game} />;
+                  return (
+                    <BeachVolleyballPriceCard key={index} {...(game as any)} />
+                  );
                 default:
                   return null;
               }
             })}
           {filter === "football" &&
             games.football.map((game, index) => {
-              return <FootballPriceCard key={index} {...game} />;
+              return <FootballPriceCard key={index} {...(game as any)} />;
             })}
           {filter === "basketball" &&
             games.basketball.map((game, index) => {
-              return <BasketballPriceCard key={index} {...game} />;
+              return <BasketballPriceCard key={index} {...(game as any)} />;
             })}
           {filter === "volleyball" &&
             games.volleyball.map((game, index) => {
-              return <BeachVolleyballPriceCard key={index} {...game} />;
+              return (
+                <BeachVolleyballPriceCard key={index} {...(game as any)} />
+              );
             })}
         </div>
       </div>

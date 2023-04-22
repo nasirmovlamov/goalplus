@@ -898,7 +898,7 @@ export default function Register(props: Props) {
                     </label>
                     <select
                       disabled={true}
-                      value={8}
+                      value={leagueId}
                       className="border border-gray-300 rounded-md px-[6px] py-[12px]  bg-[#f2f2f2]"
                       placeholder="League type"
                     >

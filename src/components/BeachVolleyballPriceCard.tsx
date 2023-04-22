@@ -90,13 +90,13 @@ export const BeachVolleyballPriceCard = ({
               </p>
               <div>
                 <p className=" text-xs line-through text-red-500">
-                  Early bird : 0 azn
+                  Early bird per athlete : {earlyBirdPersonPrice} azn
                 </p>
                 <p className=" text-xs ">
                   Regular price : {regularTeamPrice} azn
                 </p>
               </div>
-              <p className="text-base">Duration : 8 weeks</p>
+              <p className="text-base">Duration : 6 weeks</p>
               <p className="text-base">{address}</p>
 
               <div className="flex justify-start mt-2">
