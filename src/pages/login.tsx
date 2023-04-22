@@ -1,11 +1,11 @@
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ErrorMessage } from "@hookform/error-message";
 import { authApi } from "@/store/authApi";
+import router from "next/router";
 type Props = {};
 
 export type LoginDto = {
@@ -15,15 +15,7 @@ export type LoginDto = {
 
 export const loginSchema = yup.object().shape({
   email: yup.string().email().label("Email").required(),
-  password: yup
-    .string()
-    .label("Password")
-    .required()
-    .min(6)
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/,
-      "Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
-    ),
+  password: yup.string().label("Password").required(),
 });
 
 export default function Login(props: Props) {
@@ -31,12 +23,22 @@ export default function Login(props: Props) {
     loginApi,
     {
       isLoading: loginLoading,
-      isError: loginError,
+      isError: isLoginError,
       isSuccess: loginSuccess,
       data: loginData,
-      error,
+      error: loginError,
     },
   ] = authApi.useLoginMutation();
+  const [
+    meApi,
+    {
+      isLoading: meLoading,
+      isError: isMeError,
+      isSuccess: meSuccess,
+      data: meData,
+      error: meError,
+    },
+  ] = authApi.useLazyMeQuery();
   const [backendErrors, setBackendErrors] = React.useState<any>(null);
   const methods = useForm<LoginDto>({
     resolver: yupResolver(loginSchema),
@@ -48,20 +50,53 @@ export default function Login(props: Props) {
   } = methods;
 
   const onSubmit = async (data: LoginDto) => {
-    await loginApi(data);
+    await loginApi(data)
+      .unwrap()
+      .then(async (res) => {
+        toast.success("Login success");
+        localStorage.setItem("accessToken", res.accessToken);
+        localStorage.setItem("refreshToken", res.refreshToken);
+        localStorage.setItem("token", res.accessToken);
+        const decodedJwt = JSON.parse(atob(res.accessToken.split(".")[1]));
+        console.log(decodedJwt);
+        localStorage.setItem("userData", JSON.stringify(decodedJwt));
+        const userId =
+          decodedJwt[
+            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+          ];
+        localStorage.setItem("userId", userId);
+        await meApi({});
+        console.log(meData);
+        console.log(
+          decodedJwt[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ]
+        );
+        if (
+          decodedJwt[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ].includes("Admin")
+        ) {
+          router.push("/admin-dashboard");
+        }
+        if (
+          decodedJwt[
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+          ].includes("Captain")
+        ) {
+          router.push("/team-register-process");
+        } else {
+          router.push("/user-register-process");
+        }
+      });
   };
 
-  useEffect(() => {
-    if (loginError) {
-      toast.error("Login failed");
+  const loginErrorData = useMemo(() => {
+    if (isLoginError) {
+      return loginError as any;
     }
-  }, [loginError]);
-
-  useEffect(() => {
-    if (loginSuccess) {
-      toast.success("Login success");
-    }
-  }, [loginSuccess]);
+    return null;
+  }, [isLoginError, loginError]);
 
   return (
     <div className="flex justify-center pt-[50px] pb-[50px]">
@@ -107,20 +142,27 @@ export default function Login(props: Props) {
             <Link href="/register" className="text-[#032974]">
               Don&apos;t have account
             </Link>
-            {/* <Link href="/reset-password" className="text-[#032974]">
+            <Link href="/reset-password" className="text-[#032974]">
               Reset Password
-            </Link> */}
+            </Link>
           </div>
 
           <div>
-            {backendErrors &&
-              backendErrors.errors.map((error: any) => {
-                return (
-                  <p key={error.message} className="text-red-500">
-                    {error.message}
-                  </p>
-                );
-              })}
+            {loginError &&
+              ("status" in loginError ? (
+                <div>
+                  <div>
+                    {loginErrorData?.data &&
+                      Object.keys(loginErrorData.data).map((key) => {
+                        key !== "statusCode" && (
+                          <p key={key} className="text-red-500">
+                            {loginErrorData.data[key]}
+                          </p>
+                        );
+                      })}
+                  </div>
+                </div>
+              ) : null)}
           </div>
         </form>
       </div>

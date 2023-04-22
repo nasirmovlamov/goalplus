@@ -4,24 +4,25 @@ import goalPlusLogo from "../media/images/goalplus-logo.png";
 import navLogo from "../media/images/navLogo.png";
 import StyledLink from "./StyledLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCheck, faX } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import { authSlice } from "@/store/authSlice";
 
 export const Navbar = () => {
+  const dispatch = useAppDispatch();
+  const userJwt = useAppSelector((state) => state.auth.jwt);
   const [isOpenMobileNavbar, setIsOpenMobileNavbar] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const router = useRouter();
   const handleOpenMobileNavbar = () => {
     setIsOpenMobileNavbar(!isOpenMobileNavbar);
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  });
+  const logoutUser = () => {
+    dispatch(authSlice.actions.logoutUser());
+    router.push("/");
+  };
 
   return (
     <>
@@ -48,12 +49,20 @@ export const Navbar = () => {
             <li className="p-2">
               <StyledLink href="/">Home</StyledLink>
             </li>
-            {/* <li className="p-2">
-              <StyledLink href="/login">Login</StyledLink>
-            </li> */}
-            <li className="p-2">
-              <StyledLink href="/register">Register</StyledLink>
-            </li>
+
+            {userJwt && (
+              <li className="p-2">
+                <span>
+                  You are logged <FontAwesomeIcon icon={faCheck} />
+                </span>
+              </li>
+            )}
+            {!userJwt && (
+              <li className="p-2">
+                <StyledLink href="/register">Register</StyledLink>
+              </li>
+            )}
+
             <li className="p-2">
               <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
             </li>
@@ -94,23 +103,12 @@ export const Navbar = () => {
           </div>
 
           <ul className="md:flex h-[40px] items-center hidden ">
-            {/* <li>
-              <Link href="/register">Register</Link>
-            </li> */}
-            {isLoggedIn && (
+            {userJwt && (
               <li className="pl-4 pr-3">
-                <button
-                  onClick={() => {
-                    localStorage.removeItem("token");
-                    setIsLoggedIn(false);
-                    router.push("/");
-                  }}
-                >
-                  Logout
-                </button>
+                <button onClick={logoutUser}>Logout</button>
               </li>
             )}
-            {!isLoggedIn && (
+            {!userJwt && (
               <li className="pl-4 pr-3">
                 <Link href="/login">Login</Link>
               </li>

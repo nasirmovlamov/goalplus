@@ -23,6 +23,12 @@ export type UserDto = {
   id: string;
 };
 
+export type JwtDto = {
+  accessToken: string;
+  refreshToken: string;
+};
+
+
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = React.useState<UserDto | null>(null);
   const [authLoading, setAuthLoading] = React.useState(false);

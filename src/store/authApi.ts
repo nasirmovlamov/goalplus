@@ -1,4 +1,4 @@
-import { UserDto } from "@/context/AuthContext";
+import { JwtDto, UserDto } from "@/context/AuthContext";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export type PokemonType = {
@@ -12,6 +12,7 @@ export type LoginDto = {
 
 export type RegisterDto = {
   username: string;
+  teamName: string;
   name: string;
   surname: string;
   fathername: string;
@@ -74,27 +75,60 @@ export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://159.69.150.229:5000/api",
+    // global error message toaster
+    // ref: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#global-error-handling
+    prepareHeaders: (headers, { getState }) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ["me"],
   endpoints: (builder) => ({
-    me: builder.query<UserDto, void>({
-      query: () => `me`,
-      providesTags: (result, error, id) => [{ type: "me", id: "LIST" }],
+    me: builder.query({
+      query: () => {
+        const userId = localStorage.getItem("userId");
+        console.log(userId);
+        return "/users/" + userId;
+      },
+      providesTags: (result) => [{ type: "me", id: "LIST" }],
     }),
 
-    login: builder.mutation<UserDto, LoginDto>({
+    refreshToken: builder.mutation<
+      JwtDto,
+      {
+        accessToken: string;
+        refreshToken: string;
+      }
+    >({
       query: (body) => ({
-        url: ``,
+        url: `/token/refresh`,
         method: "POST",
         body,
       }),
-      invalidatesTags: [{ type: "me", id: "LIST" }],
     }),
 
-    logout: builder.mutation<void, void>({
-      query: () => ({
-        url: `logout`,
+    //use params
+    emailConfirmation: builder.mutation<
+      any,
+      {
+        token: string;
+        email: string;
+      }
+    >({
+      query: (body) => ({
+        url: `/authentication/email?token=${body.token}&email=${body.email}`,
+        method: "GET",
+      }),
+    }),
+
+    login: builder.mutation<JwtDto, LoginDto>({
+      query: (body) => ({
+        url: `/authentication/login`,
         method: "POST",
+        body,
       }),
       invalidatesTags: [{ type: "me", id: "LIST" }],
     }),

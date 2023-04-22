@@ -335,11 +335,18 @@ export default function Register(props: Props) {
     }
   };
 
+  const teamInfoErrorData = useMemo(() => {
+    if (teamInfoError) {
+      return teamInfoError as any;
+    }
+    return null;
+  }, [teamInfoError, isTeamInfoError]);
+
   return (
     <div className="flex justify-center pt-[50px] pb-[50px]">
       <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
         <h1 className="w-full flex text-[44px] pb-10">
-          User Registration Process
+          Capitan Registration Process
         </h1>
         <div className="flex  flex-wrap lg:flex-nowrap gap-5">
           <div className="flex lg:flex-col w-full lg:gap-0 gap-2 lg:w-[190px] ">
@@ -1232,6 +1239,23 @@ export default function Register(props: Props) {
                     )}
                   </button>
                 </div>
+
+                {teamInfoErrorData &&
+                  ("status" in teamInfoErrorData ? (
+                    <div>
+                      <div>
+                        {teamInfoErrorData?.data &&
+                          Object.keys(teamInfoErrorData.data).map((key) => {
+                            key !== "statusCode" && (
+                              <p key={key} className="text-red-500">
+                                {teamInfoErrorData.data[key]}
+                              </p>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  ) : null)}
+
                 {/* backend errors map */}
                 {/* {authenticationError &&
             Object.keys(JSON.parse(authenticationError.data)).map((key) => {

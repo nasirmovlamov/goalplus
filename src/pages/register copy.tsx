@@ -235,6 +235,7 @@ export default function Register(props: Props) {
             ];
           localStorage.setItem("userId", userId);
           console.log("leagueId", data.leagueType);
+          router.push("/team-register-process");
           return null;
         }
       })
@@ -430,17 +431,6 @@ export default function Register(props: Props) {
               )}
             </button>
           </div>
-
-          {isAuthenticationSuccess && (
-            <div>
-              <div className="text-green-500">
-                Your account has been created successfully
-              </div>
-              <div className="text-green-500">
-                Please check your email to verify your account
-              </div>
-            </div>
-          )}
           {/* backend errors map */}
           {authenticationError &&
             ("status" in authenticationError ? (

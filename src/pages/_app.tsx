@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { store } from "@/store/store";
+import { store, useAppDispatch } from "@/store/store";
 import "@/styles/globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,6 +8,8 @@ import { Provider } from "react-redux";
 import { Toaster } from "react-hot-toast";
 // pages/_app.js
 import { Montserrat } from "next/font/google";
+import { useEffect } from "react";
+import { authSlice } from "@/store/authSlice";
 
 const montserrat = Montserrat({
   weight: "400",

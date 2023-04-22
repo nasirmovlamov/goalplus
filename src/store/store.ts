@@ -1,24 +1,44 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import {
+  Middleware,
+  configureStore,
+  isRejectedWithValue,
+} from "@reduxjs/toolkit";
 // Or from '@reduxjs/toolkit/query/react'
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { pokemonApi } from "./pokemonApi";
-import counterReducer from "./counterSlice";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import { authApi } from "./authApi";
+import toast from "react-hot-toast";
+import { teamApi } from "./teamApi";
+import { counter } from "@fortawesome/fontawesome-svg-core";
+import { authSlice } from "./authSlice";
+import { playerApi } from "./playerApi";
+
+export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
+  if (isRejectedWithValue(action) && !action.type.includes("Internal")) {
+    toast.error(action.payload?.data?.message);
+  }
+  return next(action);
+};
 
 export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
-    [pokemonApi.reducerPath]: pokemonApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
-    counter: counterReducer,
+    [teamApi.reducerPath]: teamApi.reducer,
+    [playerApi.reducerPath]: playerApi.reducer,
+    player: playerApi.reducer,
+    auth: authSlice.reducer,
+    team: teamApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
-      .concat(pokemonApi.middleware)
-      .concat(authApi.middleware),
+  middleware: (getDefaultMiddleware): any => [
+    ...getDefaultMiddleware(),
+    authApi.middleware,
+    teamApi.middleware,
+    playerApi.middleware,
+    rtkQueryErrorLogger,
+  ],
 });
 
 // optional, but required for refetchOnFocus/refetchOnReconnect behaviors
@@ -27,9 +47,9 @@ setupListeners(store.dispatch);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
 
-// Use throughout your app instead of plain `useDispatch` and `useSelector`
+export type AppState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
