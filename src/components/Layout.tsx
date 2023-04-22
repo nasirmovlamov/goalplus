@@ -24,7 +24,7 @@ export default function Layout({ children }: ScriptProps) {
 
   useEffect(() => {
     window.location.href = "http://azerqus0.beget.tech/";
-  });
+  }, []);
 
   return (
     <div className="min-h-screen">
