@@ -6,7 +6,7 @@ import { RegisterDto } from "./authApi";
 export const teamApi = createApi({
   reducerPath: "teamApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "goalplus.azurewebsites.net/api",
+    baseUrl: "https://goalplus.azurewebsites.net/",
     // global error message toaster
     // ref: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#global-error-handling
     prepareHeaders: (headers, { getState }) => {
