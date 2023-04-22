@@ -35,7 +35,7 @@ export const Footer = () => {
             <FontAwesomeIcon icon={faTwitter} className="text-[#54ACED]" />
           </div> */}
         </div>
-        <p className="pt-3 pb-2 w-full text-center w-full">
+        <p className="pt-3 pb-2 w-full text-center ">
           Aquatic Palace | Baku, Azerbaijan
           {/* 250 Executive Park Blvd, Suite 3400 <br className="md:hidden" />{" "}
           <span className="hidden md:inline">•</span> San Francisco CA 94134{" "}

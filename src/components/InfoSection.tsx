@@ -22,22 +22,22 @@ const InfoSection = (props: Props) => {
           <h2 className="text-5xl text-white">60</h2>
           <h3 className="text-white">days</h3>
         </div> */}
-        <div className="flex flex-col w-[300px]">
+      {/*  <div className="flex flex-col w-[300px]">
           <Image
             src={festival}
             alt="image"
             width={100}
             className="w-[300px] h-auto"
           />
-        </div>
+        </div> */}
 
         <div className="flex flex-col">
           <h2 className="text-5xl text-white">60</h2>
-          <h3 className="text-white">days</h3>
+          <h3 className="text-white">Days</h3>
         </div>
         <div className="flex flex-col">
           <h2 className="text-5xl text-white">6</h2>
-          <h3 className="text-white">Amazing sports</h3>
+          <h3 className="text-white">Sports</h3>
         </div>
         <div className="flex flex-col">
           <h2 className="text-5xl text-white">1000</h2>
