@@ -9,7 +9,7 @@ const games = {
   football: [
     {
       sport: "Football",
-      league: "U21",
+      league: "U-21",
       address: "Aquatic Palace",
       gender: "male",
       minPlayers: 6,
@@ -21,7 +21,7 @@ const games = {
     },
     {
       sport: "Football",
-      league: "U18",
+      league: "U-18",
       address: "Aquatic Palace",
       date: "June 19 - August 12",
       gender: "male",
@@ -33,7 +33,7 @@ const games = {
     },
     {
       sport: "Football",
-      league: "U16",
+      league: "U-16",
       address: "Aquatic Palace",
       gender: "male",
       minPlayers: 6,
@@ -59,7 +59,7 @@ const games = {
   basketball: [
     {
       sport: "Basketball",
-      league: "U21",
+      league: "U-21",
       address: "Aquatic Palace",
       gender: "male",
       minPlayers: 3,
@@ -85,7 +85,7 @@ const games = {
   volleyball: [
     {
       sport: "Volleyball",
-      league: "U21",
+      league: "U-21",
       address: "Aquatic Palace",
       gender: "male",
       minPlayers: 4,
