@@ -156,6 +156,12 @@ export const Navbar = () => {
               </li>
             )}
 
+            {!userJwt && (
+              <li className="p-2">
+                <StyledLink href="/login">Login</StyledLink>
+              </li>
+            )}
+
             <li className="p-2">
               <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
             </li>
