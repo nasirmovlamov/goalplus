@@ -797,6 +797,7 @@ export default function Register(props: Props) {
                 onClick={() => {
                   setStep(3);
                 }}
+                disabled={true}
                 className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#a0a0a0]"
               >
                 <FontAwesomeIcon icon={faCheck} className="text-white" />
@@ -1297,7 +1298,7 @@ export default function Register(props: Props) {
                 {/* Personal Photo */}
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="personalPhoto">
-                    <b> Personal photo</b>
+                    <b> Individual photo</b>
                   </label>
                   {/* trim and dots end */}
                   {(watch("personalPhoto")?.length < 1 ||

@@ -14,6 +14,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { authSlice } from "@/store/authSlice";
+import { authApi } from "@/store/authApi";
+import { teamApi } from "@/store/teamApi";
+import error from "next/error";
 
 export const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -24,9 +27,94 @@ export const Navbar = () => {
     setIsOpenMobileNavbar(!isOpenMobileNavbar);
   };
 
+  const [
+    meApi,
+    {
+      isLoading: meLoading,
+      isError: isMeError,
+      isSuccess: meSuccess,
+      data: meData,
+      error: meError,
+    },
+  ] = authApi.useLazyMeQuery();
+  const [
+    playersUserInfoApi,
+    {
+      isLoading: playersUserInfoLoading,
+      isError: isPlayersUserInfoError,
+      isSuccess: playersUserInfoSuccess,
+      data: playersUserInfoData,
+      error: playersUserInfoError,
+    },
+  ] = teamApi.useLazyPlayersUserInfoQuery();
+
   const logoutUser = () => {
     dispatch(authSlice.actions.logoutUser());
     router.push("/");
+  };
+
+  const handleToProfile = async () => {
+    const decodedJwt = JSON.parse(
+      atob(localStorage.getItem("accessToken")!.split(".")[1])
+    );
+    localStorage.setItem("userData", JSON.stringify(decodedJwt));
+    const userId =
+      decodedJwt[
+        "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+      ];
+    localStorage.setItem("userId", userId);
+    await meApi({});
+
+    if (
+      decodedJwt[
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+      ].includes("Admin")
+    ) {
+      router.push("/admin-dashboard");
+      return;
+    }
+    if (
+      decodedJwt[
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+      ].includes("Captain")
+    ) {
+      router.push("/team-register-process");
+      return;
+    }
+    try {
+      const resp: any = await playersUserInfoApi({
+        userId: userId,
+      });
+      console.log("resp", resp);
+      if (
+        resp?.isCaptain &&
+        decodedJwt[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ].includes("Athlete")
+      ) {
+        router.push("/team-register-process");
+        return;
+      }
+      console.log(resp.status);
+      if (
+        resp.status !== "rejected" &&
+        decodedJwt[
+          "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+        ].includes("Athlete")
+      ) {
+        router.push("/user-register-process");
+        return;
+      }
+      // console.log(resp.status);
+      if (resp.status === "rejected") {
+        router.push("/team-register-process");
+        return;
+      }
+    } catch (error) {
+      router.push("/team-register-process");
+      return;
+    }
+    router.push("/profile");
   };
 
   return (
@@ -109,7 +197,7 @@ export const Navbar = () => {
 
           <ul className="md:flex h-[40px] items-center hidden ">
             {userJwt && (
-              <button onClick={() => router.push("/profile")}>
+              <button onClick={() => handleToProfile()}>
                 <li className="pl-4 pr-3">
                   <FontAwesomeIcon icon={faUser} />
                 </li>
