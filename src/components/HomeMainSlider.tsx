@@ -49,7 +49,7 @@ export default function HomeMainSlider() {
     <div className="bg-[#031F57]">
       <Slider {...settings}>
         <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
-          <div className="flex flex-col z-10 pt-32 justify-center items-center">
+          <div className="flex flex-col z-10 pt-32 justify-center items-center ">
             <h1 className="text-xl lg:text-5xl text-center">
               Become a member of our community
             </h1>
@@ -62,9 +62,13 @@ export default function HomeMainSlider() {
             </button> */}
             {/* <FontAwesomeIcon icon={faAngleRight} /> */}
 
+            {/* cool background frame */}
             <Link
               href="/register"
-              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl"
+              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl text-[#c4f000]"
+              style={{
+                boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
+              }}
             >
               Register Now
             </Link>
@@ -106,7 +110,10 @@ export default function HomeMainSlider() {
             </p>
             <Link
               href="/register"
-              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl"
+              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-[#cdf000]"
+              style={{
+                boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
+              }}
             >
               Join Now
               <span className="hidden md:inlin">
@@ -152,7 +159,10 @@ export default function HomeMainSlider() {
             <p className="text-center mt-5">Goalplus Summer 2023</p>
             <Link
               href="/register"
-              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl"
+              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl text-[#c4f000]"
+              style={{
+                boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
+              }}
             >
               Discover Now
             </Link>
