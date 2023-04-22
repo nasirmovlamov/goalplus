@@ -94,7 +94,7 @@ export default function Login(props: Props) {
           router.push("/team-register-process");
         }
         try {
-          const resp = await playersUserInfoApi({
+          const resp: any = await playersUserInfoApi({
             userId: userId,
           });
           console.log("resp", resp);
