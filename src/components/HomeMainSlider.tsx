@@ -65,7 +65,7 @@ export default function HomeMainSlider() {
             {/* cool background frame */}
             <Link
               href="/register"
-              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl text-[#c4f000]"
+              className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl text-[#c4f000]"
               style={{
                 boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
               }}
@@ -109,7 +109,7 @@ export default function HomeMainSlider() {
             </p>
             <Link
               href="/register"
-              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-[#cdf000]"
+              className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-[#cdf000]"
               style={{
                 boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
               }}
@@ -158,7 +158,7 @@ export default function HomeMainSlider() {
             <p className="text-center mt-5">Goalplus Summer 2023</p>
             <Link
               href="/register"
-              className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl text-[#c4f000]"
+              className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl text-[#c4f000]"
               style={{
                 boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
               }}
