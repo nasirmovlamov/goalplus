@@ -414,6 +414,7 @@ export default function Register(props: Props) {
     userId: string;
     postData: {
       jerseyNumber: string;
+      position: string;
       quote: string;
       name: string;
       slogan: string;
@@ -458,6 +459,7 @@ export default function Register(props: Props) {
         body: {
           jerseyNumber: postData.jerseyNumber,
           quote: postData.quote,
+          position: postData.position,
           teamDetails: {
             additionalComments: postData.teamDetails.additionalComments,
           },
@@ -533,8 +535,12 @@ export default function Register(props: Props) {
         body: postData,
       }).unwrap();
 
+      const respPlayersUser = await playersUserInfoApi({
+        userId: localStorage.getItem("userId")!,
+      }).unwrap();
+
       const respPlayer = await putPlayerInfoApi({
-        playerId: playerId,
+        playerId: respPlayersUser.id,
         body: {
           jerseyNumber: postData.jerseyNumber,
           quote: postData.quote,
@@ -558,18 +564,16 @@ export default function Register(props: Props) {
           body: schoolLogoFormData,
         });
       }
-      const respPlayersUser = await playersUserInfoApi({
-        userId: localStorage.getItem("userId")!,
-      }).unwrap();
+
       console.log(respPlayersUser);
 
       await idCardApi({
-        playerId: playerId,
+        playerId: respPlayersUser.id,
         body: idCardFormData,
       });
       if (postData?.teamDetails?.schoolOfficial) {
         await schoolCertificateApi({
-          userId: playerId,
+          userId: respPlayersUser.id,
           body: schoolCertificateFormData,
         });
       }
@@ -936,8 +940,7 @@ export default function Register(props: Props) {
                   </span>
                 </div>
 
-                {/* Player position */}
-                {watch("sportType") == "2" && (
+                {/* {(watch("sportType") == "2" || sportId == 2) && (
                   <div className="flex flex-col gap-2 max-w-[449px] w-full">
                     <label htmlFor="playerPosition">
                       <b> Player position </b>
@@ -959,7 +962,7 @@ export default function Register(props: Props) {
                       {errors.playerPosition?.message}
                     </span>
                   </div>
-                )}
+                )} */}
 
                 {/* Educational institution data (name, surname, email, contact number) */}
                 {(watch("sportType") == "2" || sportId == 2) && (
@@ -1015,6 +1018,8 @@ export default function Register(props: Props) {
                       </button>
                       <input
                         type="file"
+                        // only pdf file allowed
+                        accept=".pdf"
                         {...register("schoolCertificate", {
                           required: "School certificate is required",
                         })}

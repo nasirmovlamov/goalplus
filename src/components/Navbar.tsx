@@ -109,9 +109,11 @@ export const Navbar = () => {
 
           <ul className="md:flex h-[40px] items-center hidden ">
             {userJwt && (
-              <li className="pl-4 pr-3">
-                <FontAwesomeIcon icon={faUser} />
-              </li>
+              <button onClick={() => router.push("/profile")}>
+                <li className="pl-4 pr-3">
+                  <FontAwesomeIcon icon={faUser} />
+                </li>
+              </button>
             )}
             {userJwt && (
               <li className="pl-4 pr-3">

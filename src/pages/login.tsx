@@ -70,7 +70,6 @@ export default function Login(props: Props) {
         localStorage.setItem("refreshToken", res.refreshToken);
         localStorage.setItem("token", res.accessToken);
         const decodedJwt = JSON.parse(atob(res.accessToken.split(".")[1]));
-        console.log(decodedJwt);
         localStorage.setItem("userData", JSON.stringify(decodedJwt));
         const userId =
           decodedJwt[
@@ -85,6 +84,7 @@ export default function Login(props: Props) {
           ].includes("Admin")
         ) {
           router.push("/admin-dashboard");
+          return;
         }
         if (
           decodedJwt[
@@ -92,6 +92,7 @@ export default function Login(props: Props) {
           ].includes("Captain")
         ) {
           router.push("/team-register-process");
+          return;
         }
         try {
           const resp: any = await playersUserInfoApi({
@@ -124,6 +125,7 @@ export default function Login(props: Props) {
           }
         } catch (error) {
           router.push("/team-register-process");
+          return;
         }
       });
   };

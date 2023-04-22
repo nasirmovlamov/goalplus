@@ -21,6 +21,7 @@ export default function Layout({ children }: ScriptProps) {
       dispatch(authSlice.actions.getUserFromStorage());
     }
   }, []);
+  
   return (
     <div className="min-h-screen">
       <div className="min-h-[calc(100vh-340px)]">

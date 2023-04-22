@@ -293,26 +293,7 @@ export default function Register(props: Props) {
     return null;
   }, [isPutPlayerError, putPlayerInfoError]);
 
-  useEffect(() => {
-    if (
-      localStorage.getItem("accessToken") &&
-      localStorage.getItem("refreshToken")
-    ) {
-      return () => {
-        refreshTokenApi({
-          accessToken: localStorage.getItem("accessToken")! as string,
-          refreshToken: localStorage.getItem("refreshToken")! as string,
-        })
-          .unwrap()
-          .then((resp: any) => {
-            if (resp) {
-              localStorage.setItem("accessToken", resp.accessToken);
-              localStorage.setItem("refreshToken", resp.refreshToken);
-            }
-          });
-      };
-    }
-  }, []);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     if (isPlayersUserSuccess) {
@@ -363,390 +344,351 @@ export default function Register(props: Props) {
     );
   }
 
-  if (isRefreshTokenSuccess)
-    return (
-      <div className="flex justify-center pt-[50px] pb-[50px]">
-        <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
-          <h1 className="w-full flex text-[44px] pb-10">
-            User Registration Process
-          </h1>
-          <div className="flex  flex-wrap lg:flex-nowrap gap-5 w-full justify-center">
-            <div className="flex lg:flex-col w-full lg:gap-0 gap-2 lg:w-[190px] ">
-              <div className="flex gap-1 items-center">
-                <button
-                  onClick={() => {
-                    // setStep(1);
-                  }}
-                  className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#042974]"
-                >
-                  <FontAwesomeIcon icon={faCheck} className="text-white" />
-                </button>
-                <p className="text-xs">Profile Info</p>
-              </div>
-              {/* line */}
-              <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
-
-              <div className="flex gap-1 items-center">
-                <button
-                  onClick={() => {
-                    setStep(2);
-                  }}
-                  className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#042974]"
-                >
-                  <FontAwesomeIcon icon={faTShirt} className="text-white" />
-                </button>
-                <p className="text-xs">Team Info</p>
-              </div>
-
-              <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
-
-              <div className="flex gap-1 items-center">
-                <button
-                  onClick={() => {
-                    setStep(4);
-                  }}
-                  disabled={isPlayersUserInfo}
-                  className={
-                    isPlayersUserInfo
-                      ? "w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#a0a0a0] "
-                      : "w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#042974] opacity-100"
-                  }
-                >
-                  <FontAwesomeIcon icon={faDollar} className="text-white" />
-                </button>
-                <p className="text-xs">Payment</p>
-              </div>
-
-              <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
-
-              <div className="flex gap-1 items-center">
-                <button
-                  onClick={() => {
-                    setStep(3);
-                  }}
-                  className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#a0a0a0]"
-                >
-                  <FontAwesomeIcon icon={faCheck} className="text-white" />
-                </button>
-                <p className="text-xs">Confirmation</p>
-              </div>
+  return (
+    <div className="flex justify-center pt-[50px] pb-[50px]">
+      <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
+        <h1 className="w-full flex text-[44px] pb-10">
+          User Registration Process
+        </h1>
+        <div className="flex  flex-wrap lg:flex-nowrap gap-5 w-full justify-center">
+          <div className="flex lg:flex-col w-full lg:gap-0 gap-2 lg:w-[190px] ">
+            <div className="flex gap-1 items-center">
+              <button
+                onClick={() => {
+                  // setStep(1);
+                }}
+                className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#042974]"
+              >
+                <FontAwesomeIcon icon={faCheck} className="text-white" />
+              </button>
+              <p className="text-xs">Profile Info</p>
             </div>
-            <div className="flex flex-col max-w-[1100px] w-full">
-              {step === 2 && (
-                <form
-                  action=""
-                  onSubmit={handleSubmit(onSubmit)}
-                  className="flex flex-wrap gap-[30px] max-w-[1100px] w-full"
-                >
-                  {/* Jersey number */}
+            {/* line */}
+            <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
+
+            <div className="flex gap-1 items-center">
+              <button
+                onClick={() => {
+                  setStep(2);
+                }}
+                className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#042974]"
+              >
+                <FontAwesomeIcon icon={faTShirt} className="text-white" />
+              </button>
+              <p className="text-xs">Team Info</p>
+            </div>
+
+            <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
+
+            <div className="flex gap-1 items-center">
+              <button
+                onClick={() => {
+                  setStep(4);
+                }}
+                disabled={isPlayersUserInfo}
+                className={
+                  isPlayersUserInfo
+                    ? "w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#a0a0a0] "
+                    : "w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#042974] opacity-100"
+                }
+              >
+                <FontAwesomeIcon icon={faDollar} className="text-white" />
+              </button>
+              <p className="text-xs">Payment</p>
+            </div>
+
+            <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
+
+            <div className="flex gap-1 items-center">
+              <button
+                onClick={() => {
+                  setStep(3);
+                }}
+                className="w-[35px] h-[35px] flex justify-center items-center rounded-full bg-[#a0a0a0]"
+              >
+                <FontAwesomeIcon icon={faCheck} className="text-white" />
+              </button>
+              <p className="text-xs">Confirmation</p>
+            </div>
+          </div>
+          <div className="flex flex-col max-w-[1100px] w-full">
+            {step === 2 && (
+              <form
+                action=""
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-wrap gap-[30px] max-w-[1100px] w-full"
+              >
+                {/* Jersey number */}
+                <div className="flex flex-col gap-2 max-w-[449px] w-full">
+                  <label htmlFor="jerseyNumber">
+                    <b> Jersey number</b>
+                  </label>
+                  <input
+                    type="text"
+                    {...register("jerseyNumber")}
+                    className="border border-gray-300 rounded-md px-[6px] py-[12px]"
+                    placeholder="Jersey number"
+                    maxLength={2}
+                  />
+                  <span className="text-red-500">
+                    {errors.jerseyNumber?.message}
+                  </span>
+                </div>
+                {/* Player position */}
+                {watch("sportType") === "soccer6v6" && (
                   <div className="flex flex-col gap-2 max-w-[449px] w-full">
-                    <label htmlFor="jerseyNumber">
-                      <b> Jersey number</b>
+                    <label htmlFor="playerPosition">
+                      <b> Player position </b>
                     </label>
-                    <input
-                      type="text"
-                      {...register("jerseyNumber")}
+                    <select
+                      {...register("playerPosition", {
+                        required: "Player position is required",
+                      })}
                       className="border border-gray-300 rounded-md px-[6px] py-[12px]"
-                      placeholder="Jersey number"
-                      maxLength={2}
-                    />
+                      placeholder="Player position"
+                    >
+                      <option value="">Select player position</option>
+                      <option value="Goalkeeper">Goalkeeper</option>
+                      <option value="Defender">Defender</option>
+                      <option value="Mid-fielder">Mid-fielder</option>
+                      <option value="Forward">Forward</option>
+                    </select>
                     <span className="text-red-500">
-                      {errors.jerseyNumber?.message}
+                      {errors.playerPosition?.message}
                     </span>
                   </div>
-                  {/* Player position */}
-                  {watch("sportType") === "soccer6v6" && (
-                    <div className="flex flex-col gap-2 max-w-[449px] w-full">
-                      <label htmlFor="playerPosition">
-                        <b> Player position </b>
-                      </label>
-                      <select
-                        {...register("playerPosition", {
-                          required: "Player position is required",
-                        })}
-                        className="border border-gray-300 rounded-md px-[6px] py-[12px]"
-                        placeholder="Player position"
-                      >
-                        <option value="">Select player position</option>
-                        <option value="Goalkeeper">Goalkeeper</option>
-                        <option value="Defender">Defender</option>
-                        <option value="Mid-fielder">Mid-fielder</option>
-                        <option value="Forward">Forward</option>
-                      </select>
-                      <span className="text-red-500">
-                        {errors.playerPosition?.message}
-                      </span>
-                    </div>
-                  )}
-                  {/* Educational institution data (name, surname, email, contact number) */}
-                  {watch("sportType") === "soccer6v6" &&
-                    watch("leagueType") !== "GIRLS" && (
-                      <>
-                        <div className="flex flex-col gap-2 w-full">
-                          <label htmlFor="schoolCertificate">
-                            <b>
-                              {" "}
-                              Educational Institution certificate or diploma{" "}
-                            </b>
-                          </label>
+                )}
+                {/* Educational institution data (name, surname, email, contact number) */}
+                {watch("sportType") === "soccer6v6" &&
+                  watch("leagueType") !== "GIRLS" && (
+                    <>
+                      <div className="flex flex-col gap-2 w-full">
+                        <label htmlFor="schoolCertificate">
+                          <b>
+                            {" "}
+                            Educational Institution certificate or diploma{" "}
+                          </b>
+                        </label>
+                        {/* trim and dots end */}
+                        {watch("schoolCertificate")?.length > 0 && (
+                          <div className="flex gap-2 items-center">
+                            <div
+                              className="
+                  overflow-hidden
+                  whitespace-nowrap
+                  overflow-ellipsis
+              "
+                            >
+                              {watch("schoolCertificate")[0].name}
+                            </div>
+                            <button
+                              className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                              onClick={() => {
+                                setValue("schoolCertificate", []);
+                              }}
+                            >
+                              x
+                            </button>
+                          </div>
+                        )}
+                        <button
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                          type="button"
+                          onClick={() => {
+                            // click sibling of this element
+                            const input = document.querySelector(
+                              'input[name="schoolCertificate"]'
+                            ) as HTMLInputElement;
+                            input.click();
+                          }}
+                        >
                           {/* trim and dots end */}
-                          {watch("schoolCertificate")?.length > 0 && (
-                            <div className="flex gap-2 items-center">
+                          <div
+                            className="
+                  overflow-hidden
+                  whitespace-nowrap
+                  overflow-ellipsis
+                  w-[100px]
+              "
+                          >
+                            Choose file
+                          </div>
+                        </button>
+                        <input
+                          type="file"
+                          {...register("schoolCertificate", {
+                            required: "School certificate is required",
+                          })}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                        />
+                        <span className="text-red-500">
+                          {errors?.schoolCertificate?.message}
+                        </span>
+                      </div>
+                      {/* School official Data */}
+                      {/* School official Name */}
+                      <div className="flex flex-col gap-2 max-w-[350px] w-full">
+                        <label htmlFor="schoolOfficialName">
+                          <b> Educational Institution official&apos;s name</b>
+                        </label>
+                        <input
+                          type="text"
+                          {...register("schoolOfficial.name", {
+                            required:
+                              "Educational Institution  official&apos;s name is required",
+                          })}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px]"
+                          placeholder="Educational Institution official's name"
+                        />
+                        <span className="text-red-500">
+                          {errors.schoolOfficial?.name?.message}
+                        </span>
+                      </div>
+
+                      {/* School official&apos;s surname */}
+                      <div className="flex flex-col gap-2 max-w-[350px] w-full">
+                        <label htmlFor="schoolOfficialSurname">
+                          <b>
+                            {" "}
+                            Educational Institution official&apos;s surname
+                          </b>
+                        </label>
+                        <input
+                          type="text"
+                          {...register("schoolOfficial.surname", {
+                            required:
+                              "Educational Institution official's surname is required",
+                          })}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px]"
+                          placeholder="Educational Institution official's surname"
+                        />
+                        <span className="text-red-500">
+                          {errors.schoolOfficial?.surname?.message}
+                        </span>
+                      </div>
+
+                      {/* School official&apos;s position */}
+                      <div className="flex flex-col gap-2 max-w-[350px] w-full">
+                        <label htmlFor="schoolOfficialPosition">
+                          <b>
+                            {" "}
+                            Educational Institution official&apos;s position
+                          </b>
+                        </label>
+                        <input
+                          type="text"
+                          {...register("schoolOfficial.position", {
+                            required:
+                              "Educational Institution official's position is required",
+                          })}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px]"
+                          placeholder="Educational Institution official's position"
+                        />
+                        <span className="text-red-500">
+                          {errors.schoolOfficial?.position?.message}
+                        </span>
+                      </div>
+
+                      {/* School official&apos;s email */}
+                      <div className="flex flex-col gap-2 max-w-[350px] w-full">
+                        <label htmlFor="schoolOfficialEmail">
+                          <b> Educational Institution official&apos;s email</b>
+                        </label>
+                        <input
+                          type="email"
+                          {...register("schoolOfficial.email", {
+                            required:
+                              "Educational Institution official&apos;s email is required",
+                          })}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px]"
+                          placeholder="Educational Institution official's email"
+                        />
+                        <span className="text-red-500">
+                          {errors.schoolOfficial?.email?.message}
+                        </span>
+                      </div>
+
+                      {/* School official&apos;s contact number */}
+                      <div className="flex flex-col gap-2 max-w-[350px] w-full">
+                        <label htmlFor="schoolOfficialContactNumber">
+                          <b>
+                            {" "}
+                            Educational Institution official&apos;s contact
+                            number
+                          </b>
+                        </label>
+                        <input
+                          type="text"
+                          {...register("schoolOfficial.contactNumber", {
+                            required:
+                              "Educational Institution official's contact number is required",
+                          })}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px]"
+                          placeholder="Educational Institution official's contact number"
+                        />
+                        <span className="text-red-500">
+                          {errors.schoolOfficial?.contactNumber?.message}
+                        </span>
+                      </div>
+
+                      {/* School logo */}
+                      <div className="flex flex-col gap-2  w-full">
+                        <label htmlFor="schoolLogo">
+                          <b> Educational Institution&apos;s logo</b>
+                        </label>
+                        {/* trim and dots end */}
+                        {watch("schoolLogo")?.length > 0 && (
+                          <div className="flex gap-2 items-start">
+                            <div className="flex flex-col">
+                              <a
+                                href={URL.createObjectURL(
+                                  watch("schoolLogo")[0]
+                                )}
+                                target="_blank"
+                              >
+                                <img
+                                  src={URL.createObjectURL(
+                                    watch("schoolLogo")[0]
+                                  )}
+                                  className="w-[250px] h-[250px] object-cover"
+                                  alt="school logo"
+                                />
+                              </a>
+
                               <div
                                 className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
-              "
-                              >
-                                {watch("schoolCertificate")[0].name}
-                              </div>
-                              <button
-                                className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                                onClick={() => {
-                                  setValue("schoolCertificate", []);
-                                }}
-                              >
-                                x
-                              </button>
-                            </div>
-                          )}
-                          <button
-                            className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                            type="button"
-                            onClick={() => {
-                              // click sibling of this element
-                              const input = document.querySelector(
-                                'input[name="schoolCertificate"]'
-                              ) as HTMLInputElement;
-                              input.click();
-                            }}
-                          >
-                            {/* trim and dots end */}
-                            <div
-                              className="
-                  overflow-hidden
-                  whitespace-nowrap
-                  overflow-ellipsis
                   w-[100px]
               "
-                            >
-                              Choose file
+                              >
+                                {watch("schoolLogo")[0].name}
+                              </div>
                             </div>
-                          </button>
-                          <input
-                            type="file"
-                            {...register("schoolCertificate", {
-                              required: "School certificate is required",
-                            })}
-                            className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                          />
-                          <span className="text-red-500">
-                            {errors?.schoolCertificate?.message}
-                          </span>
-                        </div>
-                        {/* School official Data */}
-                        {/* School official Name */}
-                        <div className="flex flex-col gap-2 max-w-[350px] w-full">
-                          <label htmlFor="schoolOfficialName">
-                            <b> Educational Institution official&apos;s name</b>
-                          </label>
-                          <input
-                            type="text"
-                            {...register("schoolOfficial.name", {
-                              required:
-                                "Educational Institution  official&apos;s name is required",
-                            })}
-                            className="border border-gray-300 rounded-md px-[6px] py-[12px]"
-                            placeholder="Educational Institution official's name"
-                          />
-                          <span className="text-red-500">
-                            {errors.schoolOfficial?.name?.message}
-                          </span>
-                        </div>
 
-                        {/* School official&apos;s surname */}
-                        <div className="flex flex-col gap-2 max-w-[350px] w-full">
-                          <label htmlFor="schoolOfficialSurname">
-                            <b>
-                              {" "}
-                              Educational Institution official&apos;s surname
-                            </b>
-                          </label>
-                          <input
-                            type="text"
-                            {...register("schoolOfficial.surname", {
-                              required:
-                                "Educational Institution official's surname is required",
-                            })}
-                            className="border border-gray-300 rounded-md px-[6px] py-[12px]"
-                            placeholder="Educational Institution official's surname"
-                          />
-                          <span className="text-red-500">
-                            {errors.schoolOfficial?.surname?.message}
-                          </span>
-                        </div>
-
-                        {/* School official&apos;s position */}
-                        <div className="flex flex-col gap-2 max-w-[350px] w-full">
-                          <label htmlFor="schoolOfficialPosition">
-                            <b>
-                              {" "}
-                              Educational Institution official&apos;s position
-                            </b>
-                          </label>
-                          <input
-                            type="text"
-                            {...register("schoolOfficial.position", {
-                              required:
-                                "Educational Institution official's position is required",
-                            })}
-                            className="border border-gray-300 rounded-md px-[6px] py-[12px]"
-                            placeholder="Educational Institution official's position"
-                          />
-                          <span className="text-red-500">
-                            {errors.schoolOfficial?.position?.message}
-                          </span>
-                        </div>
-
-                        {/* School official&apos;s email */}
-                        <div className="flex flex-col gap-2 max-w-[350px] w-full">
-                          <label htmlFor="schoolOfficialEmail">
-                            <b>
-                              {" "}
-                              Educational Institution official&apos;s email
-                            </b>
-                          </label>
-                          <input
-                            type="email"
-                            {...register("schoolOfficial.email", {
-                              required:
-                                "Educational Institution official&apos;s email is required",
-                            })}
-                            className="border border-gray-300 rounded-md px-[6px] py-[12px]"
-                            placeholder="Educational Institution official's email"
-                          />
-                          <span className="text-red-500">
-                            {errors.schoolOfficial?.email?.message}
-                          </span>
-                        </div>
-
-                        {/* School official&apos;s contact number */}
-                        <div className="flex flex-col gap-2 max-w-[350px] w-full">
-                          <label htmlFor="schoolOfficialContactNumber">
-                            <b>
-                              {" "}
-                              Educational Institution official&apos;s contact
-                              number
-                            </b>
-                          </label>
-                          <input
-                            type="text"
-                            {...register("schoolOfficial.contactNumber", {
-                              required:
-                                "Educational Institution official's contact number is required",
-                            })}
-                            className="border border-gray-300 rounded-md px-[6px] py-[12px]"
-                            placeholder="Educational Institution official's contact number"
-                          />
-                          <span className="text-red-500">
-                            {errors.schoolOfficial?.contactNumber?.message}
-                          </span>
-                        </div>
-
-                        {/* School logo */}
-                        <div className="flex flex-col gap-2  w-full">
-                          <label htmlFor="schoolLogo">
-                            <b> Educational Institution&apos;s logo</b>
-                          </label>
+                            <button
+                              className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                              onClick={() => {
+                                setValue("schoolLogo", []);
+                              }}
+                            >
+                              x
+                            </button>
+                          </div>
+                        )}
+                        <button
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                          type="button"
+                          onClick={() => {
+                            // click sibling of this element
+                            const input = document.querySelector(
+                              'input[name="schoolLogo"]'
+                            ) as HTMLInputElement;
+                            input.click();
+                          }}
+                        >
                           {/* trim and dots end */}
-                          {watch("schoolLogo")?.length > 0 && (
-                            <div className="flex gap-2 items-start">
-                              <div className="flex flex-col">
-                                <a
-                                  href={URL.createObjectURL(
-                                    watch("schoolLogo")[0]
-                                  )}
-                                  target="_blank"
-                                >
-                                  <img
-                                    src={URL.createObjectURL(
-                                      watch("schoolLogo")[0]
-                                    )}
-                                    className="w-[250px] h-[250px] object-cover"
-                                    alt="school logo"
-                                  />
-                                </a>
-
-                                <div
-                                  className="
-                  overflow-hidden
-                  whitespace-nowrap
-                  overflow-ellipsis
-                  w-[100px]
-              "
-                                >
-                                  {watch("schoolLogo")[0].name}
-                                </div>
-                              </div>
-
-                              <button
-                                className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                                onClick={() => {
-                                  setValue("schoolLogo", []);
-                                }}
-                              >
-                                x
-                              </button>
-                            </div>
-                          )}
-                          <button
-                            className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                            type="button"
-                            onClick={() => {
-                              // click sibling of this element
-                              const input = document.querySelector(
-                                'input[name="schoolLogo"]'
-                              ) as HTMLInputElement;
-                              input.click();
-                            }}
-                          >
-                            {/* trim and dots end */}
-                            <div
-                              className="
-                  overflow-hidden
-                  whitespace-nowrap
-                  overflow-ellipsis
-                  w-[100px]
-              "
-                            >
-                              Choose file
-                            </div>
-                          </button>
-                          <input
-                            type="file"
-                            {...register("schoolLogo", {
-                              required:
-                                "Educational Institution logo is required",
-                            })}
-                            className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                          />
-                          <span className="text-red-500">
-                            {errors?.schoolLogo?.message}
-                          </span>
-                        </div>
-                      </>
-                    )}
-
-                  {/* ID CARD */}
-                  <div className="flex flex-col gap-2 w-full">
-                    <label htmlFor="personalPhoto">
-                      <b> ID Card</b>
-                    </label>
-                    {/* trim and dots end */}
-                    {watch("idCard")?.length > 0 && (
-                      <div className="flex gap-2 items-start">
-                        <div className="flex flex-col">
                           <div
                             className="
                   overflow-hidden
@@ -755,240 +697,270 @@ export default function Register(props: Props) {
                   w-[100px]
               "
                           >
-                            <a
-                              href={URL.createObjectURL(watch("idCard")[0])}
-                              target="_blank"
-                            >
-                              <p
-                                className="text-[12px] text-blue-500 underline
-                      "
-                              >
-                                {watch("idCard")[0].name}
-                              </p>
-                            </a>
+                            Choose file
                           </div>
-                        </div>
-
-                        <button
-                          className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                          onClick={() => {
-                            setValue("idCard", []);
-                          }}
-                        >
-                          x
                         </button>
+                        <input
+                          type="file"
+                          {...register("schoolLogo", {
+                            required:
+                              "Educational Institution logo is required",
+                          })}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                        />
+                        <span className="text-red-500">
+                          {errors?.schoolLogo?.message}
+                        </span>
                       </div>
-                    )}
-                    <button
-                      className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                      type="button"
-                      onClick={() => {
-                        // click sibling of this element
-                        const input = document.querySelector(
-                          'input[name="idCard"]'
-                        ) as HTMLInputElement;
-                        input.click();
-                      }}
-                    >
-                      {/* trim and dots end */}
-                      <div
-                        className="
+                    </>
+                  )}
+
+                {/* ID CARD */}
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="personalPhoto">
+                    <b> ID Card</b>
+                  </label>
+                  {/* trim and dots end */}
+                  {watch("idCard")?.length > 0 && (
+                    <div className="flex gap-2 items-start">
+                      <div className="flex flex-col">
+                        <div
+                          className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
+                  w-[100px]
               "
-                      >
-                        Upload ID card
-                      </div>
-                    </button>
-                    <input
-                      type="file"
-                      //accept only pdf file format
-                      accept=".pdf"
-                      {...register("idCard", {
-                        required: "ID card is required",
-                      })}
-                      className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                    />
-                    {/* info about photo */}
-                    <div className="text-[12px] text-gray-500">
-                      <p>
-                        Please upload both sides of your ID (Şəxsiyyət Vəsiqəsi)
-                        in a single one-page PDF file.
-                      </p>
-                    </div>
-
-                    <span className="text-red-500">
-                      {errors?.idCard?.message}
-                    </span>
-                  </div>
-
-                  {/* Personal Photo */}
-                  <div className="flex flex-col gap-2 w-full">
-                    <label htmlFor="personalPhoto">
-                      <b> Personal photo</b>
-                    </label>
-                    {/* trim and dots end */}
-                    {watch("personalPhoto")?.length > 0 && (
-                      <div className="flex gap-2 items-start">
-                        <div className="flex flex-col">
+                        >
                           <a
-                            href={URL.createObjectURL(
-                              watch("personalPhoto")[0]
-                            )}
+                            href={URL.createObjectURL(watch("idCard")[0])}
                             target="_blank"
                           >
-                            <img
-                              src={URL.createObjectURL(
-                                watch("personalPhoto")[0]
-                              )}
-                              className="w-[250px] h-[250px] object-cover"
-                              alt="personal photo"
-                            />
+                            <p
+                              className="text-[12px] text-blue-500 underline
+                      "
+                            >
+                              {watch("idCard")[0].name}
+                            </p>
                           </a>
+                        </div>
+                      </div>
 
-                          <div
-                            className="
+                      <button
+                        className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                        onClick={() => {
+                          setValue("idCard", []);
+                        }}
+                      >
+                        x
+                      </button>
+                    </div>
+                  )}
+                  <button
+                    className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                    type="button"
+                    onClick={() => {
+                      // click sibling of this element
+                      const input = document.querySelector(
+                        'input[name="idCard"]'
+                      ) as HTMLInputElement;
+                      input.click();
+                    }}
+                  >
+                    {/* trim and dots end */}
+                    <div
+                      className="
+                  overflow-hidden
+                  whitespace-nowrap
+                  overflow-ellipsis
+              "
+                    >
+                      Upload ID card
+                    </div>
+                  </button>
+                  <input
+                    type="file"
+                    //accept only pdf file format
+                    accept=".pdf"
+                    {...register("idCard", {
+                      required: "ID card is required",
+                    })}
+                    className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                  />
+                  {/* info about photo */}
+                  <div className="text-[12px] text-gray-500">
+                    <p>
+                      Please upload both sides of your ID (Şəxsiyyət Vəsiqəsi)
+                      in a single one-page PDF file.
+                    </p>
+                  </div>
+
+                  <span className="text-red-500">
+                    {errors?.idCard?.message}
+                  </span>
+                </div>
+
+                {/* Personal Photo */}
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="personalPhoto">
+                    <b> Personal photo</b>
+                  </label>
+                  {/* trim and dots end */}
+                  {watch("personalPhoto")?.length > 0 && (
+                    <div className="flex gap-2 items-start">
+                      <div className="flex flex-col">
+                        <a
+                          href={URL.createObjectURL(watch("personalPhoto")[0])}
+                          target="_blank"
+                        >
+                          <img
+                            src={URL.createObjectURL(watch("personalPhoto")[0])}
+                            className="w-[250px] h-[250px] object-cover"
+                            alt="personal photo"
+                          />
+                        </a>
+
+                        <div
+                          className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
                   w-[100px]
               "
-                          >
-                            {watch("personalPhoto")[0].name}
-                          </div>
-                        </div>
-
-                        <button
-                          className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                          onClick={() => {
-                            setValue("personalPhoto", []);
-                          }}
                         >
-                          x
-                        </button>
+                          {watch("personalPhoto")[0].name}
+                        </div>
                       </div>
-                    )}
-                    <button
-                      className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                      type="button"
-                      onClick={() => {
-                        // click sibling of this element
-                        const input = document.querySelector(
-                          'input[name="personalPhoto"]'
-                        ) as HTMLInputElement;
-                        input.click();
-                      }}
-                    >
-                      {/* trim and dots end */}
-                      <div
-                        className="
+
+                      <button
+                        className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                        onClick={() => {
+                          setValue("personalPhoto", []);
+                        }}
+                      >
+                        x
+                      </button>
+                    </div>
+                  )}
+                  <button
+                    className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                    type="button"
+                    onClick={() => {
+                      // click sibling of this element
+                      const input = document.querySelector(
+                        'input[name="personalPhoto"]'
+                      ) as HTMLInputElement;
+                      input.click();
+                    }}
+                  >
+                    {/* trim and dots end */}
+                    <div
+                      className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
               "
-                      >
-                        Upload photo
-                      </div>
-                    </button>
-                    <input
-                      type="file"
-                      {...register("personalPhoto", {
-                        required: "Personal photo is required",
-                      })}
-                      className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                    />
-                    {/* info about photo */}
-                    <div className="text-[12px] text-gray-500">
-                      <p>
-                        The photo will be used both for our pre-game posts with
-                        a quote and for your virtual player badge.
-                      </p>
-                    </div>
-
-                    <span className="text-red-500">
-                      {errors?.personalPhoto?.message}
-                    </span>
-                  </div>
-
-                  {/* Any other comments or details we should be aware of */}
-                  <div className="flex flex-col gap-2 w-full">
-                    <label htmlFor="comment">
-                      <b>Any other comments or details we should be aware of</b>
-                    </label>
-                    <textarea
-                      {...register("comment")}
-                      className="border border-gray-300 rounded-md px-[6px] py-[12px] w-full"
-                    />
-                    <span className="text-red-500">
-                      {errors.comment?.message}
-                    </span>
-                  </div>
-
-                  {/* Submit */}
-                  <div className="w-full flex justify-end">
-                    <button
-                      type="submit"
-                      className="h-[50px] bg-[#032974] text-white px-[6px] py-[12px] rounded-md max-w-[300px] w-full"
                     >
-                      Submit
-                      {registerLoading && (
-                        <span className="animate-spin">...</span>
-                      )}
-                    </button>
+                      Upload photo
+                    </div>
+                  </button>
+                  <input
+                    type="file"
+                    {...register("personalPhoto", {
+                      required: "Personal photo is required",
+                    })}
+                    className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                  />
+                  {/* info about photo */}
+                  <div className="text-[12px] text-gray-500">
+                    <p>
+                      The photo will be used both for our pre-game posts with a
+                      quote and for your virtual player badge.
+                    </p>
                   </div>
 
-                  {putPlayerInfoError &&
-                    ("status" in putPlayerInfoError ? (
-                      <div>
-                        <div>
-                          {playerInfoErrorData?.data &&
-                            Object.keys(playerInfoErrorData.data).map((key) => {
-                              return (
-                                <p key={key} className="text-red-500">
-                                  {playerInfoErrorData.data[key]}
-                                </p>
-                              );
-                            })}
-                        </div>
-                      </div>
-                    ) : null)}
-                </form>
-              )}
+                  <span className="text-red-500">
+                    {errors?.personalPhoto?.message}
+                  </span>
+                </div>
 
-              {step === 4 && (
-                <div className="flex flex-wrap gap-[30px]  w-full">
-                  <div className="flex flex-col gap-2 w-full ">
-                    <div className="gap-2">
-                      <h1 className="text-[36px]">
-                        <b>Payment</b>
-                      </h1>
-                      <p className="text-[12px] text-gray-500">
-                        Your total will be calculated based on the number of
-                        team.
-                      </p>
-                      <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
-                        Total: {leagueInfoData?.leagueDetails?.priceEarly / 3}
-                      </p>
-                      <p className="text-[12px] text-gray-500">
-                        Go to payment page and proceed payment based on
-                        calculated value
-                      </p>
-                    </div>
+                {/* Any other comments or details we should be aware of */}
+                <div className="flex flex-col gap-2 w-full">
+                  <label htmlFor="comment">
+                    <b>Any other comments or details we should be aware of</b>
+                  </label>
+                  <textarea
+                    {...register("comment")}
+                    className="border border-gray-300 rounded-md px-[6px] py-[12px] w-full"
+                  />
+                  <span className="text-red-500">
+                    {errors.comment?.message}
+                  </span>
+                </div>
+
+                {/* Submit */}
+                <div className="w-full flex justify-end">
+                  <button
+                    type="submit"
+                    className="h-[50px] bg-[#032974] text-white px-[6px] py-[12px] rounded-md max-w-[300px] w-full"
+                  >
+                    Submit
+                    {registerLoading && (
+                      <span className="animate-spin">...</span>
+                    )}
+                  </button>
+                </div>
+
+                {putPlayerInfoError &&
+                  ("status" in putPlayerInfoError ? (
                     <div>
-                      <iframe
-                        src="https://epoint.az/az/widget?id=1882&type=users"
-                        allowTransparency={true}
-                        width={350}
-                        height={175}
-                      ></iframe>
+                      <div>
+                        {playerInfoErrorData?.data &&
+                          Object.keys(playerInfoErrorData.data).map((key) => {
+                            return (
+                              <p key={key} className="text-red-500">
+                                {playerInfoErrorData.data[key]}
+                              </p>
+                            );
+                          })}
+                      </div>
                     </div>
+                  ) : null)}
+              </form>
+            )}
+
+            {step === 4 && (
+              <div className="flex flex-wrap gap-[30px]  w-full">
+                <div className="flex flex-col gap-2 w-full ">
+                  <div className="gap-2">
+                    <h1 className="text-[36px]">
+                      <b>Payment</b>
+                    </h1>
+                    <p className="text-[12px] text-gray-500">
+                      Your total will be calculated based on the number of team.
+                    </p>
+                    <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
+                      Total: {leagueInfoData?.leagueDetails?.priceEarly / 3}
+                    </p>
+                    <p className="text-[12px] text-gray-500">
+                      Go to payment page and proceed payment based on calculated
+                      value
+                    </p>
+                  </div>
+                  <div>
+                    <iframe
+                      src="https://epoint.az/az/widget?id=1882&type=users"
+                      allowTransparency={true}
+                      width={350}
+                      height={175}
+                    ></iframe>
                   </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
-    );
+    </div>
+  );
 }

@@ -114,7 +114,7 @@ export const FootballPriceCard = ({
                   Early bird : 0 azn
                 </p>
                 <p className=" text-xs ">
-                  Regular price : {regularPersonPrice} azn
+                  Regular price : {regularTeamPrice} azn
                 </p>
               </div>
               <p className="text-base">Duration : 8 weeks</p>
