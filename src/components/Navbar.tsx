@@ -196,7 +196,7 @@ export const Navbar = () => {
           </div>
 
           <ul className="md:flex h-[40px] items-center hidden ">
-            {userJwt && (
+            {/* {userJwt && (
               <button onClick={() => handleToProfile()}>
                 <li className="pl-4 pr-3">
                   <FontAwesomeIcon icon={faUser} />
@@ -214,7 +214,7 @@ export const Navbar = () => {
               <li className="pl-4 pr-3">
                 <Link href="/login">Login</Link>
               </li>
-            )}
+            )} */}
             <li className="pl-4">
               <a
                 target="_blank"
