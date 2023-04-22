@@ -79,13 +79,13 @@ export const FootballPriceCard = ({
               <img
                 src={
                   league === "U16"
-                    ? u15.src
+                    ? "https://lh3.google.com/u/0/d/17z_9s2vH2_xNteWB-jpQtldTXe3eYiym=w2132-h2350-iv1"
                     : league === "U18"
-                    ? u18.src
+                    ? "https://lh3.google.com/u/0/d/19hBURmVNNg25rp3XvFvOGDUkC9nb1MJp=w2132-h2350-iv1"
                     : league === "U21"
-                    ? u21.src
+                    ? "https://lh3.google.com/u/0/d/1SguF4i9Rrq1nDYDzNGYpCLbdcWtFvdK_=w2132-h2350-iv1"
                     : league === "U-GIRLS"
-                    ? u21.src
+                    ? "https://lh3.google.com/u/0/d/1Efx_Yu90Ws576XgUtppVAz5rJz9HLX_-=w2132-h2350-iv1"
                     : ""
                 }
                 alt="place image"
