@@ -105,6 +105,7 @@ export const playerApi = createApi({
       query: ({ playerId, body }) => ({
         url: `/players/${playerId}`,
         method: "PUT",
+        body
       }),
     }),
 

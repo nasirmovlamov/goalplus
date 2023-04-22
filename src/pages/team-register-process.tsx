@@ -85,7 +85,16 @@ export default function Register(props: Props) {
   const [playersUserInfoApi, s] = teamApi.useLazyPlayersUserInfoQuery();
 
   const [step, setStep] = useState<any>(2);
-
+  const [
+    putPlayerInfoApi,
+    {
+      isLoading: isPutPlayerLoading,
+      isError: isPutPlayerError,
+      isSuccess: isPutPlayerSuccess,
+      data: putPlayerInfoData,
+      error: putPlayerInfoError,
+    },
+  ] = teamApi.usePutPlayerInfoMutation();
   const [
     getTeamInfoApi,
     {
@@ -430,6 +439,29 @@ export default function Register(props: Props) {
         body: postData,
       }).unwrap();
 
+      await refreshTokenApi({
+        accessToken: localStorage.getItem("accessToken")! as string,
+        refreshToken: localStorage.getItem("refreshToken")! as string,
+      })
+        .unwrap()
+        .then((resp: any) => {
+          if (resp) {
+            localStorage.setItem("accessToken", resp.accessToken);
+            localStorage.setItem("refreshToken", resp.refreshToken);
+          }
+        });
+
+      const respPlayer = await putPlayerInfoApi({
+        playerId: playerId,
+        body: {
+          jerseyNumber: postData.jerseyNumber,
+          quote: postData.quote,
+          teamDetails: {
+            additionalComments: postData.teamDetails.additionalComments,
+          },
+        },
+      });
+
       await personalPhotoApi({
         userId: userId,
         body: personalPhotoFormData,
@@ -501,6 +533,17 @@ export default function Register(props: Props) {
         body: postData,
       }).unwrap();
 
+      const respPlayer = await putPlayerInfoApi({
+        playerId: playerId,
+        body: {
+          jerseyNumber: postData.jerseyNumber,
+          quote: postData.quote,
+          teamDetails: {
+            additionalComments: postData.teamDetails.additionalComments,
+          },
+        },
+      });
+
       await personalPhotoApi({
         userId: localStorage.getItem("userId")!,
         body: personalPhotoFormData,
@@ -526,7 +569,7 @@ export default function Register(props: Props) {
       });
       if (postData?.teamDetails?.schoolOfficial) {
         await schoolCertificateApi({
-          userId: localStorage.getItem("userId")!,
+          userId: playerId,
           body: schoolCertificateFormData,
         });
       }
@@ -572,24 +615,24 @@ export default function Register(props: Props) {
   }, [isPlayersUserSuccess, playersUserInfo]);
 
   useEffect(() => {
-    if (
-      localStorage.getItem("accessToken") &&
-      localStorage.getItem("refreshToken")
-    ) {
-      return () => {
-        refreshTokenApi({
-          accessToken: localStorage.getItem("accessToken")! as string,
-          refreshToken: localStorage.getItem("refreshToken")! as string,
-        })
-          .unwrap()
-          .then((resp: any) => {
-            if (resp) {
-              localStorage.setItem("accessToken", resp.accessToken);
-              localStorage.setItem("refreshToken", resp.refreshToken);
-            }
-          });
-      };
-    }
+    // if (
+    //   localStorage.getItem("accessToken") &&
+    //   localStorage.getItem("refreshToken")
+    // ) {
+    //   return () => {
+    //     refreshTokenApi({
+    //       accessToken: localStorage.getItem("accessToken")! as string,
+    //       refreshToken: localStorage.getItem("refreshToken")! as string,
+    //     })
+    //       .unwrap()
+    //       .then((resp: any) => {
+    //         if (resp) {
+    //           localStorage.setItem("accessToken", resp.accessToken);
+    //           localStorage.setItem("refreshToken", resp.refreshToken);
+    //         }
+    //       });
+    //   };
+    // }
   }, []);
 
   useEffect(() => {
@@ -607,12 +650,11 @@ export default function Register(props: Props) {
 
   useEffect(() => {
     if (isGetTeamInfoSuccess) {
-      console.log(getTeamInfoData.teamDetails?.additionalComments);
       methods.reset({
         teamName: getTeamInfoData.name,
         teamSlogan: getTeamInfoData.slogan,
-        jerseyNumber: getTeamInfoData.jerseyNumber,
-        quote: getTeamInfoData.quote,
+        jerseyNumber: playersUserInfo.jerseyNumber,
+        quote: playersUserInfo.quote,
         schoolOfficial: {
           name: getTeamInfoData.teamDetails?.schoolOfficial?.firstName,
           surname: getTeamInfoData.teamDetails?.schoolOfficial?.lastName,
@@ -621,7 +663,7 @@ export default function Register(props: Props) {
           position: getTeamInfoData.teamDetails?.schoolOfficial?.position,
         },
         isPaying: getTeamInfoData.paymentType,
-        comment: getTeamInfoData.teamDetails?.additionalComments,
+        comment: playersUserInfo.teamDetails?.additionalComments,
       });
       console.log(getTeamInfoData);
       const leagueUrl = getTeamInfoData.league;

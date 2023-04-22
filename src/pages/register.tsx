@@ -255,6 +255,29 @@ export default function Register(props: Props) {
     <div className="flex justify-center pt-[50px] pb-[50px]">
       <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
         <h1 className="w-full text-[44px] pb-10">Registration</h1>
+        <p className="w-full text-[18px] pb-2">
+          Dear Applicant, we are truly happy to see you registering for Goalplus
+          Summer Festival 2023! The registration should be carried out by the
+          captain of your team. Once the captain registers the team and adds
+          details of all team members, each team member will receive a separate
+          invitation link to the email indicated by the captain in this
+          registration form.
+        </p>
+        <p className="w-full text-[18px] pb-10">
+          Please note that all payments are final (non-refundable). A team is
+          responsible for attentively reading all the rules and regulations for
+          the league it is signing up for. Goalplus is not responsible for any
+          compensation in case a team accepts terms and conditions but does not
+          comply with eligibility requirements. Because of that, we strongly
+          encourage you to conscientiously go over all clauses of the rules
+          before submitting your application
+        </p>
+        {/* <p className="w-full text-[18px] pb-10">
+          The team participation fee will be divided equally among all team
+          members. Please see the early bird and regular registration prices
+          here
+          <a href=""></a>
+        </p> */}
         <form
           action=""
           onSubmit={handleSubmit(onSubmit)}
@@ -397,15 +420,7 @@ export default function Register(props: Props) {
               htmlFor="termsAndConditions"
               className="termsAndConditions flex gap-2"
             >
-              <span>
-                <a
-                  href={"https://www.termsandconditionsgenerator.com/"}
-                  target="_blank"
-                  className="text-blue-500 underline"
-                >
-                  Terms and conditions
-                </a>
-              </span>
+              <span>Terms and conditions</span>
               <input
                 type="checkbox"
                 {...register("termsAndConditions", {
@@ -413,6 +428,67 @@ export default function Register(props: Props) {
                 })}
               />
             </label>
+            <span className="text-blue-500">
+              <a
+                href="https://drive.google.com/file/d/1XO5je_Qvxq1EUkFdsqNzPBTKX3VgvDzp/view"
+                className="text-blue-500  underline"
+              >
+                Soccer U21 terms and conditions
+              </a>
+            </span>
+            <span className="text-blue-500 ">
+              <a
+                href="https://drive.google.com/file/d/1sC3Mo8OK9k4czZchRA2P_0nNVzMk2k-U/view"
+                className="text-blue-500 underline"
+              >
+                Soccer U16 terms and conditions
+              </a>
+            </span>
+            <span className="text-blue-500 ">
+              <a
+                href="https://drive.google.com/file/d/1wHnMVgyjid2hQv51aKBO7OceuflfD2zp/view"
+                className="text-blue-500 underline"
+              >
+                Soccer U18 terms and conditions
+              </a>
+            </span>
+
+            <span className="text-blue-500 ">
+              <a
+                href="https://drive.google.com/file/d/17z6QTA-9zUsW94MuWMiavqU8yo76Gl1C/view"
+                className="text-blue-500 underline"
+              >
+                Volleyball U21
+              </a>
+            </span>
+
+            <span className="text-blue-500 ">
+              <a
+                href="https://drive.google.com/file/d/1zq7j-8ScgioT4M0n_K4Tk91NPbxFyrM1/view"
+                className="text-blue-500 underline"
+              >
+                Recreational Beach Volleyball
+              </a>
+            </span>
+
+            <span className="text-blue-500 ">
+              <a
+                href="https://drive.google.com/file/d/1JvC5e414mMQsoFIx9fPqhAJ7CT7ccE2V/view"
+                className="text-blue-500 underline"
+              >
+                Recreational Basketball
+              </a>
+            </span>
+
+            <span className="text-blue-500 ">
+              <a
+                href="https://drive.google.com/file/d/1djNZDkgSted62J3KP2NpTgCV30-VUHZD/view"
+                className="text-blue-500 underline"
+              >
+                Basketball U21
+              </a>
+            </span>
+
             <span className="text-red-500">
               {errors.termsAndConditions?.message}
             </span>

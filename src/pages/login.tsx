@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { authApi } from "@/store/authApi";
 import router from "next/router";
+import { teamApi } from "@/store/teamApi";
 type Props = {};
 
 export type LoginDto = {
@@ -39,6 +40,17 @@ export default function Login(props: Props) {
       error: meError,
     },
   ] = authApi.useLazyMeQuery();
+  const [
+    playersUserInfoApi,
+    {
+      isLoading: playersUserInfoLoading,
+      isError: isPlayersUserInfoError,
+      isSuccess: playersUserInfoSuccess,
+      data: playersUserInfoData,
+      error: playersUserInfoError,
+    },
+  ] = teamApi.useLazyPlayersUserInfoQuery();
+
   const [backendErrors, setBackendErrors] = React.useState<any>(null);
   const methods = useForm<LoginDto>({
     resolver: yupResolver(loginSchema),
@@ -66,12 +78,7 @@ export default function Login(props: Props) {
           ];
         localStorage.setItem("userId", userId);
         await meApi({});
-        console.log(meData);
-        console.log(
-          decodedJwt[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-          ]
-        );
+
         if (
           decodedJwt[
             "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
@@ -85,8 +92,38 @@ export default function Login(props: Props) {
           ].includes("Captain")
         ) {
           router.push("/team-register-process");
-        } else {
-          router.push("/user-register-process");
+        }
+        try {
+          const resp = await playersUserInfoApi({
+            userId: userId,
+          });
+          console.log("resp", resp);
+          if (
+            resp?.isCaptain &&
+            decodedJwt[
+              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+            ].includes("Athlete")
+          ) {
+            router.push("/team-register-process");
+            return;
+          }
+          console.log(resp.status);
+          if (
+            resp.status !== "rejected" &&
+            decodedJwt[
+              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+            ].includes("Athlete")
+          ) {
+            router.push("/user-register-process");
+            return;
+          }
+          // console.log(resp.status);
+          if (resp.status === "rejected") {
+            router.push("/team-register-process");
+            return;
+          }
+        } catch (error) {
+          router.push("/team-register-process");
         }
       });
   };

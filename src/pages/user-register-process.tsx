@@ -229,7 +229,6 @@ export default function Register(props: Props) {
       leagueId: data.leagueType,
       postData: {
         jerseyNumber: data.jerseyNumber,
-        // paymentType: data.isPaying,
         teamDetails: {
           additionalComments: data.comment,
         },
@@ -281,9 +280,9 @@ export default function Register(props: Props) {
         playerId: playerId,
         body: idCardFormData,
       });
-      toast.success("Team info updated");
+      toast.success("Player info updated");
     } catch (error) {
-      toast.error("Team info update failed");
+      toast.error("Player info update failed");
     }
   };
 
@@ -338,8 +337,8 @@ export default function Register(props: Props) {
       methods.reset({
         teamName: getTeamInfoData.name,
         teamSlogan: getTeamInfoData.slogan,
-        jerseyNumber: getTeamInfoData.jerseyNumber,
-        quote: getTeamInfoData.quote,
+        jerseyNumber: playersUserInfo.jerseyNumber,
+        quote: playersUserInfo.quote,
         schoolOfficial: {
           name: getTeamInfoData.teamDetails?.schoolOfficial?.firstName,
           surname: getTeamInfoData.teamDetails?.schoolOfficial?.lastName,
@@ -369,7 +368,7 @@ export default function Register(props: Props) {
       <div className="flex justify-center pt-[50px] pb-[50px]">
         <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
           <h1 className="w-full flex text-[44px] pb-10">
-            Capitan Registration Process
+            User Registration Process
           </h1>
           <div className="flex  flex-wrap lg:flex-nowrap gap-5 w-full justify-center">
             <div className="flex lg:flex-col w-full lg:gap-0 gap-2 lg:w-[190px] ">

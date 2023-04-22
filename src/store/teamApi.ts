@@ -177,6 +177,20 @@ export const teamApi = createApi({
       }),
     }),
 
+    putPlayerInfo: builder.mutation<
+      any,
+      {
+        playerId: any;
+        body: any;
+      }
+    >({
+      query: ({ playerId, body }) => ({
+        url: `/players/${playerId}`,
+        method: "PUT",
+        body,
+      }),
+    }),
+
     schoolCertificate: builder.mutation<
       any,
       {
