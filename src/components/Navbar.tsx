@@ -150,11 +150,11 @@ export const Navbar = () => {
                 </span>
               </li>
             )}
-            {/* {!userJwt && (
+            {!userJwt && (
               <li className="p-2">
                 <StyledLink href="/register">Register</StyledLink>
               </li>
-            )} */}
+            )}
 
             <li className="p-2">
               <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
@@ -196,7 +196,7 @@ export const Navbar = () => {
           </div>
 
           <ul className="md:flex h-[40px] items-center hidden ">
-            {/* {userJwt && (
+            {userJwt && (
               <button onClick={() => handleToProfile()}>
                 <li className="pl-4 pr-3">
                   <FontAwesomeIcon icon={faUser} />
@@ -214,11 +214,11 @@ export const Navbar = () => {
               <li className="pl-4 pr-3">
                 <Link href="/login">Login</Link>
               </li>
-            )} */}
+            )}
             <li className="pl-4">
               <a
                 target="_blank"
-                href="https://linktr.ee/goalplusaz"
+                href="https://www.instagram.com/goalplusaz/"
                 className=" bg-[#032974] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out"
               >
                 Contact us
