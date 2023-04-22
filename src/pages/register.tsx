@@ -255,22 +255,27 @@ export default function Register(props: Props) {
     <div className="flex justify-center pt-[50px] pb-[50px]">
       <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
         <h1 className="w-full text-[44px] pb-10">Registration</h1>
-        <p className="w-full text-[18px] pb-2 text-red-500">
-          Dear Applicant, we are truly happy to see you registering for Goalplus
+        <p className="w-full text-[18px] pb-2 text-[#040562]">
+          Dear Captain, we are truly happy to see you registering for Goalplus
           Summer Festival 2023! The registration should be carried out by the
           captain of your team. Once the captain registers the team and adds
           details of all team members, each team member will receive a separate
           invitation link to the email indicated by the captain in this
           registration form.
         </p>
-        <p className="w-full text-[18px] pb-10 text-red-500">
-          Please note that all payments are final (non-refundable). A team is
-          responsible for attentively reading all the rules and regulations for
-          the league it is signing up for. Goalplus is not responsible for any
-          compensation in case a team accepts terms and conditions but does not
-          comply with eligibility requirements. Because of that, we strongly
-          encourage you to conscientiously go over all clauses of the rules
-          before submitting your application
+        <p className="w-full text-[18px] pb-10 text-[#040562]">
+          Any team’s registration will be considered as *complete* once
+          ***all*** team members sign up through the link sent to their email
+          and pay their participation fee. After that, your team will be sent
+          for approval of Goalplus. - Please note that all payments are final
+          (non-refundable). A team is responsible for attentively reading all
+          the rules and regulations for the league it is signing up for.
+          <br />
+          Goalplus is not responsible for any compensation in case a team
+          accepts terms and conditions but does not comply with eligibility
+          requirements. Because of that, we strongly encourage you to
+          conscientiously go over all clauses of the rules before submitting
+          your payments, please reach out out to us in case of any questions.
         </p>
         {/* <p className="w-full text-[18px] pb-10">
           The team participation fee will be divided equally among all team
@@ -278,7 +283,7 @@ export default function Register(props: Props) {
           here
           <a href=""></a>
         </p> */}
-        <p className="w-full text-[18px] pb-10 text-red-500">
+        <p className="w-full text-[18px] pb-10 text-[#040562]">
           The Goalplus team wishes you the best of luck with your registration
           process and we are looking forward to seeing you as much as possible
           this summer!
