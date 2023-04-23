@@ -105,7 +105,7 @@ export const BasketballPriceCard = ({
                 <p className=" text-xs ">
                   Early bird per team: {earlyBirdTeamPrice} azn
                 </p>
-                <p className=" text-xs text-red-500"> (Until May, 10)</p>
+                <p className=" text-xs text-red-500"> (Until May 10)</p>
               </div>
               <p className="text-base">Duration : 7 weeks</p>
               <p className="text-base">{address}</p>
