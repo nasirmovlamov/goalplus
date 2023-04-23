@@ -6,9 +6,10 @@ import nikeBall from "../media/images/nikeBall.png";
 import nikeGirlsBall2 from "../media/images/nikeGirlsBall2.png";
 import Image from "next/image";
 import Link from "next/link";
-import u15 from "../media/images/U-15a.png";
-import u18 from "../media/images/U-18a.png";
-import u21 from "../media/images/U-21a.png";
+import u16 from "../media/images/leagues/U-16a.png";
+import u18 from "../media/images/leagues/u18a.png";
+import u21 from "../media/images/leagues/U-21a.png";
+import uGirls from "../media/images/leagues/GIRLSa.png";
 
 type Props = {
   sport: string;
@@ -79,13 +80,13 @@ export const FootballPriceCard = ({
               <img
                 src={
                   league === "U-16"
-                    ? "https://lh3.google.com/u/0/d/17z_9s2vH2_xNteWB-jpQtldTXe3eYiym=w2132-h2350-iv1"
+                    ? u16.src
                     : league === "U-18"
-                    ? "https://lh3.google.com/u/0/d/19hBURmVNNg25rp3XvFvOGDUkC9nb1MJp=w2132-h2350-iv1"
+                    ? u18.src
                     : league === "U-21"
-                    ? "https://lh3.google.com/u/0/d/1SguF4i9Rrq1nDYDzNGYpCLbdcWtFvdK_=w2132-h2350-iv1"
+                    ? u21.src
                     : league === "Recreational"
-                    ? "https://lh3.google.com/u/0/d/1Efx_Yu90Ws576XgUtppVAz5rJz9HLX_-=w2132-h2350-iv1"
+                    ? uGirls.src
                     : ""
                 }
                 alt="place image"
