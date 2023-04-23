@@ -45,8 +45,8 @@ export const Footer = () => {
         <div className=" flex flex-wrap justify-center md:justify-start gap-3 md:gap-0">
           <div className="flex gap-3 items-center">
             <FontAwesomeIcon icon={faPhone} />
-            <a href="tel:+994503150012">
-              <span className="text-[#54ACED]">+994503150012</span>
+            <a href="tel:+994508793197">
+              <span className="text-[#54ACED]">+994508793197</span>
             </a>
           </div>
           <div className="flex gap-3 items-center pl-10">
