@@ -15,12 +15,12 @@ import { playerApi } from "./playerApi";
 
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action) && !action.type.includes("Internal")) {
-    if (
-      action.payload?.data?.message !== "Resource not found." &&
-      action.payload?.data?.message !== ""
-    ) {
-      toast.error(action.payload?.data?.message);
-    }
+    // if (
+    //   action.payload?.data?.message !== "Resource not found." &&
+    //   action.payload?.data?.message !== ""
+    // ) {
+    //   toast.error(action.payload?.data?.message);
+    // }
   }
   return next(action);
 };

@@ -110,6 +110,35 @@ export const authApi = createApi({
       }),
     }),
 
+    requestPasswordReset: builder.mutation<
+      any,
+      {
+        email: string;
+      }
+    >({
+      query: (body) => ({
+        url: `/authentication/password/reset-request`,
+        method: "POST",
+        body,
+      }),
+    }),
+
+    forgetPassword: builder.mutation<
+      any,
+      {
+        email: string;
+        token: string;
+        password: string;
+        passwordConfirm: string;
+      }
+    >({
+      query: (body) => ({
+        url: `/authentication/password/reset`,
+        method: "POST",
+        body,
+      }),
+    }),
+
     //use params
     emailConfirmation: builder.mutation<
       any,

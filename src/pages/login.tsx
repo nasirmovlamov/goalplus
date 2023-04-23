@@ -62,72 +62,76 @@ export default function Login(props: Props) {
   } = methods;
 
   const onSubmit = async (data: LoginDto) => {
-    await loginApi(data)
-      .unwrap()
-      .then(async (res) => {
-        toast.success("Login success");
-        localStorage.setItem("accessToken", res.accessToken);
-        localStorage.setItem("refreshToken", res.refreshToken);
-        localStorage.setItem("token", res.accessToken);
-        const decodedJwt = JSON.parse(atob(res.accessToken.split(".")[1]));
-        localStorage.setItem("userData", JSON.stringify(decodedJwt));
-        const userId =
-          decodedJwt[
-            "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
-          ];
-        localStorage.setItem("userId", userId);
-        await meApi({});
+    try {
+      await loginApi(data)
+        .unwrap()
+        .then(async (res) => {
+          toast.success("Login success");
+          localStorage.setItem("accessToken", res.accessToken);
+          localStorage.setItem("refreshToken", res.refreshToken);
+          localStorage.setItem("token", res.accessToken);
+          const decodedJwt = JSON.parse(atob(res.accessToken.split(".")[1]));
+          localStorage.setItem("userData", JSON.stringify(decodedJwt));
+          const userId =
+            decodedJwt[
+              "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"
+            ];
+          localStorage.setItem("userId", userId);
+          await meApi({});
 
-        if (
-          decodedJwt[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-          ].includes("Admin")
-        ) {
-          router.push("/admin-dashboard");
-          return;
-        }
-        if (
-          decodedJwt[
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-          ].includes("Captain")
-        ) {
-          router.push("/team-register-process");
-          return;
-        }
-        try {
-          const resp: any = await playersUserInfoApi({
-            userId: userId,
-          });
-          console.log("resp", resp);
           if (
-            resp?.isCaptain &&
             decodedJwt[
               "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-            ].includes("Athlete")
+            ].includes("Admin")
+          ) {
+            router.push("/admin-dashboard");
+            return;
+          }
+          if (
+            decodedJwt[
+              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+            ].includes("Captain")
           ) {
             router.push("/team-register-process");
             return;
           }
-          console.log(resp.status);
-          if (
-            resp.status !== "rejected" &&
-            decodedJwt[
-              "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
-            ].includes("Athlete")
-          ) {
-            router.push("/user-register-process");
-            return;
-          }
-          // console.log(resp.status);
-          if (resp.status === "rejected") {
+          try {
+            const resp: any = await playersUserInfoApi({
+              userId: userId,
+            });
+            console.log("resp", resp);
+            if (
+              resp?.isCaptain &&
+              decodedJwt[
+                "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+              ].includes("Athlete")
+            ) {
+              router.push("/team-register-process");
+              return;
+            }
+            console.log(resp.status);
+            if (
+              resp.status !== "rejected" &&
+              decodedJwt[
+                "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+              ].includes("Athlete")
+            ) {
+              router.push("/user-register-process");
+              return;
+            }
+            // console.log(resp.status);
+            if (resp.status === "rejected") {
+              router.push("/team-register-process");
+              return;
+            }
+          } catch (error) {
             router.push("/team-register-process");
             return;
           }
-        } catch (error) {
-          router.push("/team-register-process");
-          return;
-        }
-      });
+        });
+    } catch (error: any) {
+      toast.error(error?.data?.message);
+    }
   };
 
   const loginErrorData = useMemo(() => {
@@ -143,7 +147,7 @@ export default function Login(props: Props) {
         <form
           action=""
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 max-w-[300px] w-full"
+          className="flex flex-col gap-4 max-w-[400px] w-full"
         >
           <div className="flex flex-col gap-2">
             <label htmlFor="email">
@@ -181,9 +185,9 @@ export default function Login(props: Props) {
             <Link href="/register" className="text-[#032974]">
               I don&apos;t have an account
             </Link>
-            {/* <Link href="/reset-password" className="text-[#032974]">
-              Reset Password
-            </Link> */}
+            <Link href="/forgetpassword" className="text-[#032974]">
+              Forget Password ?
+            </Link>
           </div>
 
           <div>
