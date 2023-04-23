@@ -1003,7 +1003,9 @@ export default function Register(props: Props) {
                     <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
                       Payment based on your team size:{" "}
                       {teamSize
-                        ? leagueInfoData?.leagueDetails?.priceEarly / teamSize
+                        ? (
+                            leagueInfoData?.leagueDetails?.priceEarly / teamSize
+                          ).toFixed(2)
                         : leagueInfoData?.leagueDetails?.priceEarly}
                       AZN
                     </p>

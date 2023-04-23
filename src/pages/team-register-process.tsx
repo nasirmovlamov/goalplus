@@ -1641,7 +1641,7 @@ export default function Register(props: Props) {
                           ? (
                               leagueInfoData?.leagueDetails?.priceEarly /
                               teamSize
-                            ).toFixed(0)
+                            ).toFixed(2)
                           : leagueInfoData?.leagueDetails?.priceEarly}
                         AZN
                       </p>
