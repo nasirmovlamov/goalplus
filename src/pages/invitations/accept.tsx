@@ -91,7 +91,7 @@ export default function AcceptInvitation(props: Props) {
     <div className="flex justify-center pt-[50px] pb-[50px]">
       <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
         <h1 className="w-full text-[44px] pb-10">Accept team Invite</h1>
-        <p className="w-full text-[18px] pb-2 text-red-500">
+        <p className="w-full text-[18px] pb-2 text-[#040562]">
           Dear Applicant, we are truly happy to see you registering for Goalplus
           Summer Festival 2023! The registration should be carried out by the
           captain of your team. Once the captain registers the team and adds
@@ -99,7 +99,7 @@ export default function AcceptInvitation(props: Props) {
           invitation link to the email indicated by the captain in this
           registration form.
         </p>
-        <p className="w-full text-[18px] pb-10 text-red-500">
+        <p className="w-full text-[18px] pb-10 text-[#040562]">
           Please note that all payments are final (non-refundable). A team is
           responsible for attentively reading all the rules and regulations for
           the league it is signing up for. Goalplus is not responsible for any
@@ -114,7 +114,7 @@ export default function AcceptInvitation(props: Props) {
           here
           <a href=""></a>
         </p> */}
-        <p className="w-full text-[18px] pb-10 text-red-500">
+        <p className="w-full text-[18px] pb-10 text-[#040562]">
           The Goalplus team wishes you the best of luck with your registration
           process and we are looking forward to seeing you as much as possible
           this summer!

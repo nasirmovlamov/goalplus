@@ -21,6 +21,7 @@ import { teamApi } from "@/store/teamApi";
 import register from "./register";
 import { playerApi } from "@/store/playerApi";
 import error from "next/error";
+import ErrorMapper from "@/components/ErrorMapper";
 type Props = {};
 
 export default function Register(props: Props) {
@@ -536,6 +537,7 @@ export default function Register(props: Props) {
                   </button>
                   <input
                     type="file"
+                    accept=".pdf"
                     {...register("schoolCertificate")}
                     className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
                   />
@@ -941,21 +943,9 @@ export default function Register(props: Props) {
                   </button>
                 </div>
 
-                {putPlayerInfoError &&
-                  ("status" in putPlayerInfoError ? (
-                    <div>
-                      <div>
-                        {playerInfoErrorData?.data &&
-                          Object.keys(playerInfoErrorData.data).map((key) => {
-                            return (
-                              <p key={key} className="text-red-500">
-                                {playerInfoErrorData.data[key]}
-                              </p>
-                            );
-                          })}
-                      </div>
-                    </div>
-                  ) : null)}
+                <ErrorMapper error={putPlayerInfoError} />
+                <ErrorMapper error={personalPhotoError} />
+                <ErrorMapper error={idCardError} />
               </form>
             )}
 

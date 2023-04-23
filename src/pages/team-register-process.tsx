@@ -25,6 +25,7 @@ import TeamMemberCard from "@/components/TeamMemberCard";
 type Props = {};
 
 import defaultProfilePhoto from "../media/images/Default_pfp.svg.png";
+import ErrorMapper from "@/components/ErrorMapper";
 
 export const registerSchema = yup.object().shape({
   // name: yup.string().label("Name").required(),
@@ -196,7 +197,7 @@ export default function Register(props: Props) {
       data: schoolLogoData,
       error: schoolLogoError,
     },
-  ] = teamApi.useTeamLogoMutation();
+  ] = teamApi.useSchoolLogoMutation();
   const [
     personalPhotoApi,
     {
@@ -486,20 +487,19 @@ export default function Register(props: Props) {
         teamId: resp.id,
         body: teamLogoFormData,
       });
-      if (postData?.teamDetails?.schoolOfficial) {
+      if (schoolLogoFormData) {
         await schoolLogoApi({
           teamId: resp.id,
           body: schoolLogoFormData,
         });
       }
 
-      console.log(respPlayersUser);
-
       await idCardApi({
         playerId: respPlayersUser.id,
         body: idCardFormData,
       });
-      if (postData?.teamDetails?.schoolOfficial) {
+      console.log("schoolCertificateFormData", schoolCertificateFormData);
+      if (schoolCertificateFormData) {
         await schoolCertificateApi({
           userId: respPlayersUser.id,
           body: schoolCertificateFormData,
@@ -570,7 +570,7 @@ export default function Register(props: Props) {
         teamId: teamId,
         body: teamLogoFormData,
       });
-      if (postData?.teamDetails?.schoolOfficial) {
+      if (schoolLogoFormData) {
         await schoolLogoApi({
           teamId: teamId,
           body: schoolLogoFormData,
@@ -717,6 +717,10 @@ export default function Register(props: Props) {
     }
     return null;
   }, [isLeagueInfoSuccess, leagueInfoData]);
+
+  useEffect(() => {
+    console.log(idCardError);
+  }, [idCardError, isIdCardSuccess, idCardData]);
 
   if (isRefreshTokenError) {
     return (
@@ -1582,21 +1586,14 @@ export default function Register(props: Props) {
                   </button>
                 </div>
 
-                {teamInfoError &&
-                  ("status" in teamInfoError ? (
-                    <div>
-                      <div>
-                        {teamInfoErrorData?.data &&
-                          Object.keys(teamInfoErrorData.data).map((key) => {
-                            return (
-                              <p key={key} className="text-red-500">
-                                {teamInfoErrorData.data[key]}
-                              </p>
-                            );
-                          })}
-                      </div>
-                    </div>
-                  ) : null)}
+                <div>
+                  <ErrorMapper error={teamInfoError} />
+                  <ErrorMapper error={idCardError} />
+                  <ErrorMapper error={teamLogoError} />
+                  <ErrorMapper error={schoolCertificateError} />
+                  <ErrorMapper error={schoolLogoError} />
+                  <ErrorMapper error={personalPhotoError} />
+                </div>
               </form>
             )}
 

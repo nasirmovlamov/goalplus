@@ -17,6 +17,7 @@ import {
   faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { AddTeamMember } from "@/components/AddTeamMember";
+import ErrorMapper from "@/components/ErrorMapper";
 type Props = {};
 
 export const registerSchema = yup.object().shape({
@@ -313,49 +314,6 @@ export default function Register(props: Props) {
       toast.error("Team info update failed");
     }
   };
-
-  const handleIdCardApi = async ({
-    userId,
-    file,
-  }: {
-    userId: string;
-    file: any;
-  }) => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const resp = await idCardApi({
-        userId: userId,
-        body: formData,
-      });
-      toast.success("Register id card");
-      return resp;
-    } catch (error) {
-      toast.error("Register failed id card");
-    }
-  };
-
-  const teamInfoErrorData = useMemo(() => {
-    if (teamInfoError) {
-      return teamInfoError as any;
-    }
-    return null;
-  }, [teamInfoError, isTeamInfoError]);
-
-  const idCardErrorData = useMemo(() => {
-    if (idCardError) {
-      return idCardError as any;
-    }
-    return null;
-  }, [idCardError, isIdCardError]);
-
-  const profilePhotoErrorData = useMemo(() => {
-    if (isUserProfileImageError) {
-      return profileImageError as any;
-    }
-    return null;
-  }, [isUserProfileImageError, profileImageError]);
-
   return (
     <div className="flex justify-center pt-[50px] pb-[50px]">
       <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
@@ -1254,21 +1212,11 @@ export default function Register(props: Props) {
                   </button>
                 </div>
 
-                {teamInfoErrorData &&
-                  ("status" in teamInfoErrorData ? (
-                    <div>
-                      <div>
-                        {teamInfoErrorData?.data &&
-                          Object.keys(teamInfoErrorData.data).map((key) => {
-                            key !== "statusCode" && (
-                              <p key={key} className="text-red-500">
-                                {teamInfoErrorData.data[key]}
-                              </p>
-                            );
-                          })}
-                      </div>
-                    </div>
-                  ) : null)}
+                <div>
+                  <ErrorMapper error={teamInfoErrorData} />
+                  <ErrorMapper error={idCardError} />
+                  <ErrorMapper error={teamLogoError} />
+                </div>
 
                 {/* backend errors map */}
                 {/* {authenticationError &&
