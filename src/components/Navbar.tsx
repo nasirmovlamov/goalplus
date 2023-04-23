@@ -224,7 +224,7 @@ export const Navbar = () => {
             <li className="pl-4">
               <a
                 target="_blank"
-                href="https://www.instagram.com/goalplusaz/"
+                href=" https://linktr.ee/goalplusaz"
                 className=" bg-[#032974] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out"
               >
                 Contact us
