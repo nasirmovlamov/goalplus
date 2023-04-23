@@ -99,7 +99,6 @@ export default function Login(props: Props) {
             const resp: any = await playersUserInfoApi({
               userId: userId,
             });
-            console.log("resp", resp);
             if (
               resp?.isCaptain &&
               decodedJwt[
@@ -109,7 +108,6 @@ export default function Login(props: Props) {
               router.push("/team-register-process");
               return;
             }
-            console.log(resp.status);
             if (
               resp.status !== "rejected" &&
               decodedJwt[

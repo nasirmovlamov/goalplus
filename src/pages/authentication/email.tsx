@@ -19,9 +19,7 @@ export default function EmailConfirmation() {
   useEffect(() => {
     const params = router.query;
     if (params.Token && params.Email) {
-      console.log(params);
       const urlEncodeToken = encodeURIComponent(params.Token as string);
-      console.log(urlEncodeToken);
       emailConfirmationApi({
         token: urlEncodeToken as string,
         email: params.Email as string,
