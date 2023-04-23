@@ -225,7 +225,10 @@ export const Navbar = () => {
               <a
                 target="_blank"
                 href=" https://linktr.ee/goalplusaz"
-                className=" bg-[#032974] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out"
+                className="text-lg bg-[#031F57] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max h-max shadow-lg"
+                style={{
+                  boxShadow: "0px 0px 5px 0px #cdf000",
+                }}
               >
                 Contact us
               </a>

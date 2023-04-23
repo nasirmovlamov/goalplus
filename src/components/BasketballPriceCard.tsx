@@ -117,6 +117,9 @@ export const BasketballPriceCard = ({
                 <Link
                   href={`/register?sport=basketball3x3`}
                   className="bg-[#032974] text-white rounded-md px-2 py-1 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-xs"
+                  style={{
+                    boxShadow: "0px 0px 5px 0px #cdf000",
+                  }}
                 >
                   Register now
                 </Link>

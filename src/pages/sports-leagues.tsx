@@ -134,6 +134,9 @@ export default function OurServices(props: Props) {
                 ? " bg-[#0a3b9d]"
                 : " bg-gray-300 text-black border-black ")
             }
+            style={{
+              boxShadow: "0px 0px 5px 0px #cdf000",
+            }}
           >
             All ({allGames.length})
           </button>
@@ -145,6 +148,9 @@ export default function OurServices(props: Props) {
                 ? " bg-[#0a3b9d]"
                 : " bg-gray-300 text-black border-black ")
             }
+            style={{
+              boxShadow: "0px 0px 5px 0px #cdf000",
+            }}
           >
             Football ({games.football.length})
           </button>
@@ -156,6 +162,9 @@ export default function OurServices(props: Props) {
                 ? " bg-[#0a3b9d]"
                 : " bg-gray-300 text-black border-black ")
             }
+            style={{
+              boxShadow: "0px 0px 5px 0px #cdf000",
+            }}
           >
             Basketball ({games.basketball.length})
           </button>
@@ -167,6 +176,9 @@ export default function OurServices(props: Props) {
                 ? " bg-[#0a3b9d]"
                 : " bg-gray-300 text-black border-black ")
             }
+            style={{
+              boxShadow: "0px 0px 5px 0px #cdf000",
+            }}
           >
             Volleyball ({games.volleyball.length})
           </button>
