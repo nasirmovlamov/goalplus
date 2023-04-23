@@ -71,7 +71,9 @@ export default function PasswordReset(props: Props) {
               className="border border-gray-300 rounded-md px-[6px] py-[12px]"
               placeholder="Password"
             />
-            <span className="text-red-500">{errors?.password?.message}</span>
+            <span className="text-red-500">
+              {errors?.password?.message as any}
+            </span>
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="password">
@@ -91,7 +93,7 @@ export default function PasswordReset(props: Props) {
               placeholder="Confirm Password"
             />
             <span className="text-red-500">
-              {errors?.passwordConfirm?.message}
+              {errors?.passwordConfirm?.message as any}
             </span>
           </div>
 
