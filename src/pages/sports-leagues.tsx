@@ -47,6 +47,7 @@ const games = {
       sport: "Football",
       league: "Recreational",
       address: "Aquatic Palace",
+      date: "June 19 - August 12",
       gender: "female",
       minPlayers: 6,
       maxPlayers: 12,
@@ -61,6 +62,8 @@ const games = {
       sport: "Basketball",
       league: "U-21",
       address: "Aquatic Palace",
+      date: "June 19 - August 12",
+
       gender: "mixed",
       minPlayers: 3,
       maxPlayers: 5,
@@ -73,6 +76,8 @@ const games = {
       sport: "Basketball",
       league: "Recreational",
       address: "Aquatic Palace",
+      date: "June 19 - August 12",
+
       gender: "mixed",
       minPlayers: 3,
       maxPlayers: 5,
@@ -87,6 +92,7 @@ const games = {
       sport: "Volleyball",
       league: "U-21",
       address: "Aquatic Palace",
+      date: "June 19 - August 12",
       gender: "mixed",
       minPlayers: 4,
       maxPlayers: 6,
@@ -99,6 +105,8 @@ const games = {
       sport: "Volleyball",
       league: "Recreational",
       address: "Aquatic Palace",
+      date: "June 19 - August 12",
+
       gender: "mixed",
       minPlayers: 4,
       maxPlayers: 6,

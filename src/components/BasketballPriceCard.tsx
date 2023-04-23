@@ -88,7 +88,9 @@ export const BasketballPriceCard = ({
               </h3>
               <p className="text-base flex flex-col">
                 <span className="block"> Date 15 June ~ 15 August</span>
-               
+                <span className="block text-[10px] leading-3">
+                  (Registration ends May 28)
+                </span>
               </p>
               <p className="text-base mt-1">
                 Min {minPlayers} and Max {maxPlayers} players
