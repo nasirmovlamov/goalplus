@@ -948,6 +948,9 @@ export default function Register(props: Props) {
                     placeholder="Jersey number"
                     maxLength={2}
                   />
+                  <span className="text-[#8c8c8c] text-xs">
+                    If you do not have a jersey number, please enter “NA”
+                  </span>
                   <span className="text-red-500">
                     {errors.jerseyNumber?.message}
                   </span>
@@ -1036,6 +1039,10 @@ export default function Register(props: Props) {
                         {...register("schoolCertificate")}
                         className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
                       />
+                      <span className="text-[#8c8c8c] text-xs">
+                        Please upload a document confirming that you have ever
+                        studied in the educational institution you represent.
+                      </span>
                       <span className="text-red-500">
                         {errors?.schoolCertificate?.message}
                       </span>
@@ -1390,12 +1397,10 @@ export default function Register(props: Props) {
                     className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
                   />
                   {/* info about photo */}
-                  <div className="text-[12px] text-gray-500">
-                    <p>
-                      The photo will be used both for our pre-game posts with a
-                      quote and for your virtual player badge.
-                    </p>
-                  </div>
+                  <span className="text-[#8c8c8c] text-xs">
+                    A personal photo will be displayed on your virtual athlete
+                    badge
+                  </span>
 
                   <span className="text-red-500">
                     {errors?.personalPhoto?.message}
