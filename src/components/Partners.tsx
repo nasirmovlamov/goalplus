@@ -1,5 +1,4 @@
 import React from "react";
-
 type Props = {};
 
 const Partners = (props: Props) => {

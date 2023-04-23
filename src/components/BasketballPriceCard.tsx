@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import recroBasket from "../media/images/recre basketa.png";
 import u21 from "../media/images/leagues/u21basket.png";
-import basket3x3 from "../media/images/leagues/3X3BASKETa.png";
+import basket3x3 from "../media/images/leagues/baketrec.png";
 
 type Props = {
   sport: string;
@@ -68,7 +68,7 @@ export const BasketballPriceCard = ({
               <img
                 src={
                   league === "Recreational"
-                    ? "https://lh3.googleusercontent.com/fife/APg5EOY9WRi-_mHO633yHG53P2q2xR975SGXc8IEwnJN6FUu4yUJBkmiPKPOyASTQ-Nm3AAMNGNQrvlPjX7vXEFxxkMkiAn84RQFhPJXU9beTuRv1mMvJOtnNxqCF1fX8wIAy-14FiQus1Jq-LcytPotp8n1bEcR1tOQlTvh5A71Ps4Y3u6kka1DCJLy0XNwUAcBPrJMnORb7TD_s3abnvctWim-ZbydHXpsZmNDSZBvF1IXIrNMsO71-Zdvyk5XJvrnHBKk3xk8u6jvolFa5igLrEf_0TvcNV2JcyehhAtD42EEpI-A-jfnLBNDNBSoGdfAngckmdcJWvxb1US8rXUIIMgvO8G0NcClutS7mB7O6CYLUO94caUtKB8ihc1bWIxWTaFvBWhD5nFXMGWaMSMssylCkswn9RW52KHZW90EcKlhn-udgF9nuQ_hNOxkupsTgd7gIh_gVucwWRXLLMjPZU_12U5ix1whMBSVsswlwfJP0oXMrRbmqVeie_8OfeBORUe-JMzN1nOQxapADgRGneBHtOsCNNUiS40SD2MhXLYoSXkVCxDa_ghAcC9R3okIwXXc2YQlxezjZE2_IgeMd1RCF1bbLBQOSMTz4lEf9Uod67kmDZMPlY23xo1vN4mnepuHgTWF51YeLjYv6rL-DkmiqwIRAWOmm-S8hDVa8edUIYZeMgWYSXr9Pi0hrtPnrCrUjSsRdkrXGUq9okEmTxM24cRKo_XHPVyCN7WBjcFJzUztf11KuRRVMS3JV12_7D_rpOx2bd03GRYLZWka310JXSwZbTg4tjGRiRM-JvyZ6RJxlWZZLJnrh5_rIbyWsXAuEbm_sldXHQL9YChAA_E2tHShFWz8rAFukAgksFokkoxA_AIz_oIXP-cq-AeWIYLd23wmjRixb9fQQK5wFUoqmEQMgB7D3oomG5pZqDPaSisQDZLw59qf1GKE4qs5blfcpN5tjL3ZF0P8UFA_YsAm7SuUP7vFZ3JZxgJTmCQQRy7n2L1MhjmvHiMZ0cMvK9Hn-cTW2ctQk0SIz-AKXO3faCQff_y6vDKtIZGNZ3Y5l5hZXHckK7KCKkwIUG0CKC45U29FJ_GKyCTSGuqJTmGP77XrGszuX1kzjvqaGhO-hEBCrC017Ot_T-EQJze0QkBy04x2npHYjQRnacn0znitsQn4fUIuFGQZPF6pyga5PeqeI6e8U3JL0AJDBFGepJXcMYEjgK8pU-x8o2_ln9eZuKW0SbTekXx1b90ESN-2s9447JiOo2OkObaYdbXABTRzTnl435TpkJRsMtnhv572E8y144qd9V2qEakjI7KIv93ob1RjFh2B8PeriHZVxk-saSZiG172VlGseamD_nNashAhxJ3TAwtleHqg97VEQA8-W8x1NgYLEd3XanQ1yDduR0meij5gDL_UZmrnFiqQfcjoOoLQdbtxx8aYdFA6Pso2WYypcIjNT412Rs_ODCP0AjnW7otYSEnYRmUyIkqEDMDklwoXziQnKC-JKlYHrhpLiTN9-c5jqX2WV_e4VZbQPype9A3osl_dSQQ-vvQBF-mn_dJGBSXh=w2132-h2350"
+                    ? basket3x3.src
                     : league === "U-21"
                     ? u21.src
                     : ""
