@@ -264,12 +264,12 @@ export default function Register(props: Props) {
           registration form.
         </p>
         <p className="w-full text-[18px] pb-10 text-[#040562]">
-          Any team’s registration will be considered as complete once
-          all team members sign up through the link sent to their email
-          and pay their participation fee. After that, your team will be sent
-          for approval of Goalplus. - Please note that all payments are final
-          (non-refundable). A team is responsible for attentively reading all
-          the rules and regulations for the league it is signing up for.
+          Any team’s registration will be considered as complete once all team
+          members sign up through the link sent to their email and pay their
+          participation fee. After that, your team will be sent for approval of
+          Goalplus. - Please note that all payments are final (non-refundable).
+          A team is responsible for attentively reading all the rules and
+          regulations for the league it is signing up for.
           <br />
           Goalplus is not responsible for any compensation in case a team
           accepts terms and conditions but does not comply with eligibility
@@ -438,6 +438,7 @@ export default function Register(props: Props) {
             </label>
             <span className="text-blue-500">
               <a
+                target="_blank"
                 href="https://drive.google.com/file/d/1pMxAvPqm59J_-ld1ot7fJrg7lEd_sZDH/view?usp=sharing"
                 className="text-blue-500  underline"
               >
@@ -446,6 +447,7 @@ export default function Register(props: Props) {
             </span>
             <span className="text-blue-500 ">
               <a
+                target="_blank"
                 href="https://drive.google.com/file/d/1usSgTWpAIXbljkpUYtSxzwynmswxtOpV/view"
                 className="text-blue-500 underline"
               >
@@ -454,6 +456,7 @@ export default function Register(props: Props) {
             </span>
             <span className="text-blue-500 ">
               <a
+                target="_blank"
                 href="https://drive.google.com/file/d/1RDBjV4KPOxxdzTFdzVmNxKheotMjrevW/view"
                 className="text-blue-500 underline"
               >
@@ -463,6 +466,7 @@ export default function Register(props: Props) {
 
             <span className="text-blue-500 ">
               <a
+                target="_blank"
                 href="https://drive.google.com/file/d/17z6QTA-9zUsW94MuWMiavqU8yo76Gl1C/view?usp=share_link"
                 className="text-blue-500 underline"
               >
@@ -472,6 +476,7 @@ export default function Register(props: Props) {
 
             <span className="text-blue-500 ">
               <a
+                target="_blank"
                 href="https://drive.google.com/file/d/1usSgTWpAIXbljkpUYtSxzwynmswxtOpV/view?usp=share_link"
                 className="text-blue-500 underline"
               >
@@ -481,6 +486,7 @@ export default function Register(props: Props) {
 
             <span className="text-blue-500 ">
               <a
+                target="_blank"
                 href="https://drive.google.com/file/d/1JvC5e414mMQsoFIx9fPqhAJ7CT7ccE2V/view?usp=share_link"
                 className="text-blue-500 underline"
               >
@@ -490,6 +496,7 @@ export default function Register(props: Props) {
 
             <span className="text-blue-500 ">
               <a
+                target="_blank"
                 href="https://drive.google.com/file/d/1djNZDkgSted62J3KP2NpTgCV30-VUHZD/view?usp=share_link"
                 className="text-blue-500 underline"
               >

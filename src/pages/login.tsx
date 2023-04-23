@@ -179,7 +179,7 @@ export default function Login(props: Props) {
           {/* Don't have account */}
           <div className="flex justify-between">
             <Link href="/register" className="text-[#032974]">
-              Don&apos;t have account
+              I don&apos;t have an account
             </Link>
             {/* <Link href="/reset-password" className="text-[#032974]">
               Reset Password
