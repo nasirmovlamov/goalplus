@@ -1613,6 +1613,12 @@ export default function Register(props: Props) {
                       team via email. The number of allowed team members is
                       indicated on the page with leagues.
                     </p>
+                    <p className="text-[12px] text-gray-500">
+                      When paying through e-point, you will need to enter that
+                      amount by yourselves. If a captain chooses to pay for the
+                      whole team, he/she can enter the total registration
+                      amount, and all others can enter 0 AZN.
+                    </p>
                   </div>
                   <div>All team members</div>
                   <div className="flex flex-wrap gap-5">{teamMembersShow}</div>
@@ -1700,6 +1706,11 @@ export default function Register(props: Props) {
                       allowTransparency={true}
                       width={350}
                       height={175}
+                    ></iframe>
+                    <iframe
+                      src="https://epoint.az/az/pay_form_widget?id=1882"
+                      width="420"
+                      height="480"
                     ></iframe>
                   </div>
                 </div>
