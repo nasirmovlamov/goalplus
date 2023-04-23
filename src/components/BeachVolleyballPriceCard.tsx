@@ -53,7 +53,7 @@ export const BeachVolleyballPriceCard = ({
         <Image src={beachBall} width={100} height={100} alt="ball image" />
       </div>
       <h2 className="w-full flex flex-wrap justify-center py-1 text-[45px] bg-[#61B2D7] text-white text-center">
-        {sport}
+        Beach Volleyball
       </h2>
       <div
         className="flex relative justify-center   pb-2 px-[30px] pb-[15px]"

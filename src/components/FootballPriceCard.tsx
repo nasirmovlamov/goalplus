@@ -60,7 +60,7 @@ export const FootballPriceCard = ({
           gender === "male" ? " bg-[#031E57] " : " bg-[#cdf000] "
         } text-white text-center`}
       >
-        {sport}
+        6x6 Football
       </h2>
       <div
         className="flex relative justify-center   pb-2 px-[30px] pb-[15px]"
