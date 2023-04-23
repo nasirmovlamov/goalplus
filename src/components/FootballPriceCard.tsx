@@ -99,9 +99,7 @@ export const FootballPriceCard = ({
               </h3>
               <p className="text-base flex flex-col">
                 <span className="block"> Date {date}</span>
-                <span className="block text-[10px] leading-3">
-                  (Day of the week)
-                </span>
+                
               </p>
               <p className="text-base mt-1">
                 Min {minPlayers} and Max {maxPlayers} players
