@@ -737,7 +737,7 @@ export default function Register(props: Props) {
         </h1>
         <div className="flex  flex-wrap lg:flex-nowrap gap-5 w-full justify-center">
           <div className="flex lg:flex-col w-full lg:gap-0 gap-2 lg:w-[190px] ">
-            <div className="flex gap-1 items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-start gap-1 sm:items-center">
               <button
                 onClick={() => {
                   // setStep(1);
@@ -746,12 +746,12 @@ export default function Register(props: Props) {
               >
                 <FontAwesomeIcon icon={faCheck} className="text-white" />
               </button>
-              <p className="text-xs">Profile Info</p>
+              <p className="text-[9px] sm:text-xs text-center">Profile Info</p>
             </div>
             {/* line */}
             <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
 
-            <div className="flex gap-1 items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-start flex-wrap gap-1 items-center">
               <button
                 onClick={() => {
                   setStep(2);
@@ -760,12 +760,12 @@ export default function Register(props: Props) {
               >
                 <FontAwesomeIcon icon={faTShirt} className="text-white" />
               </button>
-              <p className="text-xs">Team Info</p>
+              <p className="text-[9px] sm:text-xs text-center">Team Info</p>
             </div>
 
             <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
 
-            <div className="flex gap-1 items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-start flex-wrap gap-1 items-center">
               <button
                 onClick={() => {
                   setStep(3);
@@ -779,12 +779,12 @@ export default function Register(props: Props) {
               >
                 <FontAwesomeIcon icon={faUserPlus} className="text-white" />
               </button>
-              <p className="text-xs">Team members</p>
+              <p className="text-[9px] sm:text-xs text-center">Team members</p>
             </div>
 
             <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
 
-            <div className="flex gap-1 items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-start flex-wrap gap-1 items-center">
               <button
                 onClick={() => {
                   setStep(4);
@@ -798,12 +798,12 @@ export default function Register(props: Props) {
               >
                 <FontAwesomeIcon icon={faDollar} className="text-white" />
               </button>
-              <p className="text-xs">Payment</p>
+              <p className="text-[9px] sm:text-xs text-center">Payment</p>
             </div>
 
             <div className="w-[35px] h-[2px] lg:gap-0  lg:w-[2px] lg:h-[35px] bg-[#042974] mt-4 lg:mt-0 lg:ml-4"></div>
 
-            <div className="flex gap-1 items-center">
+            <div className="flex flex-col sm:flex-row sm:justify-start flex-wrap gap-1 items-center">
               <button
                 onClick={() => {
                   setStep(5);
@@ -812,8 +812,7 @@ export default function Register(props: Props) {
               >
                 <FontAwesomeIcon icon={faCheck} className="text-white" />
               </button>
-              <p className="text-xs">Confirmation</p>
-              <b className="text-xs">(pending)</b>
+              <p className="text-[9px] sm:text-xs text-center">Confirmation</p>
             </div>
           </div>
           <div className="flex flex-col max-w-[1100px] w-full">
