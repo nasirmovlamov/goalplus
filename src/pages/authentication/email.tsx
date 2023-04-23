@@ -41,7 +41,10 @@ export default function EmailConfirmation() {
       <h1 className="text-center">Email confirmation</h1>
       {emailConfirmationIsLoading && <p>Loading...</p>}
       {emailConfirmationIsSuccess && (
-        <p className="text-green-500">You are confirmed</p>
+        <>
+          <p className="text-green-500">You are confirmed</p>
+          <p className="text-green-500">You can now login to your account</p>
+        </>
       )}
       {emailConfirmationError && <p>Error</p>}
       {emailConfirmationError &&

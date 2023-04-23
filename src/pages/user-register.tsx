@@ -1213,7 +1213,7 @@ export default function Register(props: Props) {
                 </div>
 
                 <div>
-                  <ErrorMapper error={teamInfoErrorData} />
+                  <ErrorMapper error={teamInfoError} />
                   <ErrorMapper error={idCardError} />
                   <ErrorMapper error={teamLogoError} />
                 </div>
