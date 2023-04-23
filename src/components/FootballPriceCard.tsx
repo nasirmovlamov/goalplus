@@ -95,11 +95,11 @@ export const FootballPriceCard = ({
             </div>
             <div className="flex flex-col text-[#38383A] lg:w-auto w-full">
               <h3 className="text-[24px] lg:text-[36px]">
-                {gender === "male" ? "Men's" : "Female"} {league}
+                {gender === "male" ? "Men's" : "Female"} {league}{" "}
               </h3>
               <p className="text-base flex flex-col">
                 <span className="block"> Date {date}</span>
-                <span className="block text-[10px] leading-3">
+                <span className="block text-[10px] leading-3 text-red-500">
                   (Registration ends May 28)
                 </span>
               </p>
@@ -114,16 +114,23 @@ export const FootballPriceCard = ({
                   Regular person price : {regularPersonPrice} azn
                 </p>
               </div> */}
-              <div>
-                <p className=" text-xs line-through text-red-500">
-                  Regular price : {regularTeamPrice} azn
-                </p>
-                <p className=" text-xs ">
-                  Early bird per athlete: {earlyBirdPersonPrice} azn
-                </p>
-                <p className=" text-xs ">Early bird per team: {earlyBirdTeamPrice} azn</p>
-                <p className=" text-xs ">Until May 10</p>
-              </div>
+              {gender === "male" && (
+                <div>
+                  <p className=" text-xs line-through text-red-500">
+                    Regular price : {regularTeamPrice} azn
+                  </p>
+                  <p className=" text-xs ">
+                    Early bird per athlete: {earlyBirdPersonPrice} azn
+                  </p>
+                  <p className=" text-xs ">
+                    Early bird per team: {earlyBirdTeamPrice} azn
+                  </p>
+                  <p className=" text-xs text-red-500 ">Until May 10</p>
+                </div>
+              )}
+              {gender === "female" && (
+                <div className="text-[24px]">(FREE!)</div>
+              )}
               <p className="text-base">Duration : 8 weeks</p>
 
               <p className="text-base">{address}</p>

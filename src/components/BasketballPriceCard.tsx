@@ -88,7 +88,7 @@ export const BasketballPriceCard = ({
               </h3>
               <p className="text-base flex flex-col">
                 <span className="block"> Date 15 June ~ 15 August</span>
-                <span className="block text-[10px] leading-3">
+                <span className="block text-[10px] leading-3 text-red-500">
                   (Registration ends May 28)
                 </span>
               </p>
@@ -100,10 +100,12 @@ export const BasketballPriceCard = ({
                   Regular price : {regularTeamPrice} azn
                 </p>
                 <p className=" text-xs ">
-                  Per athlete: {earlyBirdPersonPrice} azn
+                  Early bird per athlete: {earlyBirdPersonPrice} azn
                 </p>
-                <p className=" text-xs ">Per team: {earlyBirdTeamPrice} azn</p>
-                <p className=" text-xs ">Until May, 10</p>
+                <p className=" text-xs ">
+                  Early bird per team: {earlyBirdTeamPrice} azn
+                </p>
+                <p className=" text-xs text-red-500"> ( Until May, 10 )</p>
               </div>
               <p className="text-base">Duration : 7 weeks</p>
               <p className="text-base">{address}</p>
