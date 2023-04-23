@@ -98,7 +98,7 @@ export const FootballPriceCard = ({
                 {gender === "male" ? "Men's" : "Female"} {league}{" "}
               </h3>
               <p className="text-base flex flex-col">
-                <span className="block"> Date {date}</span>
+                <span className="block">Date {date}</span>
                 <span className="block text-[10px] leading-3 text-red-500">
                   (Registration ends on May 28)
                 </span>

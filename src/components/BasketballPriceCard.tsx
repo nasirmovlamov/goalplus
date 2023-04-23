@@ -22,6 +22,7 @@ type Props = {
   earlyBirdTeamPrice: number;
   earlyBirdPersonPrice: number;
   gender: string;
+  date: string;
 };
 
 export const BasketballPriceCard = ({
@@ -35,6 +36,7 @@ export const BasketballPriceCard = ({
   earlyBirdPersonPrice,
   earlyBirdTeamPrice,
   gender,
+  date,
 }: Props) => {
   return (
     <div className="flex flex-col flex-wrap max-w-[970px] w-full rounded-2xl overflow-hidden relative">
@@ -88,7 +90,7 @@ export const BasketballPriceCard = ({
                 {league}
               </h3>
               <p className="text-base flex flex-col">
-                <span className="block"> {date}</span>
+                <span className="block">Date {date}</span>
                 <span className="block text-[10px] leading-3 text-red-500">
                   (Registration ends on May 28)
                 </span>

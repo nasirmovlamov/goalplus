@@ -11,6 +11,7 @@ import Link from "next/link";
 
 import u21 from "../media/images/Volleya.png";
 import recreVolleya from "../media/images/recre volleya.png";
+import { date } from "yup";
 
 type Props = {
   sport: string;
@@ -23,6 +24,7 @@ type Props = {
   earlyBirdTeamPrice: number;
   earlyBirdPersonPrice: number;
   gender: string;
+  date: string;
 };
 
 export const BeachVolleyballPriceCard = ({
@@ -36,6 +38,7 @@ export const BeachVolleyballPriceCard = ({
   earlyBirdPersonPrice,
   earlyBirdTeamPrice,
   gender,
+  date,
 }: Props) => {
   return (
     <div className="flex flex-col flex-wrap max-w-[970px] w-full rounded-2xl overflow-hidden relative">
@@ -89,7 +92,7 @@ export const BeachVolleyballPriceCard = ({
                 {league}
               </h3>
               <p className="text-base flex flex-col">
-                <span className="block"> {date}</span>
+                <span className="block">Date {date}</span>
                 <span className="block text-[10px] leading-3 text-red-500">
                   (Registration ends on May 28)
                 </span>
