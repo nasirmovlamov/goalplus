@@ -21,7 +21,10 @@ import { AddTeamMember } from "@/components/AddTeamMember";
 import { teamApi } from "@/store/teamApi";
 import register from "./register";
 import { watch } from "fs";
+import TeamMemberCard from "@/components/TeamMemberCard";
 type Props = {};
+
+import defaultProfilePhoto from "../media/images/Default_pfp.svg.png";
 
 export const registerSchema = yup.object().shape({
   // name: yup.string().label("Name").required(),
@@ -289,21 +292,37 @@ export default function Register(props: Props) {
     return teamData?.map((item: any, index: any) => (
       // show all team members
       <>
-        <div
+        <TeamMemberCard
           key={item.id}
-          className="flex flex-wrap gap-[5px]  w-full border-b border-dashed pb-6 pt-2"
+          name={item.firstName}
+          surname={item.lastName}
+          image={item.image}
+          sportId={item.sportId}
+        />
+        {/* <div
+          key={item.id}
+          className="flex flex-wrap min-w-[350px] gap-3 items-center w-max border-dashed border p-4 border-[#cdf000]"
         >
-          <div className="flex flex-col gap-2 w-full">Player {index + 1}</div>
-          {item.isCaptain && (
-            <div className="flex flex-col gap-2 w-full">Player is captain</div>
-          )}
-          <div className="flex flex-col gap-2 w-full">
-            Player name : {item.firstName}
+          <img
+            src={defaultProfilePhoto.src}
+            alt=""
+            className="w-[100px] h-[100px] rounded-full"
+          />
+          <div>
+            <div className="flex flex-col gap-2 w-full">Player {index + 1}</div>
+            {item.isCaptain && (
+              <div className="flex flex-col gap-2 w-full">
+                Player is captain
+              </div>
+            )}
+            <div className="flex flex-col gap-2 w-full">
+              Name : {item.firstName}
+            </div>
+            <div className="flex flex-col gap-2 w-full">
+              Surname : {item.lastName}
+            </div>
           </div>
-          <div className="flex flex-col gap-2 w-full">
-            Player surname : {item.lastName}
-          </div>
-        </div>
+        </div> */}
       </>
     ));
   }, [teamData]);
@@ -1569,7 +1588,7 @@ export default function Register(props: Props) {
 
             {step === 3 && (
               <div className="flex flex-wrap gap-[30px]">
-                <div className="flex flex-col gap-2 w-full">
+                <div className="flex flex-col gap-2 w-full relative">
                   <div className="gap-2">
                     <h1 className="text-[36px]">
                       <b>Add team members</b>
@@ -1580,7 +1599,7 @@ export default function Register(props: Props) {
                     </p>
                   </div>
                   <div>All team members</div>
-                  {teamMembersShow}
+                  <div className="flex flex-wrap gap-5">{teamMembersShow}</div>
 
                   <AddTeamMember />
                 </div>
