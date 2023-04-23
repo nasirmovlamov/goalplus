@@ -1555,6 +1555,16 @@ export default function Register(props: Props) {
                     <option value="School">Institution</option>
                     <option value="Personal">Personal</option>
                   </select>
+                  <span className="text-[12px] text-gray-500">
+                    In case your educational institution (school or university)
+                    will cover your participation costs, you will be required to
+                    enter the details of the person who will be in charge of the
+                    payment. The Goalplus team will contact a designated person
+                    from your educational institution to discuss further details
+                    about the payment and transaction process. Your team
+                    registration will be approved once the payment contract
+                    between Goalplus and your educational institution is signed.
+                  </span>
                   <span className="text-red-500">
                     {errors.isPaying?.message}
                   </span>
