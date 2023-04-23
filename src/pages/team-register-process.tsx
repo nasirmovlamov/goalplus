@@ -1301,7 +1301,7 @@ export default function Register(props: Props) {
                   <div className="text-[12px] text-gray-500">
                     <p>
                       Please upload both sides of your ID (Şəxsiyyət Vəsiqəsi)
-                      in a single one-page PDF file or any image file format
+                      in a single one-page PDF file or any image file format.
                     </p>
                   </div>
 

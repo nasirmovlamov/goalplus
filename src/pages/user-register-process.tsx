@@ -906,7 +906,7 @@ export default function Register(props: Props) {
                   {/* info about photo */}
                   <span className="text-[#8c8c8c] text-xs">
                     A personal photo will be displayed on your virtual athlete
-                    badge
+                    badge.
                   </span>
 
                   <span className="text-red-500">
