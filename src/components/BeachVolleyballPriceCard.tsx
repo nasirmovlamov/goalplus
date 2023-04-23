@@ -105,7 +105,7 @@ export const BeachVolleyballPriceCard = ({
                   Per athlete: {earlyBirdPersonPrice} azn
                 </p>
                 <p className=" text-xs ">Per team: {earlyBirdTeamPrice} azn</p>
-                <p className=" text-xs ">Until May, 10</p>
+                <p className=" text-xs ">Until May 10</p>
               </div>
               <p className="text-base">Duration : 6 weeks</p>
               <p className="text-base">{address}</p>
