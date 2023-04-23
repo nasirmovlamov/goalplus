@@ -79,7 +79,12 @@ export const BeachVolleyballPriceCard = ({
             </div>
             <div className="flex flex-col text-[#38383A] ">
               <h3 className="text-[24px] lg:text-[36px]">
-                {gender === "male" ? "Men's" : "Female"} {league}
+                {gender === "male"
+                  ? "Men's"
+                  : gender === "female"
+                  ? "Female"
+                  : ""}{" "}
+                {league}
               </h3>
               <p className="text-base flex flex-col">
                 <span className="block"> Date 15 June ~ 15 August</span>
