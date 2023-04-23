@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 import { Montserrat } from "next/font/google";
 import { useEffect } from "react";
 import { authSlice } from "@/store/authSlice";
-
+import { Analytics } from "@vercel/analytics/react";
 const montserrat = Montserrat({
   weight: "400",
   subsets: ["latin"],
@@ -18,18 +18,21 @@ const montserrat = Montserrat({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Provider store={store}>
-      <style jsx global>{`
-        html {
-          font-family: ${montserrat.style.fontFamily};
-        }
-      `}</style>
-      <Layout>
-        <Toaster position="top-right" />
-        <main className={montserrat.className}>
-          <Component {...pageProps} />
-        </main>
-      </Layout>
-    </Provider>
+    <>
+      <Provider store={store}>
+        <style jsx global>{`
+          html {
+            font-family: ${montserrat.style.fontFamily};
+          }
+        `}</style>
+        <Layout>
+          <Toaster position="top-right" />
+          <main className={montserrat.className}>
+            <Component {...pageProps} />
+          </main>
+        </Layout>
+      </Provider>
+      <Analytics />
+    </>
   );
 }
