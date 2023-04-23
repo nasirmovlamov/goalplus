@@ -28,8 +28,8 @@ const SpendYourSummersection = (props: Props) => {
         }}
       ></div>
 
-      <div className="max-w-[1230px] px-5 justify-center lg:justify-between w-full flex flex-wrap z-20 lg:h-[310px] h-full pt-2 gap-y-9">
-        <div className="flex flex-col pt-2 lg:items-start gap-[10px] text-white lg:w-max w-full text-center lg:text-start">
+      <div className="max-w-[1230px] px-5 justify-center lg:justify-between w-full flex flex-wrap z-20 lg:h-[310px]  h-full pt-14 gap-y-9">
+        <div className="flex flex-col pt-2 lg:items-center gap-[10px] text-white lg:w-max w-full text-center lg:text-start mx-auto">
           <h2 className="text-[36px] lg:text-[44px]">
             Spend your summer with Goalplus
           </h2>
@@ -37,12 +37,16 @@ const SpendYourSummersection = (props: Props) => {
             Grab your Pass and secure your place at Goalplus 2023 before prices
             go up
           </p> */}
-          <Link
-            href="/contactus"
-            className=" bg-[#032974] w-max shadow-md  text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out"
+          <a
+            target="_blank"
+            href="https://www.instagram.com/goalplusaz/"
+            className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-[#cdf000]"
+            style={{
+              boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
+            }}
           >
             Get my GoalPlus
-          </Link>
+          </a>
         </div>
 
         {/* <img

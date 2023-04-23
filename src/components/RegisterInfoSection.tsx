@@ -39,7 +39,10 @@ const RegisterInfoSection = (props: Props) => {
           <p className="w-max">Participate in sports leagues</p>
           <Link
             href="/sports-leagues"
-            className=" bg-[#ffffff] text-[#032974] rounded-md px-4 py-2 hover:bg-[#98a3b9] transition duration-300 ease-in-out"
+            className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-[#cdf000]"
+            style={{
+              boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
+            }}
           >
             More Details
           </Link>
@@ -69,7 +72,12 @@ const RegisterInfoSection = (props: Props) => {
           <FontAwesomeIcon icon={faCube} size="5x" />
           <h3 className=" lg:text-[44px] w-max">Community Pass</h3>
           <p className="w-max">Coming soon</p>
-          <div className="text-white bg-[#888787]  rounded-md px-4 py-2 hover:bg-[#98a3b9] transition duration-300 ease-in-out">
+          <div
+            className="mt-5 bg-[#888787] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-white "
+            style={{
+              boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
+            }}
+          >
             More Details
           </div>
         </div>

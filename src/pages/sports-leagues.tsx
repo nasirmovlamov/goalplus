@@ -44,8 +44,8 @@ const games = {
       date: "June 21 - August 11",
     },
     {
-      sport: "Girls Football",
-      league: "U-GIRLS",
+      sport: "Football",
+      league: "Recreational",
       address: "Aquatic Palace",
       gender: "female",
       minPlayers: 6,
