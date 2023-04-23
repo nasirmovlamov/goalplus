@@ -159,7 +159,7 @@ export default function Register(props: Props) {
   const router = useRouter();
   const params = router.query;
   const { sport: sportParam, league: leagueParam } = params;
-
+  const popoverRef = React.useRef<HTMLDivElement>(null);
   const [
     authenticationApi,
     {
@@ -263,13 +263,34 @@ export default function Register(props: Props) {
           invitation link to the email indicated by the captain in this
           registration form.
         </p>
-        <p className="w-full text-[18px] pb-10 text-[#040562]">
+        <p className="w-full text-[18px] pb-10 text-[#040562] relative">
           Any team’s registration will be considered as complete once all team
           members sign up through the link sent to their email and pay their
           participation fee. After that, your team will be sent for approval of
-          Goalplus. - Please note that all payments are final (non-refundable).
-          A team is responsible for attentively reading all the rules and
-          regulations for the league it is signing up for.
+          Goalplus.
+          <span
+            className="text-lg text-red-500 underline"
+            onMouseOver={() => {
+              if (popoverRef.current) {
+                popoverRef.current.style.display = "block";
+              }
+            }}
+            onMouseLeave={() => {
+              if (popoverRef.current) {
+                popoverRef.current.style.display = "none";
+              }
+            }}
+          >
+            <b> ?</b>
+          </span>
+          <span
+            ref={popoverRef}
+            className="hidden w-[300px] absolute shadow-2xl -right-2 -top-14 bg-[#F2F2F2] rounded-[10px] px-[10px] py-[5px] text-[14px]"
+          >
+            - Please note that all payments are final (non-refundable). A team
+            is responsible for attentively reading all the rules and regulations
+            for the league it is signing up for.
+          </span>
           <br />
           Goalplus is not responsible for any compensation in case a team
           accepts terms and conditions but does not comply with eligibility
