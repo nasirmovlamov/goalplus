@@ -235,7 +235,7 @@ export const Navbar = () => {
             </li>
           </ul>
 
-          <div className="flex gap-3">
+          <div className="flex gap-3 md:hidden">
             {userJwt && (
               <button
                 onClick={() => handleToProfile()}
