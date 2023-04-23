@@ -733,7 +733,7 @@ export default function Register(props: Props) {
     <div className="flex justify-center pt-[50px] pb-[50px]">
       <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">
         <h1 className="w-full flex text-[44px] pb-10">
-          Capitan Registration Process
+          Captain Registration Process
         </h1>
         <div className="flex  flex-wrap lg:flex-nowrap gap-5 w-full justify-center">
           <div className="flex lg:flex-col w-full lg:gap-0 gap-2 lg:w-[190px] ">
