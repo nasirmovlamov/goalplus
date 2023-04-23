@@ -100,7 +100,7 @@ export const FootballPriceCard = ({
               <p className="text-base flex flex-col">
                 <span className="block"> Date {date}</span>
                 <span className="block text-[10px] leading-3 text-red-500">
-                  (Registration ends May 28)
+                  (Registration ends on May 28)
                 </span>
               </p>
               <p className="text-base mt-1">
@@ -125,7 +125,7 @@ export const FootballPriceCard = ({
                   <p className=" text-xs ">
                     Early bird per team: {earlyBirdTeamPrice} azn
                   </p>
-                  <p className=" text-xs text-red-500 ">Until May 10</p>
+                  <p className=" text-xs text-red-500 ">(Until May 10)</p>
                 </div>
               )}
               {gender === "female" && (
