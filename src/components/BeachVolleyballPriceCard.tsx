@@ -89,7 +89,7 @@ export const BeachVolleyballPriceCard = ({
                 {league}
               </h3>
               <p className="text-base flex flex-col">
-                <span className="block"> Date 15 June ~ 15 August</span>
+                <span className="block"> {date}</span>
                 <span className="block text-[10px] leading-3 text-red-500">
                   (Registration ends on May 28)
                 </span>

@@ -9,6 +9,7 @@ import Link from "next/link";
 import recroBasket from "../media/images/recre basketa.png";
 import u21 from "../media/images/leagues/u21basket.png";
 import basket3x3 from "../media/images/leagues/baketrec.png";
+import { date } from "yup";
 
 type Props = {
   sport: string;
@@ -87,7 +88,7 @@ export const BasketballPriceCard = ({
                 {league}
               </h3>
               <p className="text-base flex flex-col">
-                <span className="block"> Date 15 June ~ 15 August</span>
+                <span className="block"> {date}</span>
                 <span className="block text-[10px] leading-3 text-red-500">
                   (Registration ends on May 28)
                 </span>

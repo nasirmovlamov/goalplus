@@ -104,7 +104,6 @@ const games = {
       league: "Recreational",
       address: "Aquatic Palace",
       date: "TBA",
-
       gender: "mixed",
       minPlayers: 4,
       maxPlayers: 6,
