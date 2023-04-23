@@ -453,6 +453,9 @@ export default function Register(props: Props) {
                     placeholder="Jersey number"
                     maxLength={2}
                   />
+                  <span className="text-[12px] text-gray-400">
+                    If you do not have a jersey number, please enter “NA”.
+                  </span>
                   <span className="text-red-500">
                     {errors.jerseyNumber?.message}
                   </span>

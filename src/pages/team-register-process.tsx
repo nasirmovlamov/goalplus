@@ -949,7 +949,7 @@ export default function Register(props: Props) {
                     maxLength={2}
                   />
                   <span className="text-[#8c8c8c] text-xs">
-                    If you do not have a jersey number, please enter “NA”
+                    If you do not have a jersey number, please enter “NA”.
                   </span>
                   <span className="text-red-500">
                     {errors.jerseyNumber?.message}
@@ -1399,7 +1399,7 @@ export default function Register(props: Props) {
                   {/* info about photo */}
                   <span className="text-[#8c8c8c] text-xs">
                     A personal photo will be displayed on your virtual athlete
-                    badge
+                    badge.
                   </span>
 
                   <span className="text-red-500">
@@ -1609,8 +1609,10 @@ export default function Register(props: Props) {
                       <b>Add team members</b>
                     </h1>
                     <p className="text-[12px] text-gray-500">
-                      when you are done adding team members, go to payment and
-                      proceed payment
+                      You, as the captain of the team, will be allowed to add
+                      your team members. They will receive an invitation to the
+                      team via email. The number of allowed team members is
+                      indicated on the page with leagues.
                     </p>
                   </div>
                   <div>All team members</div>

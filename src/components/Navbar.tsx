@@ -203,9 +203,9 @@ export const Navbar = () => {
 
           <ul className="md:flex h-[40px] items-center hidden ">
             {userJwt && (
-              <button onClick={() => handleToProfile()}>
-                <li className="pl-4 pr-3">
-                  <FontAwesomeIcon icon={faUser} />
+              <button onClick={() => handleToProfile()} className="flex gap-3">
+                <li className="pl-5 pr-3 flex gap-2 items-center">
+                  <FontAwesomeIcon icon={faUser} /> <span> Profile</span>
                 </li>
               </button>
             )}
@@ -235,13 +235,25 @@ export const Navbar = () => {
             </li>
           </ul>
 
-          <div className="md:hidden">
-            <button
-              onClick={handleOpenMobileNavbar}
-              className="md:hidden flex items-center justify-center h-[40px] w-[40px] rounded-md bg-[#032974] text-white"
-            >
-              <FontAwesomeIcon icon={faBars} />
-            </button>
+          <div className="flex gap-3">
+            {userJwt && (
+              <button
+                onClick={() => handleToProfile()}
+                // gray background
+                className="flex gap-3 md:hidden bg-[#f2f2f2] rounded-md px-4 py-[6px] hover:bg-[#e6e6e6] transition duration-300 ease-in-out shadow-md items-center justify-center h-[40px] w-[40px]"
+              >
+                <FontAwesomeIcon icon={faUser} />
+              </button>
+            )}
+
+            <div className="md:hidden">
+              <button
+                onClick={handleOpenMobileNavbar}
+                className="md:hidden flex items-center justify-center h-[40px] w-[40px] rounded-md bg-[#032974] text-white shadow-lg"
+              >
+                <FontAwesomeIcon icon={faBars} />
+              </button>
+            </div>
           </div>
         </nav>
       </header>
