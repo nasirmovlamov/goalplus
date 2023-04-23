@@ -67,7 +67,7 @@ export const BeachVolleyballPriceCard = ({
             <div className="ball flex w-full lg:w-[230px] h-[190px] lg:h-full mt-20px">
               <img
                 src={
-                  league === "U21"
+                  league === "U-21"
                     ? "https://lh3.googleusercontent.com/fife/APg5EObgKzG7HTM3QvECXeq4uRC5gucWLWspLM-tkDIROUV7e5gHTnZpgEFcZkTz_KXMZOlSaR_RvkoLoTvp242LQSXV2Jz5ZNiRMnVXVbUddG5ilTrRABtYtvHCfb2BB0l4TfoNqaEeaDfisFyjLydD9u0-xtJOFnayj6W3fiCgh7cNXI3vjSjwrPeVfvjKzAmd9bHsy5wRd00hBPpr5AGRI0Beyg7MdMHnfIqaN3tasJHKCivvdrEhEBqFX47bokthc0NNFlnEAYeNwV6tQ9DrB9rQmsP6BE47WEOjm_L-9_RvPWSN0rt_UBUHeuRHpnI-DiT1PahBpt3iquZ_ZtRl5vRkaWAweCmlaVDvXmeRwbv09zTQipukYDQNdAB24izsa2B5ZSebiHAhcWvWU5EVamG8xCBjQLOdWfBHvQJIDosz04EVibV41QQylcejleiVzU8uV57bvl5hQCm3fpRfnrMhN72_jOhh3ZIf4h3bW2IXsni88r-s730ZD-YewrB5sGNRn2nedWNSV0JA0wU51fDFf-PFGcNYD1qSzv6pq1Tr0F-OVpWBb4dOQSumRLglvNRiinZYe-QayeuARIJsfvCHJDhtSRLVCZlbWsrbgcze4n120SdTuWNKj25XW7tgY5jGSlFLwnmrcSo63uid_hD4J6uJ87jP8h42nENvUNJhBA0kVPvHoswJBxzEhW8L6CnsjsUlIKn86c646NEWdmQtxh59Qa-7unL8RVL-HA8t3FH2DcMIQkUhbCAiro3dSrLHmD06E7KcgFkL0BcCzk6ZajVlGwZWeOcL-MlYejnBB9yZcsXICJJ1rv24ctuM4Xet_KYMIT7vxR5tE8cBxg9BPOpsf_cGOBMUwfgrgAZVyzMfYnD53L8oMBsp75BmEGxyoVR7DczzZ8LDwgky9K55CE9_F-sB9nhBO1YgRBRXRo4LGmdhWS12Dq-L6rdPmGxKYctXffqxf7F5k0BdRvbjXybne9XRrdjhov8XP9FTBhkxKF3cIdqCRfLp_9zGDsaqt4anYlGY1Ps4ZmCIq-Xq3nipM3r8sH0bA46g2QfMfXIIKcLbBRmRSMolDsKuuXWgwW7VTrn2TyDgAKEW8nYXaYGk7VxyLXXv_Up1UvkwsbNQEKAvWKXeQcd982HNYg4y3R75PHdi2vv276vrcdEkElv7fTrzXn-IGKc2ZiM60ooJYzx-mocnFAiCcNFSlK_AaC3pniPmVBzuQmzVsS150STeHuCV4c8CvE40fAC52qas1rCn1xG2k9Yka8EEVi096AUNpV-T0SD3vBqfNQcVT9V0GxjmdWxYg2sPio9d9ptAGQelPCHK_HGgFr2qVCd_gUJHvc6zX7PlqFGviNz6OUZjYlrtADIARgwQOTUEE_4teY4e1QZmyq5T3525mH7cBMB0DxyPXNQp5kphkVqROKmatNQR9JBjwAdVY8nk21MxCnMyIqJF3zRDQZVmWZdSZj5-kLsqqpFf-YgRxZxYAB0qrkT6XlvAUTBa4pSFR9hbZ-b9ZJq4z0DckAd00uXGuqapv5zPO-JhmICbN4Vad0xoAi7Dbdhz=w2132-h2350"
                     : league === "Recreational"
                     ? recreVolleya.src
@@ -78,7 +78,9 @@ export const BeachVolleyballPriceCard = ({
               />
             </div>
             <div className="flex flex-col text-[#38383A] ">
-              <h3 className="text-[24px] lg:text-[36px]">League ({league})</h3>
+              <h3 className="text-[24px] lg:text-[36px]">
+                {gender === "male" ? "Men's" : "Female"} {league}
+              </h3>
               <p className="text-base flex flex-col">
                 <span className="block"> Date 15 June ~ 15 August</span>
                 <span className="block text-[10px] leading-3">
@@ -90,10 +92,13 @@ export const BeachVolleyballPriceCard = ({
               </p>
               <div>
                 <p className=" text-xs line-through text-red-500">
-                  Early bird per athlete : {earlyBirdPersonPrice} azn
+                  Regular price : {regularTeamPrice} azn
                 </p>
                 <p className=" text-xs ">
-                  Regular price : {regularTeamPrice} azn
+                  Early bird price per athlete: {earlyBirdPersonPrice} azn
+                </p>
+                <p className=" text-xs ">
+                  Early bird price per team: {earlyBirdTeamPrice} azn
                 </p>
               </div>
               <p className="text-base">Duration : 6 weeks</p>

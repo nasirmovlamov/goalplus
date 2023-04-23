@@ -31,7 +31,7 @@ const SpendYourSummersection = (props: Props) => {
       <div className="max-w-[1230px] px-5 justify-center lg:justify-between w-full flex flex-wrap z-20 lg:h-[310px]  h-full pt-14 gap-y-9">
         <div className="flex flex-col pt-2 lg:items-center gap-[10px] text-white lg:w-max w-full text-center lg:text-start mx-auto">
           <h2 className="text-[36px] lg:text-[44px]">
-            Spend your summer with Goalplus
+            #Spend your summer with Goalplus
           </h2>
           {/* <p>
             Grab your Pass and secure your place at Goalplus 2023 before prices

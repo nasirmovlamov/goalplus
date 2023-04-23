@@ -78,13 +78,13 @@ export const FootballPriceCard = ({
             <div className="ball flex w-full lg:w-[230px] h-[190px] lg:h-full mt-20px">
               <img
                 src={
-                  league === "U16"
+                  league === "U-16"
                     ? "https://lh3.google.com/u/0/d/17z_9s2vH2_xNteWB-jpQtldTXe3eYiym=w2132-h2350-iv1"
-                    : league === "U18"
+                    : league === "U-18"
                     ? "https://lh3.google.com/u/0/d/19hBURmVNNg25rp3XvFvOGDUkC9nb1MJp=w2132-h2350-iv1"
-                    : league === "U21"
+                    : league === "U-21"
                     ? "https://lh3.google.com/u/0/d/1SguF4i9Rrq1nDYDzNGYpCLbdcWtFvdK_=w2132-h2350-iv1"
-                    : league === "U-GIRLS"
+                    : league === "Recreational"
                     ? "https://lh3.google.com/u/0/d/1Efx_Yu90Ws576XgUtppVAz5rJz9HLX_-=w2132-h2350-iv1"
                     : ""
                 }
@@ -93,7 +93,9 @@ export const FootballPriceCard = ({
               />
             </div>
             <div className="flex flex-col text-[#38383A] lg:w-auto w-full">
-              <h3 className="text-[24px] lg:text-[36px]">League ({league})</h3>
+              <h3 className="text-[24px] lg:text-[36px]">
+                {gender === "male" ? "Men's" : "Female"} {league}
+              </h3>
               <p className="text-base flex flex-col">
                 <span className="block"> Date {date}</span>
                 <span className="block text-[10px] leading-3">
