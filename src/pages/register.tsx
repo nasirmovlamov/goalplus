@@ -264,8 +264,8 @@ export default function Register(props: Props) {
           registration form.
         </p>
         <p className="w-full text-[18px] pb-10 text-[#040562]">
-          Any team’s registration will be considered as *complete* once
-          ***all*** team members sign up through the link sent to their email
+          Any team’s registration will be considered as complete once
+          all team members sign up through the link sent to their email
           and pay their participation fee. After that, your team will be sent
           for approval of Goalplus. - Please note that all payments are final
           (non-refundable). A team is responsible for attentively reading all
@@ -446,7 +446,7 @@ export default function Register(props: Props) {
             </span>
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/1usSgTWpAIXbljkpUYtSxzwynmswxtOpV/view?usp=share_link"
+                href="https://drive.google.com/file/d/1usSgTWpAIXbljkpUYtSxzwynmswxtOpV/view"
                 className="text-blue-500 underline"
               >
                 Soccer U16 terms and conditions
@@ -454,7 +454,7 @@ export default function Register(props: Props) {
             </span>
             <span className="text-blue-500 ">
               <a
-                href="https://drive.google.com/file/d/1RDBjV4KPOxxdzTFdzVmNxKheotMjrevW/view?usp=share_link"
+                href="https://drive.google.com/file/d/1RDBjV4KPOxxdzTFdzVmNxKheotMjrevW/view"
                 className="text-blue-500 underline"
               >
                 Soccer U18 terms and conditions
