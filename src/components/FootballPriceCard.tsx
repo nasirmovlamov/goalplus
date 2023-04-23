@@ -57,7 +57,7 @@ export const FootballPriceCard = ({
       </div>
       <h2
         className={`w-full flex justify-center py-1 text-[45px] ${
-          gender === "male" ? " bg-[#031E57] " : " bg-[#E62A2C] "
+          gender === "male" ? " bg-[#031E57] " : " bg-[#cdf000] "
         } text-white text-center`}
       >
         {sport}
