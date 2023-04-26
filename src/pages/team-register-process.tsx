@@ -76,6 +76,7 @@ export default function Register(props: Props) {
   const params = router.query;
   const { sport: sportParam, league: leagueParam } = params;
   const schoolCertificateInputRef = React.useRef<HTMLInputElement>(null);
+  const [onlyCaptainPaying, setOnlyCaptainPaying] = useState<any>(false);
   const {
     data: playersUserInfo,
     isError: isPlayersUserInfo,
@@ -1632,82 +1633,124 @@ export default function Register(props: Props) {
                     <h1 className="text-[36px]">
                       <b>Payment</b>
                     </h1>
-                    <label>Please enter your team size</label>
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-md px-[6px] py-[12px] w-full w-max-[350px] "
-                      value={teamSize}
-                      onChange={(e) => {
-                        const onlyNumber = /^[0-9\b]+$/;
-                        if (
-                          e.target.value === "" ||
-                          onlyNumber.test(e.target.value)
-                        ) {
-                          setTeamSize(e.target.value);
-                        }
-                      }}
-                    />
-                    <span className="text-[12px] text-red-500">
-                      <div>
-                        {teamSize <
-                          leagueInfoData?.leagueDetails?.minNumberOfPlayers &&
-                          `Team size must be greater than ${leagueInfoData?.leagueDetails?.minNumberOfPlayers}`}
-                      </div>
-                      <div>
-                        {teamSize >
-                          leagueInfoData?.leagueDetails?.maxNumberOfPlayers &&
-                          `Team size must be less than ${leagueInfoData?.leagueDetails?.maxNumberOfPlayers}`}
-                      </div>
-                    </span>
+                    <div className="flex gap-4">
+                      <span>Is only captain paying ?</span>
+                      <input
+                        value={onlyCaptainPaying}
+                        onChange={(e) => {
+                          setOnlyCaptainPaying(e.target.checked);
+                        }}
+                        type="checkbox"
+                        name=""
+                        id=""
+                      />
+                    </div>
                     <p className="text-[12px] text-gray-500">
-                      Your total will be calculated based on the number of team
-                      you have entered.
+                      When paying through e-point, you will need to enter the
+                      amount displayed on the screen by yourselves. If a captain
+                      choses to pay for the whole team, then he/she check the
+                      box for only captain paying. If not, then all team members
+                      will pay for themselves.
                     </p>
-                    <p className="text-[12px] text-gray-500">
-                      Minimum team players{" "}
-                      {leagueInfoData?.leagueDetails?.minNumberOfPlayers}
-                    </p>
-                    <p className="text-[12px] text-gray-500">
-                      Maximum team players{" "}
-                      {leagueInfoData?.leagueDetails?.maxNumberOfPlayers}
-                    </p>
-                    {teamData.length <=
-                      leagueInfoData?.leagueDetails?.minNumberOfPlayers && (
-                      <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
-                        Payment based on your team size:{" "}
-                        {teamSize
-                          ? (
-                              leagueInfoData?.leagueDetails?.priceEarly /
-                              teamSize
-                            ).toFixed(2)
-                          : leagueInfoData?.leagueDetails?.priceEarly}
-                        AZN
+                    {!onlyCaptainPaying && (
+                      <label>Please enter your team size</label>
+                    )}
+                    {!onlyCaptainPaying && (
+                      <input
+                        disabled={onlyCaptainPaying}
+                        type="text"
+                        className="border border-gray-300 rounded-md px-[6px] py-[12px] w-full w-max-[350px] "
+                        value={teamSize}
+                        onChange={(e) => {
+                          const onlyNumber = /^[0-9\b]+$/;
+                          if (
+                            e.target.value === "" ||
+                            onlyNumber.test(e.target.value)
+                          ) {
+                            setTeamSize(e.target.value);
+                          }
+                        }}
+                      />
+                    )}
+                    {!onlyCaptainPaying && (
+                      <span className="text-[12px] text-red-500">
+                        <div>
+                          {teamSize <
+                            leagueInfoData?.leagueDetails?.minNumberOfPlayers &&
+                            `Team size must be greater than ${leagueInfoData?.leagueDetails?.minNumberOfPlayers}`}
+                        </div>
+                        <div>
+                          {teamSize >
+                            leagueInfoData?.leagueDetails?.maxNumberOfPlayers &&
+                            `Team size must be less than ${leagueInfoData?.leagueDetails?.maxNumberOfPlayers}`}
+                        </div>
+                      </span>
+                    )}
+                    {!onlyCaptainPaying && (
+                      <p className="text-[12px] text-gray-500">
+                        Your total will be calculated based on the number of
+                        team you have entered.
                       </p>
                     )}
-                    {teamData.length >
-                      leagueInfoData?.leagueDetails?.minNumberOfPlayers && (
+                    {!onlyCaptainPaying && (
+                      <p className="text-[12px] text-gray-500">
+                        Minimum team players{" "}
+                        {leagueInfoData?.leagueDetails?.minNumberOfPlayers}
+                      </p>
+                    )}
+                    {!onlyCaptainPaying && (
+                      <p className="text-[12px] text-gray-500">
+                        Maximum team players{" "}
+                        {leagueInfoData?.leagueDetails?.maxNumberOfPlayers}
+                      </p>
+                    )}
+                    {onlyCaptainPaying && (
                       <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
                         Payment based on your team size:{" "}
                         {leagueInfoData?.leagueDetails?.priceEarly /
-                          teamData.length}
+                          teamData.length}{" "}
+                        AZN
                       </p>
                     )}
+                    {!onlyCaptainPaying &&
+                      teamData.length <=
+                        leagueInfoData?.leagueDetails?.minNumberOfPlayers && (
+                        <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
+                          Payment based on your team size:{" "}
+                          {teamSize
+                            ? (
+                                leagueInfoData?.leagueDetails?.priceEarly /
+                                teamSize
+                              ).toFixed(2)
+                            : leagueInfoData?.leagueDetails?.priceEarly}
+                          AZN
+                        </p>
+                      )}
+                    {!onlyCaptainPaying &&
+                      teamData.length >
+                        leagueInfoData?.leagueDetails?.minNumberOfPlayers && (
+                        <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
+                          Payment based on your team size:{" "}
+                          {leagueInfoData?.leagueDetails?.priceEarly /
+                            teamData.length}
+                        </p>
+                      )}
                     <p className="text-[12px] text-gray-500">
                       Go to payment page and proceed payment based on calculated
                       value
                     </p>
                   </div>
                   <div>
-                    <iframe
+                    {/* <iframe
                       src="https://epoint.az/az/widget?id=1882&type=users"
                       allowTransparency={true}
                       width={350}
                       height={175}
-                    ></iframe>
+                    ></iframe> */}
                     <iframe
                       src="https://epoint.az/az/pay_form_widget?id=1882"
                       width="420"
-                      height="480"
+                      height="580"
                     ></iframe>
                   </div>
                 </div>
