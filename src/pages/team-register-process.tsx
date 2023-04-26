@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import { convertToBase64 } from "@/utils/fileToBase64";
 import { useRouter } from "next/router";
 import jwt_decode from "jwt-decode";
+import paymentExample from '../media/images/paymentexample.jpeg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -1737,10 +1738,12 @@ export default function Register(props: Props) {
                       )}
                     <p className="text-[12px] text-gray-500">
                       Go to payment page and proceed payment based on calculated
-                      value
+                      value. You can see below payment example image for easy to
+                      understand
                     </p>
                   </div>
-                  <div>
+                  <div className="flex flex-wrap items-start">
+                  <img src={paymentExample.src} className="w-[350px] mt-[35px] h-auto" alt="payment example" />
                     {/* <iframe
                       src="https://epoint.az/az/widget?id=1882&type=users"
                       allowTransparency={true}
