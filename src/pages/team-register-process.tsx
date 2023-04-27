@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 import { convertToBase64 } from "@/utils/fileToBase64";
 import { useRouter } from "next/router";
 import jwt_decode from "jwt-decode";
-import paymentExample from '../media/images/paymentexample.jpeg'
+import paymentExample from "../media/images/paymentexample.jpeg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -370,12 +370,8 @@ export default function Register(props: Props) {
     idCardFormData.append("file", data.idCard[0]);
     const schoolLogoFormData = new FormData();
     const schoolCertificateFormData = new FormData();
-    if (
-      data.schoolOfficial?.name && // if school official is not empty
-      data.schoolOfficial?.surname &&
-      data.schoolOfficial?.email &&
-      data.schoolOfficial?.contactNumber
-    ) {
+    if (data.schoolCertificate.length) {
+      console.log(data.schoolCertificate);
       schoolCertificateFormData.append("file", data.schoolCertificate[0]);
       schoolLogoFormData.append("file", data.schoolLogo[0]);
     }
@@ -384,6 +380,7 @@ export default function Register(props: Props) {
 
     const personalPhotoFormData = new FormData();
     personalPhotoFormData.append("file", data.personalPhoto[0]);
+    console.log("schoolCertificateFormData", schoolCertificateFormData);
 
     if (leagueId) {
       putTeamInfo({
@@ -544,6 +541,7 @@ export default function Register(props: Props) {
     teamLogoFormData: any;
   }) => {
     try {
+      console.log(schoolCertificateFormData);
       const resp = await putTeamInfoApi({
         teamId: teamId,
         body: postData,
@@ -578,22 +576,20 @@ export default function Register(props: Props) {
           body: schoolLogoFormData,
         });
       }
-
-      console.log(respPlayersUser);
-
-      await idCardApi({
-        playerId: respPlayersUser.id,
-        body: idCardFormData,
-      });
-      if (schoolCertificateData) {
+      if (schoolCertificateFormData) {
         await schoolCertificateApi({
           userId: respPlayersUser.id,
           body: schoolCertificateFormData,
         });
       }
+      await idCardApi({
+        playerId: respPlayersUser.id,
+        body: idCardFormData,
+      });
       toast.success("Team info updated");
     } catch (error) {
       toast.error("Team info update failed");
+      console.error(error);
     }
   };
 
@@ -1743,7 +1739,11 @@ export default function Register(props: Props) {
                     </p>
                   </div>
                   <div className="flex flex-wrap items-start">
-                  <img src={paymentExample.src} className="w-[350px] mt-[35px] h-auto" alt="payment example" />
+                    <img
+                      src={paymentExample.src}
+                      className="w-[350px] mt-[35px] h-auto"
+                      alt="payment example"
+                    />
                     {/* <iframe
                       src="https://epoint.az/az/widget?id=1882&type=users"
                       allowTransparency={true}

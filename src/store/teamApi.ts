@@ -201,8 +201,6 @@ export const teamApi = createApi({
       query: ({ body: body, userId: id }) => ({
         url: `/players/${id}/files/school-certificate`,
         method: "POST",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "multipart/form-data",
         body,
       }),
     }),

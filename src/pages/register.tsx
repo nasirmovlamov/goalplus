@@ -460,7 +460,8 @@ export default function Register(props: Props) {
             <span className="text-blue-500">
               <a
                 target="_blank"
-                href="https://drive.google.com/file/d/1pMxAvPqm59J_-ld1ot7fJrg7lEd_sZDH/view?usp=sharing"
+                href="https://drive.google.com/file/d/1hsQmtqqcpEOdDFQ2uybbIztOEVw0ahPr/view?usp=sharing
+"
                 className="text-blue-500  underline"
               >
                 Soccer U21 terms and conditions
@@ -469,7 +470,7 @@ export default function Register(props: Props) {
             <span className="text-blue-500 ">
               <a
                 target="_blank"
-                href="https://drive.google.com/file/d/1usSgTWpAIXbljkpUYtSxzwynmswxtOpV/view"
+                href="https://drive.google.com/file/d/1thZVMXUuTLpv2QzuL1D42udNtGSTC3kr/view?usp=sharing"
                 className="text-blue-500 underline"
               >
                 Soccer U16 terms and conditions
@@ -478,7 +479,7 @@ export default function Register(props: Props) {
             <span className="text-blue-500 ">
               <a
                 target="_blank"
-                href="https://drive.google.com/file/d/1RDBjV4KPOxxdzTFdzVmNxKheotMjrevW/view"
+                href="https://drive.google.com/file/d/1yTxxEiwGPpxiXuze9lc-FioVuPreSlSY/view?usp=sharing"
                 className="text-blue-500 underline"
               >
                 Soccer U18 terms and conditions
@@ -498,7 +499,7 @@ export default function Register(props: Props) {
             <span className="text-blue-500 ">
               <a
                 target="_blank"
-                href="https://drive.google.com/file/d/1usSgTWpAIXbljkpUYtSxzwynmswxtOpV/view?usp=share_link"
+                href="https://drive.google.com/file/d/14Drv8DLNOV_nx9hddU_XIPDDTBrsuqr3/view?usp=sharing"
                 className="text-blue-500 underline"
               >
                 Recreational Beach Volleyball
