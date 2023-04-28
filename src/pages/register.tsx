@@ -460,8 +460,7 @@ export default function Register(props: Props) {
             <span className="text-blue-500">
               <a
                 target="_blank"
-                href="https://drive.google.com/file/d/1hsQmtqqcpEOdDFQ2uybbIztOEVw0ahPr/view?usp=sharing
-"
+                href="https://drive.google.com/file/d/1hsQmtqqcpEOdDFQ2uybbIztOEVw0ahPr/view?usp=sharing"
                 className="text-blue-500  underline"
               >
                 Soccer U21 terms and conditions
@@ -509,7 +508,7 @@ export default function Register(props: Props) {
             <span className="text-blue-500 ">
               <a
                 target="_blank"
-                href="https://drive.google.com/file/d/1JvC5e414mMQsoFIx9fPqhAJ7CT7ccE2V/view?usp=share_link"
+                href="https://drive.google.com/file/d/1m_YA3m5vdfv2t9G3IBdr30-gMfih8rqR/view?usp=sharing"
                 className="text-blue-500 underline"
               >
                 Recreational Basketball
@@ -519,7 +518,7 @@ export default function Register(props: Props) {
             <span className="text-blue-500 ">
               <a
                 target="_blank"
-                href="https://drive.google.com/file/d/1djNZDkgSted62J3KP2NpTgCV30-VUHZD/view?usp=share_link"
+                href="https://drive.google.com/file/d/1Eqc3dNy5RahKNlikOEnFM9otzAuoNK3o/view?usp=sharing"
                 className="text-blue-500 underline"
               >
                 Basketball U21
