@@ -370,7 +370,7 @@ export default function Register(props: Props) {
     idCardFormData.append("file", data.idCard[0]);
     const schoolLogoFormData = new FormData();
     const schoolCertificateFormData = new FormData();
-    if (data.schoolCertificate.length) {
+    if (data.schoolCertificate?.length) {
       console.log(data.schoolCertificate);
       schoolCertificateFormData.append("file", data.schoolCertificate[0]);
       schoolLogoFormData.append("file", data.schoolLogo[0]);
@@ -486,7 +486,8 @@ export default function Register(props: Props) {
         teamId: resp.id,
         body: teamLogoFormData,
       });
-      if (schoolLogoFormData) {
+      // check if school logo is not empty
+      if (schoolLogoFormData && schoolLogoFormData.get("file")) {
         await schoolLogoApi({
           teamId: resp.id,
           body: schoolLogoFormData,
@@ -498,7 +499,11 @@ export default function Register(props: Props) {
         body: idCardFormData,
       });
       console.log("schoolCertificateFormData", schoolCertificateFormData);
-      if (schoolCertificateFormData) {
+      // if it is not empty
+      if (
+        schoolCertificateFormData && // if school certificate is not empty
+        schoolCertificateFormData.get("file")
+      ) {
         await schoolCertificateApi({
           userId: respPlayersUser.id,
           body: schoolCertificateFormData,
@@ -570,13 +575,13 @@ export default function Register(props: Props) {
         teamId: teamId,
         body: teamLogoFormData,
       });
-      if (schoolLogoFormData) {
+      if (schoolLogoFormData && schoolLogoFormData.get("file")) {
         await schoolLogoApi({
           teamId: teamId,
           body: schoolLogoFormData,
         });
       }
-      if (schoolCertificateFormData) {
+      if (schoolCertificateFormData && schoolCertificateFormData.get("file")) {
         await schoolCertificateApi({
           userId: respPlayersUser.id,
           body: schoolCertificateFormData,
@@ -1585,12 +1590,21 @@ export default function Register(props: Props) {
                 </div>
 
                 <div>
-                  <ErrorMapper error={teamInfoError} />
-                  <ErrorMapper error={idCardError} />
-                  <ErrorMapper error={teamLogoError} />
-                  <ErrorMapper error={schoolCertificateError} />
-                  <ErrorMapper error={schoolLogoError} />
-                  <ErrorMapper error={personalPhotoError} />
+                  <ErrorMapper fieldName={"Team info:"} error={teamInfoError} />
+                  <ErrorMapper fieldName={"Id card:"} error={idCardError} />
+                  <ErrorMapper fieldName={"Team logo:"} error={teamLogoError} />
+                  <ErrorMapper
+                    fieldName={"School certificate:"}
+                    error={schoolCertificateError}
+                  />
+                  <ErrorMapper
+                    fieldName={"School logo:"}
+                    error={schoolLogoError}
+                  />
+                  <ErrorMapper
+                    fieldName={"Personal photo:"}
+                    error={personalPhotoError}
+                  />
                 </div>
               </form>
             )}

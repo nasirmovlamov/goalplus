@@ -944,8 +944,8 @@ export default function Register(props: Props) {
                 </div>
 
                 <ErrorMapper error={putPlayerInfoError} />
-                <ErrorMapper error={personalPhotoError} />
-                <ErrorMapper error={idCardError} />
+                <ErrorMapper fieldName={"Personal photo: "}  error={personalPhotoError} />
+                <ErrorMapper fieldName={"Id Card: "} error={idCardError} />
               </form>
             )}
 

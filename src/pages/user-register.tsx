@@ -1214,8 +1214,11 @@ export default function Register(props: Props) {
 
                 <div>
                   <ErrorMapper error={teamInfoError} />
-                  <ErrorMapper error={idCardError} />
-                  <ErrorMapper error={teamLogoError} />
+                  <ErrorMapper fieldName={"Id card: "} error={idCardError} />
+                  <ErrorMapper
+                    fieldName={"Team logo: "}
+                    error={teamLogoError}
+                  />
                 </div>
 
                 {/* backend errors map */}
