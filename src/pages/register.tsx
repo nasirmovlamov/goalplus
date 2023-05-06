@@ -576,11 +576,11 @@ export default function Register(props: Props) {
                 Please check your email to verify your account
               </div>
               <div>
-                In case you didn't receive the email, please check your spam
-                folder
+                In case you didn&apos;t receive the email, please check your
+                spam folder
               </div>
               <div className="flex flex-col flex-wrap gap-3 text-blue-800 mt-2">
-                <span>If you still didn't receive the email</span>
+                <span>If you still didn&apos;t receive the email</span>
                 <button
                   type="button"
                   className="bg-blue-500 text-white px-2 py-1 rounded-md w-max"
