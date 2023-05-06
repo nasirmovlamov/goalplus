@@ -123,6 +123,18 @@ export const authApi = createApi({
       }),
     }),
 
+    resendEmail: builder.mutation<
+      any,
+      {
+        email: string;
+      }
+    >({
+      query: (body) => ({
+        url: `/authentication/email/resend?email=${body.email}`,
+        method: "POST",
+      }),
+    }),
+
     forgetPassword: builder.mutation<
       any,
       {

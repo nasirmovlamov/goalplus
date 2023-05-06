@@ -171,6 +171,17 @@ export default function Register(props: Props) {
     },
   ] = authApi.useAuthenticationMutation();
 
+  const [
+    resendEmailApi,
+    {
+      isLoading: isResendEmailLoading,
+      isError: isResendEmailError,
+      isSuccess: isResendEmailSuccess,
+      data: resendEmailData,
+      error: resendEmailError,
+    },
+  ] = authApi.useResendEmailMutation();
+
   const methods = useForm<RegisterDto>({
     // resolver: yupResolver(registerSchema),
     defaultValues: {
@@ -193,6 +204,7 @@ export default function Register(props: Props) {
     register,
     watch,
     setValue,
+    getValues,
   } = methods;
 
   const onSubmit = async (data: RegisterDto) => {
@@ -250,6 +262,18 @@ export default function Register(props: Props) {
     }
     return null;
   }, [isAuthenticationError, authenticationError]);
+
+  const resendEmail = async () => {
+    try {
+      console.log("hello");
+      await resendEmailApi({
+        email: getValues("email"),
+      });
+      toast.success("Email sent please check your email");
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+  };
 
   return (
     <div className="flex justify-center pt-[50px] pb-[50px]">
@@ -550,6 +574,20 @@ export default function Register(props: Props) {
               </div>
               <div className="text-green-500">
                 Please check your email to verify your account
+              </div>
+              <div>
+                In case you didn't receive the email, please check your spam
+                folder
+              </div>
+              <div className="flex flex-col flex-wrap gap-3 text-blue-800 mt-2">
+                <span>If you still didn't receive the email</span>
+                <button
+                  type="button"
+                  className="bg-blue-500 text-white px-2 py-1 rounded-md w-max"
+                  onClick={resendEmail}
+                >
+                  Resend Email
+                </button>
               </div>
             </div>
           )}
