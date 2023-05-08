@@ -1,6 +1,6 @@
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import svgCarusel from "../media/images/svg-carusel.svg";
 import sliderImage3 from "../media/images/home-slider-image-3.jpg";
 import sliderImage2 from "../media/images/home-slider-image-2.jpg";
@@ -9,6 +9,9 @@ import Slider from "react-slick";
 import Image from "next/image";
 import Link from "next/link";
 import { useWindowWidth } from "@react-hook/window-size";
+import IframeBlockWrapper from "./IframeBlock";
+import IframeBlock from "./IframeBlock";
+import useWindowDimensions from "./useWindowDimension";
 
 export default function HomeMainSlider() {
   const settings = {
@@ -48,8 +51,16 @@ export default function HomeMainSlider() {
     ),
   };
 
-  const onlyWidth = useWindowWidth();
-
+  const { width: windowWidth } = useWindowDimensions();
+  const [widthWindow, setWidthWindow] = useState(0);
+  useEffect(() => {
+    if (windowWidth) {
+      setWidthWindow(windowWidth);
+    }
+  }, [windowWidth]);
+  if (!windowWidth) {
+    return <></>;
+  }
   return (
     <div className="bg-[#031F57]">
       <Slider {...settings}>
@@ -78,7 +89,12 @@ export default function HomeMainSlider() {
               Register Now
             </Link>
           </div>
-          <div className="w-full h-full bg-[rgba(0,0,0,0.69)] absolute top-0 left-0 -z-10">
+          <div
+            className={
+              " w-full h-full  absolute top-0 left-0 -z-10 " +
+              `bg-[rgba(0,0,0,0.69)]`
+            }
+          >
             <Image
               src={svgCarusel}
               alt=""
@@ -87,21 +103,7 @@ export default function HomeMainSlider() {
             />
           </div>
           <div className="-z-20">
-            <iframe
-              style={{
-                top: 0,
-                left: 0,
-                bottom: 0,
-                right: 0,
-                display: "block",
-                overflow: "hidden",
-                backgroundRepeat: "no-repeat",
-                pointerEvents: "none",
-                zIndex: -20,
-              }}
-              className="w-full h-full absolute top-0 left-0 z-0 md:h-[100vh]"
-              src="https://www.youtube.com/embed/-BDyUQgRaYE?rel=0&autoplay=1&mute=1&enablejsapi=1&controls=0&loop=1&playlist=-BDyUQgRaYE&fs=0&modestbranding=1"
-            ></iframe>
+            <IframeBlock />
           </div>
         </div>
         <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
