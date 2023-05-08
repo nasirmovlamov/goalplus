@@ -7,6 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { authApi } from "@/store/authApi";
 import router from "next/router";
 import { teamApi } from "@/store/teamApi";
+import ErrorMapper from "@/components/ErrorMapper";
 type Props = {};
 
 export type LoginDto = {
@@ -41,6 +42,16 @@ export default function Login(props: Props) {
     },
   ] = authApi.useLazyMeQuery();
   const [
+    resendEmailApi,
+    {
+      isLoading: isResendEmailLoading,
+      isError: isResendEmailError,
+      isSuccess: isResendEmailSuccess,
+      data: resendEmailData,
+      error: resendEmailError,
+    },
+  ] = authApi.useResendEmailMutation();
+  const [
     playersUserInfoApi,
     {
       isLoading: playersUserInfoLoading,
@@ -59,6 +70,7 @@ export default function Login(props: Props) {
     handleSubmit,
     formState: { errors },
     register,
+    getValues,
   } = methods;
 
   const onSubmit = async (data: LoginDto) => {
@@ -132,12 +144,17 @@ export default function Login(props: Props) {
     }
   };
 
-  const loginErrorData = useMemo(() => {
-    if (isLoginError) {
-      return loginError as any;
+  const resendEmail = async () => {
+    try {
+      console.log("hello");
+      await resendEmailApi({
+        email: getValues("email"),
+      });
+      toast.success("Email sent please check your email");
+    } catch (error) {
+      toast.error("Something went wrong");
     }
-    return null;
-  }, [isLoginError, loginError]);
+  };
 
   return (
     <div className="flex justify-center pt-[50px] pb-[50px]">
@@ -188,23 +205,19 @@ export default function Login(props: Props) {
             </Link>
           </div>
 
-          <div>
-            {loginError &&
-              ("status" in loginError ? (
-                <div>
-                  <div>
-                    {loginErrorData?.data &&
-                      Object.keys(loginErrorData.data).map((key) => {
-                        key !== "statusCode" && (
-                          <p key={key} className="text-red-500">
-                            {loginErrorData.data[key]}
-                          </p>
-                        );
-                      })}
-                  </div>
-                </div>
-              ) : null)}
-          </div>
+          <ErrorMapper error={loginError} />
+          {loginError?.data?.message === "Email is not confirmed." && (
+            <div className="flex flex-col flex-wrap gap-3 text-blue-800 mt-2">
+              <span>If you still didn&apos;t receive the email</span>
+              <button
+                type="button"
+                className="bg-blue-500 text-white px-2 py-1 rounded-md w-max"
+                onClick={resendEmail}
+              >
+                Resend Email
+              </button>
+            </div>
+          )}
         </form>
       </div>
     </div>

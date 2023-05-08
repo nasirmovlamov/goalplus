@@ -12,15 +12,15 @@ import { authApi } from "@/store/authApi";
 export default function Layout({ children }: ScriptProps) {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  // const [
-  //   refreshTokenApi,
-  //   {
-  //     data: refreshTokenData,
-  //     isError: isRefreshTokenError,
-  //     isLoading: isRefreshTokenLoading,
-  //     isSuccess: isRefreshTokenSuccess,
-  //   },
-  // ] = authApi.useRefreshTokenMutation();
+  const [
+    refreshTokenApi,
+    {
+      data: refreshTokenData,
+      isError: isRefreshTokenError,
+      isLoading: isRefreshTokenLoading,
+      isSuccess: isRefreshTokenSuccess,
+    },
+  ] = authApi.useRefreshTokenMutation();
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -28,10 +28,10 @@ export default function Layout({ children }: ScriptProps) {
     if (accessToken && refreshToken) {
       dispatch(authSlice.actions.getTokenFromStorage());
       dispatch(authSlice.actions.getUserFromStorage());
-      // refreshTokenApi({
-      //   accessToken: accessToken,
-      //   refreshToken: refreshToken,
-      // });
+      refreshTokenApi({
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      });
     }
   }, []);
 

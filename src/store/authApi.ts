@@ -108,6 +108,11 @@ export const authApi = createApi({
         method: "POST",
         body,
       }),
+      transformErrorResponse: (response) => {
+        localStorage.clear();
+        window.location.reload();
+        return response;
+      },
     }),
 
     requestPasswordReset: builder.mutation<
