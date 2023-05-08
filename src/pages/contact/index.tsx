@@ -63,6 +63,44 @@ const Contact = (props: Props) => {
             <a> +90 534 254 3885 (WhatsApp only)</a>
           </p>
         </div>
+
+        <div className="flex flex-col gap-2">
+          <h2 className="text-xl font-bold text-blue-800">Goal+ U-18 Soccer</h2>
+          <p>Project Manager: Yusuf Orujov</p>
+          <p>Assistant Manager: Kamran Mammadov</p>
+          <p>Contact Person: Vagif Huseynov</p>
+
+          <p>
+            Contact Information:
+            <a> +90 534 254 3885 (WhatsApp only)</a>
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h2 className="text-xl font-bold text-blue-800">Goal+ U-21 Soccer</h2>
+          <p>Project Manager: Emilio Azizli</p>
+          <p>Assistant Managers: Javid Rashidbayli & Kamran Mammadov</p>
+          <p>Contact Person: Vagif Huseynov</p>
+
+          <p>
+            Contact Information:
+            <a> +90 534 254 3885 (WhatsApp only) </a>
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h2 className="text-xl font-bold text-blue-800">
+            Goal+ Girls Soccer
+          </h2>
+          <p>Project Manager: Emilio Azizli</p>
+          <p>Assistant Managers: Kamran Mammadov</p>
+          <p>Contact Person: Vagif Huseynov</p>
+
+          <p>
+            Contact Information:
+            <a> +90 534 254 3885 (WhatsApp only)</a>
+          </p>
+        </div>
       </div>
     </div>
   );
