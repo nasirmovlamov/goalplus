@@ -371,7 +371,6 @@ export default function Register(props: Props) {
     const schoolLogoFormData = new FormData();
     const schoolCertificateFormData = new FormData();
     if (data.schoolCertificate?.length) {
-      console.log(data.schoolCertificate);
       schoolCertificateFormData.append("file", data.schoolCertificate[0]);
       schoolLogoFormData.append("file", data.schoolLogo[0]);
     }
@@ -720,10 +719,6 @@ export default function Register(props: Props) {
     }
     return null;
   }, [isLeagueInfoSuccess, leagueInfoData]);
-
-  useEffect(() => {
-    console.log(idCardError);
-  }, [idCardError, isIdCardSuccess, idCardData]);
 
   if (isRefreshTokenError) {
     return (
@@ -1780,6 +1775,34 @@ export default function Register(props: Props) {
               </div>
             )}
           </div>
+        </div>
+        <div className="flex justify-end w-full">
+          {step > 2 && (
+            <button
+              onClick={() => {
+                if (step === 2) {
+                  return;
+                }
+                setStep(step - 1);
+              }}
+              className="bg-[#f2f2f2]  px-5 py-2 rounded-md text-black transition hover:bg-[#e2e2e2]"
+            >
+              Prev
+            </button>
+          )}
+          {!isPlayersUserInfo && (
+            <button
+              onClick={() => {
+                if (step === 4) {
+                  return;
+                }
+                setStep(step + 1);
+              }}
+              className="bg-[#f2f2f2] px-5 py-2 rounded-md ml-2 text-black transition hover:bg-[#e2e2e2]"
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     </div>
