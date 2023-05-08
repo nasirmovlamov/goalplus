@@ -206,7 +206,8 @@ export default function Login(props: Props) {
           </div>
 
           <ErrorMapper error={loginError} />
-          {loginError?.data?.message === "Email is not confirmed." && (
+          {((loginError as any)?.data as any)?.message ===
+            "Email is not confirmed." && (
             <div className="flex flex-col flex-wrap gap-3 text-blue-800 mt-2">
               <span>If you still didn&apos;t receive the email</span>
               <button

@@ -409,6 +409,40 @@ export default function Register(props: Props) {
     return null;
   };
 
+  const setValuesOfForm = () => {
+    console.log("teamInfoData", teamInfoData);
+    if (teamInfoData) {
+      setValue("jerseyNumber", teamInfoData.jerseyNumber);
+      setValue("quote", teamInfoData.quote);
+      setValue("teamSlogan", teamInfoData.slogan);
+      setValue("isPaying", teamInfoData.paymentType);
+      setValue("teamName", teamInfoData.name);
+      setValue("comment", teamInfoData.teamDetails.additionalComments);
+      if (teamInfoData.teamDetails.schoolOfficial) {
+        setValue(
+          "schoolOfficial.name",
+          teamInfoData.teamDetails.schoolOfficial.firstName
+        );
+        setValue(
+          "schoolOfficial.surname",
+          teamInfoData.teamDetails.schoolOfficial.lastName
+        );
+        setValue(
+          "schoolOfficial.email",
+          teamInfoData.teamDetails.schoolOfficial.email
+        );
+        setValue(
+          "schoolOfficial.contactNumber",
+          teamInfoData.teamDetails.schoolOfficial.number
+        );
+        setValue(
+          "schoolOfficial.position",
+          teamInfoData.teamDetails.schoolOfficial.position
+        );
+      }
+    }
+  };
+
   const handleTeamInfo = async ({
     leagueId,
     userId,
@@ -508,6 +542,7 @@ export default function Register(props: Props) {
           body: schoolCertificateFormData,
         });
       }
+      setValuesOfForm();
       toast.success("Team info updated");
     } catch (error) {
       toast.error("Team info update failed");
@@ -590,6 +625,7 @@ export default function Register(props: Props) {
         playerId: respPlayersUser.id,
         body: idCardFormData,
       });
+      setValuesOfForm();
       toast.success("Team info updated");
     } catch (error) {
       toast.error("Team info update failed");
