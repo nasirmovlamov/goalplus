@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function () {
+export default function Page401() {
   useEffect(() => {
     window.location.href = "http://www.goalplus.az";
   }, []);
