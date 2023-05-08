@@ -16,7 +16,10 @@ import { playerApi } from "./playerApi";
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action) && !action.type.includes("Internal")) {
     // check status code 401
-    // if (action.payload?.data?.statusCode === "401") {
+    if (action.payload?.data?.statusCode === "401") {
+      toast.error("Unauthorized");
+      window.location.href = "/401";
+    }
     // if (
     //   action.payload?.data?.message !== "Resource not found." &&
     //   action.payload?.data?.message !== ""

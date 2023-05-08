@@ -51,7 +51,7 @@ export const authSlice = createSlice({
       localStorage.removeItem("userData");
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-    }
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -74,6 +74,24 @@ export const authSlice = createSlice({
             accessToken: action.payload.accessToken,
             refreshToken: action.payload.refreshToken,
           };
+          localStorage.setItem("accessToken", action.payload.accessToken);
+          localStorage.setItem("refreshToken", action.payload.refreshToken);
+          state.user = action.payload.refreshToken;
+        }
+      }
+    );
+
+    builder.addMatcher(
+      authApi.endpoints.refreshToken.matchFulfilled,
+      (state, action) => {
+        if (action.payload) {
+          console.log("jwtishka", action.payload);
+          state.jwt = {
+            accessToken: action.payload.accessToken,
+            refreshToken: action.payload.refreshToken,
+          };
+          localStorage.setItem("accessToken", action.payload.accessToken);
+          localStorage.setItem("refreshToken", action.payload.refreshToken);
           state.user = action.payload.refreshToken;
         }
       }

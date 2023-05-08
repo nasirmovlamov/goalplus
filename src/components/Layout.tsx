@@ -32,8 +32,16 @@ export default function Layout({ children }: ScriptProps) {
         accessToken: accessToken,
         refreshToken: refreshToken,
       });
+    } else {
+      if (
+        router.pathname === "/team-register-process" ||
+        router.pathname === "/user-register-process"
+      ) {
+        localStorage.clear();
+        router.push("/login");
+      }
     }
-  }, []);
+  }, [router]);
 
   // useEffect(() => {
   //   window.location.href = "http://azerqus0.beget.tech/";

@@ -150,6 +150,14 @@ export const Navbar = () => {
                 </span>
               </li>
             )}
+
+            {userJwt && (
+              <li className="p-2">
+                <button className="flex items-center" onClick={logoutUser}>
+                  Logout
+                </button>
+              </li>
+            )}
             {!userJwt && (
               <li className="p-2">
                 <StyledLink href="/register">Register</StyledLink>
@@ -166,9 +174,9 @@ export const Navbar = () => {
               <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
             </li>
             <li className="p-2">
-              <a href="https://www.instagram.com/goalplusaz/" target="_blank">
+              <Link href="/contact" target="_blank">
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -222,16 +230,15 @@ export const Navbar = () => {
               </li>
             )}
             <li className="pl-4">
-              <a
-                target="_blank"
-                href=" https://linktr.ee/goalplusaz"
+              <Link
+                href="/contact"
                 className="text-lg bg-[#031F57] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max h-max shadow-lg"
                 style={{
                   boxShadow: "0px 0px 5px 0px #cdf000",
                 }}
               >
                 Contact us
-              </a>
+              </Link>
             </li>
           </ul>
 

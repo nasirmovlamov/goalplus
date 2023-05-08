@@ -110,7 +110,7 @@ export const authApi = createApi({
       }),
       transformErrorResponse: (response) => {
         localStorage.clear();
-        window.location.reload();
+        window.location.href = "/login";
         return response;
       },
     }),
