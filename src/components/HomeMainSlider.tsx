@@ -51,16 +51,17 @@ export default function HomeMainSlider() {
     ),
   };
 
-  const { width: windowWidth } = useWindowDimensions();
-  const [widthWindow, setWidthWindow] = useState(0);
-  useEffect(() => {
-    if (windowWidth) {
-      setWidthWindow(windowWidth);
-    }
-  }, [windowWidth]);
-  if (!windowWidth) {
-    return <></>;
-  }
+  // const { width: windowWidth } = useWindowDimensions();
+  // const [widthWindow, setWidthWindow] = useState(0);
+  // useEffect(() => {
+  //   if (windowWidth) {
+  //     setWidthWindow(windowWidth);
+  //   }
+  // }, [windowWidth]);
+  // if (!windowWidth) {
+  //   return <></>;
+  // }
+
   return (
     <div className="bg-[#031F57]">
       <Slider {...settings}>

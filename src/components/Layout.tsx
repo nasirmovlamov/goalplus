@@ -7,18 +7,31 @@ import Copyright from "./Copyright";
 import { authSlice } from "@/store/authSlice";
 import { useAppDispatch } from "@/store/store";
 import { useRouter } from "next/router";
+import { authApi } from "@/store/authApi";
 
 export default function Layout({ children }: ScriptProps) {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  // const [
+  //   refreshTokenApi,
+  //   {
+  //     data: refreshTokenData,
+  //     isError: isRefreshTokenError,
+  //     isLoading: isRefreshTokenLoading,
+  //     isSuccess: isRefreshTokenSuccess,
+  //   },
+  // ] = authApi.useRefreshTokenMutation();
 
   useEffect(() => {
-    if (
-      localStorage.getItem("accessToken") &&
-      localStorage.getItem("refreshToken")
-    ) {
+    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
+    if (accessToken && refreshToken) {
       dispatch(authSlice.actions.getTokenFromStorage());
       dispatch(authSlice.actions.getUserFromStorage());
+      // refreshTokenApi({
+      //   accessToken: accessToken,
+      //   refreshToken: refreshToken,
+      // });
     }
   }, []);
 

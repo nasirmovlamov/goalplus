@@ -6,6 +6,7 @@ import sliderImage2 from "../media/images/home-slider-image-2.jpg";
 import svgCarusel from "../media/images/svg-carusel.svg";
 import voleyballImage from "../media/images/card-image-2.jpeg";
 import bannerImage from "../media/images/bannerHomeSlider.jpg";
+
 const IframeBlock = () => {
   const { width: windowWidth } = useWindowDimensions();
   const [widthWindow, setWidthWindow] = useState(0);
