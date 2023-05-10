@@ -27,6 +27,7 @@ type Props = {};
 
 import defaultProfilePhoto from "../media/images/Default_pfp.svg.png";
 import ErrorMapper from "@/components/ErrorMapper";
+import { paymentApi } from "@/store/paymentApi";
 
 export const registerSchema = yup.object().shape({
   // name: yup.string().label("Name").required(),
@@ -103,6 +104,16 @@ export default function Register(props: Props) {
       error: putPlayerInfoError,
     },
   ] = teamApi.usePutPlayerInfoMutation();
+  const [
+    paymentProceedApi,
+    {
+      isLoading: isPaymentApiLoading,
+      isError: isPaymentApiError,
+      isSuccess: isPaymentApiSuccess,
+      data: paymentApiData,
+      error: paymentApiError,
+    },
+  ] = paymentApi.useProccedPaymentMutation();
   const [
     getTeamInfoApi,
     {
@@ -668,6 +679,38 @@ export default function Register(props: Props) {
     return null;
   }, [isPlayersUserSuccess, playersUserInfo]);
 
+  const proceedPayment = async () => {
+    let resp = null;
+    console.log("onlyCaptainPaying", onlyCaptainPaying);
+    try {
+      if (
+        onlyCaptainPaying // if captain is not paying
+      ) {
+        const amount = leagueInfoData?.leagueDetails?.priceEarly;
+        console.log("amount", amount);
+        resp = await paymentProceedApi({
+          userId: localStorage.getItem("userId")!,
+          amount: amount,
+        });
+        //open in new tab
+        window.open((resp as any)?.error?.data, "_blank");
+      } else {
+        const amount = Number(
+          (leagueInfoData?.leagueDetails?.priceEarly / teamSize)
+            .toFixed(2)
+            .slice(0, -3)
+        );
+        resp = await paymentProceedApi({
+          userId: localStorage.getItem("userId")!,
+          amount: amount,
+        });
+        window.open((resp as any)?.error?.data, "_blank");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     // if (
     //   localStorage.getItem("accessToken") &&
@@ -704,6 +747,9 @@ export default function Register(props: Props) {
 
   useEffect(() => {
     if (isGetTeamInfoSuccess) {
+      console.log("getTeamInfoData", getTeamInfoData);
+      console.log("playersUserInfo", playersUserInfo);
+
       methods.reset({
         teamName: getTeamInfoData.name,
         teamSlogan: getTeamInfoData.slogan,
@@ -719,7 +765,6 @@ export default function Register(props: Props) {
         isPaying: getTeamInfoData.paymentType,
         comment: playersUserInfo.teamDetails?.additionalComments,
       });
-      console.log(getTeamInfoData);
       const leagueUrl = getTeamInfoData.league;
       const trimedIdFromLeagueUrl = leagueUrl.split("/").pop();
       leagueInfoApi({
@@ -1784,22 +1829,29 @@ export default function Register(props: Props) {
                     </p>
                   </div>
                   <div className="flex flex-wrap items-start">
-                    <img
+                    {/* <img
                       src={paymentExample.src}
                       className="w-[350px] mt-[35px] h-auto"
                       alt="payment example"
-                    />
+                    /> */}
                     {/* <iframe
                       src="https://epoint.az/az/widget?id=1882&type=users"
                       allowTransparency={true}
                       width={350}
                       height={175}
                     ></iframe> */}
-                    <iframe
+                    <button
+                      onClick={proceedPayment}
+                      type="button"
+                      className="bg-[#f2f2f2]  px-5 py-2 rounded-md text-black transition hover:bg-[#e2e2e2]"
+                    >
+                      Submit Payment
+                    </button>
+                    {/* <iframe
                       src="https://epoint.az/az/pay_form_widget?id=1882"
                       width="420"
                       height="580"
-                    ></iframe>
+                    ></iframe> */}
                   </div>
                 </div>
               </div>

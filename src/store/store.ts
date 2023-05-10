@@ -12,6 +12,7 @@ import { teamApi } from "./teamApi";
 import { counter } from "@fortawesome/fontawesome-svg-core";
 import { authSlice } from "./authSlice";
 import { playerApi } from "./playerApi";
+import { paymentApi } from "./paymentApi";
 
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action) && !action.type.includes("Internal")) {
@@ -36,9 +37,11 @@ export const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [teamApi.reducerPath]: teamApi.reducer,
     [playerApi.reducerPath]: playerApi.reducer,
+    [paymentApi.reducerPath]: paymentApi.reducer,
     player: playerApi.reducer,
     auth: authSlice.reducer,
     team: teamApi.reducer,
+    payment: paymentApi.reducer,
   },
   // Adding the api middleware enables caching, invalidation, polling,
   // and other useful features of `rtk-query`.
@@ -47,6 +50,7 @@ export const store = configureStore({
     authApi.middleware,
     teamApi.middleware,
     playerApi.middleware,
+    paymentApi.middleware,
     rtkQueryErrorLogger,
   ],
 });
