@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import style from "../styles/Countdown.module.css";
+import style from "../styles/countDown.module.css";
+
 import { setInterval } from "timers";
 interface CountdownProps {
   targetDate: string;
