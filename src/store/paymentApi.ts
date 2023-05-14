@@ -31,5 +31,17 @@ export const paymentApi = createApi({
         method: "GET",
       }),
     }),
+
+    teamTotalPayment: builder.mutation<
+      any,
+      {
+        teamId: string;
+      }
+    >({
+      query: ({ teamId }) => ({
+        url: `/payments/team/160/total`,
+        method: "GET",
+      }),
+    }),
   }),
 });

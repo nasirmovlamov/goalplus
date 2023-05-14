@@ -116,6 +116,16 @@ export default function Register(props: Props) {
     },
   ] = paymentApi.useProccedPaymentMutation();
   const [
+    getTeamTotalPaymentApi,
+    {
+      isLoading: isGetTeamTotalPaymentLoading,
+      isError: isGetTeamTotalPaymentError,
+      isSuccess: isGetTeamTotalPaymentSuccess,
+      data: getTeamTotalPaymentData,
+      error: getTeamTotalPaymentError,
+    },
+  ] = paymentApi.useTeamTotalPaymentMutation();
+  const [
     getTeamInfoApi,
     {
       isLoading: isGetTeamInfoLoading,
@@ -709,27 +719,6 @@ export default function Register(props: Props) {
   };
 
   useEffect(() => {
-    // if (
-    //   localStorage.getItem("accessToken") &&
-    //   localStorage.getItem("refreshToken")
-    // ) {
-    //   return () => {
-    //     refreshTokenApi({
-    //       accessToken: localStorage.getItem("accessToken")! as string,
-    //       refreshToken: localStorage.getItem("refreshToken")! as string,
-    //     })
-    //       .unwrap()
-    //       .then((resp: any) => {
-    //         if (resp) {
-    //           localStorage.setItem("accessToken", resp.accessToken);
-    //           localStorage.setItem("refreshToken", resp.refreshToken);
-    //         }
-    //       });
-    //   };
-    // }
-  }, []);
-
-  useEffect(() => {
     if (isPlayersUserSuccess) {
       const teamsUrl = playersUserInfo.team;
       const trimedIdFromTeamsUrl = teamsUrl.split("/").pop();
@@ -797,6 +786,14 @@ export default function Register(props: Props) {
     }
     return null;
   }, [isLeagueInfoSuccess, leagueInfoData]);
+
+  useEffect(() => {
+    if (teamId) {
+      getTeamTotalPaymentApi({
+        teamId: teamId,
+      });
+    }
+  }, [teamId]);
 
   if (isRefreshTokenError) {
     return (
@@ -1788,6 +1785,7 @@ export default function Register(props: Props) {
                         {leagueInfoData?.leagueDetails?.maxNumberOfPlayers}
                       </p>
                     )}
+
                     {onlyCaptainPaying && (
                       <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
                         Payment based on your team size:{" "}
@@ -1817,6 +1815,10 @@ export default function Register(props: Props) {
                             teamData.length}
                         </p>
                       )}
+                    <div className="flex gap-4 text-[30px] text-green-500">
+                      <span>Total payment made by team</span>
+                      <span>{getTeamTotalPaymentData?.value}</span>
+                    </div>
                     <p className="text-[12px] text-gray-500">
                       Go to payment page and proceed payment based on calculated
                       value. You can see below payment example image for easy to
@@ -1852,11 +1854,11 @@ export default function Register(props: Props) {
               </div>
             )}
 
-            {step === 5 && (
+            {/* {step === 5 && (
               <div className="flex flex-wrap gap-[30px]  w-full">
                 You have to fill all the necessary information to proceed
               </div>
-            )}
+            )} */}
           </div>
         </div>
         <div className="flex justify-end w-full">

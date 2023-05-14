@@ -77,6 +77,16 @@ export default function Register(props: Props) {
       error,
     },
   ] = authApi.useRegisterMutation();
+  const [
+    getTeamTotalPaymentApi,
+    {
+      isLoading: isGetTeamTotalPaymentLoading,
+      isError: isGetTeamTotalPaymentError,
+      isSuccess: isGetTeamTotalPaymentSuccess,
+      data: getTeamTotalPaymentData,
+      error: getTeamTotalPaymentError,
+    },
+  ] = paymentApi.useTeamTotalPaymentMutation();
 
   const {
     data: meData,
@@ -331,6 +341,9 @@ export default function Register(props: Props) {
         teamId: trimedIdFromTeamsUrl,
       });
       getTeamInfoApi({
+        teamId: trimedIdFromTeamsUrl,
+      });
+      getTeamTotalPaymentApi({
         teamId: trimedIdFromTeamsUrl,
       });
     }
@@ -1036,6 +1049,10 @@ export default function Register(props: Props) {
                         : leagueInfoData?.leagueDetails?.priceEarly}
                       AZN
                     </p>
+                    <div className="flex gap-4 text-[30px] text-green-500">
+                      <span>Total payment made by team</span>
+                      <span>{getTeamTotalPaymentData?.value}</span>
+                    </div>
                     <p className="text-[12px] text-gray-500">
                       Go to payment page and proceed payment based on calculated
                       value
@@ -1060,7 +1077,7 @@ export default function Register(props: Props) {
               </div>
             )}
 
-            {step === 3 && (
+            {step === 4 && (
               <div className="flex flex-wrap gap-[30px]  w-full">
                 You have to fill all necessary information
               </div>

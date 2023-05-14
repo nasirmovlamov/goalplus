@@ -12,6 +12,7 @@ import { useWindowWidth } from "@react-hook/window-size";
 import IframeBlockWrapper from "./IframeBlock";
 import IframeBlock from "./IframeBlock";
 import useWindowDimensions from "./useWindowDimension";
+import Countdown from "./Countdown";
 
 export default function HomeMainSlider() {
   const settings = {
@@ -74,6 +75,7 @@ export default function HomeMainSlider() {
               Register as an athlete or get your membership for Goalplus Summer
               2023
             </p>
+
             {/* <button className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl">
               Discover Now
             </button> */}
@@ -89,6 +91,7 @@ export default function HomeMainSlider() {
             >
               Register Now
             </Link>
+            <Countdown targetDate="2023-06-15T23:59:59" />
           </div>
           <div
             className={
@@ -115,6 +118,7 @@ export default function HomeMainSlider() {
             <p className="text-center mt-5">
               Info, perks, shcedules, activities, standings, all in one place!
             </p>
+
             <Link
               href="/register"
               className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-[#cdf000]"
