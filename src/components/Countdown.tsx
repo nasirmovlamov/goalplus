@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "../styles/Countdown.module.css";
+import { setInterval } from "timers";
 interface CountdownProps {
   targetDate: string;
 }
@@ -37,11 +38,11 @@ const Countdown = ({ targetDate }: CountdownProps) => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
-    return () => clearTimeout(timer);
   }, [targetDate]);
+
   if (timeLeft)
     return (
       <div className={style["timer-container"]}>
