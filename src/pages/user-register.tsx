@@ -18,6 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { AddTeamMember } from "@/components/AddTeamMember";
 import ErrorMapper from "@/components/ErrorMapper";
+import { paymentApi } from "@/store/paymentApi";
 type Props = {};
 
 export const registerSchema = yup.object().shape({
@@ -130,6 +131,8 @@ export default function Register(props: Props) {
       error: teamLogoError,
     },
   ] = authApi.useTeamLogoMutation();
+
+  
 
   const [
     schoolDiplomaApi,
@@ -314,6 +317,8 @@ export default function Register(props: Props) {
       toast.error("Team info update failed");
     }
   };
+
+  
   return (
     <div className="flex justify-center pt-[50px] pb-[50px]">
       <div className="flex flex-wrap max-w-[1140px] justify-center w-full px-[15px] pt-4">

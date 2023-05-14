@@ -28,6 +28,7 @@ type Props = {};
 import defaultProfilePhoto from "../media/images/Default_pfp.svg.png";
 import ErrorMapper from "@/components/ErrorMapper";
 import { paymentApi } from "@/store/paymentApi";
+import error from "next/error";
 
 export const registerSchema = yup.object().shape({
   // name: yup.string().label("Name").required(),
@@ -681,25 +682,21 @@ export default function Register(props: Props) {
 
   const proceedPayment = async () => {
     let resp = null;
-    console.log("onlyCaptainPaying", onlyCaptainPaying);
     try {
       if (
         onlyCaptainPaying // if captain is not paying
       ) {
-        const amount = leagueInfoData?.leagueDetails?.priceEarly;
-        console.log("amount", amount);
+        const amount = leagueInfoData?.leagueDetails?.priceRegular;
         resp = await paymentProceedApi({
           userId: localStorage.getItem("userId")!,
           amount: amount,
         });
-        //open in new tab
         window.open((resp as any)?.error?.data, "_blank");
       } else {
-        const amount = Number(
-          (leagueInfoData?.leagueDetails?.priceEarly / teamSize)
-            .toFixed(2)
-            .slice(0, -3)
-        );
+        const amount = (
+          leagueInfoData?.leagueDetails?.priceRegular / teamSize
+        ).toFixed(2);
+
         resp = await paymentProceedApi({
           userId: localStorage.getItem("userId")!,
           amount: amount,
@@ -1794,9 +1791,7 @@ export default function Register(props: Props) {
                     {onlyCaptainPaying && (
                       <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
                         Payment based on your team size:{" "}
-                        {leagueInfoData?.leagueDetails?.priceEarly /
-                          teamData.length}{" "}
-                        AZN
+                        {leagueInfoData?.leagueDetails?.priceRegular} AZN
                       </p>
                     )}
                     {!onlyCaptainPaying &&
@@ -1806,10 +1801,10 @@ export default function Register(props: Props) {
                           Payment based on your team size:{" "}
                           {teamSize
                             ? (
-                                leagueInfoData?.leagueDetails?.priceEarly /
+                                leagueInfoData?.leagueDetails?.priceRegular /
                                 teamSize
                               ).toFixed(2)
-                            : leagueInfoData?.leagueDetails?.priceEarly}
+                            : leagueInfoData?.leagueDetails?.priceRegular}
                           AZN
                         </p>
                       )}
@@ -1818,7 +1813,7 @@ export default function Register(props: Props) {
                         leagueInfoData?.leagueDetails?.minNumberOfPlayers && (
                         <p className="text-[12px] mt-2  text-gray-500 text-[36px]">
                           Payment based on your team size:{" "}
-                          {leagueInfoData?.leagueDetails?.priceEarly /
+                          {leagueInfoData?.leagueDetails?.priceRegular /
                             teamData.length}
                         </p>
                       )}

@@ -22,6 +22,7 @@ import register from "./register";
 import { playerApi } from "@/store/playerApi";
 import error from "next/error";
 import ErrorMapper from "@/components/ErrorMapper";
+import { paymentApi } from "@/store/paymentApi";
 type Props = {};
 
 export default function Register(props: Props) {
@@ -205,6 +206,16 @@ export default function Register(props: Props) {
       error: InvitationError,
     },
   ] = authApi.useInvitationsMutation();
+  const [
+    paymentProceedApi,
+    {
+      isLoading: isPaymentApiLoading,
+      isError: isPaymentApiError,
+      isSuccess: isPaymentApiSuccess,
+      data: paymentApiData,
+      error: paymentApiError,
+    },
+  ] = paymentApi.useProccedPaymentMutation();
   const methods = useForm<RegisterDto>({
     // resolver: yupResolver(registerSchema),
     defaultValues: {
@@ -308,7 +319,9 @@ export default function Register(props: Props) {
     return null;
   }, [isPutPlayerError, putPlayerInfoError]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log("playersUserInfo", playersUserInfo);
+  }, [playersUserInfo]);
 
   useEffect(() => {
     if (isPlayersUserSuccess) {
@@ -347,6 +360,22 @@ export default function Register(props: Props) {
       });
     }
   }, [isGetTeamInfoSuccess]);
+
+  const proceedPayment = async () => {
+    let resp = null;
+    try {
+      const amount = (
+        leagueInfoData?.leagueDetails?.priceEarly / teamSize
+      ).toFixed(2);
+      resp = await paymentProceedApi({
+        userId: localStorage.getItem("userId")!,
+        amount: amount,
+      });
+      window.open((resp as any)?.error?.data, "_blank");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (isRefreshTokenError) {
     return (
@@ -398,7 +427,7 @@ export default function Register(props: Props) {
             <div className="flex gap-1 items-center">
               <button
                 onClick={() => {
-                  setStep(4);
+                  setStep(3);
                 }}
                 disabled={isPlayersUserInfo}
                 className={
@@ -944,12 +973,15 @@ export default function Register(props: Props) {
                 </div>
 
                 <ErrorMapper error={putPlayerInfoError} />
-                <ErrorMapper fieldName={"Personal photo: "}  error={personalPhotoError} />
+                <ErrorMapper
+                  fieldName={"Personal photo: "}
+                  error={personalPhotoError}
+                />
                 <ErrorMapper fieldName={"Id Card: "} error={idCardError} />
               </form>
             )}
 
-            {step === 4 && (
+            {step === 3 && (
               <div className="flex flex-wrap gap-[30px]  w-full">
                 <div className="flex flex-col gap-2 w-full ">
                   <div className="gap-2 flex flex-col">
@@ -1010,12 +1042,19 @@ export default function Register(props: Props) {
                     </p>
                   </div>
                   <div>
-                    <iframe
+                    <button
+                      onClick={proceedPayment}
+                      type="button"
+                      className="bg-[#f2f2f2]  px-5 py-2 rounded-md text-black transition hover:bg-[#e2e2e2]"
+                    >
+                      Submit Payment
+                    </button>
+                    {/* <iframe
                       src="https://epoint.az/az/widget?id=1882&type=users"
                       allowTransparency={true}
                       width={350}
                       height={175}
-                    ></iframe>
+                    ></iframe> */}
                   </div>
                 </div>
               </div>
@@ -1027,6 +1066,34 @@ export default function Register(props: Props) {
               </div>
             )}
           </div>
+        </div>
+        <div className="flex justify-end w-full">
+          {step > 2 && (
+            <button
+              onClick={() => {
+                if (step === 2) {
+                  return;
+                }
+                setStep(step - 1);
+              }}
+              className="bg-[#f2f2f2]  px-5 py-2 rounded-md text-black transition hover:bg-[#e2e2e2]"
+            >
+              Prev
+            </button>
+          )}
+          {!isPlayersUserInfo && (
+            <button
+              onClick={() => {
+                if (step === 3) {
+                  return;
+                }
+                setStep(step + 1);
+              }}
+              className="bg-[#f2f2f2] px-5 py-2 rounded-md ml-2 text-black transition hover:bg-[#e2e2e2]"
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     </div>

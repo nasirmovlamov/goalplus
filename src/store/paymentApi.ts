@@ -23,7 +23,7 @@ export const paymentApi = createApi({
       any,
       {
         userId: string;
-        amount: number;
+        amount: string;
       }
     >({
       query: ({ userId, amount }) => ({
