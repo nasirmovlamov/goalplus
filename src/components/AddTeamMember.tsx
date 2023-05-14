@@ -60,6 +60,7 @@ export const AddTeamMember = () => {
     <div className="flex flex-wrap gap-[30px]  w-full mt-4">
       <div className="flex flex-col gap-2 max-w-[350px] w-full">
         <label htmlFor={`teamMembers.name`}>
+          <span className="text-red-500 mr-1">*</span>
           <b>Player name</b>
         </label>
         <input
@@ -75,6 +76,7 @@ export const AddTeamMember = () => {
 
       <div className="flex flex-col gap-2 max-w-[350px] w-full">
         <label htmlFor={`teamMembers.surname`}>
+          <span className="text-red-500 mr-1">*</span>
           <b>Player surname</b>
         </label>
         <input
@@ -90,6 +92,7 @@ export const AddTeamMember = () => {
 
       <div className="flex flex-col gap-2 max-w-[350px] w-full">
         <label htmlFor={`teamMembers.email`}>
+          <span className="text-red-500 mr-1">*</span>
           <b>Player email</b>
         </label>
         <input
@@ -105,6 +108,7 @@ export const AddTeamMember = () => {
 
       <div className="flex flex-col gap-2 max-w-[350px] w-full">
         <label htmlFor={`teamMembers.contactNumber`}>
+          <span className="text-red-500 mr-1">*</span>
           <b>Player contact number</b>
         </label>
         <input

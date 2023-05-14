@@ -487,6 +487,7 @@ export default function Register(props: Props) {
                 {/* Jersey number */}
                 <div className="flex flex-col gap-2 max-w-[449px] w-full">
                   <label htmlFor="jerseyNumber">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> Jersey number</b>
                   </label>
                   <input
@@ -507,6 +508,7 @@ export default function Register(props: Props) {
                 {watch("sportType") === "2" && (
                   <div className="flex flex-col gap-2 max-w-[449px] w-full">
                     <label htmlFor="playerPosition">
+                      <span className="text-red-500 mr-1">*</span>
                       <b> Player position </b>
                     </label>
                     <select
@@ -530,6 +532,7 @@ export default function Register(props: Props) {
 
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="schoolCertificate">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> Educational Institution certificate or diploma </b>
                   </label>
                   {/* trim and dots end */}
@@ -778,7 +781,8 @@ export default function Register(props: Props) {
 
                 {/* ID CARD */}
                 <div className="flex flex-col gap-2 w-full">
-                  <label htmlFor="personalPhoto">
+                  <label htmlFor="idCard">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> ID Card</b>
                   </label>
                   {/* trim and dots end */}
@@ -864,6 +868,7 @@ export default function Register(props: Props) {
                 {/* Personal Photo */}
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="personalPhoto">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> Personal photo</b>
                   </label>
                   {/* trim and dots end */}

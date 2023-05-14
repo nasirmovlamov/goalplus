@@ -903,6 +903,7 @@ export default function Register(props: Props) {
                 {!sportId && (
                   <div className="flex flex-col gap-2 max-w-[449px] w-full">
                     <label htmlFor="sportType">
+                      <span className="text-red-500 mr-1">*</span>
                       <b> Sport type</b>
                     </label>
                     <select
@@ -957,6 +958,7 @@ export default function Register(props: Props) {
                 {!leagueId && (
                   <div className="flex flex-col gap-2 max-w-[449px] w-full">
                     <label htmlFor="leagueType">
+                      <span className="text-red-500 mr-1">*</span>
                       <b> Leagues type</b>
                     </label>
                     <select
@@ -986,6 +988,7 @@ export default function Register(props: Props) {
                     </span>
                   </div>
                 )}
+
                 {leagueId && (
                   <div className="flex flex-col gap-2 max-w-[449px] w-full">
                     <label htmlFor="leagueType">
@@ -1015,6 +1018,7 @@ export default function Register(props: Props) {
                 {/* Jersey number */}
                 <div className="flex flex-col gap-2 max-w-[449px] w-full">
                   <label htmlFor="jerseyNumber">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> Jersey number</b>
                   </label>
                   <input
@@ -1061,6 +1065,7 @@ export default function Register(props: Props) {
                   <>
                     <div className="flex flex-col gap-2 w-full">
                       <label htmlFor="schoolCertificate">
+                        <span className="text-red-500 mr-1">*</span>
                         <b> Educational Institution certificate or diploma </b>
                       </label>
                       {/* trim and dots end */}
@@ -1127,6 +1132,7 @@ export default function Register(props: Props) {
                     {/* School official Name */}
                     <div className="flex flex-col gap-2 max-w-[350px] w-full">
                       <label htmlFor="schoolOfficialName">
+                        <span className="text-red-500 mr-1">*</span>
                         <b> Educational Institution official&apos;s name</b>
                       </label>
                       <input
@@ -1146,6 +1152,7 @@ export default function Register(props: Props) {
                     {/* School official&apos;s surname */}
                     <div className="flex flex-col gap-2 max-w-[350px] w-full">
                       <label htmlFor="schoolOfficialSurname">
+                        <span className="text-red-500 mr-1">*</span>
                         <b> Educational Institution official&apos;s surname</b>
                       </label>
                       <input
@@ -1165,6 +1172,7 @@ export default function Register(props: Props) {
                     {/* School official&apos;s position */}
                     <div className="flex flex-col gap-2 max-w-[350px] w-full">
                       <label htmlFor="schoolOfficialPosition">
+                        <span className="text-red-500 mr-1">*</span>
                         <b> Educational Institution official&apos;s position</b>
                       </label>
                       <input
@@ -1184,6 +1192,7 @@ export default function Register(props: Props) {
                     {/* School official&apos;s email */}
                     <div className="flex flex-col gap-2 max-w-[350px] w-full">
                       <label htmlFor="schoolOfficialEmail">
+                        <span className="text-red-500 mr-1">*</span>
                         <b> Educational Institution official&apos;s email</b>
                       </label>
                       <input
@@ -1203,6 +1212,7 @@ export default function Register(props: Props) {
                     {/* School official&apos;s contact number */}
                     <div className="flex flex-col gap-2 max-w-[350px] w-full">
                       <label htmlFor="schoolOfficialContactNumber">
+                        <span className="text-red-500 mr-1">*</span>
                         <b>
                           {" "}
                           Educational Institution official&apos;s contact number
@@ -1225,6 +1235,7 @@ export default function Register(props: Props) {
                     {/* School logo */}
                     <div className="flex flex-col gap-2  w-full">
                       <label htmlFor="schoolLogo">
+                        <span className="text-red-500 mr-1">*</span>
                         <b> Educational Institution&apos;s logo</b>
                       </label>
                       {/* trim and dots end */}
@@ -1306,6 +1317,7 @@ export default function Register(props: Props) {
                 {/* ID CARD */}
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="personalPhoto">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> ID Card</b>
                   </label>
                   {/* trim and dots end */}
@@ -1389,6 +1401,7 @@ export default function Register(props: Props) {
                 {/* Personal Photo */}
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="personalPhoto">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> Individual photo</b>
                   </label>
                   {/* trim and dots end */}
@@ -1486,6 +1499,7 @@ export default function Register(props: Props) {
                 {/* Team logo */}
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="teamLogo">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> Team logo</b>
                   </label>
                   {/* trim and dots end */}
@@ -1563,6 +1577,7 @@ export default function Register(props: Props) {
                 {/* Team name */}
                 <div className="flex flex-col gap-2  w-full">
                   <label htmlFor="teamName">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> Team name</b>
                   </label>
                   <input
@@ -1579,6 +1594,7 @@ export default function Register(props: Props) {
                 {/* Team slogan */}
                 <div className="flex flex-col gap-2  w-full">
                   <label htmlFor="teamSlogan">
+                    <span className="text-red-500 mr-1">*</span>
                     <b> Team slogan</b>
                   </label>
                   <input
@@ -1615,6 +1631,7 @@ export default function Register(props: Props) {
                 {/* Are you or your institution paying for joining the tournament? */}
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="isPaying">
+                    <span className="text-red-500 mr-1">*</span>
                     <b>
                       Are you or your institution paying for joining the
                       tournament?

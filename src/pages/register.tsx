@@ -341,6 +341,7 @@ export default function Register(props: Props) {
           {/* Username */}
           <div className="flex flex-col gap-2 max-w-[350px] w-full">
             <label htmlFor="username">
+              <span className="text-red-500 mr-1">*</span>
               <b> Username</b>
             </label>
             <input
@@ -356,6 +357,7 @@ export default function Register(props: Props) {
           {/* Name */}
           <div className="flex flex-col gap-2 max-w-[350px] w-full">
             <label htmlFor="name">
+              <span className="text-red-500 mr-1">*</span>
               <b> Name</b>
             </label>
             <input
@@ -371,6 +373,7 @@ export default function Register(props: Props) {
           {/* Surname */}
           <div className="flex flex-col gap-2 max-w-[350px] w-full">
             <label htmlFor="surname">
+              <span className="text-red-500 mr-1">*</span>
               <b> Surname</b>
             </label>
             <input
@@ -399,6 +402,7 @@ export default function Register(props: Props) {
           {/* Email */}
           <div className="flex flex-col gap-2 max-w-[350px] w-full">
             <label htmlFor="email">
+              <span className="text-red-500 mr-1">*</span>
               <b> Email</b>
             </label>
             <input
@@ -414,6 +418,7 @@ export default function Register(props: Props) {
           {/* Password */}
           <div className="flex flex-col gap-2 max-w-[350px] w-full">
             <label htmlFor="password">
+              <span className="text-red-500 mr-1">*</span>
               <b> Password</b>
             </label>
             <input
@@ -430,6 +435,7 @@ export default function Register(props: Props) {
           {/* Gender */}
           <div className="flex flex-col gap-2 max-w-[350px] w-full">
             <label htmlFor="gender">
+              <span className="text-red-500 mr-1">*</span>
               <b> Gender</b>
             </label>
             <select
@@ -448,6 +454,7 @@ export default function Register(props: Props) {
           {/* Date of Birth */}
           <div className="flex flex-col gap-2 max-w-[350px] w-full">
             <label htmlFor="birthdate">
+              <span className="text-red-500 mr-1">*</span>
               <b>Birthday</b>
             </label>
             <input
@@ -473,6 +480,7 @@ export default function Register(props: Props) {
               htmlFor="termsAndConditions"
               className="termsAndConditions flex gap-2"
             >
+              <span className="text-red-500 mr-1">*</span>
               <span>Terms and conditions</span>
               <input
                 type="checkbox"

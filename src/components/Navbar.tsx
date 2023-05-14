@@ -178,6 +178,11 @@ export const Navbar = () => {
                 Contact Us
               </Link>
             </li>
+            <li className="p-2">
+              <a href="http://project6957501.tilda.ws" target="_blank">
+                Summer Transformation Program
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -200,6 +205,7 @@ export const Navbar = () => {
               <li className="p-2">
                 <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
               </li>
+
               {/* <li className="p-2">
                 <StyledLink href="/pricing">Community Pass</StyledLink>
               </li>
@@ -239,6 +245,18 @@ export const Navbar = () => {
               >
                 Contact us
               </Link>
+            </li>
+            <li className="pl-4 ">
+              <a
+                href="http://project6957501.tilda.ws/"
+                className="text-lg bg-[#031F57] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max h-max shadow-lg"
+                style={{
+                  boxShadow: "0px 0px 5px 0px #cdf000",
+                }}
+                target="_blank"
+              >
+                Summer Transformation Program
+              </a>
             </li>
           </ul>
 
