@@ -13,6 +13,7 @@ import { counter } from "@fortawesome/fontawesome-svg-core";
 import { authSlice } from "./authSlice";
 import { playerApi } from "./playerApi";
 import { paymentApi } from "./paymentApi";
+import { rulesApi } from "./rulesApi";
 
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action) && !action.type.includes("Internal")) {
@@ -38,7 +39,9 @@ export const store = configureStore({
     [teamApi.reducerPath]: teamApi.reducer,
     [playerApi.reducerPath]: playerApi.reducer,
     [paymentApi.reducerPath]: paymentApi.reducer,
+    [rulesApi.reducerPath]: rulesApi.reducer,
     player: playerApi.reducer,
+    rules: rulesApi.reducer,
     auth: authSlice.reducer,
     team: teamApi.reducer,
     payment: paymentApi.reducer,
@@ -51,6 +54,7 @@ export const store = configureStore({
     teamApi.middleware,
     playerApi.middleware,
     paymentApi.middleware,
+    rulesApi.middleware,
     rtkQueryErrorLogger,
   ],
 });

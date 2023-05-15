@@ -1628,6 +1628,9 @@ export default function Register(props: Props) {
                     {errors.comment?.message}
                   </span>
                 </div>
+
+                
+
                 {/* Are you or your institution paying for joining the tournament? */}
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="isPaying">

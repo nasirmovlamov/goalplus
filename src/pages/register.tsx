@@ -9,6 +9,7 @@ import { convertToBase64 } from "@/utils/fileToBase64";
 import { useRouter } from "next/router";
 import jwt_decode from "jwt-decode";
 import error from "next/error";
+import { rulesApi } from "@/store/rulesApi";
 type Props = {};
 
 const TeamMember = ({
@@ -170,7 +171,13 @@ export default function Register(props: Props) {
       error: authenticationError,
     },
   ] = authApi.useAuthenticationMutation();
-
+  const {
+    isLoading: isGetAllRulesOfLeaguesLoading,
+    isError: isGetAllRulesOfLeaguesError,
+    isSuccess: isGetAllRulesOfLeaguesSuccess,
+    data: getAllRulesOfLeaguesData,
+    error: getAllRulesOfLeaguesError,
+  } = rulesApi.useGetRulesQuery();
   const [
     resendEmailApi,
     {
@@ -489,7 +496,22 @@ export default function Register(props: Props) {
                 })}
               />
             </label>
-            <span className="text-blue-500">
+            {getAllRulesOfLeaguesData?.map(
+              (item: any, index: number) =>
+                item.ruleUrl && (
+                  <a
+                    key={index}
+                    href={item.ruleUrl}
+                    className="text-blue-500 underline"
+                    target="_blank"
+                  >
+                    <span className="text-blue-500" key={index}>
+                      {item.leagueName}
+                    </span>
+                  </a>
+                )
+            )}
+            {/* <span className="text-blue-500">
               <a
                 target="_blank"
                 href="https://drive.google.com/file/d/1hsQmtqqcpEOdDFQ2uybbIztOEVw0ahPr/view?usp=sharing"
@@ -516,7 +538,6 @@ export default function Register(props: Props) {
                 Soccer U18 terms and conditions
               </a>
             </span>
-
             <span className="text-blue-500 ">
               <a
                 target="_blank"
@@ -526,7 +547,6 @@ export default function Register(props: Props) {
                 Volleyball U21
               </a>
             </span>
-
             <span className="text-blue-500 ">
               <a
                 target="_blank"
@@ -536,7 +556,6 @@ export default function Register(props: Props) {
                 Recreational Beach Volleyball
               </a>
             </span>
-
             <span className="text-blue-500 ">
               <a
                 target="_blank"
@@ -546,7 +565,6 @@ export default function Register(props: Props) {
                 Recreational Basketball
               </a>
             </span>
-
             <span className="text-blue-500 ">
               <a
                 target="_blank"
@@ -555,7 +573,7 @@ export default function Register(props: Props) {
               >
                 Basketball U21
               </a>
-            </span>
+            </span> */}
 
             <span className="text-red-500">
               {errors.termsAndConditions?.message}
