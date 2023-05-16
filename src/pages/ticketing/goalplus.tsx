@@ -71,7 +71,6 @@ const GoaplusTicketing = (props: Props) => {
             getTicketTypeData[watch("ticketType") ? watch("ticketType") - 1 : 0]
               ?.name
           }{" "}
-          -{" "}
         </h1>
         <h2 className="mt-2 mb-2">
           Price - {"  "}
