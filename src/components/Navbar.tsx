@@ -187,6 +187,7 @@ export const Navbar = () => {
         </div>
       </div>
 
+      {/* Main Nav */}
       <header className="w-full sticky top-[0px] flex justify-center  bg-white z-[1000] shadow-md ">
         <nav className="h-[56px] flex w-full max-w-[1140px] px-[15px] py-[8px] justify-between">
           <div className="flex md:hidden">
@@ -206,6 +207,9 @@ export const Navbar = () => {
                 <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
               </li>
 
+              <li className="p-2">
+                <StyledLink href="/ticketing/goalplus">Tickets</StyledLink>
+              </li>
               {/* <li className="p-2">
                 <StyledLink href="/pricing">Community Pass</StyledLink>
               </li>

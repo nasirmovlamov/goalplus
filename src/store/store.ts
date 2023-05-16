@@ -14,6 +14,7 @@ import { authSlice } from "./authSlice";
 import { playerApi } from "./playerApi";
 import { paymentApi } from "./paymentApi";
 import { rulesApi } from "./rulesApi";
+import { ticketingApi } from "./ticketingApi";
 
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action) && !action.type.includes("Internal")) {
@@ -40,7 +41,9 @@ export const store = configureStore({
     [playerApi.reducerPath]: playerApi.reducer,
     [paymentApi.reducerPath]: paymentApi.reducer,
     [rulesApi.reducerPath]: rulesApi.reducer,
+    [ticketingApi.reducerPath]: ticketingApi.reducer,
     player: playerApi.reducer,
+    ticketing: ticketingApi.reducer,
     rules: rulesApi.reducer,
     auth: authSlice.reducer,
     team: teamApi.reducer,
@@ -55,6 +58,7 @@ export const store = configureStore({
     playerApi.middleware,
     paymentApi.middleware,
     rulesApi.middleware,
+    ticketingApi.middleware,
     rtkQueryErrorLogger,
   ],
 });
