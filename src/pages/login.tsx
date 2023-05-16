@@ -201,7 +201,7 @@ export default function Login(props: Props) {
               I don&apos;t have an account
             </Link>
             <Link href="/forgetpassword" className="text-[#032974]">
-              Forget Password ?
+              Forgot Password ?
             </Link>
           </div>
 
