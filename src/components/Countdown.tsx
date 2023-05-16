@@ -56,21 +56,21 @@ const Countdown = ({ targetDate }: CountdownProps) => {
           {typeof window !== "undefined"
             ? timeLeft.hours.toString().padStart(2, "0")
             : "00"}
-          <span>hour</span>
+          <span>hours</span>
         </div>
         <div className={style["semicolon"]}>:</div>
         <div className={style["timer"]}>
           {typeof window !== "undefined"
             ? timeLeft.minutes.toString().padStart(2, "0")
             : "00"}
-          <span>minute</span>
+          <span>minutes</span>
         </div>
         <div className={style["semicolon"]}>:</div>
         <div className={style["timer"]}>
           {typeof window !== "undefined"
             ? timeLeft.seconds.toString().padStart(2, "0")
             : "00"}
-          <span>second</span>
+          <span>seconds</span>
         </div>
       </div>
     );
