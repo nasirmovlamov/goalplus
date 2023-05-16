@@ -89,21 +89,33 @@ const GoaplusTicketing = (props: Props) => {
         </h2>
         <h2 className="mt-2 mb-2">
           Date -{" "}
-          {getTicketTypeData[
-            watch("ticketType") ? watch("ticketType") - 1 : 0
-          ]?.date.slice(0, 10)}
+          {new Date(
+            getTicketTypeData[
+              watch("ticketType") ? watch("ticketType") - 1 : 0
+            ]?.date.slice(0, 10)
+          )
+            ?.toLocaleDateString()
+            ?.slice(0, 10)}
         </h2>
         <h2 className="mt-2 mb-2">
           Date start -{" "}
-          {getTicketTypeData[
-            watch("ticketType") ? watch("ticketType") - 1 : 0
-          ]?.date.slice(0, 10)}
+          {new Date(
+            getTicketTypeData[
+              watch("ticketType") ? watch("ticketType") - 1 : 0
+            ]?.date.slice(0, 10)
+          )
+            ?.toLocaleDateString()
+            ?.slice(0, 10)}
         </h2>
         <h2 className="mt-2 mb-2">
           Date end -{" "}
-          {getTicketTypeData[
-            watch("ticketType") ? watch("ticketType") - 1 : 0
-          ]?.date.slice(0, 10)}
+          {new Date(
+            getTicketTypeData[
+              watch("ticketType") ? watch("ticketType") - 1 : 0
+            ]?.date.slice(0, 10)
+          )
+            ?.toLocaleDateString()
+            ?.slice(0, 10)}
         </h2>
         <form
           action=""
