@@ -208,7 +208,7 @@ export const Navbar = () => {
               </li>
 
               <li className="p-2">
-                <StyledLink href="/ticketing/goalplus">Tickets</StyledLink>
+                <StyledLink href="/ticketing/goalplus">Buy Ticket</StyledLink>
               </li>
               {/* <li className="p-2">
                 <StyledLink href="/pricing">Community Pass</StyledLink>
