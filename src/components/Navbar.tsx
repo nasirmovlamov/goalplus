@@ -207,9 +207,9 @@ export const Navbar = () => {
                 <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
               </li>
 
-              <li className="p-2">
+              {/* <li className="p-2">
                 <StyledLink href="/ticketing/goalplus">Buy Ticket</StyledLink>
-              </li>
+              </li> */}
               {/* <li className="p-2">
                 <StyledLink href="/pricing">Community Pass</StyledLink>
               </li>
