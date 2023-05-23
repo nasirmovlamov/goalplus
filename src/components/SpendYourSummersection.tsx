@@ -45,7 +45,7 @@ const SpendYourSummersection = (props: Props) => {
               boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
             }}
           >
-            Get my GoalPlus
+            Get my GoalPass
           </a>
         </div>
 
