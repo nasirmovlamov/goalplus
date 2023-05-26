@@ -47,7 +47,7 @@ const GoaplusTicketing = (props: Props) => {
         birthDate: data.birthDate,
         phoneNumber: data.phoneNumber,
         schoolName: data.schoolName,
-        attendanceDate: data.date,
+        attendanceDatee: data.date,
       },
     })
       .then((res: any) => {
@@ -63,15 +63,11 @@ const GoaplusTicketing = (props: Props) => {
   };
 
   useEffect(() => {
-    console.log("watch", watch("ticketType"));
+    console.log(getTicketTypeData);
     console.log(
       getTicketTypeData
         ?.filter((item: any) => item.id == watch("ticketType"))[0]
-        .dates?.map((date: any, index: any) => (
-          <option key={index} value={new Date(date).toLocaleDateString()}>
-            {new Date(date).toLocaleDateString()}
-          </option>
-        ))
+        .dates?.map((date: any, index: any) => new Date(date).toISOString())
     );
   }, [watch("ticketType")]);
 
@@ -216,7 +212,7 @@ const GoaplusTicketing = (props: Props) => {
                 {getTicketTypeData
                   ?.filter((item: any) => item.id == watch("ticketType"))[0]
                   ?.dates?.map((date: any, index: any) => (
-                    <option key={index} value={new Date(date).toISOString()}>
+                    <option key={index} value={date}>
                       {new Date(date).toLocaleDateString()}
                     </option>
                   ))}
@@ -243,7 +239,7 @@ const GoaplusTicketing = (props: Props) => {
 
             <div className="flex flex-col gap-1">
               <label htmlFor="date" className="text-sm text-gray-500">
-                School Name
+                Educational Institution
               </label>
               <input
                 id="name"
