@@ -44,7 +44,7 @@ const GoaplusTicketing = (props: Props) => {
         lastName: data.lastName,
         email: data.email,
         gender: data.gender,
-        birthDate: data.birthDate,
+        birthDate: data.birthdate,
         phoneNumber: data.phoneNumber,
         schoolName: data.schoolName,
         attendanceDatee: data.date,

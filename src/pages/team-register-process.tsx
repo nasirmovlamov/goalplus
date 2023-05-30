@@ -29,6 +29,8 @@ import defaultProfilePhoto from "../media/images/Default_pfp.svg.png";
 import ErrorMapper from "@/components/ErrorMapper";
 import { paymentApi } from "@/store/paymentApi";
 import error from "next/error";
+import { sportsApi } from "@/store/sportsApi";
+import { leaguesApi } from "@/store/leaguesApi";
 
 export const registerSchema = yup.object().shape({
   // name: yup.string().label("Name").required(),
@@ -90,6 +92,21 @@ export default function Register(props: Props) {
     userId:
       typeof window !== "undefined" ? localStorage.getItem("userId")! : "",
   });
+  const {
+    data: sportsData,
+    isError: isSportsError,
+    isLoading: isSportsLoading,
+    isSuccess: isSportsSuccess,
+  } = sportsApi.useGetSportsQuery();
+  const [
+    getLeaguesApi,
+    {
+      data: leaguesData,
+      isError: isLeaguesError,
+      isLoading: isLeaguesLoading,
+      isSuccess: isLeaguesSuccess,
+    },
+  ] = leaguesApi.useLazyGetLeaguesQuery();
 
   const [playersUserInfoApi, s] = teamApi.useLazyPlayersUserInfoQuery();
   const [teamSize, setTeamSize] = useState<any>(1);
@@ -655,27 +672,6 @@ export default function Register(props: Props) {
     }
   };
 
-  // const handleIdCardApi = async ({
-  //   userId,
-  //   file,
-  // }: {
-  //   userId: string;
-  //   file: any;
-  // }) => {
-  //   try {
-  //     const formData = new FormData();
-  //     formData.append("file", file);
-  //     const resp = await idCardApi({
-  //       userId: userId,
-  //       body: formData,
-  //     });
-  //     toast.success("Register id card");
-  //     return resp;
-  //   } catch (error) {
-  //     toast.error("Register failed id card");
-  //   }
-  // };
-
   const teamInfoErrorData = useMemo(() => {
     if (isTeamInfoError) {
       return teamInfoError as any;
@@ -794,6 +790,10 @@ export default function Register(props: Props) {
       });
     }
   }, [teamId]);
+
+  if (isSportsLoading) {
+    return <div>Loading</div>;
+  }
 
   if (isRefreshTokenError) {
     return (
@@ -916,15 +916,19 @@ export default function Register(props: Props) {
                           setTeamMembers([]);
                           setValue("teamMembers", []);
                           setValue("gender", "");
+                          setValue("sportType", e.target.value);
+                          getLeaguesApi({ sportId: e.target.value });
                         },
                       })}
                       className="border border-gray-300 rounded-md px-[6px] py-[12px]"
                       placeholder="Sport type"
                     >
                       <option value="">Select sport type</option>
-                      <option value="2">Soccer 6vs6</option>
-                      <option value="3">Basketball 3x3</option>
-                      <option value="1">Beach volleyball 4v4</option>
+                      {sportsData.map((sport: any) => (
+                        <option key={sport.id} value={sport.id}>
+                          {sport.name}
+                        </option>
+                      ))}
                     </select>
                     <span className="text-red-500">
                       {errors.sportType?.message}
@@ -968,20 +972,38 @@ export default function Register(props: Props) {
                           setValue("teamMembers", []);
                           setValue("gender", "");
                           setTeamMembers([]);
+                          setValue("leagueType", e.target.value);
                         },
                       })}
                       className="border border-gray-300 rounded-md px-[6px] py-[12px]"
                       placeholder="League type"
                     >
                       <option value="">Select league type</option>
-                      {watch("sportType") &&
-                        leagues[watch("sportType")].map(
-                          (league: { id: number; name: string }) => (
-                            <option key={league.id} value={league.id}>
-                              {league.name}
-                            </option>
-                          )
-                        )}
+                      {
+                        watch("sportType") && (
+                          <>
+                            <div></div>
+                            {isLeagueInfoLoading ? (
+                              <option value="">Loading...</option>
+                            ) : (
+                              leaguesData?.map(
+                                (league: { id: number; name: string }) => (
+                                  <option key={league.id} value={league.id}>
+                                    {league.name}
+                                  </option>
+                                )
+                              )
+                            )}
+                          </>
+                        )
+                        // leagues[watch("sportType")].map(
+                        //   (league: { id: number; name: string }) => (
+                        //     <option key={league.id} value={league.id}>
+                        //       {league.name}
+                        //     </option>
+                        //   )
+                        // )
+                      }
                     </select>
                     <span className="text-red-500">
                       {errors.leagueType?.message}
@@ -1628,8 +1650,6 @@ export default function Register(props: Props) {
                     {errors.comment?.message}
                   </span>
                 </div>
-
-                
 
                 {/* Are you or your institution paying for joining the tournament? */}
                 <div className="flex flex-col gap-2 w-full">
