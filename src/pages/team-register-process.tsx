@@ -532,15 +532,18 @@ export default function Register(props: Props) {
           },
         },
       });
-
-      await personalPhotoApi({
-        userId: userId,
-        body: personalPhotoFormData,
-      });
-      await teamLogoApi({
-        teamId: resp.id,
-        body: teamLogoFormData,
-      });
+      if (personalPhotoFormData && personalPhotoFormData.get("file")) {
+        await personalPhotoApi({
+          userId: userId,
+          body: personalPhotoFormData,
+        });
+      }
+      if (teamLogoFormData && teamLogoFormData.get("file")) {
+        await teamLogoApi({
+          teamId: resp.id,
+          body: teamLogoFormData,
+        });
+      }
       // check if school logo is not empty
       if (schoolLogoFormData && schoolLogoFormData.get("file")) {
         await schoolLogoApi({
@@ -548,11 +551,12 @@ export default function Register(props: Props) {
           body: schoolLogoFormData,
         });
       }
-
-      await idCardApi({
-        playerId: respPlayersUser.id,
-        body: idCardFormData,
-      });
+      if (idCardFormData && idCardFormData.get("file")) {
+        await idCardApi({
+          playerId: respPlayersUser.id,
+          body: idCardFormData,
+        });
+      }
       console.log("schoolCertificateFormData", schoolCertificateFormData);
       // if it is not empty
       if (
@@ -622,15 +626,18 @@ export default function Register(props: Props) {
           },
         },
       });
-
-      await personalPhotoApi({
-        userId: localStorage.getItem("userId")!,
-        body: personalPhotoFormData,
-      });
-      await teamLogoApi({
-        teamId: teamId,
-        body: teamLogoFormData,
-      });
+      if (personalPhotoFormData && personalPhotoFormData.get("file")) {
+        await personalPhotoApi({
+          userId: localStorage.getItem("userId")!,
+          body: personalPhotoFormData,
+        });
+      }
+      if (teamLogoApi && teamLogoApi.get("file")) {
+        await teamLogoApi({
+          teamId: teamId,
+          body: teamLogoFormData,
+        });
+      }
       if (schoolLogoFormData && schoolLogoFormData.get("file")) {
         await schoolLogoApi({
           teamId: teamId,
@@ -643,10 +650,12 @@ export default function Register(props: Props) {
           body: schoolCertificateFormData,
         });
       }
-      await idCardApi({
-        playerId: respPlayersUser.id,
-        body: idCardFormData,
-      });
+      if (idCardFormData && idCardFormData.get("file")) {
+        await idCardApi({
+          playerId: respPlayersUser.id,
+          body: idCardFormData,
+        });
+      }
       setValuesOfForm();
       toast.success("Team info updated");
     } catch (error) {
@@ -712,20 +721,21 @@ export default function Register(props: Props) {
 
   useEffect(() => {
     if (isGetTeamInfoSuccess) {
+      console.log("additional comments", getTeamInfoData.teamDetails);
       methods.reset({
-        teamName: getTeamInfoData.name,
-        teamSlogan: getTeamInfoData.slogan,
-        jerseyNumber: playersUserInfo.jerseyNumber,
-        quote: playersUserInfo.quote,
+        teamName: getTeamInfoData?.name,
+        teamSlogan: getTeamInfoData?.slogan,
+        jerseyNumber: playersUserInfo?.jerseyNumber,
+        quote: playersUserInfo?.quote,
         schoolOfficial: {
-          name: getTeamInfoData.teamDetails?.schoolOfficial?.firstName,
-          surname: getTeamInfoData.teamDetails?.schoolOfficial?.lastName,
-          email: getTeamInfoData.teamDetails?.schoolOfficial?.email,
-          contactNumber: getTeamInfoData.teamDetails?.schoolOfficial?.number,
-          position: getTeamInfoData.teamDetails?.schoolOfficial?.position,
+          name: getTeamInfoData?.teamDetails?.schoolOfficial?.firstName,
+          surname: getTeamInfoData?.teamDetails?.schoolOfficial?.lastName,
+          email: getTeamInfoData?.teamDetails?.schoolOfficial?.email,
+          contactNumber: getTeamInfoData?.teamDetails?.schoolOfficial?.number,
+          position: getTeamInfoData?.teamDetails?.schoolOfficial?.position,
         },
-        isPaying: getTeamInfoData.paymentType,
-        comment: playersUserInfo.teamDetails?.additionalComments,
+        isPaying: getTeamInfoData?.paymentType,
+        comment: getTeamInfoData?.teamDetails?.additionalComments,
       });
       const leagueUrl = getTeamInfoData.league;
       const trimedIdFromLeagueUrl = leagueUrl.split("/").pop();
@@ -1432,182 +1442,189 @@ export default function Register(props: Props) {
                     </span>
                   </div>
                 )}
-
                 {/* Personal Photo */}
-                <div className="flex flex-col gap-2 w-full">
-                  <label htmlFor="personalPhoto">
-                    <span className="text-red-500 mr-1">*</span>
-                    <b> Individual photo</b>
-                  </label>
-                  {/* trim and dots end */}
-                  {(watch("personalPhoto")?.length < 1 ||
-                    !watch("personalPhoto")) &&
-                    playersUserInfo?.image && (
+                {watch("sportType") != "7" && (
+                  <div className="flex flex-col gap-2 w-full">
+                    <label htmlFor="personalPhoto">
+                      <span className="text-red-500 mr-1">*</span>
+                      <b> Individual photo</b>
+                    </label>
+                    {/* trim and dots end */}
+                    {(watch("personalPhoto")?.length < 1 ||
+                      !watch("personalPhoto")) &&
+                      playersUserInfo?.image && (
+                        <div className="flex gap-2 items-start">
+                          <div className="flex flex-col">
+                            <a href={playersUserInfo?.image} target="_blank">
+                              <img
+                                src={playersUserInfo?.image}
+                                className="w-[250px] h-[250px] object-cover"
+                                alt="personal photo"
+                              />
+                            </a>
+                          </div>
+                        </div>
+                      )}
+                    {watch("personalPhoto")?.length > 0 && (
                       <div className="flex gap-2 items-start">
                         <div className="flex flex-col">
-                          <a href={playersUserInfo?.image} target="_blank">
+                          <a
+                            href={URL.createObjectURL(
+                              watch("personalPhoto")[0]
+                            )}
+                            target="_blank"
+                          >
                             <img
-                              src={playersUserInfo?.image}
+                              src={URL.createObjectURL(
+                                watch("personalPhoto")[0]
+                              )}
                               className="w-[250px] h-[250px] object-cover"
                               alt="personal photo"
                             />
                           </a>
+
+                          <div
+                            className="
+                  overflow-hidden
+                  whitespace-nowrap
+                  overflow-ellipsis
+                  w-[100px]
+              "
+                          >
+                            {watch("personalPhoto")[0].name}
+                          </div>
                         </div>
+
+                        <button
+                          className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                          onClick={() => {
+                            setValue("personalPhoto", []);
+                          }}
+                        >
+                          x
+                        </button>
                       </div>
                     )}
-                  {watch("personalPhoto")?.length > 0 && (
-                    <div className="flex gap-2 items-start">
-                      <div className="flex flex-col">
-                        <a
-                          href={URL.createObjectURL(watch("personalPhoto")[0])}
-                          target="_blank"
-                        >
-                          <img
-                            src={URL.createObjectURL(watch("personalPhoto")[0])}
-                            className="w-[250px] h-[250px] object-cover"
-                            alt="personal photo"
-                          />
-                        </a>
-
-                        <div
-                          className="
-                  overflow-hidden
-                  whitespace-nowrap
-                  overflow-ellipsis
-                  w-[100px]
-              "
-                        >
-                          {watch("personalPhoto")[0].name}
-                        </div>
-                      </div>
-
-                      <button
-                        className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                        onClick={() => {
-                          setValue("personalPhoto", []);
-                        }}
-                      >
-                        x
-                      </button>
-                    </div>
-                  )}
-                  <button
-                    className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                    type="button"
-                    onClick={() => {
-                      // click sibling of this element
-                      const input = document.querySelector(
-                        'input[name="personalPhoto"]'
-                      ) as HTMLInputElement;
-                      input.click();
-                    }}
-                  >
-                    {/* trim and dots end */}
-                    <div
-                      className="
-                  overflow-hidden
-                  whitespace-nowrap
-                  overflow-ellipsis
-              "
+                    <button
+                      className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                      type="button"
+                      onClick={() => {
+                        // click sibling of this element
+                        const input = document.querySelector(
+                          'input[name="personalPhoto"]'
+                        ) as HTMLInputElement;
+                        input.click();
+                      }}
                     >
-                      Upload photo
-                    </div>
-                  </button>
-                  <input
-                    type="file"
-                    {...register("personalPhoto", {
-                      required: "Personal photo is required",
-                    })}
-                    className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                  />
-                  {/* info about photo */}
-                  <span className="text-[#8c8c8c] text-xs">
-                    A personal photo will be displayed on your virtual athlete
-                    badge.
-                  </span>
+                      {/* trim and dots end */}
+                      <div
+                        className="
+                  overflow-hidden
+                  whitespace-nowrap
+                  overflow-ellipsis
+              "
+                      >
+                        Upload photo
+                      </div>
+                    </button>
+                    <input
+                      type="file"
+                      {...register("personalPhoto", {
+                        required: "Personal photo is required",
+                      })}
+                      className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                    />
+                    {/* info about photo */}
+                    <span className="text-[#8c8c8c] text-xs">
+                      A personal photo will be displayed on your virtual athlete
+                      badge.
+                    </span>
 
-                  <span className="text-red-500">
-                    {errors?.personalPhoto?.message}
-                  </span>
-                </div>
+                    <span className="text-red-500">
+                      {errors?.personalPhoto?.message}
+                    </span>
+                  </div>
+                )}
 
                 {/* Team logo */}
-                <div className="flex flex-col gap-2 w-full">
-                  <label htmlFor="teamLogo">
-                    <span className="text-red-500 mr-1">*</span>
-                    <b> Team logo</b>
-                  </label>
-                  {/* trim and dots end */}
-                  {watch("teamLogo")?.length > 0 && (
-                    <div className="flex gap-2 items-start">
-                      <div className="flex flex-col">
-                        <a
-                          href={URL.createObjectURL(watch("teamLogo")[0])}
-                          target="_blank"
-                        >
-                          <img
-                            src={URL.createObjectURL(watch("teamLogo")[0])}
-                            className="w-[250px] h-[250px] object-cover"
-                            alt="team logo"
-                          />
-                        </a>
-
-                        <div
-                          className="
-                  overflow-hidden
-                  whitespace-nowrap
-                  overflow-ellipsis
-                  w-[100px]
-              "
-                        >
-                          {watch("teamLogo")[0].name}
-                        </div>
-                      </div>
-
-                      <button
-                        className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                        onClick={() => {
-                          setValue("teamLogo", []);
-                        }}
-                      >
-                        x
-                      </button>
-                    </div>
-                  )}
-                  <button
-                    className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                    type="button"
-                    onClick={() => {
-                      // click sibling of this element
-                      const input = document.querySelector(
-                        'input[name="teamLogo"]'
-                      ) as HTMLInputElement;
-                      input.click();
-                    }}
-                  >
+                {watch("sportType") != "7" && (
+                  <div className="flex flex-col gap-2 w-full">
+                    <label htmlFor="teamLogo">
+                      <span className="text-red-500 mr-1">*</span>
+                      <b> Team logo</b>
+                    </label>
                     {/* trim and dots end */}
-                    <div
-                      className="
+                    {watch("teamLogo")?.length > 0 && (
+                      <div className="flex gap-2 items-start">
+                        <div className="flex flex-col">
+                          <a
+                            href={URL.createObjectURL(watch("teamLogo")[0])}
+                            target="_blank"
+                          >
+                            <img
+                              src={URL.createObjectURL(watch("teamLogo")[0])}
+                              className="w-[250px] h-[250px] object-cover"
+                              alt="team logo"
+                            />
+                          </a>
+
+                          <div
+                            className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
                   w-[100px]
               "
+                          >
+                            {watch("teamLogo")[0].name}
+                          </div>
+                        </div>
+
+                        <button
+                          className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                          onClick={() => {
+                            setValue("teamLogo", []);
+                          }}
+                        >
+                          x
+                        </button>
+                      </div>
+                    )}
+                    <button
+                      className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                      type="button"
+                      onClick={() => {
+                        // click sibling of this element
+                        const input = document.querySelector(
+                          'input[name="teamLogo"]'
+                        ) as HTMLInputElement;
+                        input.click();
+                      }}
                     >
-                      Choose file
-                    </div>
-                  </button>
-                  <input
-                    type="file"
-                    {...register("teamLogo", {
-                      required: "Team logo is required",
-                    })}
-                    className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                  />
-                  <span className="text-red-500">
-                    {errors?.teamLogo?.message}
-                  </span>
-                </div>
+                      {/* trim and dots end */}
+                      <div
+                        className="
+                  overflow-hidden
+                  whitespace-nowrap
+                  overflow-ellipsis
+                  w-[100px]
+              "
+                      >
+                        Choose file
+                      </div>
+                    </button>
+                    <input
+                      type="file"
+                      {...register("teamLogo", {
+                        required: "Team logo is required",
+                      })}
+                      className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                    />
+                    <span className="text-red-500">
+                      {errors?.teamLogo?.message}
+                    </span>
+                  </div>
+                )}
 
                 {/* Team name */}
                 <div className="flex flex-col gap-2  w-full">
@@ -1658,7 +1675,7 @@ export default function Register(props: Props) {
                   <textarea
                     {...register("comment")}
                     className="border border-gray-300 rounded-md px-[6px] py-[12px] w-full"
-                  />
+                  ></textarea>
                   <span className="text-red-500">
                     {errors.comment?.message}
                   </span>
