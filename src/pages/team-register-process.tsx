@@ -632,7 +632,7 @@ export default function Register(props: Props) {
           body: personalPhotoFormData,
         });
       }
-      if (teamLogoApi && teamLogoApi.get("file")) {
+      if (teamLogoFormData && teamLogoFormData.get("file")) {
         await teamLogoApi({
           teamId: teamId,
           body: teamLogoFormData,
