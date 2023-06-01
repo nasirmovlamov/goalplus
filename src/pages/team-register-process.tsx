@@ -54,28 +54,6 @@ export const registerSchema = yup.object().shape({
   // comments: yup.string().label("Comments").required(),
 });
 
-const leagues: {
-  [key: string]: {
-    id: number;
-    name: string;
-  }[];
-} = {
-  2: [
-    { id: 1, name: "U16" },
-    { id: 2, name: "U18" },
-    { id: 3, name: "U21" },
-    { id: 4, name: "GIRLS" },
-  ],
-  3: [
-    { id: 8, name: "RECREATIONAL" },
-    { id: 7, name: "U21" },
-  ],
-  1: [
-    { id: 5, name: "RECREATIONAL" },
-    { id: 6, name: "U21" },
-  ],
-};
-
 export default function Register(props: Props) {
   const router = useRouter();
   const params = router.query;
@@ -406,7 +384,9 @@ export default function Register(props: Props) {
       };
     }
     const idCardFormData = new FormData();
-    idCardFormData.append("file", data.idCard[0]);
+    if (data?.idCard?.length) {
+      idCardFormData.append("file", data.idCard[0]);
+    }
     const schoolLogoFormData = new FormData();
     const schoolCertificateFormData = new FormData();
     if (data.schoolCertificate?.length) {
@@ -414,11 +394,14 @@ export default function Register(props: Props) {
       schoolLogoFormData.append("file", data.schoolLogo[0]);
     }
     const teamLogoFormData = new FormData();
-    teamLogoFormData.append("file", data.teamLogo[0]);
+    if (data.teamLogo.length) {
+      teamLogoFormData.append("file", data.teamLogo[0]);
+    }
 
     const personalPhotoFormData = new FormData();
-    personalPhotoFormData.append("file", data.personalPhoto[0]);
-    console.log("schoolCertificateFormData", schoolCertificateFormData);
+    if (data.personalPhoto.length) {
+      personalPhotoFormData.append("file", data.personalPhoto[0]);
+    }
 
     if (leagueId) {
       putTeamInfo({
@@ -729,9 +712,6 @@ export default function Register(props: Props) {
 
   useEffect(() => {
     if (isGetTeamInfoSuccess) {
-      console.log("getTeamInfoData", getTeamInfoData);
-      console.log("playersUserInfo", playersUserInfo);
-
       methods.reset({
         teamName: getTeamInfoData.name,
         teamSlogan: getTeamInfoData.slogan,
@@ -768,6 +748,10 @@ export default function Register(props: Props) {
     if (isGetTeamInfoSuccess) {
       const leagueUrl = getTeamInfoData.league;
       const trimedIdFromLeagueUrl = leagueUrl.split("/").pop();
+      methods.reset({
+        ...methods.getValues(),
+        leagueType: trimedIdFromLeagueUrl,
+      });
       return trimedIdFromLeagueUrl as any;
     }
     return null;
@@ -775,9 +759,14 @@ export default function Register(props: Props) {
 
   const sportId = useMemo(() => {
     if (isLeagueInfoSuccess) {
-      console.log(leagueInfoData);
       const sportUrl = leagueInfoData?.sport;
       const trimedIdFromSportUrl = sportUrl?.split("/")?.pop();
+      console.log("sportId", trimedIdFromSportUrl);
+      methods.reset({
+        ...methods.getValues(),
+        sportType: trimedIdFromSportUrl,
+      });
+      getLeaguesApi({ sportId: trimedIdFromSportUrl });
       return trimedIdFromSportUrl as any;
     }
     return null;
@@ -947,10 +936,11 @@ export default function Register(props: Props) {
                       className="border border-gray-300 rounded-md px-[6px] py-[12px] bg-[#f2f2f2]"
                       placeholder="Sport type"
                     >
-                      <option value="">Select sport type</option>
-                      <option value="2">Soccer 6vs6</option>
-                      <option value="3">Basketball 3x3</option>
-                      <option value="1">Beach volleyball 4v4</option>
+                      {sportsData.map((sport: any) => (
+                        <option key={sport.id} value={sport.id}>
+                          {sport.name}
+                        </option>
+                      ))}
                     </select>
                     <span className="text-red-500">
                       {errors.sportType?.message}
@@ -1022,8 +1012,7 @@ export default function Register(props: Props) {
                       className="border border-gray-300 rounded-md px-[6px] py-[12px]  bg-[#f2f2f2]"
                       placeholder="League type"
                     >
-                      <option value="">Select league type</option>
-                      {leagues[sportId]?.map(
+                      {leaguesData?.map(
                         (league: { id: number; name: string }) => (
                           <option key={league.id} value={league.id}>
                             {league.name}
@@ -1085,71 +1074,78 @@ export default function Register(props: Props) {
                 {/* Educational institution data (name, surname, email, contact number) */}
                 {(watch("sportType") == "2" || sportId == 2) && (
                   <>
-                    <div className="flex flex-col gap-2 w-full">
-                      <label htmlFor="schoolCertificate">
-                        <span className="text-red-500 mr-1">*</span>
-                        <b> Educational Institution certificate or diploma </b>
-                      </label>
-                      {/* trim and dots end */}
-                      {watch("schoolCertificate")?.length > 0 && (
-                        <div className="flex gap-2 items-center">
+                    {leaguesData?.filter(
+                      (league: any) => watch("leagueType") == league.id
+                    )[0]?.leagueDocuments.schoolCertificate && (
+                      <div className="flex flex-col gap-2 w-full">
+                        <label htmlFor="schoolCertificate">
+                          <span className="text-red-500 mr-1">*</span>
+                          <b>
+                            {" "}
+                            Educational Institution certificate or diploma{" "}
+                          </b>
+                        </label>
+                        {/* trim and dots end */}
+                        {watch("schoolCertificate")?.length > 0 && (
+                          <div className="flex gap-2 items-center">
+                            <div
+                              className="
+                  overflow-hidden
+                  whitespace-nowrap
+                  overflow-ellipsis
+              "
+                            >
+                              {watch("schoolCertificate")[0].name}
+                            </div>
+                            <button
+                              className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                              onClick={() => {
+                                setValue("schoolCertificate", []);
+                              }}
+                            >
+                              x
+                            </button>
+                          </div>
+                        )}
+                        <button
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                          type="button"
+                          onClick={() => {
+                            // click sibling of this element
+                            const input = document.querySelector(
+                              'input[name="schoolCertificate"]'
+                            ) as HTMLInputElement;
+                            input.click();
+                          }}
+                        >
+                          {/* trim and dots end */}
                           <div
                             className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
-              "
-                          >
-                            {watch("schoolCertificate")[0].name}
-                          </div>
-                          <button
-                            className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                            onClick={() => {
-                              setValue("schoolCertificate", []);
-                            }}
-                          >
-                            x
-                          </button>
-                        </div>
-                      )}
-                      <button
-                        className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                        type="button"
-                        onClick={() => {
-                          // click sibling of this element
-                          const input = document.querySelector(
-                            'input[name="schoolCertificate"]'
-                          ) as HTMLInputElement;
-                          input.click();
-                        }}
-                      >
-                        {/* trim and dots end */}
-                        <div
-                          className="
-                  overflow-hidden
-                  whitespace-nowrap
-                  overflow-ellipsis
                   w-[100px]
               "
-                        >
-                          Choose file
-                        </div>
-                      </button>
-                      <input
-                        type="file"
-                        // only pdf file allowed
-                        accept=".pdf"
-                        {...register("schoolCertificate")}
-                        className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                      />
-                      <span className="text-[#8c8c8c] text-xs">
-                        Please upload a document confirming that you have ever
-                        studied in the educational institution you represent.
-                      </span>
-                      <span className="text-red-500">
-                        {errors?.schoolCertificate?.message}
-                      </span>
-                    </div>
+                          >
+                            Choose file
+                          </div>
+                        </button>
+                        <input
+                          type="file"
+                          // only pdf file allowed
+                          accept=".pdf"
+                          {...register("schoolCertificate")}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                        />
+                        <span className="text-[#8c8c8c] text-xs">
+                          Please upload a document confirming that you have ever
+                          studied in the educational institution you represent.
+                        </span>
+                        <span className="text-red-500">
+                          {errors?.schoolCertificate?.message}
+                        </span>
+                      </div>
+                    )}
                     {/* School official Data */}
                     {/* School official Name */}
                     <div className="flex flex-col gap-2 max-w-[350px] w-full">
@@ -1232,194 +1228,211 @@ export default function Register(props: Props) {
                     </div>
 
                     {/* School official&apos;s contact number */}
-                    <div className="flex flex-col gap-2 max-w-[350px] w-full">
-                      <label htmlFor="schoolOfficialContactNumber">
-                        <span className="text-red-500 mr-1">*</span>
-                        <b>
-                          {" "}
-                          Educational Institution official&apos;s contact number
-                        </b>
-                      </label>
-                      <input
-                        type="text"
-                        {...register("schoolOfficial.contactNumber", {
-                          required:
-                            "Educational Institution official's contact number is required",
-                        })}
-                        className="border border-gray-300 rounded-md px-[6px] py-[12px]"
-                        placeholder="Educational Institution official's contact number"
-                      />
-                      <span className="text-red-500">
-                        {errors.schoolOfficial?.contactNumber?.message}
-                      </span>
-                    </div>
+                    {leaguesData?.filter(
+                      (league: any) => watch("leagueType") == league.id
+                    )[0]?.leagueDocuments.schoolContact && (
+                      <div className="flex flex-col gap-2 max-w-[350px] w-full">
+                        <label htmlFor="schoolOfficialContactNumber">
+                          <span className="text-red-500 mr-1">*</span>
+                          <b>
+                            {" "}
+                            Educational Institution official&apos;s contact
+                            number
+                          </b>
+                        </label>
+                        <input
+                          type="text"
+                          {...register("schoolOfficial.contactNumber", {
+                            required:
+                              "Educational Institution official's contact number is required",
+                          })}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px]"
+                          placeholder="Educational Institution official's contact number"
+                        />
+                        <span className="text-red-500">
+                          {errors.schoolOfficial?.contactNumber?.message}
+                        </span>
+                      </div>
+                    )}
 
                     {/* School logo */}
-                    <div className="flex flex-col gap-2  w-full">
-                      <label htmlFor="schoolLogo">
-                        <span className="text-red-500 mr-1">*</span>
-                        <b> Educational Institution&apos;s logo</b>
-                      </label>
-                      {/* trim and dots end */}
-                      {watch("schoolLogo")?.length > 0 && (
-                        <div className="flex gap-2 items-start">
-                          <div className="flex flex-col">
-                            <a
-                              href={URL.createObjectURL(watch("schoolLogo")[0])}
-                              target="_blank"
-                            >
-                              <img
-                                src={URL.createObjectURL(
+                    {leaguesData?.filter(
+                      (league: any) => watch("leagueType") == league.id
+                    )[0]?.leagueDocuments.schoolLogo && (
+                      <div className="flex flex-col gap-2  w-full">
+                        <label htmlFor="schoolLogo">
+                          <span className="text-red-500 mr-1">*</span>
+                          <b> Educational Institution&apos;s logo</b>
+                        </label>
+                        {/* trim and dots end */}
+                        {watch("schoolLogo")?.length > 0 && (
+                          <div className="flex gap-2 items-start">
+                            <div className="flex flex-col">
+                              <a
+                                href={URL.createObjectURL(
                                   watch("schoolLogo")[0]
                                 )}
-                                className="w-[250px] h-[250px] object-cover"
-                                alt="school logo"
-                              />
-                            </a>
+                                target="_blank"
+                              >
+                                <img
+                                  src={URL.createObjectURL(
+                                    watch("schoolLogo")[0]
+                                  )}
+                                  className="w-[250px] h-[250px] object-cover"
+                                  alt="school logo"
+                                />
+                              </a>
 
-                            <div
-                              className="
+                              <div
+                                className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
                   w-[100px]
               "
-                            >
-                              {watch("schoolLogo")[0].name}
+                              >
+                                {watch("schoolLogo")[0].name}
+                              </div>
                             </div>
-                          </div>
 
-                          <button
-                            className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                            onClick={() => {
-                              setValue("schoolLogo", []);
-                            }}
-                          >
-                            x
-                          </button>
-                        </div>
-                      )}
-                      <button
-                        className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                        type="button"
-                        onClick={() => {
-                          // click sibling of this element
-                          const input = document.querySelector(
-                            'input[name="schoolLogo"]'
-                          ) as HTMLInputElement;
-                          input.click();
-                        }}
-                      >
-                        {/* trim and dots end */}
-                        <div
-                          className="
+                            <button
+                              className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                              onClick={() => {
+                                setValue("schoolLogo", []);
+                              }}
+                            >
+                              x
+                            </button>
+                          </div>
+                        )}
+                        <button
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                          type="button"
+                          onClick={() => {
+                            // click sibling of this element
+                            const input = document.querySelector(
+                              'input[name="schoolLogo"]'
+                            ) as HTMLInputElement;
+                            input.click();
+                          }}
+                        >
+                          {/* trim and dots end */}
+                          <div
+                            className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
                   w-[100px]
               "
-                        >
-                          Choose file
-                        </div>
-                      </button>
-                      <input
-                        type="file"
-                        {...register("schoolLogo", {
-                          required: "Educational Institution logo is required",
-                        })}
-                        className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                      />
-                      <span className="text-red-500">
-                        {errors?.schoolLogo?.message}
-                      </span>
-                    </div>
+                          >
+                            Choose file
+                          </div>
+                        </button>
+                        <input
+                          type="file"
+                          {...register("schoolLogo", {
+                            required:
+                              "Educational Institution logo is required",
+                          })}
+                          className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                        />
+                        <span className="text-red-500">
+                          {errors?.schoolLogo?.message}
+                        </span>
+                      </div>
+                    )}
                   </>
                 )}
 
                 {/* ID CARD */}
-                <div className="flex flex-col gap-2 w-full">
-                  <label htmlFor="personalPhoto">
-                    <span className="text-red-500 mr-1">*</span>
-                    <b> ID Card</b>
-                  </label>
-                  {/* trim and dots end */}
-                  {watch("idCard")?.length > 0 && (
-                    <div className="flex gap-2 items-start">
-                      <div className="flex flex-col">
-                        <div
-                          className="
+                {leaguesData?.filter(
+                  (league: any) => watch("leagueType") == league.id
+                )[0]?.leagueDocuments.identification && (
+                  <div className="flex flex-col gap-2 w-full">
+                    <label htmlFor="personalPhoto">
+                      <span className="text-red-500 mr-1">*</span>
+                      <b> ID Card</b>
+                    </label>
+                    {/* trim and dots end */}
+                    {watch("idCard")?.length > 0 && (
+                      <div className="flex gap-2 items-start">
+                        <div className="flex flex-col">
+                          <div
+                            className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
                   w-[100px]
               "
-                        >
-                          <a
-                            href={URL.createObjectURL(watch("idCard")[0])}
-                            target="_blank"
                           >
-                            <p
-                              className="text-[12px] text-blue-500 underline
-                      "
+                            <a
+                              href={URL.createObjectURL(watch("idCard")[0])}
+                              target="_blank"
                             >
-                              {watch("idCard")[0].name}
-                            </p>
-                          </a>
+                              <p
+                                className="text-[12px] text-blue-500 underline
+                      "
+                              >
+                                {watch("idCard")[0].name}
+                              </p>
+                            </a>
+                          </div>
                         </div>
-                      </div>
 
-                      <button
-                        className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
-                        onClick={() => {
-                          setValue("idCard", []);
-                        }}
-                      >
-                        x
-                      </button>
-                    </div>
-                  )}
-                  <button
-                    className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
-                    type="button"
-                    onClick={() => {
-                      // click sibling of this element
-                      const input = document.querySelector(
-                        'input[name="idCard"]'
-                      ) as HTMLInputElement;
-                      input.click();
-                    }}
-                  >
-                    {/* trim and dots end */}
-                    <div
-                      className="
+                        <button
+                          className="text-red-500 border border-gray-300 rounded-md px-[4px] flex justify-between flex-wrap text-[12px]"
+                          onClick={() => {
+                            setValue("idCard", []);
+                          }}
+                        >
+                          x
+                        </button>
+                      </div>
+                    )}
+                    <button
+                      className="border border-gray-300 rounded-md px-[6px] py-[12px] flex justify-between flex-wrap"
+                      type="button"
+                      onClick={() => {
+                        // click sibling of this element
+                        const input = document.querySelector(
+                          'input[name="idCard"]'
+                        ) as HTMLInputElement;
+                        input.click();
+                      }}
+                    >
+                      {/* trim and dots end */}
+                      <div
+                        className="
                   overflow-hidden
                   whitespace-nowrap
                   overflow-ellipsis
               "
-                    >
-                      Upload ID card
+                      >
+                        Upload ID card
+                      </div>
+                    </button>
+                    <input
+                      type="file"
+                      //accept only pdf file format
+                      {...register("idCard", {
+                        required: "ID card is required",
+                      })}
+                      className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
+                    />
+                    {/* info about photo */}
+                    <div className="text-[12px] text-gray-500">
+                      <p>
+                        Please upload both sides of your ID (Şəxsiyyət Vəsiqəsi)
+                        in a single one-page PDF file or any image file format.
+                      </p>
                     </div>
-                  </button>
-                  <input
-                    type="file"
-                    //accept only pdf file format
-                    {...register("idCard", {
-                      required: "ID card is required",
-                    })}
-                    className="border border-gray-300 rounded-md px-[6px] py-[12px] hidden"
-                  />
-                  {/* info about photo */}
-                  <div className="text-[12px] text-gray-500">
-                    <p>
-                      Please upload both sides of your ID (Şəxsiyyət Vəsiqəsi)
-                      in a single one-page PDF file or any image file format.
-                    </p>
-                  </div>
 
-                  <span className="text-red-500">
-                    {errors?.idCard?.message}
-                  </span>
-                </div>
+                    <span className="text-red-500">
+                      {errors?.idCard?.message}
+                    </span>
+                  </div>
+                )}
+
                 {/* Personal Photo */}
                 <div className="flex flex-col gap-2 w-full">
                   <label htmlFor="personalPhoto">
