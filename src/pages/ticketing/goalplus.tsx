@@ -20,6 +20,7 @@ const GoaplusTicketing = (props: Props) => {
     data: getTicketTypeData,
     error: getTicketTypeError,
   } = ticketingApi.useGetTicketTypesQuery();
+  const [errorsSubmit, setErrorsSubmit] = React.useState<any>(null);
   const [
     submitTicketApi,
     {
@@ -36,22 +37,27 @@ const GoaplusTicketing = (props: Props) => {
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm();
 
   const onSubmit = async (data: any) => {
+    setErrorsSubmit(null);
+    let postData: any = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      gender: data.gender,
+      birthDate: data.birthdate,
+      phoneNumber: data.phoneNumber,
+      schoolName: data.schoolName,
+    };
+    if (data.date) {
+      postData.attendanceDate = data.date;
+    }
     const resp: any = await axios
       .post(
         `https://api.goalplus.az/api/payments/request/visitor?ticketTypeId=${data.ticketType}`,
-        {
-          firstName: data.firstName,
-          lastName: data.lastName,
-          email: data.email,
-          gender: data.gender,
-          birthDate: data.birthdate,
-          phoneNumber: data.phoneNumber,
-          schoolName: data.schoolName,
-          attendancePeriod: data.date,
-        }
+        postData
       )
       .then((res: any) => {
         console.log(res);
@@ -69,6 +75,8 @@ const GoaplusTicketing = (props: Props) => {
       })
       .catch((err) => {
         toast.error("Something went wrong!");
+        console.log(err.response.data);
+        setErrorsSubmit(err.response.data);
       });
   };
 
@@ -76,21 +84,28 @@ const GoaplusTicketing = (props: Props) => {
     console.log(getTicketTypeData);
   }, [watch("ticketType")]);
 
-  const checkTicketDatesInSameDay = (dates: {
-    startTime: string;
-    endTime: string;
-  }) => {
-    const startTime = new Date(dates.startTime);
-    const endTime = new Date(dates.endTime);
-    const today = new Date();
-    if (
-      startTime.getDate() === today.getDate() &&
-      startTime.getMonth() === today.getMonth() &&
-      startTime.getFullYear() === today.getFullYear()
-    ) {
-      return true;
+  const checkTicketDatesInSameDay = (
+    dates:
+      | {
+          startTime: string;
+          endTime: string;
+        }[]
+      | undefined
+      | null
+  ) => {
+    if (!dates) {
+      return null;
     }
-    return false;
+    console.log("dates", dates);
+    let allDatesInSameDay = true;
+    for (let i = 0; i < dates.length - 1; i++) {
+      const startTime = new Date(dates[i].startTime);
+      const endTime = new Date(dates[i].endTime);
+      if (startTime.getDate() !== endTime.getDate()) {
+        allDatesInSameDay = false;
+      }
+    }
+    return allDatesInSameDay;
   };
 
   if (getTicketTypeSuccess)
@@ -134,15 +149,27 @@ const GoaplusTicketing = (props: Props) => {
               <select
                 id="ticket-type"
                 className="w-full border border-gray-300 rounded-md px-2 py-1"
-                {...register("ticketType", { required: true })}
+                {...register("ticketType", {
+                  required: true,
+                  onChange: (e) => {
+                    setValue("ticketType", e.target.value);
+                    setValue("date", "");
+                  },
+                })}
               >
+                <option value="" selected>
+                  {" "}
+                  Select ticket date
+                </option>
                 {getTicketTypeData.map((ticketType: any) => (
                   <option key={ticketType.id} value={ticketType.id}>
                     {ticketType.name}
                   </option>
                 ))}
               </select>
-              <span>{errors.ticketType && "Ticket Type is required"}</span>
+              <span className="text-red-500">
+                {errors.ticketType && "Ticket Type is required"}
+              </span>
             </div>
 
             <div className="flex flex-col gap-1">
@@ -206,9 +233,7 @@ const GoaplusTicketing = (props: Props) => {
             </div>
 
             <div className="flex flex-col gap-1">
-              <label htmlFor="date" className="text-sm text-gray-500">
-                Gender
-              </label>
+              <label className="text-sm text-gray-500">Gender</label>
               <select
                 id="name"
                 {...register("gender", { required: true })}
@@ -222,30 +247,44 @@ const GoaplusTicketing = (props: Props) => {
               </span>
             </div>
 
-            <div className="flex flex-col gap-1">
-              <label htmlFor="date" className="text-sm text-gray-500">
-                Select event date
-              </label>
-              <select
-                id="name"
-                {...register("date", { required: true })}
-                className="w-full border border-gray-300 rounded-md px-2 py-1"
-              >
-                {getTicketTypeData
-                  ?.filter((item: any) => item.id == watch("ticketType"))[0]
-                  ?.dates?.map((date: any, index: any) => (
-                    <option key={index} value={index}>
-                      {/* start date */}
-                      {new Date(date?.startTime)?.toDateString()} -{" "}
-                      {/* end date */}
-                      {new Date(date?.endTime)?.toDateString()}
-                    </option>
-                  ))}
-              </select>
-              <span className="text-red-500">
-                {errors.date && "Date is required"}
-              </span>
-            </div>
+            {checkTicketDatesInSameDay(
+              getTicketTypeData?.filter(
+                (item: any) => item.id == watch("ticketType")
+              )[0]?.dates
+            ) ? (
+              <div className="flex flex-col gap-1">
+                <label htmlFor="date" className="text-sm text-gray-500">
+                  Select event date
+                </label>
+                <select
+                  id="name"
+                  {...register("date", { required: true })}
+                  className="w-full border border-gray-300 rounded-md px-2 py-1"
+                >
+                  {getTicketTypeData
+                    ?.filter((item: any) => item.id == watch("ticketType"))[0]
+                    ?.dates?.map((date: any, index: any) => (
+                      <option key={index} value={index}>
+                        {/* start clock  */}
+                        {new Date(date?.startTime)?.toDateString() + " "}
+                        {new Date(date?.startTime)?.toLocaleTimeString(
+                          "az-AZ"
+                        )}{" "}
+                        {/*  */}- {/* end date */}
+                        {new Date(date?.endTime)?.toDateString() + " "}
+                        {new Date(date?.endTime)?.toLocaleTimeString(
+                          "az-AZ"
+                        )}{" "}
+                      </option>
+                    ))}
+                </select>
+                <span className="text-red-500">
+                  {errors.date && "Date is required"}
+                </span>
+              </div>
+            ) : (
+              <></>
+            )}
 
             <div className="flex flex-col gap-1">
               <label htmlFor="date" className="text-sm text-gray-500">
@@ -284,9 +323,16 @@ const GoaplusTicketing = (props: Props) => {
               Submit
             </button>
 
-            {(postTicketError as any)?.status !== "PARSING_ERROR" && (
-              <ErrorMapper error={postTicketError} />
-            )}
+            <div>
+              {errorsSubmit &&
+                Object.keys(errorsSubmit).map((key) => {
+                  return (
+                    <p key={key} className="text-red-500">
+                      {errorsSubmit[key]}
+                    </p>
+                  );
+                })}
+            </div>
           </form>
         </div>
       </div>
