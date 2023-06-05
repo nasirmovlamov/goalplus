@@ -1,7 +1,9 @@
 import ErrorMapper from "@/components/ErrorMapper";
 import { ticketingApi } from "@/store/ticketingApi";
+import axios from "axios";
 import { watch } from "fs";
 import { useRouter } from "next/router";
+import { config } from "process";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -37,24 +39,32 @@ const GoaplusTicketing = (props: Props) => {
   } = useForm();
 
   const onSubmit = async (data: any) => {
-    const resp: any = await submitTicketApi({
-      id: data.ticketType,
-      postData: {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        gender: data.gender,
-        birthDate: data.birthdate,
-        phoneNumber: data.phoneNumber,
-        schoolName: data.schoolName,
-        attendancePeriod: data.date,
-      },
-    })
+    const resp: any = await axios
+      .post(
+        `https://api.goalplus.az/api/payments/request/visitor?ticketTypeId=${data.ticketType}`,
+        {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          gender: data.gender,
+          birthDate: data.birthdate,
+          phoneNumber: data.phoneNumber,
+          schoolName: data.schoolName,
+          attendancePeriod: data.date,
+        }
+      )
       .then((res: any) => {
-        if (res.error.status === "PARSING_ERROR") {
-          toast.success("Ticket is successfully created!");
-          window.open(res.error.data, "_blank");
-          return;
+        console.log(res);
+        if (res.status === 204 && res.data === "") {
+          toast.success(
+            "Ticket is successfully created, please check you email!"
+          );
+        }
+        if (res.status === 200 && res.data !== "") {
+          toast.success("Ticket is successfully created, please make payment!");
+          setTimeout(() => {
+            window.open(res.data, "_blank");
+          }, 2000);
         }
       })
       .catch((err) => {
@@ -65,6 +75,23 @@ const GoaplusTicketing = (props: Props) => {
   useEffect(() => {
     console.log(getTicketTypeData);
   }, [watch("ticketType")]);
+
+  const checkTicketDatesInSameDay = (dates: {
+    startTime: string;
+    endTime: string;
+  }) => {
+    const startTime = new Date(dates.startTime);
+    const endTime = new Date(dates.endTime);
+    const today = new Date();
+    if (
+      startTime.getDate() === today.getDate() &&
+      startTime.getMonth() === today.getMonth() &&
+      startTime.getFullYear() === today.getFullYear()
+    ) {
+      return true;
+    }
+    return false;
+  };
 
   if (getTicketTypeSuccess)
     return (
@@ -197,7 +224,7 @@ const GoaplusTicketing = (props: Props) => {
 
             <div className="flex flex-col gap-1">
               <label htmlFor="date" className="text-sm text-gray-500">
-                Select event date range
+                Select event date
               </label>
               <select
                 id="name"

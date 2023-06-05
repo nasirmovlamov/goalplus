@@ -6,8 +6,6 @@ export const ticketingApi = createApi({
   reducerPath: "ticketingApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://api.goalplus.az/api",
-    // global error message toaster
-    // ref: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#global-error-handling
     prepareHeaders: (headers, { getState }) => {
       const token = localStorage.getItem("token");
       if (token) {
