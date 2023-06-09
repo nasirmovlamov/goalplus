@@ -80,10 +80,6 @@ const GoaplusTicketing = (props: Props) => {
       });
   };
 
-  useEffect(() => {
-    console.log(getTicketTypeData);
-  }, [watch("ticketType")]);
-
   const checkTicketDatesInSameDay = (
     dates:
       | {
@@ -94,11 +90,10 @@ const GoaplusTicketing = (props: Props) => {
       | null
   ) => {
     if (!dates) {
-      return null;
+      return false;
     }
-    console.log("dates", dates);
     let allDatesInSameDay = true;
-    for (let i = 0; i < dates.length - 1; i++) {
+    for (let i = 0; i < dates.length; i++) {
       const startTime = new Date(dates[i].startTime);
       const endTime = new Date(dates[i].endTime);
       if (startTime.getDate() !== endTime.getDate()) {
