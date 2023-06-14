@@ -196,7 +196,7 @@ const GoaplusTicketing = (props: Props) => {
               </span>
             </div>
 
-            <div className="flex flex-col gap-1 max-w-[555px] w-full">
+            <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
                 First Name
               </label>
@@ -212,7 +212,7 @@ const GoaplusTicketing = (props: Props) => {
               </span>
             </div>
 
-            <div className="flex flex-col gap-1 max-w-[555px] w-full">
+            <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
                 Last Name
               </label>
@@ -228,7 +228,7 @@ const GoaplusTicketing = (props: Props) => {
               </span>
             </div>
 
-            <div className="flex flex-col gap-1 max-w-[555px] w-full">
+            <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
                 Email
               </label>
@@ -244,7 +244,7 @@ const GoaplusTicketing = (props: Props) => {
               </span>
             </div>
 
-            <div className="flex flex-col gap-1 max-w-[555px] w-full">
+            <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
                 Phone number
               </label>
@@ -260,7 +260,7 @@ const GoaplusTicketing = (props: Props) => {
               </span>
             </div>
 
-            <div className="flex flex-col gap-1 max-w-[555px] w-full">
+            <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label className="text-[16px] text-[#9B9B9B] ">Gender</label>
               <div className="flex gap-2 mt-[23px]">
                 <div className="flex items-center gap-4">
@@ -289,7 +289,7 @@ const GoaplusTicketing = (props: Props) => {
               </span>
             </div>
 
-            <div className="flex flex-col gap-1 max-w-[555px] w-full">
+            <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
                 Birthdate
               </label>
@@ -372,8 +372,8 @@ const GoaplusTicketing = (props: Props) => {
                   </div>
                 </div>
                 <p className="text-[#1C21FF] text-xs text-center mt-[12px]">
-                  Use … promocode upon registration <br /> and get a discount! <br /> (Applies
-                  only to new members)
+                  Use … promocode upon registration <br /> and get a discount!{" "}
+                  <br /> (Applies only to new members)
                 </p>
               </div>
             </div>
