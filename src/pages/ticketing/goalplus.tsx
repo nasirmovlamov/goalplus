@@ -1,12 +1,12 @@
 import ErrorMapper from "@/components/ErrorMapper";
 import { ticketingApi } from "@/store/ticketingApi";
 import axios from "axios";
-import { watch } from "fs";
 import { useRouter } from "next/router";
 import { config } from "process";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Select from "react-select";
 import { date } from "yup";
 
 type Props = {};
@@ -42,7 +42,7 @@ const GoaplusTicketing = (props: Props) => {
 
   const onSubmit = async (data: any) => {
     setErrorsSubmit(null);
-    console.log('data', data)
+    console.log("data", data);
     let postData: any = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -104,6 +104,22 @@ const GoaplusTicketing = (props: Props) => {
     return allDatesInSameDay;
   };
 
+  register("ticketType", { required: true });
+
+  useEffect(() => {
+    if (
+      checkTicketDatesInSameDay(
+        getTicketTypeData?.filter(
+          (item: any) => item.id == watch("ticketType")
+        )[0]?.dates
+      )
+    ) {
+      register("date", { required: true });
+    } else {
+      register("date");
+    }
+  }, [watch("ticketType")]);
+
   if (getTicketTypeSuccess)
     return (
       <div className="mx-auto max-w-[1175px] px-[15px]  mt-[120px] ">
@@ -124,7 +140,7 @@ const GoaplusTicketing = (props: Props) => {
                   getTicketTypeData?.filter(
                     (item: any) => item.id == watch("ticketType")
                   )[0]?.name
-                    ? "text-[#05055B] "
+                    ? "text-[#8A0F9E] "
                     : "text-gray-200"
                 }`}
               >
@@ -141,7 +157,7 @@ const GoaplusTicketing = (props: Props) => {
                   getTicketTypeData?.filter(
                     (item: any) => item.id == watch("ticketType")
                   )[0]?.name
-                    ? "text-[#05055B] "
+                    ? "text-[#8A0F9E] "
                     : "text-gray-200"
                 }`}
               >
@@ -160,7 +176,7 @@ const GoaplusTicketing = (props: Props) => {
           )}
           <form
             action=""
-            className="mx-auto flex flex-wrap gap-5 mt-[40px] pb-10 w-full"
+            className="mx-auto flex flex-wrap gap-8 mt-[40px] pb-10 w-full"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="flex flex-col gap-1 w-full">
@@ -170,27 +186,25 @@ const GoaplusTicketing = (props: Props) => {
               >
                 Ticket Type
               </label>
-              <select
-                id="ticket-type"
-                className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
-                {...register("ticketType", {
-                  required: true,
-                  onChange: (e) => {
-                    setValue("ticketType", e.target.value);
-                    setValue("date", "");
-                  },
+              <Select
+                options={getTicketTypeData.map((ticketType: any) => {
+                  return {
+                    value: ticketType.id,
+                    label: ticketType.name,
+                  };
                 })}
-              >
-                <option value="" selected>
-                  {" "}
-                  Select ticket date
-                </option>
-                {getTicketTypeData.map((ticketType: any) => (
-                  <option key={ticketType.id} value={ticketType.id}>
-                    {ticketType.name}
-                  </option>
-                ))}
-              </select>
+                onChange={(e: any) => {
+                  setValue("ticketType", e.value);
+                  setValue("date", "");
+                }}
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    backgroundColor: "#F2F2F2",
+                    height: "64px",
+                  }),
+                }}
+              />
               <span className="text-red-500">
                 {errors.ticketType && "Ticket type is required"}
               </span>
@@ -205,7 +219,7 @@ const GoaplusTicketing = (props: Props) => {
                 type="text"
                 {...register("firstName", { required: true })}
                 placeholder="Your First Name"
-                className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
+                className=" h-[64px] w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
                 {errors.firstName && "First name is required"}
@@ -221,7 +235,7 @@ const GoaplusTicketing = (props: Props) => {
                 type="text"
                 {...register("lastName", { required: true })}
                 placeholder="Your Last Name"
-                className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
+                className=" h-[64px] w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
                 {errors.lastName && "Last name is required"}
@@ -237,7 +251,7 @@ const GoaplusTicketing = (props: Props) => {
                 type="text"
                 placeholder="Your Email"
                 {...register("email", { required: true })}
-                className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
+                className=" h-[64px] w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
                 {errors.email && "Email is required"}
@@ -253,7 +267,7 @@ const GoaplusTicketing = (props: Props) => {
                 type="text"
                 placeholder="994501234567"
                 {...register("phoneNumber", { required: true })}
-                className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
+                className=" h-[64px] w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
                 {errors.phoneNumber && "Phone number is required"}
@@ -297,7 +311,7 @@ const GoaplusTicketing = (props: Props) => {
                 id="name"
                 type="date"
                 {...register("birthdate", { required: true })}
-                className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
+                className=" h-[64px] w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
                 {errors.birthdate && "Birthdate is required"}
@@ -313,29 +327,31 @@ const GoaplusTicketing = (props: Props) => {
                 <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
                   Select event date
                 </label>
-                <select
-                  id="name"
-                  {...register("date", { required: true })}
-                  className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
-                >
-                  <option value="">Select Event Date</option>
-                  {getTicketTypeData
+                <Select
+                  options={getTicketTypeData
                     ?.filter((item: any) => item.id == watch("ticketType"))[0]
-                    ?.dates?.map((date: any, index: any) => (
-                      <option key={index} value={index}>
-                        {/* start clock  */}
-                        {new Date(date?.startTime)?.toDateString() + " "}
-                        {new Date(date?.startTime)?.toLocaleTimeString(
+                    ?.dates?.map((date: any, index: any) => {
+                      return {
+                        label: `
+                        ${new Date(date?.startTime)?.toDateString() + " "}
+                        ${new Date(date?.startTime)?.toLocaleTimeString(
                           "az-AZ"
-                        )}{" "}
-                        {/*  */}- {/* end date */}
-                        {new Date(date?.endTime)?.toDateString() + " "}
-                        {new Date(date?.endTime)?.toLocaleTimeString(
-                          "az-AZ"
-                        )}{" "}
-                      </option>
-                    ))}
-                </select>
+                        )}
+                        ${new Date(date?.endTime)?.toDateString() + " "}
+                        ${new Date(date?.endTime)?.toLocaleTimeString("az-AZ")}
+                  `,
+                        value: index,
+                      };
+                    })}
+                  onChange={(e: any) => setValue("date", e.value)}
+                  styles={{
+                    control: (baseStyles, state) => ({
+                      ...baseStyles,
+                      backgroundColor: "#F2F2F2",
+                      height: "64px",
+                    }),
+                  }}
+                />
                 <span className="text-red-500">
                   {errors.date && "Date is required"}
                 </span>
