@@ -42,6 +42,7 @@ const GoaplusTicketing = (props: Props) => {
 
   const onSubmit = async (data: any) => {
     setErrorsSubmit(null);
+    console.log('data', data)
     let postData: any = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -111,7 +112,7 @@ const GoaplusTicketing = (props: Props) => {
             (item: any) => item.id == watch("ticketType")
           )[0]?.name ? (
             <>
-              <h1 className="text-[30px] font-bold text-[#05055B]">
+              <h1 className="text-[30px] font-bold text-[#05055B] font-integral">
                 {
                   getTicketTypeData?.filter(
                     (item: any) => item.id == watch("ticketType")
@@ -153,7 +154,7 @@ const GoaplusTicketing = (props: Props) => {
               </p>
             </>
           ) : (
-            <h1 className="text-[30px] font-bold text-[#05055B]">
+            <h1 className="text-[30px] font-bold text-[#05055B] font-integral">
               Please select ticket type
             </h1>
           )}
@@ -191,7 +192,7 @@ const GoaplusTicketing = (props: Props) => {
                 ))}
               </select>
               <span className="text-red-500">
-                {errors.ticketType && "Ticket Type is required"}
+                {errors.ticketType && "Ticket type is required"}
               </span>
             </div>
 
@@ -203,10 +204,11 @@ const GoaplusTicketing = (props: Props) => {
                 id="name"
                 type="text"
                 {...register("firstName", { required: true })}
+                placeholder="Your First Name"
                 className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
-                {errors.firstName && "Firstname is required"}
+                {errors.firstName && "First name is required"}
               </span>
             </div>
 
@@ -218,10 +220,11 @@ const GoaplusTicketing = (props: Props) => {
                 id="name"
                 type="text"
                 {...register("lastName", { required: true })}
+                placeholder="Your Last Name"
                 className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
-                {errors.lastName && "Lastname is required"}
+                {errors.lastName && "Last name is required"}
               </span>
             </div>
 
@@ -232,6 +235,7 @@ const GoaplusTicketing = (props: Props) => {
               <input
                 id="name"
                 type="text"
+                placeholder="Your Email"
                 {...register("email", { required: true })}
                 className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
@@ -247,6 +251,7 @@ const GoaplusTicketing = (props: Props) => {
               <input
                 id="name"
                 type="text"
+                placeholder="994501234567"
                 {...register("phoneNumber", { required: true })}
                 className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
@@ -295,7 +300,7 @@ const GoaplusTicketing = (props: Props) => {
                 className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
-                {errors.birthdate && "Lastname is required"}
+                {errors.birthdate && "Birthdate is required"}
               </span>
             </div>
 
@@ -313,6 +318,7 @@ const GoaplusTicketing = (props: Props) => {
                   {...register("date", { required: true })}
                   className="w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
                 >
+                  <option value="">Select Event Date</option>
                   {getTicketTypeData
                     ?.filter((item: any) => item.id == watch("ticketType"))[0]
                     ?.dates?.map((date: any, index: any) => (
@@ -338,8 +344,42 @@ const GoaplusTicketing = (props: Props) => {
               <></>
             )}
 
+            <div className="flex items-center flex-col gap-1  w-full mt-[32px]">
+              <div className="max-w-[255px]">
+                <label className="text-[16px] text-[#9B9B9B] ">
+                  Do you have a Wolt account?
+                </label>
+                <div className="flex gap-2 mt-[23px]">
+                  <div className="flex items-center gap-4">
+                    <input
+                      type="radio"
+                      value="Yes"
+                      checked={watch("hasWoltAccount") == "Yes"}
+                      {...register("hasWoltAccount")}
+                      className="w-[32px] h-[32px]"
+                    />
+                    <span className="text-[20px] text-[#9B9B9B]">Yes</span>
+                  </div>
+                  <div className="flex items-center gap-4 ml-[27px]">
+                    <input
+                      type="radio"
+                      value="No"
+                      checked={watch("hasWoltAccount") == "No"}
+                      {...register("hasWoltAccount")}
+                      className="w-[32px] h-[32px]"
+                    />
+                    <span className="text-[20px] text-[#9B9B9B]">No</span>
+                  </div>
+                </div>
+                <p className="text-[#1C21FF] text-xs text-center mt-[12px]">
+                  Use … promocode upon registration <br /> and get a discount! <br /> (Applies
+                  only to new members)
+                </p>
+              </div>
+            </div>
+
             <button
-              className="w-full bg-[#031F57] text-white py-2 rounded-md"
+              className="w-full bg-[#031F57] text-white py-2 rounded-md mt-[120px] h-[64px] text-[20px]"
               type="submit"
             >
               Submit
