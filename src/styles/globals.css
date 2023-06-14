@@ -26,3 +26,8 @@
 .slick-dots li:not(.slick-active) div:hover {
   background-color: #7385aa;
 }
+
+@font-face {
+  font-family: "IntegralCF";
+  src: url("../media/fonts/IntegralCF-Medium.woff2");
+}

@@ -1,5 +1,6 @@
 import { BasketballPriceCard } from "@/components/BasketballPriceCard";
 import { BeachVolleyballPriceCard } from "@/components/BeachVolleyballPriceCard";
+import { EsportPriceCard } from "@/components/EsportPriceCard";
 import { FootballPriceCard } from "@/components/FootballPriceCard";
 import React from "react";
 
@@ -100,7 +101,7 @@ const games = {
       regularPersonPrice: 0,
     },
     {
-      sport: "Volleyball",
+      sport: "Volleyball1",
       league: "Recreational",
       address: "Aquatic Palace",
       date: "TBA",
@@ -113,8 +114,29 @@ const games = {
       regularPersonPrice: 0,
     },
   ],
+  esport: [
+    {
+      sport: "Esport",
+      league: "Recreationals",
+      address: "Aquatic Palace",
+      date: " 28th of June - 10th of July",
+      gender: "mixed",
+      minPlayers: 2,
+      maxPlayers: 2,
+      earlyBirdTeamPrice: 50,
+      earlyBirdPersonPrice: null,
+      regularTeamPrice: 50,
+      regularPersonPrice: 50,
+    },
+  ],
 };
-const allGames = [...games.football, ...games.basketball, ...games.volleyball];
+
+const allGames = [
+  ...games.football,
+  ...games.basketball,
+  ...games.volleyball,
+  ...games.esport,
+];
 
 export default function OurServices(props: Props) {
   const [filter, setFilter] = React.useState("all");
@@ -187,6 +209,8 @@ export default function OurServices(props: Props) {
           {filter === "all" &&
             allGames.map((game, index) => {
               switch (game.sport) {
+                case "Esport":
+                  return <EsportPriceCard key={index} {...(game as any)} />;
                 case "Football":
                   return <FootballPriceCard key={index} {...(game as any)} />;
                 case "Girls Football":
