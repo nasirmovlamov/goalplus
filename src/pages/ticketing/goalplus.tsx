@@ -418,7 +418,10 @@ const GoaplusTicketing = (props: Props) => {
                   Use the promo code below and enjoy a 3 AZN discount for the
                   first 4 purchases 💙
                   <br />
-                  <b> GOALPLUS</b>
+                  <span className="text-2xl">
+                    {" "}
+                    Promocode: <b> GOALPLUS</b>
+                  </span>
                 </p>
               </div>
             </div>
