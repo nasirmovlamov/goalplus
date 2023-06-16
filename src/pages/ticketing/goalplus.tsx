@@ -409,20 +409,23 @@ const GoaplusTicketing = (props: Props) => {
                     <span className="text-[20px] text-[#9B9B9B]">No</span>
                   </div>
                 </div>
-                <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
-                  Haven’t got Wolt account yet? No worries, we got you covered!
-                  <br />
-                  Here’s is the chance to try out quick delivery from a wide
-                  range of restaurants 🍕, stores 🛍 and supermarkets 🛒
-                  <br />
-                  Use the promo code below and enjoy a 3 AZN discount for the
-                  first 4 purchases 💙
-                  <br />
-                  <span className="text-2xl">
-                    {" "}
-                    Promocode: <b> GOALPLUS</b>
-                  </span>
-                </p>
+                {watch("hasWoltAccount") == "No" && (
+                  <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
+                    Haven’t got Wolt account yet? No worries, we got you
+                    covered!
+                    <br />
+                    Here’s is the chance to try out quick delivery from a wide
+                    range of restaurants 🍕, stores 🛍 and supermarkets 🛒
+                    <br />
+                    Use the promo code below and enjoy a 3 AZN discount for the
+                    first 4 purchases 💙
+                    <br />
+                    <span className="text-2xl">
+                      {" "}
+                      Promocode: <b> GOALPLUS</b>
+                    </span>
+                  </p>
+                )}
               </div>
             </div>
 
