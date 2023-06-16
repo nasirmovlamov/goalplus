@@ -161,7 +161,6 @@ const GoaplusTicketing = (props: Props) => {
                     : "text-gray-200"
                 }`}
               >
-                Description - {"  "}
                 {
                   getTicketTypeData?.filter(
                     (item: any) => item.id == watch("ticketType")
