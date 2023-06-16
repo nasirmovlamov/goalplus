@@ -427,7 +427,7 @@ const GoaplusTicketing = (props: Props) => {
             </div>
 
             <button
-              className="w-full bg-[#031F57] text-white py-2 rounded-md mt-[120px] h-[64px] text-[20px]"
+              className="w-full bg-[#031F57] text-white py-2 rounded-md mt-[35px] h-[64px] text-[20px]"
               type="submit"
             >
               Submit
