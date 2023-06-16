@@ -409,7 +409,7 @@ const GoaplusTicketing = (props: Props) => {
                     <span className="text-[20px] text-[#9B9B9B]">No</span>
                   </div>
                 </div>
-                <p className="text-[#1C21FF] text-lg  mt-[12px]">
+                <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
                   Haven’t got Wolt account yet? No worries, we got you covered!
                   <br />
                   Here’s is the chance to try out quick delivery from a wide
