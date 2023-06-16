@@ -386,7 +386,7 @@ const GoaplusTicketing = (props: Props) => {
                     <span className="text-[20px] text-[#9B9B9B]">No</span>
                   </div>
                 </div>
-                <p className="text-[#1C21FF] text-xs text-center mt-[12px]">
+                <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
                   Use … promocode upon registration <br /> and get a discount!{" "}
                   <br /> (Applies only to new members)
                 </p>
