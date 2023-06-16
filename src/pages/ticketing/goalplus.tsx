@@ -144,7 +144,7 @@ const GoaplusTicketing = (props: Props) => {
                     : "text-gray-200"
                 }`}
               >
-                Price - {"  "}
+                Price: {"  "}
                 {
                   getTicketTypeData?.filter(
                     (item: any) => item.id == watch("ticketType")
@@ -171,7 +171,7 @@ const GoaplusTicketing = (props: Props) => {
             </>
           ) : (
             <h1 className="text-[30px] font-bold text-[#05055B] font-integral">
-              Please select ticket type
+              Please select the activity you want to attend:
             </h1>
           )}
           <form
