@@ -412,16 +412,13 @@ const GoaplusTicketing = (props: Props) => {
                 {watch("hasWoltAccount") == "No" && (
                   <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
                     Haven’t got Wolt account yet? No worries, we got you
-                    covered!
-                    <br />
-                    Here’s is the chance to try out quick delivery from a wide
-                    range of restaurants 🍕, stores 🛍 and supermarkets 🛒
-                    <br />
+                    covered! Here’s is the chance to try out quick delivery from
+                    a wide range of restaurants 🍕, stores 🛍 and supermarkets 🛒
                     Use the promo code below and enjoy a 3 AZN discount for the
                     first 4 purchases 💙
                     <br />
+                    <br />
                     <span className="text-2xl">
-                      {" "}
                       Promocode: <b> GOALPLUS</b>
                     </span>
                   </p>
