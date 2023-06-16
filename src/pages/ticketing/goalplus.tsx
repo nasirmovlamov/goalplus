@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Select from "react-select";
 import { date } from "yup";
+import { format } from "date-fns";
 
 type Props = {};
 
@@ -332,12 +333,7 @@ const GoaplusTicketing = (props: Props) => {
                     ?.dates?.map((date: any, index: any) => {
                       return {
                         label: `
-                        ${new Date(date?.startTime)?.toDateString() + " "}
-                        ${new Date(date?.startTime)?.toLocaleTimeString(
-                          "az-AZ"
-                        )}
-                        ${new Date(date?.endTime)?.toDateString() + "~ "}
-                        ${new Date(date?.endTime)?.toLocaleTimeString("az-AZ")}
+                        ${format(new Date(date.startTime), "MMMM d")}
                   `,
                         value: index,
                       };
