@@ -336,7 +336,7 @@ const GoaplusTicketing = (props: Props) => {
                         ${new Date(date?.startTime)?.toLocaleTimeString(
                           "az-AZ"
                         )}
-                        ${new Date(date?.endTime)?.toDateString() + " "}
+                        ${new Date(date?.endTime)?.toDateString() + "~ "}
                         ${new Date(date?.endTime)?.toLocaleTimeString("az-AZ")}
                   `,
                         value: index,
