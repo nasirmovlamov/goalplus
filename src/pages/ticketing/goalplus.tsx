@@ -3,7 +3,7 @@ import { ticketingApi } from "@/store/ticketingApi";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { config } from "process";
-import React, { useEffect } from "react";
+import React, { use, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Select from "react-select";
@@ -106,6 +106,28 @@ const GoaplusTicketing = (props: Props) => {
   };
 
   register("ticketType", { required: true });
+
+  useEffect(() => {
+    if (getTicketTypeSuccess) {
+      console.log(
+        getTicketTypeData
+          ?.filter((item: any) => item.id == watch("ticketType"))[0]
+          ?.dates?.map((date: any, index: any) => {
+            if (new Date(date.startTime) > new Date()) {
+              return {
+                label: `
+                        ${format(new Date(date.startTime), "MMMM d")}
+                  `,
+                value: index,
+              };
+            } else {
+              return null;
+            }
+          })
+          .filter((item: any) => item !== null)
+      );
+    }
+  }, [getTicketTypeSuccess, watch("ticketType")]);
 
   useEffect(() => {
     if (
@@ -331,13 +353,18 @@ const GoaplusTicketing = (props: Props) => {
                   options={getTicketTypeData
                     ?.filter((item: any) => item.id == watch("ticketType"))[0]
                     ?.dates?.map((date: any, index: any) => {
-                      return {
-                        label: `
+                      if (new Date(date.startTime) > new Date()) {
+                        return {
+                          label: `
                         ${format(new Date(date.startTime), "MMMM d")}
                   `,
-                        value: index,
-                      };
-                    })}
+                          value: index,
+                        };
+                      } else {
+                        return null;
+                      }
+                    })
+                    .filter((item: any) => item !== null)}
                   onChange={(e: any) => setValue("date", e.value)}
                   styles={{
                     control: (baseStyles, state) => ({
@@ -356,7 +383,7 @@ const GoaplusTicketing = (props: Props) => {
             )}
 
             <div className="flex items-center flex-col gap-1  w-full mt-[32px]">
-              <div className="max-w-[255px]">
+              <div className="max-w-[500px] flex flex-col items-center">
                 <label className="text-[16px] text-[#9B9B9B] ">
                   Do you have a Wolt account?
                 </label>
@@ -382,9 +409,16 @@ const GoaplusTicketing = (props: Props) => {
                     <span className="text-[20px] text-[#9B9B9B]">No</span>
                   </div>
                 </div>
-                <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
-                  Use … promocode upon registration <br /> and get a discount!{" "}
-                  <br /> (Applies only to new members)
+                <p className="text-[#1C21FF] text-lg  mt-[12px]">
+                  Haven’t got Wolt account yet? No worries, we got you covered!
+                  <br />
+                  Here’s is the chance to try out quick delivery from a wide
+                  range of restaurants 🍕, stores 🛍 and supermarkets 🛒
+                  <br />
+                  Use the promo code below and enjoy a 3 AZN discount for the
+                  first 4 purchases 💙
+                  <br />
+                  <b> GOALPLUS</b>
                 </p>
               </div>
             </div>
