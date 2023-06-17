@@ -52,7 +52,7 @@ const GoaplusTicketing = (props: Props) => {
       birthDate: data.birthdate,
       phoneNumber: data.phoneNumber,
       schoolName: data.schoolName,
-      hasWolt: data.hasWolt,
+      hasWolt: data.hasWolt === "Yes" ? true : false,
     };
     if (data.date) {
       postData.attendanceDate = data.date;
