@@ -80,7 +80,7 @@ const GoaplusTicketing = (props: Props) => {
       .then((res: any) => {
         if (res.status === 204 && res.data === "") {
           toast.success(
-            "Your ticket has been successfully created, please check your email! / Bilet uğurla yaradıldı, emailinizi yoxlayın!",
+            "Your ticket has been successfully created, please check your email! / Bilet uğurla yaradıldı, emailınızı yoxlayın!",
             {
               duration: 10000,
             }
