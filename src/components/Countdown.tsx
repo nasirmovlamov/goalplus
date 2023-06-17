@@ -46,7 +46,7 @@ const Countdown = ({ targetDate }: CountdownProps) => {
 
   if (timeLeft)
     return (
-      <div className={style["timer-container"]}>
+      <div className={style["timer-container"] + " font-integral "}>
         <div className={style["timer"]}>
           {timeLeft.days}
           <span>days</span>

@@ -50,7 +50,7 @@ export default function Layout({ children }: ScriptProps) {
   return (
     <div className="min-h-screen">
       <div className="min-h-[calc(100vh-340px)]">
-        <TopBanner />
+        {/* <TopBanner /> */}
         <Navbar />
         <main>{children}</main>
       </div>

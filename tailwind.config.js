@@ -11,8 +11,8 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      "integral":["IntegralCF"]
-    }
+      integral: ["IntegralCF"],
+    },
   },
   plugins: [],
 };

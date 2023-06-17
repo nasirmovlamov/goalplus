@@ -14,17 +14,18 @@ import GoalsTimelineSection from "@/components/GoalsTimelineSection";
 import RegisterInfoSection from "@/components/RegisterInfoSection";
 import Partners from "@/components/Partners";
 import Copyright from "@/components/Copyright";
+import HomeMainSlider2 from "@/components/HomeMainSlider2";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
     <>
-      <HomeMainSlider />
+      <HomeMainSlider2 />
       {/* <BlockEarlyBirds /> */}
       <RegisterInfoSection />
       <SpendYourSummersection />
-      <AllAboutPeopleSection />
+      {/* <AllAboutPeopleSection /> */}
       <GamesSections />
       <InfoSection />
       {/* <StayInTouch /> */}
