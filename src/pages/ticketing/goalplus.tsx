@@ -49,13 +49,13 @@ const GoaplusTicketing = (props: Props) => {
       lastName: data.lastName,
       email: data.email,
       gender: data.gender,
-      birthDate: data.birthdate,
+      birthDate: new Date(data.birthdate).toISOString(),
       phoneNumber: data.phoneNumber,
       schoolName: data.schoolName,
       hasWolt: data.hasWolt === "Yes" ? true : false,
     };
     if (data.date) {
-      postData.attendanceDate = data.date;
+      postData.attendancePeriod = data.date;
     }
     const resp: any = await axios
       .post(
