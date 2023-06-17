@@ -71,15 +71,18 @@ const RegisterInfoSection = (props: Props) => {
         >
           <FontAwesomeIcon icon={faCube} size="5x" />
           <h3 className=" lg:text-[44px] w-max">Community Pass</h3>
-          <p className="w-max text-[#cdf000]">Coming soon</p>
-          <div
-            className="mt-5 bg-[#888787] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-white "
+          <p className="w-max text-[#cdf000]">
+            Spent the most memorable summer with Goalplus
+          </p>
+          <Link
+            href="/ticketing/goalplus"
+            className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-[#cdf000]"
             style={{
               boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
             }}
           >
             More Details
-          </div>
+          </Link>
         </div>
         <Image
           src={registerInfoSvg}

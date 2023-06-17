@@ -66,12 +66,17 @@ const GoaplusTicketing = (props: Props) => {
         console.log(res);
         if (res.status === 204 && res.data === "") {
           toast.success(
-            "Ticket is successfully created, please check you email! / Bilet uğurla yaradıldı, emailinizi yoxlayın!"
+            "Ticket is successfully created, please check you email! / Bilet uğurla yaradıldı, emailinizi yoxlayın!",
+            {
+              duration: 10000,
+            }
           );
         }
         if (res.status === 200 && res.data !== "") {
           toast.success(
-            "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödəniş edin!"
+            "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödəniş edin!", {
+              duration: 10000,
+            }
           );
           setTimeout(() => {
             window.open(res.data, "_blank");
