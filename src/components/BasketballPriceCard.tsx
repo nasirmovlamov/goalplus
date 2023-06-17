@@ -96,16 +96,12 @@ export const BasketballPriceCard = ({
                 Min {minPlayers} and Max {maxPlayers} players
               </p>
               <div>
-                <p className=" text-xs line-through text-red-500">
+                {/* <p className=" text-xs line-through text-red-500">
                   Regular price : {regularTeamPrice} azn
-                </p>
-                <p className=" text-xs ">
-                  Early bird per athlete: {earlyBirdPersonPrice} azn
-                </p>
-                <p className=" text-xs ">
-                  Early bird per team: {earlyBirdTeamPrice} azn
-                </p>
-                <p className=" text-xs text-red-500"> (Until May 10)</p>
+                </p> */}
+                <p className=" text-xs ">Fee per player: 30AZN</p>
+                <p className=" text-xs ">Fee per team: 150AZN</p>
+                {/* <p className=" text-xs text-red-500"> (Until May 10)</p> */}
               </div>
               <p className="text-base">{address}</p>
 
