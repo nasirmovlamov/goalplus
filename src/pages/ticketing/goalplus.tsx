@@ -52,6 +52,7 @@ const GoaplusTicketing = (props: Props) => {
       birthDate: data.birthdate,
       phoneNumber: data.phoneNumber,
       schoolName: data.schoolName,
+      hasWolt: data.hasWolt,
     };
     if (data.date) {
       postData.attendanceDate = data.date;
@@ -392,8 +393,8 @@ const GoaplusTicketing = (props: Props) => {
                     <input
                       type="radio"
                       value="Yes"
-                      checked={watch("hasWoltAccount") == "Yes"}
-                      {...register("hasWoltAccount")}
+                      checked={watch("hasWolt") == "Yes"}
+                      {...register("hasWolt")}
                       className="w-[32px] h-[32px]"
                     />
                     <span className="text-[20px] text-[#9B9B9B]">Yes</span>
@@ -402,14 +403,14 @@ const GoaplusTicketing = (props: Props) => {
                     <input
                       type="radio"
                       value="No"
-                      checked={watch("hasWoltAccount") == "No"}
-                      {...register("hasWoltAccount")}
+                      checked={watch("hasWolt") == "No"}
+                      {...register("hasWolt")}
                       className="w-[32px] h-[32px]"
                     />
                     <span className="text-[20px] text-[#9B9B9B]">No</span>
                   </div>
                 </div>
-                {watch("hasWoltAccount") == "No" && (
+                {watch("hasWolt") == "No" && (
                   <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
                     Haven’t got Wolt account yet? No worries, we got you
                     covered! Here’s the chance to try out quick delivery from a
