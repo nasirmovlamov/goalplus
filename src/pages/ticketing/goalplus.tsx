@@ -306,7 +306,7 @@ const GoaplusTicketing = (props: Props) => {
 
             <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label className="text-[16px] text-[#9B9B9B] ">
-                Gender / Cinsi
+                Gender / Cinsiniz
               </label>
               <div className="flex gap-2 mt-[23px]">
                 <div className="flex items-center gap-4">
