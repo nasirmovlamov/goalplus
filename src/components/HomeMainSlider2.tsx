@@ -13,6 +13,10 @@ import IframeBlockWrapper from "./IframeBlock";
 import IframeBlock from "./IframeBlock";
 import useWindowDimensions from "./useWindowDimension";
 import Countdown from "./Countdown";
+import { LinkStyled } from "./LinkStyled";
+import { LinkStyled2 } from "./LinkStyled2";
+import { LinkStyled3 } from "./LinkStyled3";
+import ourCommunityImage from "@/media/images/ourCommunityText.svg";
 
 export default function HomeMainSlider() {
   const settings = {
@@ -67,13 +71,17 @@ export default function HomeMainSlider() {
     <div className="bg-[#031F57]">
       <Slider {...settings}>
         <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
-          <div className="flex flex-col z-10 pt-32 justify-center items-center ">
-            <h1 className="text-xl lg:text-5xl text-center">
-              Become a member of our community
+          <div className="flex flex-col z-10   items-center ">
+            <h1 className="text-xl lg:text-[56px] text-center font-integral ">
+              Become a member of <br /> <br /> <br /> our community
             </h1>
-            <p className="text-center mt-5">
-              Register as an athlete or get your membership for Goalplus Summer
-              2023
+            {/* <h1>
+              <img src={ourCommunityImage.src}
+                className="p-1" alt="" />
+            </h1> */}
+            <p className="text-center mt-[48px] text-[20px]">
+              Register as an athlete or get your membership <br /> for Goalplus
+              Summer 2023
             </p>
 
             {/* <button className="mt-5 bg-[#032974] w-max text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl">
@@ -82,15 +90,9 @@ export default function HomeMainSlider() {
             {/* <FontAwesomeIcon icon={faAngleRight} /> */}
 
             {/* cool background frame */}
-            <Link
-              href="/register"
-              className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl text-[#c4f000]"
-              style={{
-                boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
-              }}
-            >
+            <LinkStyled3 className="mt-[48px]" href="/register">
               Get a Goalpass
-            </Link>
+            </LinkStyled3>
             <Countdown targetDate="2023-06-18T23:59:59" />
           </div>
           <div
@@ -99,12 +101,12 @@ export default function HomeMainSlider() {
               `bg-[rgba(0,0,0,0.69)]`
             }
           >
-            <Image
+            {/* <Image
               src={svgCarusel}
               alt=""
               className="w-full h-full bg-center lg:min-h-[1054px]"
               style={{ backgroundSize: "100% 100%" }}
-            />
+            /> */}
           </div>
           <div className="-z-20">
             <IframeBlock />
@@ -112,34 +114,28 @@ export default function HomeMainSlider() {
         </div>
         <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
           <div className="flex flex-col z-10 pt-32 justify-center items-center">
-            <h1 className="text-xl lg:text-5xl text-center">
-              Score goals on and off the field
+            <h1 className="text-xl lg:text-[56px] text-center font-integral ">
+              Score goals on and <br /> <br /> <br /> off the field
             </h1>
-            <p className="text-center mt-5">
+
+            <p className="text-center mt-[48px] text-[20px]">
               Info, perks, shcedules, activities, standings, all in one place!
             </p>
 
-            <Link
-              href="/register"
-              className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out md:text-2xl text-[#cdf000]"
-              style={{
-                boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
-              }}
-            >
+            <LinkStyled3 className="mt-[48px]" href="/register">
               Join Now
-              <span className="hidden md:inlin">
-                Takes you to the page where you need to first create your
-                account
-              </span>
-            </Link>
+            </LinkStyled3>
+            <p className="hidden md:inlin">
+              Takes you to the page where you need to first create your account
+            </p>
           </div>
-          <div className="w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 -z-10">
-            <Image
+          <div className="w-full h-full bg-[rgba(0,0,0,0.75)] absolute top-0 left-0 -z-10">
+            {/* <Image
               src={svgCarusel}
               alt=""
               className="w-full h-full bg-center lg:min-h-[1054px]"
               style={{ backgroundSize: "100% 100%" }}
-            />
+            /> */}
           </div>
           <div className="-z-20">
             <Image
@@ -164,27 +160,25 @@ export default function HomeMainSlider() {
         </div>
         <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
           <div className="flex flex-col z-10 pt-32 justify-center items-center">
-            <h1 className="text-xl lg:text-5xl text-center">
-              Capture your memories with
+            <h1 className="text-xl lg:text-[56px] text-center font-integral ">
+              Capture your memories <br /> <br /><br /> with Goalplus
             </h1>
-            <p className="text-center mt-5">Goalplus Summer 2023</p>
-            <Link
-              href="/register"
-              className="mt-5 bg-[#032974] w-max  rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out text-2xl text-[#c4f000]"
-              style={{
-                boxShadow: "0px 0px 0px 2px rgba(255,255,255,0.5)",
-              }}
-            >
+
+            <p className="text-center mt-[48px] text-[20px]">
+              Goalplus Summer 2023
+            </p>
+
+            <LinkStyled3 className="mt-[48px]" href="/register">
               Discover Now
-            </Link>
+            </LinkStyled3>
           </div>
-          <div className="w-full h-full bg-[rgba(0,0,0,0.5)] absolute top-0 left-0 -z-10">
-            <Image
+          <div className="w-full h-full bg-[rgba(0,0,0,0.75)] absolute top-0 left-0 -z-10">
+            {/* <Image
               src={svgCarusel}
               alt=""
               className="w-full h-full bg-center lg:min-h-[1054px]"
               style={{ backgroundSize: "100% 100%" }}
-            />
+            /> */}
           </div>
           <div className="-z-20">
             <Image

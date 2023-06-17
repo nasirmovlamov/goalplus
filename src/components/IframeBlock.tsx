@@ -28,8 +28,9 @@ const IframeBlock = () => {
         backgroundRepeat: "no-repeat",
         pointerEvents: "none",
         zIndex: -20,
+        backgroundSize: "cover",
       }}
-      className="w-full h-full absolute top-0 left-0 z-0 md:h-[100vh]"
+      className="w-full h-full absolute top-0 left-0 z-0 md:h-[110vh]"
       src="https://www.youtube.com/embed/-BDyUQgRaYE?rel=0&autoplay=1&mute=1&enablejsapi=1&controls=0&loop=1&playlist=-BDyUQgRaYE&fs=0&modestbranding=1"
     ></iframe>
   ) : (
