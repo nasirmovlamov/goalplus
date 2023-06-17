@@ -142,6 +142,9 @@ export const Navbar = () => {
             <li className="p-2">
               <StyledLink href="/">Home</StyledLink>
             </li>
+            <li className="p-2">
+              <StyledLink href="/ticketing/goalplus">Buy Ticket</StyledLink>
+            </li>
 
             {userJwt && (
               <li className="p-2">
@@ -206,10 +209,9 @@ export const Navbar = () => {
               <li className="p-2">
                 <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
               </li>
-
-              {/* <li className="p-2">
+              <li className="p-2">
                 <StyledLink href="/ticketing/goalplus">Buy Ticket</StyledLink>
-              </li> */}
+              </li>
               {/* <li className="p-2">
                 <StyledLink href="/pricing">Community Pass</StyledLink>
               </li>
