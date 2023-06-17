@@ -49,7 +49,7 @@ const GoaplusTicketing = (props: Props) => {
       lastName: data.lastName,
       email: data.email,
       gender: data.gender,
-      birthDate: new Date(data.birthdate).toISOString(),
+      dateOfBirth: new Date(data.birthdate).toISOString(),
       phoneNumber: data.phoneNumber,
       schoolName: data.schoolName,
       hasWolt: data.hasWolt === "Yes" ? true : false,
@@ -235,7 +235,7 @@ const GoaplusTicketing = (props: Props) => {
 
             <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
-                First Name
+                First Name / Ad
               </label>
               <input
                 id="name"
@@ -251,7 +251,7 @@ const GoaplusTicketing = (props: Props) => {
 
             <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
-                Last Name
+                Last Name / Soyad
               </label>
               <input
                 id="name"
@@ -267,7 +267,7 @@ const GoaplusTicketing = (props: Props) => {
 
             <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
-                Email
+                Email / E-poçt
               </label>
               <input
                 id="name"
@@ -283,7 +283,7 @@ const GoaplusTicketing = (props: Props) => {
 
             <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
-                Phone number
+                Phone number / Telefon nömrəsi
               </label>
               <input
                 id="name"
@@ -298,7 +298,9 @@ const GoaplusTicketing = (props: Props) => {
             </div>
 
             <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
-              <label className="text-[16px] text-[#9B9B9B] ">Gender</label>
+              <label className="text-[16px] text-[#9B9B9B] ">
+                Gender / Cinsi
+              </label>
               <div className="flex gap-2 mt-[23px]">
                 <div className="flex items-center gap-4">
                   <input
@@ -328,7 +330,7 @@ const GoaplusTicketing = (props: Props) => {
 
             <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
-                Birthdate
+                Birthdate / Doğum tarixi
               </label>
               <input
                 id="name"
@@ -348,7 +350,7 @@ const GoaplusTicketing = (props: Props) => {
             ) ? (
               <div className="flex flex-col w-full">
                 <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
-                  Select event date
+                  Select event date / Tədbir tarixini seçin
                 </label>
                 <Select
                   options={getTicketTypeData
@@ -386,7 +388,7 @@ const GoaplusTicketing = (props: Props) => {
             <div className="flex items-center flex-col gap-1  w-full mt-[32px]">
               <div className="max-w-[500px] flex flex-col items-center">
                 <label className="text-[16px] text-[#9B9B9B] ">
-                  Do you have a Wolt account?
+                  Do you have a Wolt account? / Wolt hesabınız varmı?
                 </label>
                 <div className="flex gap-2 mt-[23px]">
                   <div className="flex items-center gap-4">
