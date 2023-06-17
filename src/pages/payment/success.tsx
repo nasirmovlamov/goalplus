@@ -7,7 +7,8 @@ export default function PaymentSuccessPage() {
   return (
     <div className="mx-auto max-w-[1140px] flex flex-col items-center">
       <h1 className="text-4xl text-center text-green-500 mt-10">
-        Payment has been successful!
+        Your ticket has been successfully created. Please check your email. See
+        you at Goalplus!
       </h1>
       <Link
         href="/"
