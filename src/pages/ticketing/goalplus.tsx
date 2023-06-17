@@ -66,18 +66,20 @@ const GoaplusTicketing = (props: Props) => {
         console.log(res);
         if (res.status === 204 && res.data === "") {
           toast.success(
-            "Ticket is successfully created, please check you email!"
+            "Ticket is successfully created, please check you email! / Bilet uğurla yaradıldı, emailinizi yoxlayın!"
           );
         }
         if (res.status === 200 && res.data !== "") {
-          toast.success("Ticket is successfully created, please make payment!");
+          toast.success(
+            "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödəniş edin!"
+          );
           setTimeout(() => {
             window.open(res.data, "_blank");
           }, 2000);
         }
       })
       .catch((err) => {
-        toast.error("Something went wrong!");
+        toast.error("Something went wrong! / Bir şeylər yanlış gedir!");
         console.log(err.response.data);
         setErrorsSubmit(err.response.data);
       });
@@ -433,7 +435,7 @@ const GoaplusTicketing = (props: Props) => {
               className="w-full bg-[#031F57] text-white py-2 rounded-md mt-[35px] h-[64px] text-[20px]"
               type="submit"
             >
-              Submit
+              Submit / Təsdiqlə
             </button>
 
             <div>
