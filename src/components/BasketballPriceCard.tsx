@@ -91,9 +91,6 @@ export const BasketballPriceCard = ({
               </h3>
               <p className="text-base flex flex-col">
                 <span className="block">Date {date}</span>
-                <span className="block text-[10px] leading-3 text-red-500">
-                  (Registration ends on May 28)
-                </span>
               </p>
               <p className="text-base mt-1">
                 Min {minPlayers} and Max {maxPlayers} players
@@ -110,7 +107,6 @@ export const BasketballPriceCard = ({
                 </p>
                 <p className=" text-xs text-red-500"> (Until May 10)</p>
               </div>
-              <p className="text-base">Duration : 7 weeks</p>
               <p className="text-base">{address}</p>
 
               <div className="flex justify-start mt-2">
