@@ -165,8 +165,13 @@ const GoaplusTicketing = (props: Props) => {
                 }{" "}
                 AZN
               </p>
-                <textarea
-                  disabled
+              <textarea
+                value={
+                  getTicketTypeData?.filter(
+                    (item: any) => item.id == watch("ticketType")
+                  )[0]?.description
+                }
+                disabled
                 className={`mb-2 w-full resize-none h-auto bg-transparent   text-[24px] mt-[4px] font-bold ${
                   getTicketTypeData?.filter(
                     (item: any) => item.id == watch("ticketType")
@@ -174,13 +179,7 @@ const GoaplusTicketing = (props: Props) => {
                     ? "text-[#8A0F9E] "
                     : "text-gray-200"
                 }`}
-              >
-                {
-                  getTicketTypeData?.filter(
-                    (item: any) => item.id == watch("ticketType")
-                  )[0]?.description
-                }
-              </textarea>
+              ></textarea>
             </>
           ) : (
             <h1 className="text-[30px] font-bold text-[#05055B] font-integral">
