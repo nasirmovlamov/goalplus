@@ -191,38 +191,6 @@ const GoaplusTicketing = (props: Props) => {
                   )[0]?.name
                 }{" "}
               </h1>
-              <p
-                className={`mb-2  text-[24px] mt-[22px] font-bold ${
-                  getTicketTypeData?.filter(
-                    (item: any) => item.id == watch("ticketType")
-                  )[0]?.name
-                    ? "text-[#8A0F9E] "
-                    : "text-gray-200"
-                }`}
-              >
-                Price: {"  "}
-                {
-                  getTicketTypeData?.filter(
-                    (item: any) => item.id == watch("ticketType")
-                  )[0]?.price
-                }{" "}
-                AZN
-              </p>
-              <textarea
-                value={
-                  getTicketTypeData?.filter(
-                    (item: any) => item.id == watch("ticketType")
-                  )[0]?.description
-                }
-                disabled
-                className={`mb-2 w-full resize-none h-auto bg-transparent   text-[24px] mt-[4px] font-bold ${
-                  getTicketTypeData?.filter(
-                    (item: any) => item.id == watch("ticketType")
-                  )[0]?.name
-                    ? "text-[#8A0F9E] "
-                    : "text-gray-200"
-                }`}
-              ></textarea>
             </>
           ) : (
             <h1 className="text-[30px] font-bold text-[#05055B] font-integral">
@@ -266,6 +234,45 @@ const GoaplusTicketing = (props: Props) => {
                 {errors.ticketType && "Ticket type is required"}
               </span>
             </div>
+
+            {getTicketTypeData?.filter(
+              (item: any) => item.id == watch("ticketType")
+            )[0]?.name && (
+              <div className="flex flex-col w-full">
+                <p
+                  className={`mb-2  text-[24px]  font-bold ${
+                    getTicketTypeData?.filter(
+                      (item: any) => item.id == watch("ticketType")
+                    )[0]?.name
+                      ? "text-[#8A0F9E] "
+                      : "text-gray-200"
+                  }`}
+                >
+                  Price: {"  "}
+                  {
+                    getTicketTypeData?.filter(
+                      (item: any) => item.id == watch("ticketType")
+                    )[0]?.price
+                  }{" "}
+                  AZN
+                </p>
+                <textarea
+                  value={
+                    getTicketTypeData?.filter(
+                      (item: any) => item.id == watch("ticketType")
+                    )[0]?.description
+                  }
+                  disabled
+                  className={`mb-2 w-full resize-none h-auto bg-transparent   text-[18px]  font-bold ${
+                    getTicketTypeData?.filter(
+                      (item: any) => item.id == watch("ticketType")
+                    )[0]?.name
+                      ? "text-[#8A0F9E] "
+                      : "text-gray-200"
+                  }`}
+                ></textarea>
+              </div>
+            )}
 
             <div className="flex flex-col gap-1 lg:max-w-[555px] w-full">
               <label htmlFor="date" className="text-[16px] text-[#9B9B9B] ">
