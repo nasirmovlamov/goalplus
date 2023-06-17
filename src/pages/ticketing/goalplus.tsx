@@ -22,6 +22,7 @@ const GoaplusTicketing = (props: Props) => {
     error: getTicketTypeError,
   } = ticketingApi.useGetTicketTypesQuery();
   const [errorsSubmit, setErrorsSubmit] = React.useState<any>(null);
+  const [submitLoading, setSubmitLoading] = React.useState<boolean>(false);
   const [
     submitTicketApi,
     {
@@ -39,11 +40,12 @@ const GoaplusTicketing = (props: Props) => {
     formState: { errors },
     watch,
     setValue,
+    reset,
   } = useForm();
 
   const onSubmit = async (data: any) => {
+    setSubmitLoading(true);
     setErrorsSubmit(null);
-    console.log("data", data);
     let postData: any = {
       firstName: data.firstName,
       lastName: data.lastName,
@@ -63,7 +65,6 @@ const GoaplusTicketing = (props: Props) => {
         postData
       )
       .then((res: any) => {
-        console.log(res);
         if (res.status === 204 && res.data === "") {
           toast.success(
             "Ticket is successfully created, please check you email! / Bilet uğurla yaradıldı, emailinizi yoxlayın!",
@@ -74,7 +75,8 @@ const GoaplusTicketing = (props: Props) => {
         }
         if (res.status === 200 && res.data !== "") {
           toast.success(
-            "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödəniş edin!", {
+            "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödəniş edin!",
+            {
               duration: 10000,
             }
           );
@@ -88,6 +90,8 @@ const GoaplusTicketing = (props: Props) => {
         console.log(err.response.data);
         setErrorsSubmit(err.response.data);
       });
+    setSubmitLoading(false);
+    reset();
   };
 
   const checkTicketDatesInSameDay = (
@@ -114,28 +118,6 @@ const GoaplusTicketing = (props: Props) => {
   };
 
   register("ticketType", { required: true });
-
-  useEffect(() => {
-    if (getTicketTypeSuccess) {
-      console.log(
-        getTicketTypeData
-          ?.filter((item: any) => item.id == watch("ticketType"))[0]
-          ?.dates?.map((date: any, index: any) => {
-            if (new Date(date.startTime) > new Date()) {
-              return {
-                label: `
-                        ${format(new Date(date.startTime), "MMMM d")}
-                  `,
-                value: index,
-              };
-            } else {
-              return null;
-            }
-          })
-          .filter((item: any) => item !== null)
-      );
-    }
-  }, [getTicketTypeSuccess, watch("ticketType")]);
 
   useEffect(() => {
     if (
@@ -437,8 +419,10 @@ const GoaplusTicketing = (props: Props) => {
             </div>
 
             <button
+              disabled={submitLoading}
               className="w-full bg-[#031F57] text-white py-2 rounded-md mt-[35px] h-[64px] text-[20px]"
               type="submit"
+              style={{ opacity: submitLoading ? 0.5 : 1 }}
             >
               Submit / Təsdiqlə
             </button>
