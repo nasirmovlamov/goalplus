@@ -12,6 +12,19 @@ import { format } from "date-fns";
 
 type Props = {};
 
+interface Ticket {
+  id: number;
+  name: string;
+  description: string;
+  dates: {
+    startTime: string;
+    endTime: string;
+    weekDays: any[];
+  }[];
+  price: number;
+  ticketCategory: string;
+}
+
 const GoaplusTicketing = (props: Props) => {
   const router = useRouter();
   const {
@@ -133,6 +146,36 @@ const GoaplusTicketing = (props: Props) => {
     }
   }, [watch("ticketType")]);
 
+  function reorderTickets(response: Ticket[]): Ticket[] {
+    const freeTickets: Ticket[] = [];
+    const dailyTickets: Ticket[] = [];
+    const unlimitedTicket: Ticket[] = [];
+    const vipTicket: Ticket[] = [];
+    const otherTickets: Ticket[] = [];
+
+    for (const ticket of response) {
+      if (ticket.price === 0) {
+        freeTickets.push(ticket);
+      } else if (ticket.name.includes("Daily GoalPass")) {
+        dailyTickets.push(ticket);
+      } else if (ticket.name.includes("Unlimited GoalPass")) {
+        unlimitedTicket.push(ticket);
+      } else if (ticket.name.includes("VIP Goalpass")) {
+        vipTicket.push(ticket);
+      } else {
+        otherTickets.push(ticket);
+      }
+    }
+
+    return [
+      ...freeTickets,
+      ...dailyTickets,
+      ...unlimitedTicket,
+      ...vipTicket,
+      ...otherTickets,
+    ];
+  }
+
   if (getTicketTypeSuccess)
     return (
       <div className="mx-auto max-w-[1175px] px-[15px]  mt-[120px] ">
@@ -199,12 +242,14 @@ const GoaplusTicketing = (props: Props) => {
                 Ticket Type
               </label>
               <Select
-                options={getTicketTypeData.map((ticketType: any) => {
-                  return {
-                    value: ticketType.id,
-                    label: ticketType.name,
-                  };
-                })}
+                options={reorderTickets(getTicketTypeData).map(
+                  (ticketType: any) => {
+                    return {
+                      value: ticketType.id,
+                      label: ticketType.name,
+                    };
+                  }
+                )}
                 onChange={(e: any) => {
                   setValue("ticketType", e.value);
                   setValue("date", "");
