@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import StyledLink from "./StyledLink";
 
 type Props = {
   href: any;
@@ -8,7 +9,7 @@ type Props = {
   className?: any;
 };
 
-const StyledLink = (props: Props) => {
+const StyledLinkWithTarget = (props: Props) => {
   const router = useRouter();
   const [activePath, setActivePath] = React.useState(router.pathname);
 
@@ -17,6 +18,7 @@ const StyledLink = (props: Props) => {
   }, [router.pathname]);
   return (
     <Link
+      target="_blank"
       href={props.href}
       className={
         props.href === activePath
@@ -29,4 +31,4 @@ const StyledLink = (props: Props) => {
   );
 };
 
-export default StyledLink;
+export default StyledLinkWithTarget;

@@ -32,7 +32,7 @@ const SpendYourSummersection = (props: Props) => {
       ></div> */}
 
       <div className="max-w-[1230px] px-5 justify-center lg:justify-between w-full flex flex-wrap z-20  h-full py-[48px] ">
-        <div className="flex flex-col pt-2 lg:items-center gap-[10px] text-white lg:w-max w-full text-center lg:text-start mx-auto">
+        <div className="flex flex-col  pt-2  items-center gap-[10px] text-white lg:w-max w-full text-center lg:text-start mx-auto">
           <h2 className="text-[36px] lg:text-[40px] font-integral">
             Join our wellness activities
           </h2>
@@ -47,6 +47,7 @@ const SpendYourSummersection = (props: Props) => {
           >
             Get my GoalPass
           </ALinkStyled>
+
           <p className="text-[24px] text-white mt-[24px]">
             Improve your mood and concentration with <br /> yoga, pilates, and
             other wellbeing activities

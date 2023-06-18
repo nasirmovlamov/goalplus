@@ -68,12 +68,12 @@ export default function HomeMainSlider() {
   // }
 
   return (
-    <div className="bg-[#031F57]">
+    <div className="bg-[#031F57] h-auto">
       <Slider {...settings}>
-        <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
-          <div className="flex flex-col z-10   items-center ">
-            <h1 className="text-xl lg:text-[56px] text-center font-integral ">
-              Become a member of <br /> <br /> <br /> our community
+        <div className="w-full h-[700px]  md:h-[85vh] flex justify-center items-center text-white box-border p-10  lg:p-[152px] relative">
+          <div className="flex flex-col z-10   items-center pt-32">
+            <h1 className="text-xl  lg:text-[56px] text-center font-integral  leading-normal">
+              Become a member of <br /> our community
             </h1>
             {/* <h1>
               <img src={ourCommunityImage.src}
@@ -112,10 +112,10 @@ export default function HomeMainSlider() {
             <IframeBlock />
           </div>
         </div>
-        <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
+        <div className="w-full h-[700px]  md:h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
           <div className="flex flex-col z-10 pt-32 justify-center items-center">
-            <h1 className="text-xl lg:text-[56px] text-center font-integral ">
-              Score goals on and <br /> <br /> <br /> off the field
+            <h1 className="text-xl lg:text-[56px] text-center font-integral leading-normal">
+              Score goals on and <br /> off the field
             </h1>
 
             <p className="text-center mt-[48px] text-[20px]">
@@ -158,10 +158,11 @@ export default function HomeMainSlider() {
             />
           </div>
         </div>
-        <div className="w-full h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
+        <div className="w-full h-[700px]  md:h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
           <div className="flex flex-col z-10 pt-32 justify-center items-center">
-            <h1 className="text-xl lg:text-[56px] text-center font-integral ">
-              Capture your memories <br /> <br /><br /> with Goalplus
+            <h1 className="text-xl lg:text-[56px] text-center font-integral leading-normal">
+              Capture your memories <br />
+              with Goalplus
             </h1>
 
             <p className="text-center mt-[48px] text-[20px]">

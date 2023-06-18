@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import goalPlusLogo from "../media/images/goalplus-logo.png";
-import navLogo from "../media/images/navLogo.png";
+import navLogo from "../media/images/goalplusNewNavLogo.png";
 import StyledLink from "./StyledLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faArrowRightToBracket,
   faBars,
   faCheck,
+  faSign,
   faUser,
   faX,
 } from "@fortawesome/free-solid-svg-icons";
@@ -17,6 +19,7 @@ import { authSlice } from "@/store/authSlice";
 import { authApi } from "@/store/authApi";
 import { teamApi } from "@/store/teamApi";
 import error from "next/error";
+import StyledLinkWithTarget from "./StyledLinkWithTarget";
 
 export const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -191,23 +194,31 @@ export const Navbar = () => {
       </div>
 
       {/* Main Nav */}
-      <header className="w-full sticky top-[0px] flex justify-center  bg-white z-[1000] shadow-md ">
-        <nav className="h-[56px] flex w-full max-w-[1140px] px-[15px] py-[8px] justify-between">
+      <header className="w-full sticky top-[0px] flex justify-center  bg-[#05055B] z-[1000] shadow-md h-[149px] items-center">
+        <nav className="h-[70px] flex w-full max-w-[1640px] px-[15px] py-[8px] justify-between items-center">
           <div className="flex md:hidden">
             <Link href="/">
-              <Image src={navLogo} alt="logo" className="w-[40px] h-[40px]" />
+              <Image src={navLogo} alt="logo" className="w-[155px] h-[70px]" />
             </Link>
           </div>
-          <div className="md:flex hidden">
+          <div className="md:flex hidden items-center">
             <Link href="/">
-              <Image src={navLogo} alt="logo" className="w-[40px] h-[40px]" />
+              <Image src={navLogo} alt="logo" className="w-[155px] h-[70px]" />
             </Link>
-            <ul className="flex pl-6 text-[rgb(115,115,115)]">
+            <ul className="flex pl-6 text-[rgb(115,115,115)] font-articular text-[20px] h-max  gap-4 ">
               <li className="p-2">
                 <StyledLink href="/">Home</StyledLink>
               </li>
               <li className="p-2">
                 <StyledLink href="/sports-leagues">Sports leagues</StyledLink>
+              </li>
+              <li className="p-2">
+                <StyledLink href="/contact">Contact Us</StyledLink>
+              </li>
+              <li className="p-2">
+                <StyledLinkWithTarget href="http://project6957501.tilda.ws/">
+                  Summer Transformation Program
+                </StyledLinkWithTarget>
               </li>
               <li className="p-2">
                 <StyledLink href="/ticketing/goalplus">
@@ -226,24 +237,28 @@ export const Navbar = () => {
           <ul className="md:flex h-[40px] items-center hidden ">
             {userJwt && (
               <button onClick={() => handleToProfile()} className="flex gap-3">
-                <li className="pl-5 pr-3 flex gap-2 items-center">
+                <li className="pl-5 pr-3 flex gap-2 items-center text-white font-articular text-[20px]">
                   <FontAwesomeIcon icon={faUser} /> <span> Profile</span>
                 </li>
               </button>
             )}
             {userJwt && (
-              <li className="pl-4 pr-3 bg-[#032974] text-white rounded-md px-4 py-[6px] hover:bg-[#0a3b9d] transition duration-300 ease-in-out">
-                <button onClick={logoutUser} className="m-0 p-0">
+              <li>
+                <button
+                  onClick={logoutUser}
+                  className="m-0 p-0 text-white font-articular text-[20px] ml-5"
+                >
                   Logout
                 </button>
               </li>
             )}
             {!userJwt && (
-              <li className="pl-4 pr-3">
+              <li className="flex items-center pl-4 pr-3 text-white font-articular font-bold text-[20px] gap-3">
+                <FontAwesomeIcon icon={faArrowRightToBracket} size="2xl" />
                 <Link href="/login">Login</Link>
               </li>
             )}
-            <li className="pl-4">
+            {/* <li className="pl-4">
               <Link
                 href="/contact"
                 className="text-lg bg-[#031F57] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max h-max shadow-lg"
@@ -253,8 +268,8 @@ export const Navbar = () => {
               >
                 Contact us
               </Link>
-            </li>
-            <li className="pl-4 ">
+            </li> */}
+            {/* <li className="pl-4 ">
               <a
                 href="http://project6957501.tilda.ws/"
                 className="text-lg bg-[#031F57] text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out w-max h-max shadow-lg"
@@ -265,7 +280,7 @@ export const Navbar = () => {
               >
                 Summer Transformation Program
               </a>
-            </li>
+            </li> */}
           </ul>
 
           <div className="flex gap-3 md:hidden">

@@ -31,3 +31,8 @@
   font-family: "IntegralCF";
   src: url("../media/fonts/IntegralCF-Medium.woff2");
 }
+
+@font-face {
+  font-family: "Articular";
+  src: url("../media/fonts/ArticulatCF-Medium.otf");
+}

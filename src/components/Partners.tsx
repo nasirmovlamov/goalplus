@@ -96,7 +96,7 @@ const Partners = (props: Props) => {
             <h3 className="text-[40px] font-integral text-center text-[#05055B]">
               mentored by
             </h3>
-            <div className="flex flex-wrap gap-[31px] mt-[24px]">
+            <div className="flex flex-wrap justify-center gap-[31px] mt-[24px]">
               <img
                 src={mitVmsLogo.src}
                 className="w-[203px] h-[203px]"
@@ -113,7 +113,7 @@ const Partners = (props: Props) => {
             <h3 className="text-[40px] font-integral text-center text-[#05055B]">
               alumnus by
             </h3>
-            <div className="flex flex-wrap gap-[31px] mt-[24px]">
+            <div className="flex flex-wrap justify-center gap-[31px] mt-[24px]">
               <img
                 src={mitSandboxLogo.src}
                 className="w-[203px] h-[203px]"
