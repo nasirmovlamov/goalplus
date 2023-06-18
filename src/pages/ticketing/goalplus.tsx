@@ -178,8 +178,8 @@ const GoaplusTicketing = (props: Props) => {
 
   if (getTicketTypeSuccess)
     return (
-      <div className="mx-auto max-w-[1175px] px-[15px]  mt-[120px] ">
-        <div className="mx-auto mt-10 gap-5">
+      <div className="mx-auto max-w-[1175px] px-[15px]  mt-[120px] h-max">
+        <div className="mx-auto mt-10 gap-5 h-max">
           {getTicketTypeData?.filter(
             (item: any) => item.id == watch("ticketType")
           )[0]?.name ? (
@@ -238,7 +238,7 @@ const GoaplusTicketing = (props: Props) => {
             {getTicketTypeData?.filter(
               (item: any) => item.id == watch("ticketType")
             )[0]?.name && (
-              <div className="flex flex-col w-full">
+              <div className="flex flex-col w-full h-max">
                 <p
                   className={`mb-2  text-[24px]  font-bold ${
                     getTicketTypeData?.filter(
@@ -256,21 +256,25 @@ const GoaplusTicketing = (props: Props) => {
                   }{" "}
                   AZN
                 </p>
-                <textarea
-                  value={
-                    getTicketTypeData?.filter(
-                      (item: any) => item.id == watch("ticketType")
-                    )[0]?.description
-                  }
-                  disabled
-                  className={`mb-2 w-full resize-none h-auto bg-transparent   text-[18px]  font-bold ${
+                <p
+                  className={`mb-2 w-full resize-none h-max bg-transparent   text-[18px]  font-bold ${
                     getTicketTypeData?.filter(
                       (item: any) => item.id == watch("ticketType")
                     )[0]?.name
                       ? "text-[#8A0F9E] "
                       : "text-gray-200"
                   }`}
-                ></textarea>
+                >
+                  {getTicketTypeData
+                    ?.filter((item) => item.id === watch("ticketType"))[0]
+                    ?.description.split("\n")
+                    .map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                </p>
               </div>
             )}
 
