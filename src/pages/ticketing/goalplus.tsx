@@ -266,9 +266,9 @@ const GoaplusTicketing = (props: Props) => {
                   }`}
                 >
                   {getTicketTypeData
-                    ?.filter((item) => item.id === watch("ticketType"))[0]
+                    ?.filter((item: any) => item.id === watch("ticketType"))[0]
                     ?.description.split("\n")
-                    .map((line, index) => (
+                    .map((line: any, index: any) => (
                       <React.Fragment key={index}>
                         {line}
                         <br />
