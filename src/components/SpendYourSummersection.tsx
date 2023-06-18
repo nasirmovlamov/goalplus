@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { ALinkStyled } from "./AlinkStyled";
-
+import leftLogo from "@/media/images/infoSectionLeftLogo.svg";
+import rightLogo from "@/media/images/infoSectionRightLogo.png";
 type Props = {};
 
 const SpendYourSummersection = (props: Props) => {
   return (
     <div
-      className="w-full flex justify-center items-center relative"
+      className="px-10  w-full flex justify-center items-center relative"
       style={{
         // backgroundImage: `url("https://goalplusaz1.odoo.com/web/image/482-47981a8c/IMG_6478.jpg")`,
         // backgroundRepeat: "no-repeat",
@@ -30,7 +31,9 @@ const SpendYourSummersection = (props: Props) => {
           }
         }
       ></div> */}
-
+      <div className="items-center hidden lg:flex">
+        <img src={leftLogo.src} alt="" className="h-[100px]" />
+      </div>
       <div className="max-w-[1230px] px-5 justify-center lg:justify-between w-full flex flex-wrap z-20  h-full py-[48px] ">
         <div className="flex flex-col  pt-2  items-center gap-[10px] text-white lg:w-max w-full text-center lg:text-start mx-auto">
           <h2 className="text-[36px] lg:text-[40px] font-integral">
@@ -61,6 +64,13 @@ const SpendYourSummersection = (props: Props) => {
           }
           className="lg:w-[390px] h-[246px] object-cover"
         /> */}
+      </div>
+      <div className="hidden lg:flex items-center w-[150px] h-[300px]  overflow-hidden">
+        <img
+          src={rightLogo.src}
+          alt=""
+          className=" overflow-hidden block m-auto max-w-full h-auto"
+        />
       </div>
     </div>
   );
