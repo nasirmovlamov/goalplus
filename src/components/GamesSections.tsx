@@ -12,14 +12,14 @@ type Props = {};
 const GamesSections = (props: Props) => {
   return (
     <div
-      className="flex w-full justify-center p-9 box-border "
+      className="flex w-full justify-center p-9 px-0 box-border "
       style={{
         backgroundImage: `url("https://goalplusaz1.odoo.com/web/image/483-4e11a214/DSC05401.jpg")`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
     >
-      <div className="py-[120px] w-full h-full flex flex-wrap justify-center  gap-[32px] lg:gap-[55px]">
+      <div className="py-[120px] w-full h-full flex flex-wrap justify-center  gap-[32px] lg:gap-[32px]">
         <div className="flex flex-col max-w-[320px]  w-full bg-white  overflow-hidden relative rounded-xl shadow-md">
           <div className="w-[320px] h-[254px] relative">
             <Image
