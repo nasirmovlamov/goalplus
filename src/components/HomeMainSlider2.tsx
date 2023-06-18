@@ -90,7 +90,7 @@ export default function HomeMainSlider() {
             {/* <FontAwesomeIcon icon={faAngleRight} /> */}
 
             {/* cool background frame */}
-            <LinkStyled3 className="mt-[48px]" href="/register">
+            <LinkStyled3 className="mt-[48px]" href="/ticketing/goalplus">
               Get a Goalpass
             </LinkStyled3>
             <Countdown targetDate="2023-06-18T18:00:00" />
