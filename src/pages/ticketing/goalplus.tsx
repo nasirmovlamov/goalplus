@@ -334,7 +334,21 @@ const GoaplusTicketing = (props: Props) => {
                 id="name"
                 type="text"
                 placeholder="994501234567"
-                {...register("phoneNumber", { required: true })}
+                maxLength={12}
+                {...register(
+                  "phoneNumber",
+
+                  {
+                    required: true,
+                    onChange: (e) => {
+                      // remove empty space , special char and letters
+                      e.target.value = e.target.value
+                        .replace(/[^0-9]/g, "")
+                        .replace(/(\..*)\./g, "$1");
+                      setValue("phoneNumber", e.target.value);
+                    },
+                  }
+                )}
                 className=" h-[64px] w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
