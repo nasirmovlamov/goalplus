@@ -25,6 +25,8 @@ interface Ticket {
   ticketCategory: string;
 }
 
+export const AZERBAIJAN_PHONE_REGEX = /^\994(77|55|50|99|51|70|10)\d{7}$/;
+
 const GoaplusTicketing = (props: Props) => {
   const router = useRouter();
   const {
@@ -335,24 +337,27 @@ const GoaplusTicketing = (props: Props) => {
                 type="text"
                 placeholder="994501234567"
                 maxLength={12}
-                {...register(
-                  "phoneNumber",
-
-                  {
-                    required: true,
-                    onChange: (e) => {
-                      // remove empty space , special char and letters
-                      e.target.value = e.target.value
-                        .replace(/[^0-9]/g, "")
-                        .replace(/(\..*)\./g, "$1");
-                      setValue("phoneNumber", e.target.value);
-                    },
-                  }
-                )}
+                {...register("phoneNumber", {
+                  required: true,
+                  // Azerbaijani phone number regex
+                  pattern: AZERBAIJAN_PHONE_REGEX,
+                  onChange: (e) => {
+                    // remove empty space , special char and letters
+                    e.target.value = e.target.value
+                      .replace(/[^0-9]/g, "")
+                      .replace(/(\..*)\./g, "$1");
+                    setValue("phoneNumber", e.target.value);
+                  },
+                })}
                 className=" h-[64px] w-full border border-gray-300 rounded-sm px-[24px] py-[15px] bg-[#F2F2F2] text-[#9B9B9B]"
               />
               <span className="text-red-500">
-                {errors.phoneNumber && "Phone number is required"}
+                {errors?.phoneNumber?.type === "required" &&
+                  "Phone number is required"}
+              </span>
+              <span className="text-red-500">
+                {errors?.phoneNumber?.type === "pattern" &&
+                  "Please enter valid phone number example: 994501234567"}
               </span>
             </div>
 
