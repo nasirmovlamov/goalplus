@@ -48,14 +48,17 @@ export default function Layout({ children }: ScriptProps) {
   // }, []);
 
   useEffect(() => {
-    if (navigator.userAgent.includes("Instagram")) {
+    if (
+      typeof window !== "undefined" &&
+      navigator.userAgent.includes("Instagram")
+    ) {
       window.open(
         "https://www.instagram.com/goalplus.az/ticketing/goalplus",
         "_blank",
         "noopener,noreferrer"
       );
     }
-  }, [navigator]);
+  }, []);
 
   return (
     <div className="min-h-screen">
