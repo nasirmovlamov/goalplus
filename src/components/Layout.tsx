@@ -52,8 +52,7 @@ export default function Layout({ children }: ScriptProps) {
       typeof window !== "undefined" &&
       navigator.userAgent.includes("Instagram")
     ) {
-      // open in default browser app
-      window.open("https://www.goalplus.az", "_system");
+      window.location.href = "https://www.goalplus.az";
     }
   }, []);
 
