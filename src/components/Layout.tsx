@@ -52,7 +52,7 @@ export default function Layout({ children }: ScriptProps) {
       typeof window !== "undefined" &&
       navigator.userAgent.includes("Instagram")
     ) {
-      window.location.href = "https://www.goalplus.az";
+      // window.location.href = "https://www.goalplus.az";
     }
   }, []);
 
