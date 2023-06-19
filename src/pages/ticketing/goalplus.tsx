@@ -58,8 +58,6 @@ const GoaplusTicketing = (props: Props) => {
     reset,
   } = useForm();
 
-  
-
   const onSubmit = async (data: any) => {
     setSubmitLoading(true);
     setErrorsSubmit(null);
@@ -194,6 +192,18 @@ const GoaplusTicketing = (props: Props) => {
     return (
       <div className="mx-auto max-w-[1175px] px-[15px]  mt-[120px] h-max">
         <div className="mx-auto mt-10 gap-5 h-max">
+          {typeof window !== "undefined" &&
+            navigator.userAgent.split(" ").includes("Instagram") && (
+              <button
+                className="bg-[#05055B] text-white px-4 py-2 rounded-md"
+                onClick={() => {
+                  window.open("https://www.goalplus.az", "_blank");
+                }}
+              >
+                Open in browser
+              </button>
+            )}
+
           {getTicketTypeData?.filter(
             (item: any) => item.id == watch("ticketType")
           )[0]?.name ? (
