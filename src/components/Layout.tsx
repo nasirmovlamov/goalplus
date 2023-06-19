@@ -53,11 +53,8 @@ export default function Layout({ children }: ScriptProps) {
       navigator.userAgent.includes("Instagram")
     ) {
       alert("Instagram");
-      window.open(
-        "https://www.instagram.com/goalplus.az/ticketing/goalplus",
-        "_blank",
-        "noopener,noreferrer"
-      );
+      // open in default browser app
+      window.open("https://www.goalplus.az", "_system");
     }
   }, []);
 
