@@ -111,7 +111,7 @@ const Partners = (props: Props) => {
           </div>
           <div className="flex flex-col ">
             <h3 className="text-[40px] font-integral text-center text-[#05055B]">
-              alumnus by
+              alumnus of
             </h3>
             <div className="flex flex-wrap justify-center gap-[31px] mt-[24px]">
               <img
