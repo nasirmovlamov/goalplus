@@ -96,10 +96,11 @@ const GoaplusTicketing = (props: Props) => {
               duration: 10000,
             }
           );
-          setTimeout(() => {
-            // redirect to res.data
-            window.open(res.data, "_blank");
-          }, 2000);
+          // setTimeout(() => {
+          //   // redirect to res.data
+
+          // }, 2000);
+          window.open(res.data, "_blank");
         }
       })
       .catch((err) => {
