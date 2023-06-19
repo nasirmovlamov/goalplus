@@ -90,7 +90,7 @@ const GoaplusTicketing = (props: Props) => {
           );
         }
         if (res.status === 200 && res.data !== "") {
-          location.href = "https://www.goalplus.az";
+          location.href = res.data;
           toast.success(
             "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödəniş edin!",
             {
