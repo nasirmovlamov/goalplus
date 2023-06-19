@@ -52,6 +52,7 @@ export default function Layout({ children }: ScriptProps) {
       typeof window !== "undefined" &&
       navigator.userAgent.includes("Instagram")
     ) {
+      alert("Instagram");
       window.open(
         "https://www.instagram.com/goalplus.az/ticketing/goalplus",
         "_blank",
