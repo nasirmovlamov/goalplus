@@ -48,11 +48,10 @@ export default function Layout({ children }: ScriptProps) {
   // }, []);
 
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      navigator.userAgent.includes("Instagram")
-    ) {
-      // window.location.href = "https://www.goalplus.az";
+    if (typeof window !== "undefined") {
+      if (navigator.userAgent.split(" ").includes("Instagram")) {
+        window.open(location.href, "_system");
+      }
     }
   }, []);
 
