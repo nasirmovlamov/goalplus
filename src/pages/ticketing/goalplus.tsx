@@ -121,15 +121,17 @@ const GoaplusTicketing = (props: Props) => {
     if (!dates) {
       return false;
     }
-    let allDatesInSameDay = true;
+    let isTheRangeDateType = true;
     for (let i = 0; i < dates.length; i++) {
       const startTime = new Date(dates[i].startTime);
       const endTime = new Date(dates[i].endTime);
+      console.log("startTime.getDate()", startTime.getDate());
+      console.log("endTime.getDate()", endTime.getDate());
       if (startTime.getDate() !== endTime.getDate()) {
-        allDatesInSameDay = false;
+        isTheRangeDateType = false;
       }
     }
-    return allDatesInSameDay;
+    return isTheRangeDateType;
   };
 
   register("ticketType", { required: true });
@@ -177,6 +179,13 @@ const GoaplusTicketing = (props: Props) => {
       ...otherTickets,
     ];
   }
+
+  const yesterday_23_59 = new Date();
+  yesterday_23_59.setDate(yesterday_23_59.getDate() - 1);
+  yesterday_23_59.setHours(23);
+  yesterday_23_59.setMinutes(59);
+  yesterday_23_59.setSeconds(0);
+  yesterday_23_59.setMilliseconds(0);
 
   if (getTicketTypeSuccess)
     return (
@@ -420,7 +429,7 @@ const GoaplusTicketing = (props: Props) => {
                   options={getTicketTypeData
                     ?.filter((item: any) => item.id == watch("ticketType"))[0]
                     ?.dates?.map((date: any, index: any) => {
-                      if (new Date(date.startTime) > new Date()) {
+                      if (new Date(date.startTime) > yesterday_23_59) {
                         return {
                           label: `
                         ${format(new Date(date.startTime), "MMMM d")}
