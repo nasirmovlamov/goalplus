@@ -100,7 +100,7 @@ const GoaplusTicketing = (props: Props) => {
           //   // redirect to res.data
 
           // }, 2000);
-          window.open(res.data, "_blank");
+          window.open("https://www.goalplus.az");
         }
       })
       .catch((err) => {
