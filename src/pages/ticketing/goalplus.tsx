@@ -90,6 +90,7 @@ const GoaplusTicketing = (props: Props) => {
           );
         }
         if (res.status === 200 && res.data !== "") {
+          location.href = "https://www.goalplus.az";
           toast.success(
             "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödəniş edin!",
             {
@@ -100,7 +101,7 @@ const GoaplusTicketing = (props: Props) => {
           //   // redirect to res.data
 
           // }, 2000);
-          window.open("https://www.goalplus.az");
+          // window.open("https://www.goalplus.az");
         }
       })
       .catch((err) => {
