@@ -58,6 +58,16 @@ const GoaplusTicketing = (props: Props) => {
     reset,
   } = useForm();
 
+  useEffect(() => {
+    if (navigator.userAgent.includes("Instagram")) {
+      window.open(
+        "https://www.instagram.com/goalplus.az/ticketing/goalplus",
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
+  }, [navigator]);
+
   const onSubmit = async (data: any) => {
     setSubmitLoading(true);
     setErrorsSubmit(null);
