@@ -96,7 +96,8 @@ const GoaplusTicketing = (props: Props) => {
             }
           );
           setTimeout(() => {
-            window.open(res.data, "_blank");
+            // redirect to res.data
+            window.location.href = res.data;
           }, 2000);
         }
       })
