@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 import Select from "react-select";
 import { date } from "yup";
 import { format } from "date-fns";
+import reset from "../authentication/password/reset";
 
 type Props = {};
 
@@ -97,7 +98,7 @@ const GoaplusTicketing = (props: Props) => {
           );
           setTimeout(() => {
             // redirect to res.data
-            window.location.href = res.data;
+            window.open(res.data, "_blank");
           }, 2000);
         }
       })
