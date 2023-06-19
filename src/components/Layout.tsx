@@ -47,6 +47,16 @@ export default function Layout({ children }: ScriptProps) {
   //   window.location.href = "http://azerqus0.beget.tech/";
   // }, []);
 
+  useEffect(() => {
+    if (navigator.userAgent.includes("Instagram")) {
+      window.open(
+        "https://www.instagram.com/goalplus.az/ticketing/goalplus",
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
+  }, [navigator]);
+
   return (
     <div className="min-h-screen">
       <div className="min-h-[calc(100vh-340px)]">
