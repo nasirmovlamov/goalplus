@@ -549,7 +549,7 @@ const GoaplusTicketing = (props: Props) => {
               Submit / Təsdiqlə
             </button>
 
-            {pdfID && (
+            {/* {pdfID && (
               <>
                 <button
                   className="w-full  flex justify-center items-center gap-3 bg-[#031F57] text-white py-2 rounded-md h-[64px] text-[20px]"
@@ -564,7 +564,7 @@ const GoaplusTicketing = (props: Props) => {
                   unless you make payment
                 </span>
               </>
-            )}
+            )} */}
 
             <div>
               {errorsSubmit &&
