@@ -192,8 +192,8 @@ const GoaplusTicketing = (props: Props) => {
     }
 
     return [
-      ...freeTickets,
       ...dailyTickets,
+      ...freeTickets,
       ...unlimitedTicket,
       ...vipTicket,
       ...otherTickets,
