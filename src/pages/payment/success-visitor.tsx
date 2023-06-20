@@ -9,9 +9,10 @@ export default function PaymentSuccessPage() {
       <h1 className="text-4xl text-center text-green-500 mt-10">
         Payment has been successful!
       </h1>
-      <p>
-        You can either download file from previus tab or you can get from your
-        email
+      <p className="text-center">
+        Thank you for purchasing a Goalpass! You can either download your ticket
+        in a PDF form by returning to the previous page or checking you email.
+        See you soon!
       </p>
       <Link
         href="/"

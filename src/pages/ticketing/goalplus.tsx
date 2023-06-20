@@ -85,24 +85,27 @@ const GoaplusTicketing = (props: Props) => {
         postData
       )
       .then((res: any) => {
-        if (res.status === 204 && res.data === "") {
-          toast.success(
-            "Your ticket has been successfully created, please check your email! / Bilet uğurla yaradıldı, emailınızı yoxlayın!",
-            {
-              duration: 10000,
-            }
-          );
-        }
         if (res.status === 200 && res.data !== "") {
+          if (res.data.paymentUrl === null) {
+            toast.success(
+              "Your ticket has been successfully created, please check your email! / Bilet uğurla yaradıldı, emailınızı yoxlayın!",
+              {
+                duration: 10000,
+              }
+            );
+          }
           if (navigator.userAgent.split(" ").includes("Instagram")) {
             location.href = res.data.paymentUrl;
           }
-          toast.success(
-            "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödənişi edin!",
-            {
-              duration: 10000,
-            }
-          );
+          if (res.data.paymentUrl !== null) {
+            toast.success(
+              "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödənişi edin!",
+              {
+                duration: 10000,
+              }
+            );
+          }
+
           if (!navigator.userAgent.split(" ").includes("Instagram")) {
             setTimeout(() => {
               setPdfID(res.data.pdfId);
@@ -202,7 +205,9 @@ const GoaplusTicketing = (props: Props) => {
         method: "HEAD",
       }).then((res) => res.ok);
       if (!isLinkDownloadable) {
-        toast.error("Please do a payment first.");
+        toast.error(
+          "Please do a payment first. If you already did, please wait for a while and try again or check your email."
+        );
         return;
       }
       link.download = "ticket.pdf";
