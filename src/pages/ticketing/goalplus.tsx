@@ -93,6 +93,8 @@ const GoaplusTicketing = (props: Props) => {
                 duration: 10000,
               }
             );
+            setPdfID(res.data.pdfId);
+            return;
           }
           if (navigator.userAgent.split(" ").includes("Instagram")) {
             location.href = res.data.paymentUrl;
@@ -200,22 +202,17 @@ const GoaplusTicketing = (props: Props) => {
 
   const downloadTicket = async (id: any) => {
     try {
+      const resp = await axios.get(
+        `https://api.goalplus.az/api/tickets/${id}/pdf`
+      );
+      // create csv file from data
+      const url = `https://api.goalplus.az/api/tickets/${id}/pdf`;
       const link = document.createElement("a");
-      link.href = `https://api.goalplus.az/api/tickets/${id}/pdf`;
-      // check is link downloadable
-      // const isLinkDownloadable = await fetch(link.href, {
-      //   method: "HEAD",
-      // }).then((res) => res.ok);
-      // if (!isLinkDownloadable) {
-      //   toast.error(
-      //     "Please do a payment first. If you already did, please wait for a while and try again or check your email."
-      //   );
-      //   return;
-      // }
+      // download file
+      document.body.appendChild(link);
+      link.href = url;
       link.download = "ticket.pdf";
-      // download file going inside this function
       link.click();
-      toast.success("Ticket downloaded successfully.");
     } catch (error) {
       toast.error("Something went wrong while downloading ticket.");
     }
