@@ -46,7 +46,7 @@ const SpendYourSummersection = (props: Props) => {
           <ALinkStyled
             className="mt-[24px]"
             target="_blank"
-            href="https://www.instagram.com/goalplusaz/"
+            href="https://www.goalplus.az/ticketing/goalplus"
           >
             Get my GoalPass
           </ALinkStyled>
