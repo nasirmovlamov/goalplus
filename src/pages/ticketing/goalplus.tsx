@@ -96,6 +96,8 @@ const GoaplusTicketing = (props: Props) => {
           }
           if (navigator.userAgent.split(" ").includes("Instagram")) {
             location.href = res.data.paymentUrl;
+          } else {
+            window.open(res.data.paymentUrl, "_blank");
           }
           if (res.data.paymentUrl !== null) {
             toast.success(
@@ -201,16 +203,17 @@ const GoaplusTicketing = (props: Props) => {
       const link = document.createElement("a");
       link.href = `https://api.goalplus.az/api/tickets/${id}/pdf`;
       // check is link downloadable
-      const isLinkDownloadable = await fetch(link.href, {
-        method: "HEAD",
-      }).then((res) => res.ok);
-      if (!isLinkDownloadable) {
-        toast.error(
-          "Please do a payment first. If you already did, please wait for a while and try again or check your email."
-        );
-        return;
-      }
+      // const isLinkDownloadable = await fetch(link.href, {
+      //   method: "HEAD",
+      // }).then((res) => res.ok);
+      // if (!isLinkDownloadable) {
+      //   toast.error(
+      //     "Please do a payment first. If you already did, please wait for a while and try again or check your email."
+      //   );
+      //   return;
+      // }
       link.download = "ticket.pdf";
+      // download file going inside this function
       link.click();
       toast.success("Ticket downloaded successfully.");
     } catch (error) {
@@ -549,7 +552,7 @@ const GoaplusTicketing = (props: Props) => {
               Submit / Təsdiqlə
             </button>
 
-            {/* {pdfID && (
+            {pdfID && (
               <>
                 <button
                   className="w-full  flex justify-center items-center gap-3 bg-[#031F57] text-white py-2 rounded-md h-[64px] text-[20px]"
@@ -560,11 +563,11 @@ const GoaplusTicketing = (props: Props) => {
                   <span>Download Ticket / Bileti yüklə</span>
                 </button>
                 <span className="text-yellow-500">
-                  *You can download and keep ticket but it will not be activetad
-                  unless you make payment
+                  *Please make payment and come back to download ticket /
+                  Ödənişi edin və biletinizi yükləmək üçün geri qayıdın
                 </span>
               </>
-            )} */}
+            )}
 
             <div>
               {errorsSubmit &&
