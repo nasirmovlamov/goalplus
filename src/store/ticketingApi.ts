@@ -20,6 +20,10 @@ export const ticketingApi = createApi({
       query: () => ({
         url: `/ticket-types`,
         method: "GET",
+        params: {
+          CurrentPage: 1,
+          PageSize: 100,
+        },
       }),
     }),
     submitTicket: builder.mutation<any, any>({

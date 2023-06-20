@@ -214,7 +214,9 @@ const GoaplusTicketing = (props: Props) => {
       link.download = "ticket.pdf";
       link.click();
     } catch (error) {
-      toast.error("Something went wrong while downloading ticket.");
+      toast.error(
+        "Something went wrong while downloading ticket. Please make sure you have paid for the ticket"
+      );
     }
   };
 
