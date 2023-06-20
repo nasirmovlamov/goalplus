@@ -9,6 +9,10 @@ export default function PaymentSuccessPage() {
       <h1 className="text-4xl text-center text-green-500 mt-10">
         Payment has been successful!
       </h1>
+      <p>
+        You can either download file from previus tab or you can get from your
+        email
+      </p>
       <Link
         href="/"
         className="text-center bg-[#1E40AF] text-white py-2 px-4 rounded-md mt-10 mx-auto"
