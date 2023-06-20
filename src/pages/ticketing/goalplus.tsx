@@ -10,6 +10,9 @@ import Select from "react-select";
 import { date } from "yup";
 import { format } from "date-fns";
 import reset from "../authentication/password/reset";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTicket } from "@fortawesome/free-solid-svg-icons";
+import link from "next/link";
 
 type Props = {};
 
@@ -39,6 +42,7 @@ const GoaplusTicketing = (props: Props) => {
   } = ticketingApi.useGetTicketTypesQuery();
   const [errorsSubmit, setErrorsSubmit] = React.useState<any>(null);
   const [submitLoading, setSubmitLoading] = React.useState<boolean>(false);
+  const [pdfID, setPdfID] = React.useState<any>(null);
   const [
     submitTicketApi,
     {
@@ -90,18 +94,23 @@ const GoaplusTicketing = (props: Props) => {
           );
         }
         if (res.status === 200 && res.data !== "") {
-          location.href = res.data;
+          if (navigator.userAgent.split(" ").includes("Instagram")) {
+            location.href = res.data;
+          }
           toast.success(
-            "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödəniş edin!",
+            "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödənişi edin!",
             {
               duration: 10000,
             }
           );
-          // setTimeout(() => {
-          //   // redirect to res.data
-
-          // }, 2000);
-          // window.open("https://www.goalplus.az");
+          if (!navigator.userAgent.split(" ").includes("Instagram")) {
+            setTimeout(() => {
+              setPdfID(res.data.pdfId);
+              if (res.data.paymentUrl) {
+                window.open(res.data.paymentUrl, "_blank");
+              }
+            }, 3000);
+          }
         }
       })
       .catch((err) => {
@@ -184,6 +193,26 @@ const GoaplusTicketing = (props: Props) => {
     ];
   }
 
+  const downloadTicket = async (id: any) => {
+    try {
+      const link = document.createElement("a");
+      link.href = `https://api.goalplus.az/api/tickets/${id}/pdf`;
+      // check is link downloadable
+      const isLinkDownloadable = await fetch(link.href, {
+        method: "HEAD",
+      }).then((res) => res.ok);
+      if (!isLinkDownloadable) {
+        toast.error("Please do a payment first.");
+        return;
+      }
+      link.download = "ticket.pdf";
+      link.click();
+      toast.success("Ticket downloaded successfully.");
+    } catch (error) {
+      toast.error("Something went wrong while downloading ticket.");
+    }
+  };
+
   const yesterday_23_59 = new Date();
   yesterday_23_59.setDate(yesterday_23_59.getDate() - 1);
   yesterday_23_59.setHours(23);
@@ -195,18 +224,6 @@ const GoaplusTicketing = (props: Props) => {
     return (
       <div className="mx-auto max-w-[1175px] px-[15px]  mt-[120px] h-max">
         <div className="mx-auto mt-10 gap-5 h-max">
-          {/* {typeof window !== "undefined" &&
-            navigator.userAgent.split(" ").includes("Instagram") && (
-              <button
-                className="bg-[#05055B] text-white px-4 py-2 rounded-md"
-                onClick={() => {
-                  window.open("https://www.goalplus.az", "_blank");
-                }}
-              >
-                Open in browser
-              </button>
-            )} */}
-
           {getTicketTypeData?.filter(
             (item: any) => item.id == watch("ticketType")
           )[0]?.name ? (
@@ -526,6 +543,23 @@ const GoaplusTicketing = (props: Props) => {
             >
               Submit / Təsdiqlə
             </button>
+
+            {pdfID && (
+              <>
+                <button
+                  className="w-full  flex justify-center items-center gap-3 bg-[#031F57] text-white py-2 rounded-md h-[64px] text-[20px]"
+                  type="button"
+                  onClick={() => downloadTicket(pdfID)}
+                >
+                  <FontAwesomeIcon icon={faTicket} />
+                  <span>Download Ticket / Bileti yüklə</span>
+                </button>
+                <span className="text-yellow-500">
+                  *You can download and keep ticket but it will not be activetad
+                  unless you make payment
+                </span>
+              </>
+            )}
 
             <div>
               {errorsSubmit &&
