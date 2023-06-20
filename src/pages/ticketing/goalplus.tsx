@@ -95,7 +95,7 @@ const GoaplusTicketing = (props: Props) => {
         }
         if (res.status === 200 && res.data !== "") {
           if (navigator.userAgent.split(" ").includes("Instagram")) {
-            location.href = res.data;
+            location.href = res.data.paymentUrl;
           }
           toast.success(
             "Ticket is successfully created, please make payment! / Bilet uğurla yaradıldı, ödənişi edin!",
