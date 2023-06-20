@@ -178,10 +178,10 @@ const GoaplusTicketing = (props: Props) => {
     const otherTickets: Ticket[] = [];
 
     for (const ticket of response) {
-      if (ticket.price === 0) {
-        freeTickets.push(ticket);
-      } else if (ticket.name.includes("Daily GoalPass")) {
+      if (ticket.name.includes("Daily GoalPass")) {
         dailyTickets.push(ticket);
+      } else if (ticket.price === 0) {
+        freeTickets.push(ticket);
       } else if (ticket.name.includes("Unlimited GoalPass")) {
         unlimitedTicket.push(ticket);
       } else if (ticket.name.includes("VIP Goalpass")) {
