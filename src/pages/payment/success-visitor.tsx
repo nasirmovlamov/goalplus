@@ -51,7 +51,7 @@ export default function PaymentSuccessPage() {
       {pdfId && (
         <>
           <button
-            className="w-full  flex justify-center items-center gap-3 bg-[#031F57] text-white py-2 rounded-md h-[64px] text-[20px]"
+            className="w-full m-3  flex justify-center items-center gap-3 bg-[#031F57] text-white py-2 rounded-md h-[64px] text-[20px]"
             type="button"
             onClick={() => downloadTicket(pdfId)}
           >
