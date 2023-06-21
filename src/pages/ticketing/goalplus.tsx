@@ -100,8 +100,6 @@ const GoaplusTicketing = (props: Props) => {
           }
           if (navigator.userAgent.split(" ").includes("Instagram")) {
             location.href = res.data.paymentUrl;
-          } else {
-            location.href = res.data.paymentUrl;
           }
           if (res.data.paymentUrl !== null) {
             toast.success(
