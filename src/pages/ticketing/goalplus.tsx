@@ -94,6 +94,7 @@ const GoaplusTicketing = (props: Props) => {
               }
             );
             setPdfID(res.data.pdfId);
+            localStorage.setItem("pdfId", res.data.pdfId);
             return;
           }
           if (navigator.userAgent.split(" ").includes("Instagram")) {
@@ -113,6 +114,7 @@ const GoaplusTicketing = (props: Props) => {
           if (!navigator.userAgent.split(" ").includes("Instagram")) {
             setTimeout(() => {
               setPdfID(res.data.pdfId);
+              localStorage.setItem("pdfId", res.data.pdfId);
               if (res.data.paymentUrl) {
                 window.open(res.data.paymentUrl, "_blank");
               }
@@ -145,8 +147,6 @@ const GoaplusTicketing = (props: Props) => {
     for (let i = 0; i < dates.length; i++) {
       const startTime = new Date(dates[i].startTime);
       const endTime = new Date(dates[i].endTime);
-      console.log("startTime.getDate()", startTime.getDate());
-      console.log("endTime.getDate()", endTime.getDate());
       if (startTime.getDate() !== endTime.getDate()) {
         isTheRangeDateType = false;
       }
@@ -551,7 +551,7 @@ const GoaplusTicketing = (props: Props) => {
               Submit / Təsdiqlə
             </button>
 
-            {pdfID && (
+            {/* {pdfID && (
               <>
                 <button
                   className="w-full  flex justify-center items-center gap-3 bg-[#031F57] text-white py-2 rounded-md h-[64px] text-[20px]"
@@ -566,7 +566,7 @@ const GoaplusTicketing = (props: Props) => {
                   Ödənişi edin və biletinizi yükləmək üçün geri qayıdın
                 </span>
               </>
-            )}
+            )} */}
 
             <div>
               {errorsSubmit &&
