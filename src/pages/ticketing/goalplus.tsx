@@ -13,6 +13,7 @@ import reset from "../authentication/password/reset";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTicket } from "@fortawesome/free-solid-svg-icons";
 import link from "next/link";
+import register from "../register";
 
 type Props = {};
 
@@ -100,7 +101,7 @@ const GoaplusTicketing = (props: Props) => {
           if (navigator.userAgent.split(" ").includes("Instagram")) {
             location.href = res.data.paymentUrl;
           } else {
-            window.open(res.data.paymentUrl, "_blank");
+            location.href = res.data.paymentUrl;
           }
           if (res.data.paymentUrl !== null) {
             toast.success(
