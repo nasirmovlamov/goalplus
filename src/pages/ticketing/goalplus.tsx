@@ -98,6 +98,8 @@ const GoaplusTicketing = (props: Props) => {
             localStorage.setItem("pdfId", res.data.pdfId);
             return;
           }
+          setPdfID(res.data.pdfId);
+          localStorage.setItem("pdfId", res.data.pdfId);
           if (navigator.userAgent.split(" ").includes("Instagram")) {
             location.href = res.data.paymentUrl;
           }
@@ -112,10 +114,8 @@ const GoaplusTicketing = (props: Props) => {
 
           if (!navigator.userAgent.split(" ").includes("Instagram")) {
             setTimeout(() => {
-              setPdfID(res.data.pdfId);
-              localStorage.setItem("pdfId", res.data.pdfId);
               if (res.data.paymentUrl) {
-                window.open(res.data.paymentUrl, "_blank");
+                location.href = res.data.paymentUrl;
               }
             }, 3000);
           }
