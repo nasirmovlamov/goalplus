@@ -56,7 +56,7 @@ export default function PaymentSuccessPage() {
             onClick={() => downloadTicket(pdfId)}
           >
             <FontAwesomeIcon icon={faTicket} />
-            <span>Download Ticket / Bileti yüklə</span>
+            <span>Download my Goalpass / Goalpass-imi yüklə</span>
           </button>
           <span className="text-yellow-500">
             *Please make payment and come back to download ticket / Ödənişi edin
