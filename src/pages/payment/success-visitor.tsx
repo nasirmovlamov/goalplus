@@ -42,7 +42,7 @@ export default function PaymentSuccessPage() {
       <h1 className="text-4xl text-center text-green-500 mt-10">
         Payment has been successful!
       </h1>
-      <p className="text-center">
+      <p className="text-center m-3">
         Thank you for purchasing a Goalpass! You can either download your ticket
         in a PDF form by returning to the previous page or checking you email.
         See you soon!
@@ -51,12 +51,14 @@ export default function PaymentSuccessPage() {
       {pdfId && (
         <>
           <button
-            className="w-full m-3  flex justify-center items-center gap-3 bg-[#031F57] text-white py-2 rounded-md h-[64px] text-[20px]"
+            className="w-full m-5  flex justify-center items-center gap-3 bg-[#031F57] text-white py-2 rounded-md h-[64px] text-[20px]"
             type="button"
             onClick={() => downloadTicket(pdfId)}
           >
             <FontAwesomeIcon icon={faTicket} />
-            <span>Download my Goalpass / Goalpass-imi yüklə</span>
+            <span>
+              Download my Goalpass /<br /> Goalpass-imi yüklə
+            </span>
           </button>
           {/* <span className="text-yellow-500">
             *Please make payment and come back to download ticket / Ödənişi edin
