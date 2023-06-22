@@ -101,7 +101,7 @@ const GoaplusTicketing = (props: Props) => {
           setPdfID(res.data.pdfId);
           localStorage.setItem("pdfId", res.data.pdfId);
           if (navigator.userAgent.split(" ").includes("Instagram")) {
-            location.href = res.data.paymentUrl;
+            document.location.href = res.data.paymentUrl;
           }
           if (res.data.paymentUrl !== null) {
             toast.success(
@@ -110,14 +110,13 @@ const GoaplusTicketing = (props: Props) => {
                 duration: 10000,
               }
             );
-          }
-
-          if (!navigator.userAgent.split(" ").includes("Instagram")) {
-            setTimeout(() => {
-              if (res.data.paymentUrl) {
-                // location.href = res.data.paymentUrl;
-              }
-            }, 3000);
+            if (!navigator.userAgent.split(" ").includes("Instagram")) {
+              setTimeout(() => {
+                if (res.data.paymentUrl) {
+                  location.href = res.data.paymentUrl;
+                }
+              }, 2000);
+            }
           }
         }
       })

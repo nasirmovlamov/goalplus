@@ -58,10 +58,10 @@ export default function PaymentSuccessPage() {
             <FontAwesomeIcon icon={faTicket} />
             <span>Download my Goalpass / Goalpass-imi yüklə</span>
           </button>
-          <span className="text-yellow-500">
+          {/* <span className="text-yellow-500">
             *Please make payment and come back to download ticket / Ödənişi edin
             və biletinizi yükləmək üçün geri qayıdın
-          </span>
+          </span> */}
         </>
       )}
 
