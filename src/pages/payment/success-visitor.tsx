@@ -38,34 +38,34 @@ export default function PaymentSuccessPage() {
   };
 
   return (
-    <div className="mx-auto max-w-[1140px] flex flex-col items-center">
+    <div className="mx-auto max-w-[1140px] flex flex-col items-center p-4">
       <h1 className="text-4xl text-center text-green-500 mt-10">
         Payment has been successful!
       </h1>
-      <p className="text-center m-3">
+      <p className="text-center m-5 text-justify">
         Thank you for purchasing a Goalpass! You can either download your ticket
         in a PDF form by returning to the previous page or checking you email.
         See you soon!
       </p>
 
-      {pdfId && (
-        <>
-          <button
-            className="w-full m-5  flex justify-center items-center gap-3 bg-[#031F57] text-white py-2 rounded-md h-[64px] text-[20px]"
-            type="button"
-            onClick={() => downloadTicket(pdfId)}
-          >
-            <FontAwesomeIcon icon={faTicket} />
-            <span>
-              Download my Goalpass /<br /> Goalpass-imi yüklə
-            </span>
-          </button>
-          {/* <span className="text-yellow-500">
+      {/* {pdfId && ( */}
+      <>
+        <button
+          className="w-max m-6 px-5 py-5 flex justify-center items-center gap-5 bg-[#031F57] text-white rounded-md text-[20px]"
+          type="button"
+          onClick={() => downloadTicket(pdfId)}
+        >
+          <FontAwesomeIcon icon={faTicket} />
+          <span className="text-xs lg:text-base">
+            Download my Goalpass  / Goalpass-imi yüklə
+          </span>
+        </button>
+        {/* <span className="text-yellow-500">
             *Please make payment and come back to download ticket / Ödənişi edin
             və biletinizi yükləmək üçün geri qayıdın
           </span> */}
-        </>
-      )}
+      </>
+      {/* )} */}
 
       <Link
         href="/"
