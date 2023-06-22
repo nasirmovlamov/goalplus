@@ -70,8 +70,8 @@ export default function HomeMainSlider() {
   return (
     <div className="bg-[#031F57] h-auto">
       <Slider {...settings}>
-        <div className="w-full h-[700px]  md:h-[85vh] flex justify-center items-center text-white box-border p-10  lg:p-[152px] relative">
-          <div className="flex flex-col z-10   items-center pt-32">
+        <div className="w-full h-[700px]  md:h-[85vh] flex justify-center items-center text-white box-border p-10  2xl:p-[122px] relative">
+          <div className="flex flex-col z-10   items-center">
             <h1 className="text-xl  lg:text-[56px] text-center font-integral  leading-normal">
               Become a member of <br /> our community
             </h1>
@@ -79,7 +79,7 @@ export default function HomeMainSlider() {
               <img src={ourCommunityImage.src}
                 className="p-1" alt="" />
             </h1> */}
-            <p className="text-center mt-[48px] text-[20px]">
+            <p className="text-center mt-[28px] text-[20px]">
               Register as an athlete or get your membership <br /> for Goalplus
               Summer 2023
             </p>
@@ -112,8 +112,8 @@ export default function HomeMainSlider() {
             <IframeBlock />
           </div>
         </div>
-        <div className="w-full h-[700px]  md:h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
-          <div className="flex flex-col z-10 pt-32 justify-center items-center">
+        <div className="w-full h-[700px]  md:h-[85vh] flex justify-center items-center text-white box-border p-10  2xl:p-[122px] relative">
+          <div className="flex flex-col z-10  justify-center items-center">
             <h1 className="text-xl lg:text-[56px] text-center font-integral leading-normal">
               Score goals on and <br /> off the field
             </h1>
@@ -158,8 +158,8 @@ export default function HomeMainSlider() {
             />
           </div>
         </div>
-        <div className="w-full h-[700px]  md:h-[85vh] flex justify-center items-center text-white box-border p-10 lg:p-[152px] relative">
-          <div className="flex flex-col z-10 pt-32 justify-center items-center">
+        <div className="w-full h-[700px]  md:h-[85vh] flex justify-center items-center text-white box-border p-10  2xl:p-[122px] relative">
+          <div className="flex flex-col z-10  justify-center items-center">
             <h1 className="text-xl lg:text-[56px] text-center font-integral leading-normal">
               Capture your memories <br />
               with Goalplus

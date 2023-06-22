@@ -28,7 +28,7 @@ export default function PaymentSuccessPage() {
       // download file
       document.body.appendChild(link);
       link.href = url;
-      link.download = "ticket.pdf";
+      link.download = "goalplus.pdf";
       link.click();
     } catch (error) {
       toast.error(
