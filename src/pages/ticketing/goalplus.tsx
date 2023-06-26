@@ -569,9 +569,26 @@ const GoaplusTicketing = (props: Props) => {
                 </div>
                 {watch("useUklon") == "No" && (
                   <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
-                    <a href="https://apps.apple.com/us/app/uklon-more-than-a-taxi/id654646098" className="underline">
-                      Download Uklon and use the promo
-                    </a>
+                    {/* if device is ios*/}
+                    {navigator.userAgent.match(/(iPod|iPhone|iPad)/) && (
+                      <a
+                        href="https://apps.apple.com/us/app/uklon-more-than-a-taxi/id654646098"
+                        className="underline"
+                      >
+                        Download Uklon and use the promo
+                      </a>
+                    )}
+                    {
+                      // if device is android or other
+                      !navigator.userAgent.match(/(iPod|iPhone|iPad)/) && (
+                        <a
+                          href="https://play.google.com/store/apps/details?id=ua.com.uklontaxi&hl=en&gl=US"
+                          className="underline"
+                        >
+                          Download Uklon and use the promo
+                        </a>
+                      )
+                    }
                   </p>
                 )}
               </div>
