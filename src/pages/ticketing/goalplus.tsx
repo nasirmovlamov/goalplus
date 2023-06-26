@@ -582,6 +582,7 @@ const GoaplusTicketing = (props: Props) => {
                       // if device is android or other
                       !navigator.userAgent.match(/(iPod|iPhone|iPad)/) && (
                         <a
+                          
                           href="https://play.google.com/store/apps/details?id=ua.com.uklontaxi&hl=en&gl=US"
                           className="underline"
                         >
