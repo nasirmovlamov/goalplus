@@ -540,6 +540,43 @@ const GoaplusTicketing = (props: Props) => {
               </div>
             </div>
 
+            <div className="flex items-center flex-col gap-1  w-full mt-[32px]">
+              <div className="max-w-[500px] flex flex-col items-center">
+                <label className="text-[16px] text-[#9B9B9B] ">
+                  Do you use Uklon? / Uklon istifadə edirsinizmi?
+                </label>
+                <div className="flex gap-2 mt-[23px]">
+                  <div className="flex items-center gap-4">
+                    <input
+                      type="radio"
+                      value="Yes"
+                      checked={watch("useUklon") == "Yes"}
+                      {...register("useUklon")}
+                      className="w-[32px] h-[32px]"
+                    />
+                    <span className="text-[20px] text-[#9B9B9B]">Yes</span>
+                  </div>
+                  <div className="flex items-center gap-4 ml-[27px]">
+                    <input
+                      type="radio"
+                      value="No"
+                      checked={watch("useUklon") == "No"}
+                      {...register("useUklon")}
+                      className="w-[32px] h-[32px]"
+                    />
+                    <span className="text-[20px] text-[#9B9B9B]">No</span>
+                  </div>
+                </div>
+                {watch("useUklon") == "No" && (
+                  <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
+                    <a href="https://apps.apple.com/us/app/uklon-more-than-a-taxi/id654646098" className="underline">
+                      Download Uklon and use the promo
+                    </a>
+                  </p>
+                )}
+              </div>
+            </div>
+
             <button
               disabled={submitLoading}
               className="w-full bg-[#031F57] text-white py-2 rounded-md mt-[35px] h-[64px] text-[20px]"
