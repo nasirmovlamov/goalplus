@@ -2,6 +2,7 @@ import { BasketballPriceCard } from "@/components/BasketballPriceCard";
 import { BeachVolleyballPriceCard } from "@/components/BeachVolleyballPriceCard";
 import { EsportPriceCard } from "@/components/EsportPriceCard";
 import { FootballPriceCard } from "@/components/FootballPriceCard";
+import { LeagueCardV2 } from "@/components/LeagueCardV2";
 import React from "react";
 
 type Props = {};
@@ -146,66 +147,84 @@ export default function OurServices(props: Props) {
   };
   return (
     <div className="flex justify-center pt-[50px] pb-[50px]">
-      <div className=" max-w-[1140px] px-[15px]  w-full flex flex-wrap gap-[50px]">
-        <div className="w-full flex gap-5 flex-wrap w-max">
-          <button
-            onClick={() => handleFilter("all")}
-            className={
-              " text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out" +
-              (filter === "all"
-                ? " bg-[#0a3b9d]"
-                : " bg-gray-300 text-black border-black ")
-            }
-            style={{
-              boxShadow: "0px 0px 5px 0px #cdf000",
-            }}
-          >
-            All ({allGames.length})
-          </button>
-          <button
-            onClick={() => handleFilter("football")}
-            className={
-              " text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out" +
-              (filter === "football"
-                ? " bg-[#0a3b9d]"
-                : " bg-gray-300 text-black border-black ")
-            }
-            style={{
-              boxShadow: "0px 0px 5px 0px #cdf000",
-            }}
-          >
-            Football ({games.football.length})
-          </button>
-          <button
-            onClick={() => handleFilter("basketball")}
-            className={
-              " text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out" +
-              (filter === "basketball"
-                ? " bg-[#0a3b9d]"
-                : " bg-gray-300 text-black border-black ")
-            }
-            style={{
-              boxShadow: "0px 0px 5px 0px #cdf000",
-            }}
-          >
-            Basketball ({games.basketball.length})
-          </button>
-          <button
-            onClick={() => handleFilter("volleyball")}
-            className={
-              " text-white rounded-md px-4 py-2 hover:bg-[#0a3b9d] transition duration-300 ease-in-out" +
-              (filter === "volleyball"
-                ? " bg-[#0a3b9d]"
-                : " bg-gray-300 text-black border-black ")
-            }
-            style={{
-              boxShadow: "0px 0px 5px 0px #cdf000",
-            }}
-          >
-            Volleyball ({games.volleyball.length})
-          </button>
+      <div className=" max-w-[1170px] px-[15px]  w-full flex flex-wrap gap-[50px]">
+        <div className="mx-auto flex flex-wrap w-max mt-[120px]">
+          <div className="flex flex-col">
+            <button
+              onClick={() => handleFilter("all")}
+              className={
+                "bg-transperent text-[20px] rounded-md   " +
+                (filter === "all" ? "text-[#1C21FF] " : "  text-[#9B9B9B]  ")
+              }
+            >
+              All ({allGames.length})
+            </button>
+            <span
+              className={`w-[202px] h-[2px] mt-[16px] ${
+                filter === "all" ? "bg-[#1C21FF]" : " bg-[#9B9B9B]"
+              }`}
+            ></span>
+          </div>
+
+          <div className="flex flex-col">
+            <button
+              onClick={() => handleFilter("football")}
+              className={
+                "bg-transperent text-[20px] rounded-md   " +
+                (filter === "football"
+                  ? "text-[#1C21FF] "
+                  : "  text-[#9B9B9B]  ")
+              }
+            >
+              Football ({allGames.length})
+            </button>
+            <span
+              className={`w-[202px] h-[2px] mt-[16px] ${
+                filter === "football" ? "bg-[#1C21FF]" : " bg-[#9B9B9B]"
+              }`}
+            ></span>
+          </div>
+
+          <div className="flex flex-col">
+            <button
+              onClick={() => handleFilter("basketball")}
+              className={
+                "bg-transperent text-[20px] rounded-md   " +
+                (filter === "basketball"
+                  ? "text-[#1C21FF] "
+                  : "  text-[#9B9B9B]  ")
+              }
+            >
+              Basketball ({allGames.length})
+            </button>
+            <span
+              className={`w-[202px] h-[2px] mt-[16px] ${
+                filter === "basketball" ? "bg-[#1C21FF]" : " bg-[#9B9B9B]"
+              }`}
+            ></span>
+          </div>
+
+          <div className="flex flex-col">
+            <button
+              onClick={() => handleFilter("volleyball")}
+              className={
+                "bg-transperent text-[20px] rounded-md   " +
+                (filter === "volleyball"
+                  ? "text-[#1C21FF] "
+                  : "  text-[#9B9B9B]  ")
+              }
+            >
+              Volleyball ({allGames.length})
+            </button>
+            <span
+              className={`w-[202px] h-[2px] mt-[16px] ${
+                filter === "volleyball" ? "bg-[#1C21FF]" : " bg-[#9B9B9B]"
+              }`}
+            ></span>
+          </div>
         </div>
         <div className="w-full flex flex-wrap gap-[50px]">
+          <LeagueCardV2 />
           {filter === "all" &&
             allGames.map((game, index) => {
               switch (game.sport) {
