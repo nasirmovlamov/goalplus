@@ -541,11 +541,36 @@ const GoaplusTicketing = (props: Props) => {
             </div>
 
             <div className="flex items-center flex-col gap-1  w-full mt-[32px]">
-              <div className="max-w-[500px] flex flex-col items-center">
-                <label className="text-[16px] text-[#9B9B9B] ">
-                  Do you use Uklon? / Uklon istifadə edirsinizmi?
+              <div className="max-w-[500px] flex flex-col items-center w-full">
+                <label className="text-[16px] text-black font-bold max-w-[423px] ">
+                  <b>
+                    Do you use taxi to get to/from Goalplus? Get a 70% discount
+                    code from
+                    <br />
+                    {navigator.userAgent.match(/(iPod|iPhone|iPad)/) && (
+                      <a
+                        href="https://apps.apple.com/us/app/uklon-more-than-a-taxi/id654646098"
+                        className="underline"
+                      >
+                        Uklon: More Than a Taxi!
+                      </a>
+                    )}
+                    {
+                      // if device is android or other
+                      !navigator.userAgent.match(/(iPod|iPhone|iPad)/) && (
+                        <a
+                          href="https://play.google.com/store/apps/details?id=ua.com.uklontaxi&hl=en&gl=US"
+                          className="underline"
+                        >
+                          Uklon: More Than a Taxi!
+                        </a>
+                      )
+                    }
+                    <br /><br />
+                    <span className="text-[15px]">Promocode: GOALPLUS</span>
+                  </b>
                 </label>
-                <div className="flex gap-2 mt-[23px]">
+                {/* <div className="flex gap-2 mt-[23px]">
                   <div className="flex items-center gap-4">
                     <input
                       type="radio"
@@ -566,10 +591,9 @@ const GoaplusTicketing = (props: Props) => {
                     />
                     <span className="text-[20px] text-[#9B9B9B]">No</span>
                   </div>
-                </div>
-                {watch("useUklon") == "No" && (
+                </div> */}
+                {/* {watch("useUklon") == "No" && (
                   <p className="text-[#1C21FF] text-lg text-center mt-[12px]">
-                    {/* if device is ios*/}
                     {navigator.userAgent.match(/(iPod|iPhone|iPad)/) && (
                       <a
                         href="https://apps.apple.com/us/app/uklon-more-than-a-taxi/id654646098"
@@ -582,7 +606,6 @@ const GoaplusTicketing = (props: Props) => {
                       // if device is android or other
                       !navigator.userAgent.match(/(iPod|iPhone|iPad)/) && (
                         <a
-                          
                           href="https://play.google.com/store/apps/details?id=ua.com.uklontaxi&hl=en&gl=US"
                           className="underline"
                         >
@@ -591,7 +614,7 @@ const GoaplusTicketing = (props: Props) => {
                       )
                     }
                   </p>
-                )}
+                )} */}
               </div>
             </div>
 
