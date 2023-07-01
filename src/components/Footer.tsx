@@ -43,12 +43,12 @@ export const Footer = () => {
           <span className="hidden md:inline">•</span> United States */}
         </p>
         <div className="pt-[25px] flex flex-wrap justify-center md:justify-start gap-3 md:gap-0">
-          <div className="flex gap-3 items-center">
+          {/* <div className="flex gap-3 items-center">
             <FontAwesomeIcon icon={faPhone} />
             <a href="tel:+994508793197">
               <span className="text-[#54ACED]">+994508793197</span>
             </a>
-          </div>
+          </div> */}
           <div className="flex gap-3 items-center pl-10">
             <FontAwesomeIcon icon={faEnvelope} />
             <a href="mailto:info@goalplus.az">
