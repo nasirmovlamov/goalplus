@@ -93,7 +93,7 @@ export default function HomeMainSlider() {
             <LinkStyled3 className="mt-[48px]" href="/ticketing/goalplus">
               Get a Goalpass
             </LinkStyled3>
-            <Countdown targetDate="2023-06-18T18:00:00" />
+            {/* <Countdown targetDate="2023-06-18T18:00:00" /> */}
           </div>
           <div
             className={
