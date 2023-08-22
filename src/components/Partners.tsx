@@ -17,6 +17,7 @@ import mitFuseLogo from "../media/images/sponsors/mitFuse.png";
 import mitCenterELogo from "../media/images/sponsors/mitCenterE.png";
 import mitSandboxLogo from "../media/images/sponsors/mitSandbox.png";
 import mitVmsLogo from "../media/images/sponsors/mitVms.png";
+import cardBallLogo from "../media/images/sponsors/cardBall.png";
 
 const Partners = (props: Props) => {
   return (
@@ -84,6 +85,11 @@ const Partners = (props: Props) => {
           <img
             src={WoltLogo.src}
             className="w-[203px] h-[203px]"
+            alt="partner logo"
+          />
+          <img
+            src={cardBallLogo.src}
+            className=" h-[76px] mt-14"
             alt="partner logo"
           />
 
